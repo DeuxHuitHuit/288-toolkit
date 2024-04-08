@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"paths": {},
+		"rootDirs": [".", "./.svelte-kit/types"],
+		"allowJs": true,
+		"checkJs": true,
+		"esModuleInterop": true,
+		"incremental": true,
+		"forceConsistentCasingInFileNames": true,
+		"resolveJsonModule": true,
+		"skipLibCheck": true,
+		"sourceMap": true,
+		"strictNullChecks": true,
+		"isolatedModules": true,
+		"preserveValueImports": true,
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "esnext",
+		"ignoreDeprecations": "5.0"
+	},
+	"include": ["packages/**/*", "types/**/*"],
+	"exclude": ["**/node_modules/**", "**/*.js", "**/*.cjs"]
+}

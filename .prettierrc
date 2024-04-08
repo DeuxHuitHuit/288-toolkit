@@ -1,0 +1,20 @@
+{
+	"trailingComma": "none",
+	"singleQuote": true,
+	"printWidth": 100,
+	"proseWrap": "always",
+	"useTabs": true,
+	"tabWidth": 4,
+	"endOfLine": "lf",
+	"plugins": [
+		"prettier-plugin-svelte"
+	],
+	"overrides": [
+		{
+			"files": "*.yaml",
+			"options": {
+				"useTabs": false
+			}
+		}
+	]
+}

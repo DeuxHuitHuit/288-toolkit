@@ -1,0 +1,5 @@
+craft.d.ts
+craft-*.d.ts
+url-*.mjs
+.vercel
+static

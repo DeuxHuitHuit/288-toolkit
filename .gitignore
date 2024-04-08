@@ -1,0 +1,16 @@
+.DS_Store
+node_modules
+/build
+/**/.svelte-kit
+/.vercel
+/.vercel_build_output
+/package
+src/routes/\(docs\)
+src/routes/**/test
+src/test.svelte
+static/docs
+coverage
+vitest-output.json
+redirects.json
+/**/.turbo
+/**/dist
