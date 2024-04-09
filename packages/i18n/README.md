@@ -44,8 +44,7 @@ declare global {
 ## Translation files
 
 You must write translations in a `.ts` file named after the language. For example, if your supported
-languages are 'en' and 'fr', you will have `en.ts` dans `fr.ts`. The file should export an object
-also named after the language.
+languages are 'en' and 'fr', you will have `en.ts` dans `fr.ts`.
 
 In `en.ts`:
 
@@ -54,20 +53,24 @@ export const en = {
 	hello: 'world',
 	color: 'green'
 };
-
-export type Translations = typeof en;
 ```
 
-Typescript can help you making sure that your translation objects all have the same form. Simply
-decide which one is the source of truth and apply its type to all the other objects. Typescript will
+Typescript can help you making sure that your translation objects all have the same form. You can
+generate a type from the default translations and use it to cast the other objects. Typescript will
 indicate an error if properties don't match.
+
+In `en.ts`:
+
+```ts
+export type GlobalTranslations = typeof en;
+```
 
 In `fr.ts`:
 
 ```ts
-import type { Translations } from './en';
+import type { GlobalTranslations } from './en';
 
-export const fr: Translations = {
+export const fr: GlobalTranslations = {
 	hello: 'monde',
 	colorr: 'vert' // Typescript error
 };
@@ -110,18 +113,19 @@ export const load = async (event) => {
 To use these translations in your project, you need to create a translation function with
 `createTranslate()`. This function accepts a `path` that corresponds to the folder of your
 translations (the same that you used with `loadTranslations()`). You need a translation function for
-every translation folder.
+every translation folder. You can also pass your translation type to get typesafety for the
+translation keys.
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/client';
 
-export const t = createTranslate('/src/lib/translations/global');
+export const t = createTranslate<GlobalTranslations>('/src/lib/translations/global');
 ```
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/client';
 
-export const t = createTranslate('/src/lib/translations/articles');
+export const t = createTranslate<ArticlesTranslations>('/src/lib/translations/articles');
 ```
 
 ### The translation function
@@ -341,7 +345,10 @@ exactly the same as the client side version.
 import { createTranslate } from '@288-toolkit/i18n/translations/server';
 
 export const load = async (event) => {
-	const t = await createTranslate('/src/lib/translations/global', event.locals.language);
+	const t = await createTranslate<GlobalTranslations>(
+		'/src/lib/translations/global',
+		event.locals.language
+	);
 	return {
 		title: t('myTitle')
 	};
