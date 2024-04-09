@@ -1,0 +1,28 @@
+{
+  "name": "translations",
+  "version": "1.0.0",
+  "scripts": {},
+  "author": "DeuxHuitHuit",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./src/types/index.d.ts"
+    },
+    "./server": {
+      "default": "./src/server/index.ts"
+    },
+    "./translations/server": {
+      "default": "./src/translations/server/index.ts"
+    },
+    "./translations/client": {
+      "default": "./src/translations/client/index.ts"
+    }
+  },
+  "peerDependencies": {
+    "@sveltejs/kit": "2.x"
+  },
+  "dependencies": {
+    "esm-env": "1.0.0",
+    "just-safe-get": "4.2.0"
+  }
+}
