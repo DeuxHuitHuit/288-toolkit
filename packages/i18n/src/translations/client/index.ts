@@ -1,0 +1,1 @@
+export { createTranslate } from './createTranslate';
