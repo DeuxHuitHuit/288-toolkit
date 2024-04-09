@@ -43,8 +43,11 @@ export const createI18nHandle = ({ supportedLocales, defaultLocale }: Params): H
 		const locale =
 			(supportedLocales.find((locale) => locale.startsWith(`${language}-`)) as Locale) ||
 			defaultLocale;
+		// @ts-expect-error
 		event.locals.locale = locale;
+		// @ts-expect-error
 		event.locals.language = language;
+		// @ts-expect-error
 		event.locals.region = localeToRegion(locale);
 
 		// Resolve event and output correct html lang attribute
