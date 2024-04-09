@@ -1,1 +1,349 @@
 # i18n
+
+[!IMPORTANT] This package only exports typescript files.
+
+## i18n hook
+
+The i18n handle can be created with `createI18nHandle()` and used in `hooks.server.ts`.
+
+```ts
+import { createI18nHandle } from '@288-toolkit/hooks';
+
+const i18n = createI18nHandle({
+	supportedLocales: SUPPORTED_LOCALES, // ['en-ca', 'fr-ca']
+	defaultLocale: DEFAULT_LOCALE // 'en-ca'
+});
+
+export const handle = sequence(i18n);
+```
+
+The handle does the following:
+
+-   Redirects to the user's preferred language if the site is localized and the request is for the
+    root
+-   Sets the locale, language, and region in the event locals
+-   Outputs the correct html lang attribute
+
+Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
+replaced by the current language.
+
+Finally, to get type safety for the locals, you need to extend the `App.Locals` interface.
+
+In `app.d.ts`:
+
+```ts
+declare global {
+	namespace App {
+		interface Locals extends LangInfo<typeof SUPPORTED_LOCALES> {
+			// ...
+		}
+	}
+}
+```
+
+## Translation files
+
+You must write translations in a `.ts` file named after the language. For example, if your supported
+languages are 'en' and 'fr', you will have `en.ts` dans `fr.ts`. The file should export an object
+also named after the language.
+
+In `en.ts`:
+
+```ts
+export const en = {
+	hello: 'world',
+	color: 'green'
+};
+
+export type Translations = typeof en;
+```
+
+Typescript can help you making sure that your translation objects all have the same form. Simply
+decide which one is the source of truth and apply its type to all the other objects. Typescript will
+indicate an error if properties don't match.
+
+In `fr.ts`:
+
+```ts
+import type { Translations } from './en';
+
+export const fr: Translations = {
+	hello: 'monde',
+	colorr: 'vert' // Typescript error
+};
+```
+
+These files should all live inside the same folder. You can split your translations in as many
+folders as you want and load them only as needed.
+
+## Loading translations
+
+To load translations for a current layout or route, you can use `loadTranslations()` inside a load
+function. It accepts an array of translation folder paths and the current language. Note that the
+paths must absolute paths.
+
+The function returns an object containing all the loaded translations. Each translation has a unique
+key which is used by the `createTranslate()` function to pick up the translations on the client.
+Therefore, it is important the you always spread the object in the returned data.
+
+```ts
+export const load = async (event) => {
+	// We can access `language` from the event locals thanks to the i18n handle
+	const language = event.locals.language;
+	const translations = await loadTranslations(
+		[
+			'/src/lib/translations/global',
+			'src/lib/translations/articles',
+			// Some packages need their own translations. In order for them to work properly, you will need to load those as well.
+			'@288-toolkit/humanDuration/translations'
+		],
+		language
+	);
+	return {
+		...translations
+	};
+};
+```
+
+## Using translations
+
+To use these translations in your project, you need to create a translation function with
+`createTranslate()`. This function accepts a `path` that corresponds to the folder of your
+translations (the same that you used with `loadTranslations()`). You need a translation function for
+every translation folder.
+
+```ts
+import { createTranslate } from '@288-toolkit/i18n/translations/client';
+
+export const t = createTranslate('/src/lib/translations/global');
+```
+
+```ts
+import { createTranslate } from '@288-toolkit/i18n/translations/client';
+
+export const t = createTranslate('/src/lib/translations/articles');
+```
+
+### The translation function
+
+The translation function accepts as a first argument a string with the property key you want to
+access. It will return the property value associated with the current language. You can access
+nested properties by using dot notation (`'my.nested.property'`).
+
+The translation values can be strings, numbers, booleans, arrays and objects. `string` is the
+default return type. If you want to get a different type, use the first template parameter to
+specify a different return type.
+
+In `fr.ts`:
+
+```ts
+const PROJECT = {
+	translatableTitle: 'This is my title',
+	my: {
+		nested: {
+			property: 'This is my nested property'
+		}
+	},
+	myArrayProp: ['hello', 'world'],
+	myComplexProp: [
+		{
+			id: 1,
+			firstName: 'Oliver',
+			lastName: 'Twist'
+		},
+		{
+			id: 2,
+			firstName: 'Luke',
+			lastName: 'Skywalker'
+		}
+	]
+};
+```
+
+In `fr.ts`:
+
+```ts
+const PROJECT = {
+	translatableTitle: 'Ceci est mon titre',
+	my: {
+		nested: {
+			property: 'Ceci est pas propriété imbriquée'
+		}
+	},
+	myArrayProp: ['bonjour', 'monde'],
+	myComplexProp: [
+		{
+			id: 1,
+			firstName: 'Oliver',
+			lastName: 'Twist'
+		},
+		{
+			id: 2,
+			firstName: 'Luke',
+			lastName: 'Skywalker'
+		}
+	]
+};
+```
+
+In `AnyFile.svelte`:
+
+```svelte
+<script lang="ts">
+	import { t } from '$lib/translations/global';
+
+	// Getting an array of strings
+	const myArrayProp = t<string[]>('myArrayProp');
+
+	// Getting a complex type
+	const myComplexProp = t<Translations['myComplexProp']>('myComplexProp');
+</script>
+
+<h1>{t('translatableTitle')}</h1>
+<h2>{t('my.nested.property')}</h2>
+
+// At /en, output is:
+<h1>This is my title</h1>
+<h2>This is my nested property</h2>
+// At /fr, output is:
+<h1>Ceci est mon titre</h1>
+<h2>Ceci est pas propriété imbriquée</h2>
+
+{#each myArrayProp as word}
+	{word}
+	<br />
+{/each}
+{#each myComplexProp as person}
+	{person.id} - {person.firstName}
+	{person.lastName}
+	<br />
+{/each}
+```
+
+If no translation is found, a warning will be printed to the browser console (in dev mode only). The
+output of the function will be the key passed in.
+
+### Dynamic data in translations
+
+You can have dynamic translations with the bracket syntax:
+
+In `en.ts`:
+
+```ts
+const PROJECT = {
+	myDynamicTranslation: 'Available from {startDate} to {endDate}'
+};
+```
+
+In `fr.ts`:
+
+```ts
+const PROJECT: Translation.Project = {
+	myDynamicTranslation: 'Disponible du {startDate} au {endDate}'
+};
+```
+
+You can then pass a data object containing the dynamic values as a second argument to the `t`
+function.
+
+These will work with any value type (string, array or object).
+
+In `AnyFile.svelte`
+
+```html
+<script lang="ts">
+	import { t } from '$lib/translations/global';
+</script>
+
+<p>{t('myDynamicTranslation', { startDate: '13/01/2021', endDate: '16/01/2021' })}</p>
+
+// At /en, output is:
+<p>Available from 13/01/2021 to 16/01/2021</p>
+// At /fr, output is:
+<p>Disponible du 13/01/2021 au 16/01/2021</p>
+```
+
+### Pluralization
+
+The API also supports pluralization. It uses the `Intl.PluralRules` object. You may look at
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/PluralRules to
+familiarize yourself with it.
+
+In order to pluralize a message, you must provide multiple alternatives, each separated by a rule
+formatted as follow:
+
+```
+|<rule>:
+```
+
+When calling the `t` function, you must provide a `count` number in the data object. The `count`
+will determine which alternative is returned.
+
+The available rules are the following, ordered by priority:
+
+-   A specific number, like `4` or `32`.
+-   A range of two numbers separated by a dash, like `2-5`.
+-   One of the tags returned by `Intl.PluralRules.prototype.select()`, which are: `zero`, `one`,
+    `two`, `few`, `many`, and `other`.
+
+For example, with the following message string:
+
+```ts
+const en = {
+	relatedArticles: `
+	|one: One related article
+	|other: {count} related articles
+	|4: Four related articles
+	|2-4: A few related articles`
+};
+```
+
+we get the following result:
+
+```ts
+t('relatedArticles', { count: 0 }); // '0 related articles' (corresponds to the 'other' tag)
+t('relatedArticles', { count: 1 }); // 'One related article' (corresponds to the 'one' tag)
+t('relatedArticles', { count: 2 }); // 'A few related articles' (corresponds to the '2-4' range)
+t('relatedArticles', { count: 4 }); // 'Four related articles' (corresponds to the number '4')
+```
+
+This API also supports ordinal pluralization. To enable it, pass `ordinal: true` in the data object.
+
+For example, with the following message string:
+
+```ts
+const en = {
+	ordinalSuffix: `
+	|one: st
+	|two: nd
+	|few: rd
+	|other: th`
+};
+```
+
+we get the following result:
+
+```ts
+t('ordinalSuffix', { count: 0, ordinal: true }); // 'th' (corresponds to the 'other' tag)
+t('ordinalSuffix', { count: 1, ordinal: true }); // 'st' (corresponds to the 'one' tag)
+t('ordinalSuffix', { count: 2, ordinal: true }); // 'nd' (corresponds to the 'two' tag)
+t('ordinalSuffix', { count: 3, ordinal: true }); // 'rd' (corresponds to the 'few' tag)
+t('ordinalSuffix', { count: 4, ordinal: true }); // 'th' (corresponds to the 'other' tag)
+```
+
+## Translations on the server
+
+To use translations on the server, you need to use the server version of `createTranslate()`. This
+one returns a promise and requires the language as a second argument. The returned function is
+exactly the same as the client side version.
+
+```ts
+import { createTranslate } from '@288-toolkit/i18n/translations/server';
+
+export const load = async (event) => {
+	const t = await createTranslate('/src/lib/translations/global', event.locals.language);
+	return {
+		title: t('myTitle')
+	};
+};
+```

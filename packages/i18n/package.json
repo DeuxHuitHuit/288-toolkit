@@ -8,8 +8,8 @@
     ".": {
       "types": "./src/types/index.d.ts"
     },
-    "./server": {
-      "default": "./src/server/index.ts"
+    "./hooks": {
+      "default": "./src/hooks/index.ts"
     },
     "./translations/server": {
       "default": "./src/translations/server/index.ts"
