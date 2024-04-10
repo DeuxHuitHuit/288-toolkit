@@ -7,7 +7,7 @@
 The i18n handle can be created with `createI18nHandle()` and used in `hooks.server.ts`.
 
 ```ts
-import { createI18nHandle } from '@288-toolkit/hooks';
+import { createI18nHandle } from '@288-toolkit/i18n/hooks';
 
 const i18n = createI18nHandle({
 	supportedLocales: SUPPORTED_LOCALES, // ['en-ca', 'fr-ca']
@@ -32,6 +32,8 @@ Finally, to get type safety for the locals, you need to extend the `App.Locals` 
 In `app.d.ts`:
 
 ```ts
+import type { LangInfo } from '@288-toolkit/i18n/types';
+
 declare global {
 	namespace App {
 		interface Locals extends LangInfo<typeof SUPPORTED_LOCALES> {
