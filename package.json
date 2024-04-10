@@ -13,7 +13,8 @@
     "scripts": {
         "build": "turbo build",
         "test": "vitest run",
-        "test:watch": "vitest"
+        "test:watch": "vitest",
+		"make-pkg": "node ./scripts/make-pkg.js"
     },
     "devDependencies": {
         "@changesets/cli": "2.27.1",

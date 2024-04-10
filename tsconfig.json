@@ -19,6 +19,6 @@
 		"target": "esnext",
 		"ignoreDeprecations": "5.0"
 	},
-	"include": ["packages/**/*", "types/**/*"],
+	"include": ["./packages", "./scripts"],
 	"exclude": ["**/node_modules/**", "**/*.js", "**/*.cjs"]
 }
