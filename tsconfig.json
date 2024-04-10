@@ -17,9 +17,8 @@
 		"moduleResolution": "Bundler",
 		"module": "esnext",
 		"target": "esnext",
-		"ignoreDeprecations": "5.0",
-		"baseUrl": "."
+		"ignoreDeprecations": "5.0"
 	},
-	"include": ["packages", "scripts"],
+	"include": ["./packages", "./scripts"],
 	"exclude": ["**/node_modules/**", "**/*.js", "**/*.cjs"]
 }

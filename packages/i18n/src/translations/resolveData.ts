@@ -1,4 +1,4 @@
-import type { DataRoot, DataType } from 'packages/i18n/src/types';
+import type { DataRoot, DataType } from '../types';
 
 export const resolveData = <
 	TReturnType extends DataType = string,

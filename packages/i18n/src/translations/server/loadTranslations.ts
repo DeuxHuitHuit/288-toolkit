@@ -1,6 +1,6 @@
-import { getTranslationKey } from 'packages/i18n/src/translations/getTranslationKey';
-import type { Language } from 'packages/i18n/src/types';
 import { config } from 'src/toolkit.config';
+import type { Language } from '../../types';
+import { getTranslationKey } from '../getTranslationKey';
 
 /**
  * Dynamically imports translations objects.

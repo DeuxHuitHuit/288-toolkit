@@ -1,8 +1,8 @@
 import type { Handle } from '@sveltejs/kit';
-import { getLangFromRequest } from 'packages/i18n/src/lib/getLangFromRequest';
-import { localeToLanguage } from 'packages/i18n/src/lib/localeTo';
-import type { Locale } from 'packages/i18n/src/types';
 import { config } from 'src/toolkit.config';
+import { getLangFromRequest } from '../lib/getLangFromRequest';
+import { localeToLanguage } from '../lib/localeTo';
+import type { Locale } from '../types';
 
 export const i18n: Handle = async ({ resolve, event }) => {
 	const { supportedLocales, defaultLocale } = config;
