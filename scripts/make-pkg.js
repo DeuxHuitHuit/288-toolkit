@@ -11,7 +11,7 @@ const PACKAGE_JSON_CONTENT = `
 	"version": "1.0.0",
 	"scripts": {},
 	"author": "DeuxHuitHuit",
-	"license": "ISC"
+	"license": "MIT"
 }
 `;
 
