@@ -19,6 +19,13 @@ const README_CONTENT = `
 # ${pkgName}
 `;
 
+const TSCONFIG_CONTENT = `
+{
+	"extends": "../../tsconfig.json",
+	"include": ["../config.d.ts", "./src"]
+}
+`;
+
 const PACKAGES_PATH = path.resolve(__dirname, '../packages');
 const pkgPath = path.resolve(PACKAGES_PATH, pkgName);
 
@@ -26,3 +33,4 @@ await createFolderIfNotExist(pkgPath);
 await createFolderIfNotExist(path.resolve(pkgPath, 'src'));
 await createFormattedFileIfNotExist(path.resolve(pkgPath, `package.json`), PACKAGE_JSON_CONTENT);
 await createFormattedFileIfNotExist(path.resolve(pkgPath, `README.md`), README_CONTENT);
+await createFormattedFileIfNotExist(path.resolve(pkgPath, `tsconfig.json`), TSCONFIG_CONTENT);
