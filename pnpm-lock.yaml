@@ -79,6 +79,21 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.12.5)(jsdom@24.0.0)
 
+  packages/format:
+    dependencies:
+      '@288-toolkit/i18n':
+        specifier: 2.4.1
+        version: link:../i18n
+      '@288-toolkit/types':
+        specifier: 1.0.0
+        version: link:../types
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
+      esm-env:
+        specifier: 1.0.0
+        version: 1.0.0
+
   packages/i18n:
     dependencies:
       '@288-toolkit/types':

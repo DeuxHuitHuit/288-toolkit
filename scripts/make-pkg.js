@@ -1,5 +1,6 @@
 import path from 'path';
 import { createFolderIfNotExist, createFormattedFileIfNotExist, getDirname } from './lib/fs.js';
+import { capitalize } from './lib/string.js';
 
 const __dirname = getDirname(import.meta.url);
 
@@ -16,7 +17,9 @@ const PACKAGE_JSON_CONTENT = `
 `;
 
 const README_CONTENT = `
-# ${pkgName}
+# ${capitalize(pkgName)}
+
+[!IMPORTANT] This package only exports typescript files. 
 `;
 
 const TSCONFIG_CONTENT = `
