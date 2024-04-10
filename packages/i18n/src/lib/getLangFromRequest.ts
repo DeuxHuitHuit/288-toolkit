@@ -1,7 +1,6 @@
-import type { Language } from '../types';
 import { parseAcceptLanguage } from './parseAcceptLanguage';
 
-export const getLangFromRequest = (
+export const getLangFromRequest = <Language extends string>(
 	request: Request,
 	{
 		supportedLanguages,

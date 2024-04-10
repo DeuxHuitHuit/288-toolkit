@@ -4,9 +4,10 @@
 
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
+import { Locale } from '@288-toolkit/config/types';
 import type { MaybeUndefined } from '@288-toolkit/types';
 import { get } from 'svelte/store';
-import type { Language, Locale } from '../types';
+import { LangInfo } from '../types';
 import { localeToLanguage } from './localeTo';
 
 let cachedLocale: MaybeUndefined<Locale>;
@@ -32,6 +33,6 @@ export const currentLocale = (): Locale => {
  * @returns The current language or the default language if no locale is set.
  * @see currentLocale
  */
-export const currentLanguage = (): Language => {
+export const currentLanguage = (): LangInfo['language'] => {
 	return localeToLanguage(currentLocale());
 };

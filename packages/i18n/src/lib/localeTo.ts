@@ -2,14 +2,15 @@
  * This module provide functions to convert a locale to its parts.
  */
 
-import type { LangInfo, Language, Locale, Region } from '../types';
+import { Locale } from '@288-toolkit/config/types';
+import type { LangInfo } from '../types';
 
 /**
  * @returns The language part of the given locale.
  */
 export const localeToLanguage = <
 	T extends Locale = Locale,
-	U extends Language = LangInfo<T[]>['language']
+	U extends string = LangInfo<T[]>['language']
 >(
 	locale: T
 ) => {
@@ -21,7 +22,7 @@ export const localeToLanguage = <
  */
 export const localeToRegion = <
 	T extends Locale = Locale,
-	U extends Region = LangInfo<T[]>['region']
+	U extends string = LangInfo<T[]>['region']
 >(
 	locale: T
 ) => {

@@ -1,5 +1,7 @@
 // from: https://github.com/DeuxHuitHuit/flang_redirection/blob/a27c6c3d63314c16ffbae68079e4c4ebf1ab4896/events/event.flang_redirect.php#L229
 
+import { Maybe } from '@288-toolkit/types';
+
 export type AcceptLanguageEntry = {
 	lang: string;
 	priority: number;

@@ -1,16 +1,16 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "2.4.1",
+  "version": "2.5.0",
   "scripts": {},
   "author": "DeuxHuitHuit",
   "license": "MIT",
   "exports": {
-	".": {
-	  "default": "./src/index.ts"
-	},
-	"./types": {
-	  "types": "./src/types/index.d.ts"
-	},
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./types": {
+      "types": "./src/types/index.d.ts"
+    },
     "./handle": {
       "default": "./src/handle/index.ts"
     },
@@ -25,8 +25,9 @@
     "@sveltejs/kit": "2.x"
   },
   "dependencies": {
+    "@288-toolkit/config": "1.2.0",
+    "@288-toolkit/types": "1.1.0",
     "esm-env": "1.0.0",
-    "just-safe-get": "4.2.0",
-	"@288-toolkit/types": "1.1.0"
+    "just-safe-get": "4.2.0"
   }
 }

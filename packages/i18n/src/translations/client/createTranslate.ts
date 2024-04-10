@@ -1,8 +1,9 @@
 import { page } from '$app/stores';
+import { DataType } from '@288-toolkit/config/types';
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import { BROWSER, DEV } from 'esm-env';
 import { get } from 'svelte/store';
-import type { DataType, TranslateParams } from '../../types';
+import type { TranslateParams } from '../../types';
 import { getTranslationKey } from '../getTranslationKey';
 import { translate } from '../translate';
 
