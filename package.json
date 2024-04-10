@@ -14,7 +14,7 @@
         "build": "turbo build",
         "test": "vitest run",
         "test:watch": "vitest",
-		"make-pkg": "node ./scripts/make-pkg.js"
+        "make-pkg": "node ./scripts/make-pkg.js"
     },
     "devDependencies": {
         "@changesets/cli": "2.27.1",
@@ -38,5 +38,9 @@
         "typescript": "5.4.4",
         "vite": "5.2.8",
         "vitest": "^1.4.0"
+    },
+    "dependencies": {
+        "prettier-plugin-organize-imports": "^3.2.4",
+        "prettier-plugin-tailwindcss": "^0.5.13"
     }
 }
