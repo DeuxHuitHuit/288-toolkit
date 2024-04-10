@@ -1,7 +1,7 @@
 import type { Language } from '../../types';
 import { getTranslationKey } from '../getTranslationKey';
 import { translate } from '../translate';
-import type { DataType, TranslateParams } from '../types';
+import type { DataType, TranslateParams } from '../../types';
 import { loadTranslations } from './loadTranslations';
 
 export const createTranslate = async <TTranslationsObject extends AnonymousObject>(
