@@ -1,3 +1,4 @@
+import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
 import type { TranslateParams } from '../types';
 

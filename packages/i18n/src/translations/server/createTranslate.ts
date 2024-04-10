@@ -1,3 +1,4 @@
+import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import type { DataType, Language, TranslateParams } from '../../types';
 import { getTranslationKey } from '../getTranslationKey';
 import { translate } from '../translate';

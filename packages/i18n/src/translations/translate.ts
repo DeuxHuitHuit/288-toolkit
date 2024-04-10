@@ -1,3 +1,4 @@
+import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
 import type { DataType, TranslateParams } from '../types';
