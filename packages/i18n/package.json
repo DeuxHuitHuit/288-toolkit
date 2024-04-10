@@ -1,12 +1,13 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scripts": {},
   "author": "DeuxHuitHuit",
   "license": "MIT",
   "exports": {
     ".": {
-      "types": "./src/types/index.d.ts"
+      "types": "./src/types/index.d.ts",
+	  "default": "./src/index.ts"
     },
     "./hooks": {
       "default": "./src/hooks/index.ts"

@@ -1,0 +1,37 @@
+@288-toolkit/
+
+-   vite/
+    -   plugins
+-   tailwind/
+    -   plugins
+-   i18n/
+    -   currentLocale
+    -   currentLanguage
+    -   localeToLanguage
+    -   localeToRegion
+    -   hooks/
+        -   createI18nHandle
+    -   translations/
+        -   server/
+            -   createTranslate
+            -   loadTranslations
+        -   client/
+            -   createTranslate
+-   dates/
+    -   parseLocalDate
+    -   timezones
+    -   today
+-   format/
+    -   formatDate
+    -   formatPrice
+    -   humanDuration
+    -   humanSize
+    -   relativeTime
+-   http/
+    -   parseAcceptLanguage
+    -   getLangFromRequest
+    -   isRedirectResponse
+    -   getVercelIpHeaders
+-   components/
+    -   Pagination
+    -   Slideshow
