@@ -1,0 +1,16 @@
+{
+	"name": "@288-toolkit/config",
+	"version": "1.0.0",
+	"scripts": {},
+	"author": "DeuxHuitHuit",
+	"license": "MIT",
+	"exports": {
+		".": {
+			"types": "./src/index.d.ts",
+			"default": "./src/index.ts"
+		}
+	},
+	"dependencies": {
+		"@288-toolkit/types": "1.1.0"
+	}
+}

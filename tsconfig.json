@@ -1,25 +1,26 @@
 {
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Default",
 	"compilerOptions": {
-		"paths": {},
-		"rootDirs": ["./packages", "./scripts"],
-		"allowJs": true,
-		"checkJs": true,
+		"composite": false,
+		"declaration": true,
+		"declarationMap": true,
 		"esModuleInterop": true,
-		"incremental": true,
 		"forceConsistentCasingInFileNames": true,
-		"resolveJsonModule": true,
-		"skipLibCheck": true,
-		"sourceMap": true,
-		"strictNullChecks": true,
+		"inlineSources": false,
 		"isolatedModules": true,
-		"preserveValueImports": true,
-		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"module": "ESNext",
 		"moduleResolution": "Bundler",
-		"module": "esnext",
-		"target": "esnext",
-		"ignoreDeprecations": "5.0",
-		"allowImportingTsExtensions": true
+		"noUnusedLocals": false,
+		"noUnusedParameters": false,
+		"preserveWatchOutput": true,
+		"skipLibCheck": true,
+		"allowImportingTsExtensions": true,
+		"noEmit": true,
+		"lib": ["esnext", "DOM", "DOM.Iterable"],
+		"strictNullChecks": true,
+		"rootDirs": ["./packages", "./scripts"]
 	},
 	"include": ["./packages", "./scripts"],
-	"exclude": ["**/node_modules/**", "**/*.js", "**/*.cjs"]
+	"exclude": ["node_modules"]
 }
