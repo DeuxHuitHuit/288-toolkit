@@ -27,6 +27,6 @@
   "dependencies": {
     "esm-env": "1.0.0",
     "just-safe-get": "4.2.0",
-	"@288-toolkit/types": "1.0.0"
+	"@288-toolkit/types": "1.1.0"
   }
 }

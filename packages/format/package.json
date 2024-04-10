@@ -5,16 +5,28 @@
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"exports": {
-		".": {
-			"default": "./src/index.ts"
+		"./date": {
+			"default": "./src/date.ts"
+		},
+		"./price": {
+			"default": "./src/price.ts"
+		},
+		"./humanDuration": {
+			"default": "./src/humanDuration.ts"
+		},
+		"./humanSize": {
+			"default": "./src/humanSize.ts"
+		},
+		"./relativeTime": {
+			"default": "./src/relativeTime.ts"
 		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"esm-env": "1.0.0",
-		"@288-toolkit/types": "1.0.0",
-		"@288-toolkit/i18n": "2.4.1"
+		"@288-toolkit/i18n": "2.4.1",
+		"@288-toolkit/types": "1.1.0",
+		"esm-env": "1.0.0"
 	}
 }

@@ -32,6 +32,6 @@ export const formatPrice = (
 	} catch (error) {
 		// The narrowSymbol currencyDisplay option is not supported in Safari,
 		// so return a default price format in that case
-		return DEV || isPreview() ? error.message : `$${price.toFixed(2)}`;
+		return DEV ? error.message : `$${price.toFixed(2)}`;
 	}
 };

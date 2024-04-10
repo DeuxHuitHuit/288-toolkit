@@ -1,6 +1,6 @@
 import path from 'path';
 import { createFolderIfNotExist, createFormattedFileIfNotExist, getDirname } from './lib/fs.js';
-import { capitalize } from './lib/string.js';
+import { capitalize } from './lib/strings.js';
 
 const __dirname = getDirname(import.meta.url);
 

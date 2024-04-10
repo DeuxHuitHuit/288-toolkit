@@ -16,7 +16,9 @@
 import { currentLocale } from '@288-toolkit/i18n';
 import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe, MaybeUndefined } from '@288-toolkit/types';
+import type { TimeZone } from '@288-toolkit/types/timezones';
 import { DEV } from 'esm-env';
+import { config } from 'src/toolkit.config';
 
 export const USER_LOCALE = Symbol('user');
 type USER_LOCALE = typeof USER_LOCALE;
@@ -29,7 +31,7 @@ type ISO_LOCALE = typeof ISO_LOCALE;
 type FormatDateLocale = USER_LOCALE | ISO_LOCALE | Maybe<Locale>;
 
 const DEFAULTS: Intl.DateTimeFormatOptions = {
-	timeZone: TIMEZONE
+	timeZone: config.timezone
 } as const;
 
 /**

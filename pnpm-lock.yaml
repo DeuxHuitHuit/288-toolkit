@@ -79,13 +79,22 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0(@types/node@20.12.5)(jsdom@24.0.0)
 
+  packages/dates:
+    dependencies:
+      '@288-toolkit/format':
+        specifier: 1.0.0
+        version: link:../format
+      '@288-toolkit/types':
+        specifier: 1.1.0
+        version: link:../types
+
   packages/format:
     dependencies:
       '@288-toolkit/i18n':
         specifier: 2.4.1
         version: link:../i18n
       '@288-toolkit/types':
-        specifier: 1.0.0
+        specifier: 1.1.0
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x
@@ -97,7 +106,7 @@ importers:
   packages/i18n:
     dependencies:
       '@288-toolkit/types':
-        specifier: 1.0.0
+        specifier: 1.1.0
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x
