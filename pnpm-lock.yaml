@@ -88,8 +88,8 @@ importers:
   packages/dates:
     dependencies:
       '@288-toolkit/format':
-        specifier: 1.0.0
-        version: 1.0.0(@sveltejs/kit@2.5.5)
+        specifier: 1.3.0
+        version: link:../format
       '@288-toolkit/types':
         specifier: 1.1.0
         version: 1.1.0
@@ -98,10 +98,10 @@ importers:
     dependencies:
       '@288-toolkit/config':
         specifier: 1.2.0
-        version: link:../config
+        version: 1.2.0
       '@288-toolkit/i18n':
         specifier: 2.5.0
-        version: link:../i18n
+        version: 2.5.0(@sveltejs/kit@2.5.5)
       '@288-toolkit/types':
         specifier: 1.1.0
         version: 1.1.0
@@ -116,7 +116,7 @@ importers:
     dependencies:
       '@288-toolkit/config':
         specifier: 1.2.0
-        version: link:../config
+        version: 1.2.0
       '@288-toolkit/types':
         specifier: 1.1.0
         version: 1.1.0
@@ -134,30 +134,22 @@ importers:
 
 packages:
 
-  /@288-toolkit/format@1.0.0(@sveltejs/kit@2.5.5):
-    resolution: {integrity: sha512-K1nJFuimkyU9Hl0Cw0JZCNS4UR4RJN30M4fpsRQZLZmb92vPCXRimFWWsYukVR2zvALGBrqRZx7TFUk5rEmNow==}
+  /@288-toolkit/config@1.2.0:
+    resolution: {integrity: sha512-eiMfCjokxJNx2NHNTV8Xq3DHDUCRmcYyo/gVjCrR1bJmxBTu5wO/NZGaWJIjH4H99E6aS9542OQwyaVL1k8KCA==}
+    dependencies:
+      '@288-toolkit/types': 1.1.0
+    dev: false
+
+  /@288-toolkit/i18n@2.5.0(@sveltejs/kit@2.5.5):
+    resolution: {integrity: sha512-D5FT7rmzYtb4tZC94nKisRO3+cmUP0baXlwBeKuqNy4uh491L3BpRyLjQULy2tEABO+Oy6jXua8156h5DAUmKQ==}
     peerDependencies:
       '@sveltejs/kit': 2.x
     dependencies:
-      '@288-toolkit/i18n': 2.4.1(@sveltejs/kit@2.5.5)
+      '@288-toolkit/config': 1.2.0
       '@288-toolkit/types': 1.1.0
       '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
       esm-env: 1.0.0
-    dev: false
-
-  /@288-toolkit/i18n@2.4.1(@sveltejs/kit@2.5.5):
-    resolution: {integrity: sha512-qFdj4eNd3KfAgrMF7OhSwt0yhik5hWiQXmWEDk6KMzSBqPO7Rpfkk5Urg1bYA9TN46YuE1aF3mcFkVg+9Q8Vnw==}
-    peerDependencies:
-      '@sveltejs/kit': 2.x
-    dependencies:
-      '@288-toolkit/types': 1.0.0
-      '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
-      esm-env: 1.0.0
       just-safe-get: 4.2.0
-    dev: false
-
-  /@288-toolkit/types@1.0.0:
-    resolution: {integrity: sha512-x16nBh9Gh+f1QhiOAWxEcGHxWdv+r0ELEgeSWF7zK1F1PXQKXb+kF1zr3jCkIrAn+do6f7VaUEQwmI06xwy9Dg==}
     dev: false
 
   /@288-toolkit/types@1.1.0:

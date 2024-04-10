@@ -1,4 +1,4 @@
-import type { Translation } from '@288-toolkit/i18n/types';
+import { Translation } from '@288-toolkit/config/types';
 import { key as key_duration } from './duration';
 import { key as key_filesize } from './filesize';
 import { key as key_relativeTime } from './relativeTime';

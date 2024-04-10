@@ -1,12 +1,12 @@
-import { config } from 'src/toolkit.config';
-import type { Language } from '../../types';
+import { getConfig } from '@288-toolkit/config';
 import { getTranslationKey } from '../getTranslationKey';
 
 /**
  * Dynamically imports translations objects.
  * @returns An object containing a unique key prefixed for each translation object.
  */
-export const loadTranslations = async (keys: string[], language: Language) => {
+export const loadTranslations = async (keys: string[], language: string) => {
+	const config = getConfig();
 	const modules = await Promise.all(
 		keys.map(async (key) => {
 			// const mod = await import(/* @vite-ignore */ `${path}/${lang}.ts`);

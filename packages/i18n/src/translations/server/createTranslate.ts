@@ -1,12 +1,13 @@
+import { DataType } from '@288-toolkit/config/types';
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
-import type { DataType, Language, TranslateParams } from '../../types';
+import type { TranslateParams } from '../../types';
 import { getTranslationKey } from '../getTranslationKey';
 import { translate } from '../translate';
 import { loadTranslations } from './loadTranslations';
 
 export const createTranslate = async <TTranslationsObject extends AnonymousObject>(
 	path: string,
-	lang: Language
+	lang: string
 ) => {
 	const result = await loadTranslations([path], lang);
 	const translations = result[getTranslationKey(path)];
