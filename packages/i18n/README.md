@@ -81,9 +81,41 @@ folders as you want and load them only as needed.
 
 ## Loading translations
 
-To load translations for a current layout or route, you can use `loadTranslations()` inside a load
-function. It accepts an array of translation folder paths and the current language. Note that the
-paths must absolute paths.
+All translations must first be declared in a config object in `/src/translations.ts`. For every
+translation, you must provide a key and a loader for every supported language. A loader is
+essentially a function that returns a dynamic import.
+
+[!IMPORTANT] Do NOT `await` the import or it will not work. The 'awaiting' happens later.
+
+Because of how Vite processes dynamic imports, there are several limitations to keep in mind when
+writing the import path. They are listed here:
+[https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations).
+
+```ts
+import type { Config } from '@288-toolkit';
+
+export const config: Config = {
+	translations: [
+		{
+			key: 'global',
+			loaders: {
+				en: () => import('./lib/translations/global/en.ts'),
+				fr: () => import('./lib/translations/global/fr.ts')
+			}
+		},
+		{
+			key: 'newsletter',
+			loaders: {
+				en: () => import('./lib/translations/newsletter/en.ts'),
+				fr: () => import('./lib/translations/newsletter/fr.ts')
+			}
+		}
+	]
+};
+```
+
+To load some translations for a current layout or route, you can use `loadTranslations()` inside a
+load function. It accepts an array of translation keys and the current language.
 
 The function returns an object containing all the loaded translations. Each translation has a unique
 key which is used by the `createTranslate()` function to pick up the translations on the client.
@@ -93,15 +125,7 @@ Therefore, it is important the you always spread the object in the returned data
 export const load = async (event) => {
 	// We can access `language` from the event locals thanks to the i18n handle
 	const language = event.locals.language;
-	const translations = await loadTranslations(
-		[
-			'/src/lib/translations/global',
-			'src/lib/translations/articles',
-			// Some packages need their own translations. In order for them to work properly, you will need to load those as well.
-			'@288-toolkit/humanDuration/translations'
-		],
-		language
-	);
+	const translations = await loadTranslations(['global', 'newsletter'], language);
 	return {
 		...translations
 	};
@@ -111,21 +135,20 @@ export const load = async (event) => {
 ## Using translations
 
 To use these translations in your project, you need to create a translation function with
-`createTranslate()`. This function accepts a `path` that corresponds to the folder of your
-translations (the same that you used with `loadTranslations()`). You need a translation function for
-every translation folder. You can also pass your translation type to get typesafety for the
-translation keys.
+`createTranslate()`. This function accepts a key that corresponds to the translation key in the
+config (the same that you used with `loadTranslations()`). You can also pass your translation type
+to get typesafety for the translation keys.
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/client';
 
-export const t = createTranslate<GlobalTranslations>('/src/lib/translations/global');
+export const t = createTranslate<GlobalTranslations>('global');
 ```
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/client';
 
-export const t = createTranslate<ArticlesTranslations>('/src/lib/translations/articles');
+export const t = createTranslate<NewsletterTranslations>('newsletter');
 ```
 
 ### The translation function
@@ -337,18 +360,15 @@ t('ordinalSuffix', { count: 4, ordinal: true }); // 'th' (corresponds to the 'ot
 
 ## Translations on the server
 
-To use translations on the server, you need to use the server version of `createTranslate()`. This
-one returns a promise and requires the language as a second argument. The returned function is
-exactly the same as the client side version.
+To use translations on the server, you need to use the server version of `createTranslate()`. The
+differences are that this one returns a promise and requires the language as a second argument. The
+returned function is exactly the same as the client side version.
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/server';
 
 export const load = async (event) => {
-	const t = await createTranslate<GlobalTranslations>(
-		'/src/lib/translations/global',
-		event.locals.language
-	);
+	const t = await createTranslate<GlobalTranslations>('global', event.locals.language);
 	return {
 		title: t('myTitle')
 	};

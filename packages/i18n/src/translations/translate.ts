@@ -2,7 +2,7 @@ import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
 import { pluralize } from './pluralize';
 import { resolveData } from './resolveData';
-import type { DataType, TranslateParams } from './types';
+import type { DataType, TranslateParams } from '../types';
 
 /**
  * Translates a specific key, from a specific translation object.
