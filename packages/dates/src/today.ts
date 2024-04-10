@@ -4,7 +4,6 @@
 
 import { ISO_LOCALE } from '@288-toolkit/format/date';
 import type { TimeZone } from '@288-toolkit/types/timezones';
-import { config } from 'src/toolkit.config';
 import type { DatePart } from './types';
 
 export type TodayOptions = {
@@ -13,15 +12,12 @@ export type TodayOptions = {
 	timeZone: TimeZone;
 };
 
-const START_OF_DAY = config.startOfDay;
-const TIMEZONE = config.timezone;
-
 const padPart = (part: number) => part.toString().padStart(2, '0');
 
 const DEFAULTS: TodayOptions = {
 	now: new Date(),
-	hourOfStartOfDay: START_OF_DAY,
-	timeZone: TIMEZONE
+	hourOfStartOfDay: 0,
+	timeZone: 'America/Toronto'
 } as const;
 
 /**
