@@ -1,5 +1,5 @@
+import { Locale } from '@288-toolkit/config/types';
 import { currentLocale } from '@288-toolkit/i18n';
-import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
 

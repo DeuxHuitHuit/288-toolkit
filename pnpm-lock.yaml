@@ -96,8 +96,11 @@ importers:
 
   packages/format:
     dependencies:
+      '@288-toolkit/config':
+        specifier: 1.2.0
+        version: link:../config
       '@288-toolkit/i18n':
-        specifier: 2.4.1
+        specifier: 2.5.0
         version: link:../i18n
       '@288-toolkit/types':
         specifier: 1.1.0

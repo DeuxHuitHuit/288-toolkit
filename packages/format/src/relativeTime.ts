@@ -23,11 +23,11 @@
  *    This is probably the most common use case, so it's provided as a convenience.
  */
 
+import { getConfig } from '@288-toolkit/config';
+import { Locale } from '@288-toolkit/config/types';
 import { currentLocale } from '@288-toolkit/i18n';
-import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
-import { config } from 'src/toolkit.config';
 import { t } from './translations/relativeTime';
 
 export const USER_LOCALE = Symbol('user');
@@ -125,6 +125,7 @@ export const formatRelativeTime = (
 	now: Maybe<Date> = null
 ): string => {
 	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || currentLocale();
+	const config = getConfig();
 	try {
 		const optionsWithDefaults: Intl.RelativeTimeFormatOptions = { ...DEFAULTS, ...options };
 		const effectiveNow = (now || new Date()).getTime();

@@ -13,12 +13,12 @@
  *    Those function are also available for imports.
  */
 
+import { getConfig } from '@288-toolkit/config';
+import { Locale } from '@288-toolkit/config/types';
 import { currentLocale } from '@288-toolkit/i18n';
-import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe, MaybeUndefined } from '@288-toolkit/types';
 import type { TimeZone } from '@288-toolkit/types/timezones';
 import { DEV } from 'esm-env';
-import { config } from 'src/toolkit.config';
 
 export const USER_LOCALE = Symbol('user');
 type USER_LOCALE = typeof USER_LOCALE;
@@ -30,9 +30,13 @@ type ISO_LOCALE = typeof ISO_LOCALE;
 
 type FormatDateLocale = USER_LOCALE | ISO_LOCALE | Maybe<Locale>;
 
-const DEFAULTS: Intl.DateTimeFormatOptions = {
-	timeZone: config.timezone
-} as const;
+const DEFAULTS = () => {
+	const config = getConfig();
+	const defaults: Intl.DateTimeFormatOptions = {
+		timeZone: config.timezone
+	} as const;
+	return defaults;
+};
 
 /**
  * A wrapper around Intl.DateTimeFormat that returns the formatted date string.
@@ -47,7 +51,7 @@ export const formatDate = (
 ): string => {
 	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || currentLocale();
 	try {
-		const optionsWithDefaults: Intl.DateTimeFormatOptions = { ...DEFAULTS, ...options };
+		const optionsWithDefaults: Intl.DateTimeFormatOptions = { ...DEFAULTS(), ...options };
 		// Should this be DEFAULT_LOCALE instead of undefined?
 		return new Intl.DateTimeFormat(effectiveLocale || undefined, optionsWithDefaults).format(
 			date
@@ -159,7 +163,7 @@ export const createFormatDate = (
 	locale: FormatDateLocale = null
 ) => {
 	// Create a copy of the object, to make sure we are not altering it
-	const options = { ...DEFAULTS, ...options_ };
+	const options = { ...DEFAULTS(), ...options_ };
 	// Create the formatter object/api
 	const formatter: FormatDate = {
 		format: (date: Date) => formatDate(date, options, locale),
