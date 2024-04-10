@@ -14,7 +14,10 @@
         "build": "turbo build",
         "test": "vitest run",
         "test:watch": "vitest",
-        "make-pkg": "node ./scripts/make-pkg.js"
+        "make-pkg": "node ./scripts/make-pkg.js",
+		"format:prettier": "prettier --config ./.prettierrc",
+		"format:file": "npm run format:prettier -- --write",
+		"format": "npm run format:file ."
     },
     "devDependencies": {
         "@changesets/cli": "2.27.1",
