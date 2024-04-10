@@ -82,7 +82,7 @@ importers:
   packages/i18n:
     dependencies:
       '@288-toolkit/types':
-        specifier: workspace:^
+        specifier: 1.0.0
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x
