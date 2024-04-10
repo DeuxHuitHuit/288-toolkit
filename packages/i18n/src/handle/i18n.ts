@@ -1,5 +1,5 @@
 import { getConfig } from '@288-toolkit/config';
-import { Locale } from '@288-toolkit/config/types';
+import type { Locale } from '@288-toolkit/config/types';
 import type { Handle } from '@sveltejs/kit';
 import { getLangFromRequest } from '../lib/getLangFromRequest';
 import { localeToLanguage, localeToRegion } from '../lib/localeTo';
