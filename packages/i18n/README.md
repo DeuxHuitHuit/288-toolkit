@@ -114,6 +114,9 @@ export const config: Config = {
 };
 ```
 
+[!NOTE] In order for typescript to accept the `.ts` extension, you need to enable
+`allowImportingTsExtensions` in your `tsconfig`.
+
 To load some translations for a current layout or route, you can use `loadTranslations()` inside a
 load function. It accepts an array of translation keys and the current language.
 
