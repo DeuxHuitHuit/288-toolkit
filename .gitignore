@@ -12,5 +12,6 @@ static/docs
 coverage
 vitest-output.json
 redirects.json
-/**/.turbo
-/**/dist
+build/**
+dist/**
+.turbo

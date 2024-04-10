@@ -9,7 +9,7 @@
     "private": true,
     "type": "module",
     "engine": 18,
-    "sideEffects": false,
+	"workspaces": ["packages/*"],
     "scripts": {
         "build": "turbo build",
         "test": "vitest run",

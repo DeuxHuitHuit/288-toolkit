@@ -83,10 +83,10 @@ importers:
     dependencies:
       '@288-toolkit/format':
         specifier: 1.0.0
-        version: link:../format
+        version: 1.0.0(@sveltejs/kit@2.5.5)
       '@288-toolkit/types':
         specifier: 1.1.0
-        version: link:../types
+        version: 1.1.0
 
   packages/format:
     dependencies:
@@ -95,7 +95,7 @@ importers:
         version: link:../i18n
       '@288-toolkit/types':
         specifier: 1.1.0
-        version: link:../types
+        version: 1.1.0
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
@@ -107,7 +107,7 @@ importers:
     dependencies:
       '@288-toolkit/types':
         specifier: 1.1.0
-        version: link:../types
+        version: 1.1.0
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
@@ -121,6 +121,36 @@ importers:
   packages/types: {}
 
 packages:
+
+  /@288-toolkit/format@1.0.0(@sveltejs/kit@2.5.5):
+    resolution: {integrity: sha512-K1nJFuimkyU9Hl0Cw0JZCNS4UR4RJN30M4fpsRQZLZmb92vPCXRimFWWsYukVR2zvALGBrqRZx7TFUk5rEmNow==}
+    peerDependencies:
+      '@sveltejs/kit': 2.x
+    dependencies:
+      '@288-toolkit/i18n': 2.4.1(@sveltejs/kit@2.5.5)
+      '@288-toolkit/types': 1.1.0
+      '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
+      esm-env: 1.0.0
+    dev: false
+
+  /@288-toolkit/i18n@2.4.1(@sveltejs/kit@2.5.5):
+    resolution: {integrity: sha512-qFdj4eNd3KfAgrMF7OhSwt0yhik5hWiQXmWEDk6KMzSBqPO7Rpfkk5Urg1bYA9TN46YuE1aF3mcFkVg+9Q8Vnw==}
+    peerDependencies:
+      '@sveltejs/kit': 2.x
+    dependencies:
+      '@288-toolkit/types': 1.0.0
+      '@sveltejs/kit': 2.5.5(@sveltejs/vite-plugin-svelte@3.0.2)(svelte@4.2.12)(vite@5.2.8)
+      esm-env: 1.0.0
+      just-safe-get: 4.2.0
+    dev: false
+
+  /@288-toolkit/types@1.0.0:
+    resolution: {integrity: sha512-x16nBh9Gh+f1QhiOAWxEcGHxWdv+r0ELEgeSWF7zK1F1PXQKXb+kF1zr3jCkIrAn+do6f7VaUEQwmI06xwy9Dg==}
+    dev: false
+
+  /@288-toolkit/types@1.1.0:
+    resolution: {integrity: sha512-g365c/zVsvw7zOP2zAItTGLnrLDf8LjlrGiwMiwwEB/VFz7F4H+vKCTjC1aPA0BGztnLD6tdxp5p2ntMWRJsJA==}
+    dev: false
 
   /@aashutoshrathi/word-wrap@1.2.6:
     resolution: {integrity: sha512-1Yjs2SvM8TflER/OD3cOjhWWOZb58A2t7wpE2S9XfBYTiIl+XFhQG2bjy4Pu1I+EAlCNUzRDYDdFwFYUKvXcIA==}
