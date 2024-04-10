@@ -2,7 +2,7 @@ import { getConfig } from '@288-toolkit/config';
 import { Locale } from '@288-toolkit/config/types';
 import type { Handle } from '@sveltejs/kit';
 import { getLangFromRequest } from '../lib/getLangFromRequest';
-import { localeToLanguage } from '../lib/localeTo';
+import { localeToLanguage, localeToRegion } from '../lib/localeTo';
 
 export const i18n: Handle = async ({ resolve, event }) => {
 	const { supportedLocales, defaultLocale } = getConfig();
