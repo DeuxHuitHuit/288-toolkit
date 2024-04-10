@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/types",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"scripts": {},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
@@ -10,6 +10,9 @@
 		},
 		"./timezones": {
 			"types": "./src/timezones.d.ts"
+		},
+		"./config": {
+			"types": "./src/config.d.ts"
 		}
 	}
 }
