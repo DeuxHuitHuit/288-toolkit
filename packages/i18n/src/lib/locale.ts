@@ -17,20 +17,20 @@ let cachedLocale: MaybeUndefined<Locale>;
  * cache can not be used since it is request based.
  * @returns The current or cached locale.
  */
-export const currentLocale = (): Maybe<Locale> => {
+export const currentLocale = (): Locale => {
 	if (!browser) {
-		return get(page).data.locale || null;
+		return get(page).data.locale as Locale;
 	}
 	if (!cachedLocale) {
-		cachedLocale = get(page).data.locale;
+		cachedLocale = get(page).data.locale as Locale;
 	}
-	return cachedLocale || null;
+	return cachedLocale;
 };
 
 /**
  * @returns The current language or the default language if no locale is set.
  * @see currentLocale
  */
-export const currentLanguage = (): Maybe<Language> => {
+export const currentLanguage = (): Language => {
 	return localeToLanguage(currentLocale());
 };

@@ -92,7 +92,7 @@ writing the import path. They are listed here:
 [https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations).
 
 ```ts
-import type { Config } from '@288-toolkit';
+import type { Config } from '@288-toolkit/i18n/types';
 
 export const config: Config = {
 	translations: [
