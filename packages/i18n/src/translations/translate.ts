@@ -1,8 +1,8 @@
 import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
-import { pluralize } from './pluralize';
-import { resolveData } from './resolveData';
-import type { DataType, TranslateParams } from '../types';
+import { pluralize } from 'packages/i18n/src/translations/pluralize';
+import { resolveData } from 'packages/i18n/src/translations/resolveData';
+import type { DataType, TranslateParams } from 'packages/i18n/src/types';
 
 /**
  * Translates a specific key, from a specific translation object.

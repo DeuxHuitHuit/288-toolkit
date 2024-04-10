@@ -1,8 +1,7 @@
-import type { Language } from '../../types';
-import { getTranslationKey } from '../getTranslationKey';
-import { translate } from '../translate';
-import type { DataType, TranslateParams } from '../../types';
-import { loadTranslations } from './loadTranslations';
+import { getTranslationKey } from 'packages/i18n/src/translations/getTranslationKey';
+import { loadTranslations } from 'packages/i18n/src/translations/server/loadTranslations';
+import { translate } from 'packages/i18n/src/translations/translate';
+import type { DataType, Language, TranslateParams } from 'packages/i18n/src/types';
 
 export const createTranslate = async <TTranslationsObject extends AnonymousObject>(
 	path: string,

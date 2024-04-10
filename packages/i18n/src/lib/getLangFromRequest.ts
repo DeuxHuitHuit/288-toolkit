@@ -1,5 +1,5 @@
-import type { Language } from '../types';
-import { parseAcceptLanguage } from './parseAcceptLanguage';
+import { parseAcceptLanguage } from 'packages/i18n/src/lib/parseAcceptLanguage';
+import type { Language } from 'packages/i18n/src/types';
 
 export const getLangFromRequest = (
 	request: Request,

@@ -1,9 +1,9 @@
 import { page } from '$app/stores';
 import { BROWSER, DEV } from 'esm-env';
+import { getTranslationKey } from 'packages/i18n/src/translations/getTranslationKey';
+import { translate } from 'packages/i18n/src/translations/translate';
+import type { DataType, TranslateParams } from 'packages/i18n/src/types';
 import { get } from 'svelte/store';
-import { getTranslationKey } from '../getTranslationKey';
-import { translate } from '../translate';
-import type { DataType, TranslateParams } from '../../types';
 
 export const createTranslate = <TTranslationsObject extends AnonymousObject>(path: string) => {
 	let currentTranslations: TTranslationsObject;

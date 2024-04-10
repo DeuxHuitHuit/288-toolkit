@@ -41,7 +41,3 @@ export type Translation = {
 	key: string;
 	loaders: Record<string, () => Promise<DataRoot>>;
 };
-
-export type Config = {
-	translations: Translation[];
-};

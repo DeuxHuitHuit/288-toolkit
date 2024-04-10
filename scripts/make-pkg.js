@@ -1,5 +1,5 @@
 import path from 'path';
-import { createFormattedFileIfNotExist, createFolderIfNotExist, getDirname } from './lib/fs.js';
+import { createFolderIfNotExist, createFormattedFileIfNotExist, getDirname } from './lib/fs.js';
 
 const __dirname = getDirname(import.meta.url);
 

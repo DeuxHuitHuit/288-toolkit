@@ -4,15 +4,10 @@
 
 ## i18n hook
 
-The i18n handle can be created with `createI18nHandle()` and used in `hooks.server.ts`.
+The i18n handle must be used in `hooks.server.ts`.
 
 ```ts
-import { createI18nHandle } from '@288-toolkit/i18n/hooks';
-
-const i18n = createI18nHandle({
-	supportedLocales: SUPPORTED_LOCALES, // ['en-ca', 'fr-ca']
-	defaultLocale: DEFAULT_LOCALE // 'en-ca'
-});
+import { i18n } from '@288-toolkit/i18n/handle';
 
 export const handle = sequence(i18n);
 ```
@@ -23,6 +18,9 @@ The handle does the following:
     root
 -   Sets the locale, language, and region in the event locals
 -   Outputs the correct html lang attribute
+
+In order for the handle to work properly, you need to specify the `supportedLocales` and
+`defaultLocale` in the toolkit config.
 
 Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
 replaced by the current language.
@@ -83,7 +81,7 @@ folders as you want and load them only as needed.
 
 ## Loading translations
 
-All translations must first be declared in a config object in `/src/translations.ts`. For every
+All translations must first be declared in the `translations` array in the toolkit config. For every
 translation, you must provide a key and a loader for every supported language. A loader is
 essentially a function that returns a dynamic import.
 

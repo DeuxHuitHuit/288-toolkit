@@ -1,5 +1,5 @@
 import { DEV } from 'esm-env';
-import type { TranslateParams } from '../types';
+import type { TranslateParams } from 'packages/i18n/src/types';
 
 export const USER_LOCALE = Symbol('user');
 type USER_LOCALE = typeof USER_LOCALE;

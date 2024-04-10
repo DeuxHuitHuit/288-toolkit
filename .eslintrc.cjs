@@ -27,7 +27,10 @@ module.exports = {
 	rules: {
 		'@typescript-eslint/no-unused-vars': [
 			'warn',
-			{ argsIgnorePattern: '^_+$', varsIgnorePattern: '^\\$\\$(Props|Events|Slots)$' }
+			{
+				argsIgnorePattern: '^_+$',
+				varsIgnorePattern: '^_|\\$\\$(Props|Events|Slots)$'
+			}
 		],
 		'no-console': ['error', { allow: ['warn', 'error'] }],
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
