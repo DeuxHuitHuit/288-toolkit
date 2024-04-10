@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/format",
-	"version": "1.0.0",
+	"version": "1.1.0",
 	"scripts": {},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
@@ -19,6 +19,9 @@
 		},
 		"./relativeTime": {
 			"default": "./src/relativeTime.ts"
+		},
+		"./translations": {
+			"default": "./src/translations/index.ts"
 		}
 	},
 	"peerDependencies": {
