@@ -3,15 +3,19 @@ import type { DataType, TranslateParams, Translation } from '../../types';
 import { translate } from '../translate';
 import { loadTranslationFile } from './createTranslationsLoader';
 
-export const createTranslate = async <TTranslationsObject extends AnonymousObject>(
+export const createTranslate = async <
+	TTranslationsObject extends AnonymousObject,
+	const T extends Translation[],
+	Language extends keyof T[number]['loaders'] = string
+>(
 	translation: Translation,
-	language: string
+	language: Language
 ) => {
-	const mod = await loadTranslationFile(translation, language);
-	const translations = mod[language] as TTranslationsObject;
+	const mod = await loadTranslationFile(translation, String(language));
+	const translations = mod[String(language)] as TTranslationsObject;
 	if (!translations) {
 		throw new Error(
-			`Missing translations for key "${translation.key}" and language "${language}".`
+			`Missing translations for key "${translation.key}" and language "${String(language)}".`
 		);
 	}
 	return <

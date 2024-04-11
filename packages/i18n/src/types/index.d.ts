@@ -36,7 +36,11 @@ export type DataType = string | number | boolean | object | DataType[];
  */
 export type DataRoot = Record<string, DataType>;
 
+export type Loader = () => Promise<DataRoot>;
+
 export type Translation = {
 	key: string;
-	loaders: Record<string, () => Promise<DataRoot>>;
+	loaders: {
+		[lang: string]: Loader;
+	};
 };
