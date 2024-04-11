@@ -2,7 +2,7 @@
  * Timezone aware day
  */
 
-import { ISO_LOCALE } from '@288-toolkit/format/date';
+import { ISO_LOCALE } from '@288-toolkit/format';
 import type { TimeZone } from '@288-toolkit/types/timezones';
 import type { DatePart } from './types';
 

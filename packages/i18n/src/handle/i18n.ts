@@ -1,7 +1,7 @@
 import type { Handle } from '@sveltejs/kit';
 import { getLangFromRequest } from '../lib/getLangFromRequest';
 import { localeToLanguage, localeToRegion } from '../lib/localeTo';
-import { Locale } from '../types';
+import type { Locale } from '../types';
 
 export type I18nParams = {
 	supportedLocales: Readonly<Locale[]>;

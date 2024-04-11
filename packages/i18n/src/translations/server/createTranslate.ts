@@ -5,8 +5,8 @@ import { loadTranslationFile } from './createTranslationsLoader';
 
 export const createTranslate = async <
 	TTranslationsObject extends AnonymousObject,
-	const T extends Translation[],
-	Language extends keyof T[number]['loaders'] = string
+	const T extends Translation = Translation,
+	Language extends keyof T['loaders'] = string
 >(
 	translation: Translation,
 	language: Language

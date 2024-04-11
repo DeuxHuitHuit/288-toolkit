@@ -1,4 +1,4 @@
-import { Translation } from '../../types';
+import type { Translation } from '../../types';
 import { getTranslationKey } from '../getTranslationKey';
 
 export const loadTranslationFile = async (translation: Translation, language: string) => {
