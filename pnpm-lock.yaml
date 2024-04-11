@@ -82,19 +82,19 @@ importers:
   packages/dates:
     dependencies:
       '@288-toolkit/format':
-        specifier: 1.x
+        specifier: workspace:*
         version: link:../format
       '@288-toolkit/types':
-        specifier: 1.x
+        specifier: workspace:*
         version: link:../types
 
   packages/format:
     dependencies:
       '@288-toolkit/i18n':
-        specifier: 4.x
+        specifier: workspace:*
         version: link:../i18n
       '@288-toolkit/types':
-        specifier: 1.x
+        specifier: workspace:*
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x
@@ -106,7 +106,7 @@ importers:
   packages/i18n:
     dependencies:
       '@288-toolkit/types':
-        specifier: 1.x
+        specifier: workspace:*
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x

@@ -40,8 +40,8 @@
 		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"@288-toolkit/i18n": "4.x",
-		"@288-toolkit/types": "1.x",
+		"@288-toolkit/i18n": "workspace:*",
+		"@288-toolkit/types": "workspace:*",
 		"esm-env": "1.0.0"
 	}
 }

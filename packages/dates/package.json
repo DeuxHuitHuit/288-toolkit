@@ -13,7 +13,7 @@
 		}
 	},
 	"dependencies": {
-		"@288-toolkit/format": "1.x",
-		"@288-toolkit/types": "1.x"
+		"@288-toolkit/format": "workspace:*",
+		"@288-toolkit/types": "workspace:*"
 	}
 }
