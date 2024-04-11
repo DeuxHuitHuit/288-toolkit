@@ -4,7 +4,7 @@ import { localeToLanguage, localeToRegion } from '../lib/localeTo';
 import { Locale } from '../types';
 
 export type I18nParams = {
-	supportedLocales: Readonly<Locale>[];
+	supportedLocales: Readonly<Locale[]>;
 	defaultLocale: Locale;
 };
 
