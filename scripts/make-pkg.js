@@ -29,10 +29,7 @@ const PACKAGE_JSON_CONTENT = `
     },
 	"peerDependencies": {
         "@sveltejs/kit": "2.x",
-    },
-	"dependencies": {
-		"@sveltejs/vite-plugin-svelte": "3.1.0"
-	}
+    }
 }
 `;
 
