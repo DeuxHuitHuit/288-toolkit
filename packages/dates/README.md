@@ -2,6 +2,8 @@
 
 [!IMPORTANT] This package only exports typescript files.
 
+A collection of functions to manipulate dates.
+
 ## `parseLocalDates`
 
 Converts a date, in the yyyy-mm-dd format, into a Date object, in the user's timezone, at midnight.
