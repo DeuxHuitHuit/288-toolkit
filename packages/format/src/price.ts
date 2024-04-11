@@ -1,6 +1,4 @@
-import { Locale } from '@288-toolkit/config/types';
-import { currentLocale } from '@288-toolkit/i18n';
-import type { Maybe } from '@288-toolkit/types';
+import { Locale } from '@288-toolkit/i18n/types';
 import { DEV } from 'esm-env';
 
 export const USER_LOCALE = Symbol('user');
@@ -13,22 +11,21 @@ const DEFAULTS: Intl.NumberFormatOptions = {
 	minimumFractionDigits: 2
 } as const;
 
+export type FormatPriceLocale = Locale | USER_LOCALE;
+
+export type FormatPriceOptions = Partial<Intl.NumberFormatOptions> & { locale?: FormatPriceLocale };
+
 /**
  * A wrapper around Intl.NumberFormat that returns the formatted price string.
  * @param price The price to format.
- * @param options The options to pass to Intl.NumberFormatOptions.
- * @param locale The locale to use. Use the `USER_LOCALE` symbol to use the user's locale.
+ * @param options The options to pass to Intl.NumberFormatOptions and the locale to use. Use the `USER_LOCALE` symbol to use the user's locale.
  */
-export const formatPrice = (
-	price: number,
-	options: Partial<Intl.NumberFormatOptions> = {},
-	locale: Maybe<Locale> | USER_LOCALE = null
-) => {
-	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || currentLocale();
+export const formatPrice = (price: number, options: FormatPriceOptions = {}) => {
+	const { locale, ...formatOptions } = options;
+	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || undefined;
 	try {
-		const mergedOptions: Intl.NumberFormatOptions = { ...DEFAULTS, ...options };
-		// Should this be DEFAULT_LOCALE instead of undefined?
-		return new Intl.NumberFormat(effectiveLocale || undefined, mergedOptions).format(price);
+		const mergedOptions: Intl.NumberFormatOptions = { ...DEFAULTS, ...formatOptions };
+		return new Intl.NumberFormat(effectiveLocale, mergedOptions).format(price);
 	} catch (error) {
 		// The narrowSymbol currencyDisplay option is not supported in Safari,
 		// so return a default price format in that case

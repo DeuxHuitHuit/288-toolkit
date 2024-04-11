@@ -23,9 +23,7 @@
  *    This is probably the most common use case, so it's provided as a convenience.
  */
 
-import { getConfig } from '@288-toolkit/config';
-import { Locale } from '@288-toolkit/config/types';
-import { currentLocale } from '@288-toolkit/i18n';
+import { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
 import { t } from './translations/relativeTime';
@@ -36,7 +34,12 @@ type RelativeTimeLocale = USER_LOCALE | Maybe<Locale>;
 
 export const AUTO_UNIT = Symbol('auto');
 type AUTO_UNIT = typeof AUTO_UNIT;
-type RelativeTimeFormatUnit = Intl.RelativeTimeFormatUnit | AUTO_UNIT;
+
+export type RelativeTimeFormatUnit = Intl.RelativeTimeFormatUnit | AUTO_UNIT;
+
+export type RelativeTimeFormatOptions = Partial<Intl.RelativeTimeFormatOptions> & {
+	locale?: RelativeTimeLocale;
+};
 
 const timeUnits: ReadonlyArray<Intl.RelativeTimeFormatUnit> = [
 	'years',
@@ -119,25 +122,27 @@ const DEFAULTS: Intl.RelativeTimeFormatOptions = {
  */
 export const formatRelativeTime = (
 	date: Date,
-	options: Partial<Intl.RelativeTimeFormatOptions> = {},
+	options: RelativeTimeFormatOptions = {},
 	unit: RelativeTimeFormatUnit = AUTO_UNIT,
-	locale: RelativeTimeLocale = null,
 	now: Maybe<Date> = null
 ): string => {
-	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || currentLocale();
-	const config = getConfig();
+	const { locale, ...formatOptions } = options;
+	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || undefined;
 	try {
-		const optionsWithDefaults: Intl.RelativeTimeFormatOptions = { ...DEFAULTS, ...options };
+		const optionsWithDefaults: Intl.RelativeTimeFormatOptions = {
+			...DEFAULTS,
+			...formatOptions
+		};
 		const effectiveNow = (now || new Date()).getTime();
 		const durationInMs = effectiveNow - date.getTime();
 		const effectiveUnit = unit === AUTO_UNIT ? resolveAutoUnit(durationInMs) : unit;
 		if (effectiveUnit === NOW) {
 			return t('now');
 		}
-		return new Intl.RelativeTimeFormat(
-			effectiveLocale || config.defaultLocale,
-			optionsWithDefaults
-		).format(resolveTimeDuration(durationInMs, effectiveUnit), effectiveUnit);
+		return new Intl.RelativeTimeFormat(effectiveLocale, optionsWithDefaults).format(
+			resolveTimeDuration(durationInMs, effectiveUnit),
+			effectiveUnit
+		);
 	} catch (error) {
 		return DEV ? error.message : date.toLocaleString();
 	}
@@ -201,37 +206,35 @@ interface RelativeTimeFormatter {
  * All starting parameters are optional.
  *
  * @see formatRelativeTime
- * @param options_ The starting options to use to format the date.
- * @param unit The starting unit to use to format the date. Use `AUTO_UNIT` to automatically detect the best unit.
- * @param locale The starting locale to use to format the date. Use `USER_LOCALE` to use the user's locale.
+ * @param options The starting options to use to format the date and the starting locale to use to format the date. Use `USER_LOCALE` to use the user's locale.
  *   Defaults to the current locale.
+ * @param unit The starting unit to use to format the date. Use `AUTO_UNIT` to automatically detect the best unit.
  * @param now The starting date to use as the reference date. Defaults to `new Date()`.
  */
 export const relativeTime = (
-	options_: Partial<Intl.RelativeTimeFormatOptions> = {},
+	options: RelativeTimeFormatOptions = {},
 	unit: RelativeTimeFormatUnit = AUTO_UNIT,
-	locale: RelativeTimeLocale = null,
 	now: Maybe<Date> = null
 ): RelativeTimeFormatter => {
 	// Create a copy of the object, to make sure we are not altering it
-	const options = { ...DEFAULTS, ...options_ };
+	const mergedOptions = { ...DEFAULTS, ...options };
 	// Create the formatter object/api
 	const formatter = {
-		format: (date: Date) => formatRelativeTime(date, options, unit, locale, now),
+		format: (date: Date) => formatRelativeTime(date, mergedOptions, unit, now),
 		short: () => {
-			options.style = 'short';
+			mergedOptions.style = 'short';
 			return formatter;
 		},
 		narrow: () => {
-			options.style = 'narrow';
+			mergedOptions.style = 'narrow';
 			return formatter;
 		},
 		numeric: () => {
-			options.numeric = 'always';
+			mergedOptions.numeric = 'always';
 			return formatter;
 		},
 		numericAuto: () => {
-			options.numeric = 'auto';
+			mergedOptions.numeric = 'auto';
 			return formatter;
 		},
 		unit: (unit_: RelativeTimeFormatUnit) => {
@@ -240,7 +243,7 @@ export const relativeTime = (
 		},
 		unitAuto: () => formatter.unit(AUTO_UNIT),
 		locale: (locale_: RelativeTimeLocale) => {
-			locale = locale_;
+			mergedOptions.locale = locale_;
 			return formatter;
 		},
 		userLocale: () => formatter.locale(USER_LOCALE),

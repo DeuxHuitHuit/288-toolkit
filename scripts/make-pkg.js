@@ -38,7 +38,7 @@ const README_CONTENT = `
 const TSCONFIG_CONTENT = `
 {
 	"extends": "../../tsconfig.json",
-	"include": ["../config.d.ts", "./src"]
+	"include": ["./src"]
 }
 `;
 

@@ -17,7 +17,7 @@ const padPart = (part: number) => part.toString().padStart(2, '0');
 const DEFAULTS: TodayOptions = {
 	now: new Date(),
 	hourOfStartOfDay: 0,
-	timeZone: 'America/Toronto'
+	timeZone: 'UTC'
 } as const;
 
 /**

@@ -12,9 +12,9 @@
 	"workspaces": ["packages/*"],
     "scripts": {
         "build": "turbo build",
+        "make-pkg": "node ./scripts/make-pkg.js",
         "test": "vitest run",
         "test:watch": "vitest",
-        "make-pkg": "node ./scripts/make-pkg.js",
 		"format:prettier": "prettier --config ./.prettierrc",
 		"format:file": "npm run format:prettier -- --write",
 		"format": "npm run format:file .",
