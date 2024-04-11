@@ -10,7 +10,6 @@ const PACKAGE_JSON_CONTENT = `
 {
 	"name": "@288-toolkit/${pkgName}",
 	"version": "1.0.0",
-	"scripts": {},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

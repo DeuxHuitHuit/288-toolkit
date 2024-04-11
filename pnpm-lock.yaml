@@ -118,6 +118,12 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
 
+  packages/http:
+    dependencies:
+      '@288-toolkit/types':
+        specifier: workspace:^
+        version: link:../types
+
   packages/i18n:
     dependencies:
       '@288-toolkit/types':
