@@ -1,16 +1,18 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "scripts": {
-	"format:prettier": "prettier --config ./.prettierrc",
-	"format:file": "npm run format:prettier -- --write",
-	"format": "npm run format:file .",
-	"check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
-	"check:watch": "npm run check -- --watch",
-	"lint": "eslint --max-warnings=0 --cache .",
-	"lint:fix": "npm run lint -- --fix",
-	"lc": "npm run lint && npm run check",
-	"lc:watch": "npm run lint && npm run check -- --watch"
+	"test": "vitest run",
+	"test:watch": "vitest",
+    "format:prettier": "prettier --config ./.prettierrc",
+    "format:file": "npm run format:prettier -- --write",
+    "format": "npm run format:file .",
+    "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+    "check:watch": "npm run check -- --watch",
+    "lint": "eslint --max-warnings=0 --cache .",
+    "lint:fix": "npm run lint -- --fix",
+    "lc": "npm run lint && npm run check",
+    "lc:watch": "npm run lint && npm run check -- --watch"
   },
   "author": "DeuxHuitHuit",
   "license": "MIT",
@@ -35,6 +37,7 @@
     "@sveltejs/kit": "2.x"
   },
   "dependencies": {
+    "@288-toolkit/http": "workspace:*",
     "@288-toolkit/types": "workspace:*",
     "esm-env": "1.0.0",
     "just-safe-get": "4.2.0"

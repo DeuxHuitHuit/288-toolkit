@@ -1,5 +1,5 @@
+import { getLangFromRequest } from '@288-toolkit/http';
 import type { Handle } from '@sveltejs/kit';
-import { getLangFromRequest } from '../lib/getLangFromRequest';
 import { localeToLanguage, localeToRegion } from '../lib/localeTo';
 import type { Locale } from '../types';
 
