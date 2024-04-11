@@ -1,4 +1,4 @@
-import { DataRoot, DataType } from '@288-toolkit/config/types';
+import { DataRoot, DataType } from '../types';
 
 export const resolveData = <
 	TReturnType extends DataType = string,

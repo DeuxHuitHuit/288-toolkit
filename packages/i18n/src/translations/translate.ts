@@ -1,8 +1,7 @@
-import { DataType } from '@288-toolkit/config/types';
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
-import type { TranslateParams } from '../types';
+import type { DataType, TranslateParams } from '../types';
 import { pluralize } from './pluralize';
 import { resolveData } from './resolveData';
 

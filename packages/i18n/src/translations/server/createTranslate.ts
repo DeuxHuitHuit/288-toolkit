@@ -1,26 +1,29 @@
-import { DataType } from '@288-toolkit/config/types';
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
-import type { TranslateParams } from '../../types';
-import { getTranslationKey } from '../getTranslationKey';
+import type { DataType, TranslateParams, Translation } from '../../types';
 import { translate } from '../translate';
-import { loadTranslations } from './loadTranslations';
+import { loadTranslationFile } from './createTranslationsLoader';
 
 export const createTranslate = async <TTranslationsObject extends AnonymousObject>(
-	path: string,
-	lang: string
+	translation: Translation,
+	language: string
 ) => {
-	const result = await loadTranslations([path], lang);
-	const translations = result[getTranslationKey(path)];
+	const mod = await loadTranslationFile(translation, language);
+	const translations = mod[language] as TTranslationsObject;
+	if (!translations) {
+		throw new Error(
+			`Missing translations for key "${translation.key}" and language "${language}".`
+		);
+	}
 	return <
 		TReturnType extends DataType = string,
 		TInferredOrString = TReturnType extends DataType ? TReturnType : string
 	>(
-		key: PropertyStringPath<TTranslationsObject>,
+		path: PropertyStringPath<TTranslationsObject>,
 		data: TranslateParams = {}
 	): TInferredOrString => {
 		return translate<TTranslationsObject, TReturnType, TInferredOrString>(
 			translations,
-			key,
+			path,
 			data
 		);
 	};

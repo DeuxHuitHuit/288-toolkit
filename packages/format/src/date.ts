@@ -330,7 +330,6 @@ export const time24h = (date: Date) => createFormatDate().iso().hour().minute().
  */
 export const yyyymmdd = (date: Date) =>
 	createFormatDate().iso().year('numeric').month('2-digit').day('2-digit').format(date);
-
 /**
  * Formats the date into the ISO format, in the USER'S timezone.
  * This pairs well with `parseLocalDate()`.

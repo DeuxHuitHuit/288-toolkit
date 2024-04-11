@@ -4,12 +4,14 @@
 
 ## i18n hook
 
-The i18n handle must be used in `hooks.server.ts`.
+The i18n function returns a handle that must be used in `hooks.server.ts`.
 
 ```ts
 import { i18n } from '@288-toolkit/i18n/handle';
 
-export const handle = sequence(i18n);
+export const handle = sequence(
+	i18n({ supportedLocales: ['en-ca', 'fr-ca'], defaultLocale: ['en-ca'] })
+);
 ```
 
 The handle does the following:
@@ -18,9 +20,6 @@ The handle does the following:
     root
 -   Sets the locale, language, and region in the event locals
 -   Outputs the correct html lang attribute
-
-In order for the handle to work properly, you need to specify the `supportedLocales` and
-`defaultLocale` in the toolkit config.
 
 Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
 replaced by the current language.
@@ -34,7 +33,7 @@ import type { LangInfo } from '@288-toolkit/i18n/types';
 
 declare global {
 	namespace App {
-		interface Locals extends LangInfo<typeof SUPPORTED_LOCALES> {
+		interface Locals extends LangInfo<typeof ['en-ca', 'fr-ca']> {
 			// ...
 		}
 	}
@@ -81,7 +80,7 @@ folders as you want and load them only as needed.
 
 ## Loading translations
 
-All translations must first be declared in the `translations` array in the toolkit config. For every
+To load the translations, you must create a loader with `createTranslationsLoader`. For every
 translation, you must provide a key and a loader for every supported language. A loader is
 essentially a function that returns a dynamic import.
 
@@ -92,26 +91,24 @@ writing the import path. They are listed here:
 [https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations).
 
 ```ts
-import type { Config } from '@288-toolkit/i18n/types';
+import { createTranslationsLoader } from '@288-toolkit/i18n/translations/server';
 
-export const config: Config = {
-	translations: [
-		{
-			key: 'global',
-			loaders: {
-				en: () => import('./lib/translations/global/en.ts'),
-				fr: () => import('./lib/translations/global/fr.ts')
-			}
-		},
-		{
-			key: 'newsletter',
-			loaders: {
-				en: () => import('./lib/translations/newsletter/en.ts'),
-				fr: () => import('./lib/translations/newsletter/fr.ts')
-			}
+export const loadTranslations = createTranslationsLoader([
+	{
+		key: 'global',
+		loaders: {
+			en: () => import('./lib/translations/global/en.ts'),
+			fr: () => import('./lib/translations/global/fr.ts')
 		}
-	]
-};
+	},
+	{
+		key: 'newsletter',
+		loaders: {
+			en: () => import('./lib/translations/newsletter/en.ts'),
+			fr: () => import('./lib/translations/newsletter/fr.ts')
+		}
+	}
+]);
 ```
 
 [!NOTE] In order for typescript to accept the `.ts` extension, you need to enable
@@ -364,14 +361,24 @@ t('ordinalSuffix', { count: 4, ordinal: true }); // 'th' (corresponds to the 'ot
 ## Translations on the server
 
 To use translations on the server, you need to use the server version of `createTranslate()`. The
-differences are that this one returns a promise and requires the language as a second argument. The
-returned function is exactly the same as the client side version.
+differences are that this one returns a promise, accepts a `Translation` object as first argument
+(instead of a key) and requires the language as second argument. The returned function is exactly
+the same as the client side version.
 
 ```ts
 import { createTranslate } from '@288-toolkit/i18n/translations/server';
+import type { Translation } from '@288-toolkit/i18n/types';
+
+const globalTranslation: Translation = {
+	key: 'global',
+	loaders: {
+		en: () => import('./lib/translations/global/en.ts'),
+		fr: () => import('./lib/translations/global/fr.ts')
+	}
+};
 
 export const load = async (event) => {
-	const t = await createTranslate<GlobalTranslations>('global', event.locals.language);
+	const t = await createTranslate<GlobalTranslations>(globalTranslation, event.locals.language);
 	return {
 		title: t('myTitle')
 	};

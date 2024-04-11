@@ -1,2 +1,2 @@
 export { createTranslate } from './createTranslate';
-export { loadTranslations } from './loadTranslations';
+export { createTranslationsLoader } from './createTranslationsLoader';

@@ -1,6 +1,6 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "2.6.3",
+  "version": "4.0.0",
   "scripts": {},
   "author": "DeuxHuitHuit",
   "license": "MIT",
@@ -25,7 +25,6 @@
     "@sveltejs/kit": "2.x"
   },
   "dependencies": {
-    "@288-toolkit/config": "1.3.0",
     "@288-toolkit/types": "1.2.0",
     "esm-env": "1.0.0",
     "just-safe-get": "4.2.0"
