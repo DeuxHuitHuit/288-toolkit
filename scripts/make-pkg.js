@@ -12,7 +12,20 @@ const PACKAGE_JSON_CONTENT = `
 	"version": "1.0.0",
 	"scripts": {},
 	"author": "DeuxHuitHuit",
-	"license": "MIT"
+	"license": "MIT",
+	"scripts": {
+        "test": "vitest run",
+        "test:watch": "vitest",
+		"format:prettier": "prettier --config ./.prettierrc",
+		"format:file": "npm run format:prettier -- --write",
+		"format": "npm run format:file .",
+		"check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+		"check:watch": "npm run check -- --watch",
+		"lint": "eslint --max-warnings=0 --cache .",
+		"lint:fix": "npm run lint -- --fix",
+		"lc": "npm run lint && npm run check",
+		"lc:watch": "npm run lint && npm run check -- --watch"
+    }
 }
 `;
 

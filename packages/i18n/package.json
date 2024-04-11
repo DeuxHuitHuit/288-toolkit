@@ -1,7 +1,17 @@
 {
   "name": "@288-toolkit/i18n",
   "version": "4.0.0",
-  "scripts": {},
+  "scripts": {
+	"format:prettier": "prettier --config ./.prettierrc",
+	"format:file": "npm run format:prettier -- --write",
+	"format": "npm run format:file .",
+	"check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+	"check:watch": "npm run check -- --watch",
+	"lint": "eslint --max-warnings=0 --cache .",
+	"lint:fix": "npm run lint -- --fix",
+	"lc": "npm run lint && npm run check",
+	"lc:watch": "npm run lint && npm run check -- --watch"
+  },
   "author": "DeuxHuitHuit",
   "license": "MIT",
   "exports": {
