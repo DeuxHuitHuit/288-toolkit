@@ -27,9 +27,8 @@ import { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
 import { t } from './translations/relativeTime';
+import { USER_LOCALE } from './userLocale';
 
-export const USER_LOCALE = Symbol('user');
-type USER_LOCALE = typeof USER_LOCALE;
 type RelativeTimeLocale = USER_LOCALE | Maybe<Locale>;
 
 export const AUTO_UNIT = Symbol('auto');

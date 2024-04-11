@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/format",
-	"version": "1.3.3",
+	"version": "1.4.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"scripts": {
@@ -17,20 +17,8 @@
 		"lc:watch": "npm run lint && npm run check -- --watch"
     },
 	"exports": {
-		"./date": {
-			"default": "./src/date.ts"
-		},
-		"./price": {
-			"default": "./src/price.ts"
-		},
-		"./humanDuration": {
-			"default": "./src/humanDuration.ts"
-		},
-		"./humanSize": {
-			"default": "./src/humanSize.ts"
-		},
-		"./relativeTime": {
-			"default": "./src/relativeTime.ts"
+		".": {
+			"default": "./src/index.ts"
 		},
 		"./translations": {
 			"default": "./src/translations/index.ts"

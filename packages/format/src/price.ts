@@ -1,8 +1,6 @@
 import { Locale } from '@288-toolkit/i18n/types';
 import { DEV } from 'esm-env';
-
-export const USER_LOCALE = Symbol('user');
-type USER_LOCALE = typeof USER_LOCALE;
+import { USER_LOCALE } from './userLocale';
 
 const DEFAULTS: Intl.NumberFormatOptions = {
 	style: 'currency',
