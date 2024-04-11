@@ -9,21 +9,27 @@
     "private": true,
     "type": "module",
     "engine": 18,
-	"workspaces": ["packages/*"],
+    "workspaces": [
+        "packages/*"
+    ],
     "scripts": {
         "build": "turbo build",
         "make-pkg": "node ./scripts/make-pkg.js",
         "test": "vitest run",
         "test:watch": "vitest",
-		"format:prettier": "prettier --config ./.prettierrc",
-		"format:file": "npm run format:prettier -- --write",
-		"format": "npm run format:file .",
-		"check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
-		"check:watch": "npm run check -- --watch",
-		"lint": "eslint --max-warnings=0 --cache .",
-		"lint:fix": "npm run lint -- --fix",
-		"lc": "npm run lint && npm run check",
-		"lc:watch": "npm run lint && npm run check -- --watch"
+        "format:prettier": "prettier --config ./.prettierrc",
+        "format:file": "npm run format:prettier -- --write",
+        "format": "npm run format:file .",
+        "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+        "check:watch": "npm run check -- --watch",
+        "lint": "eslint --max-warnings=0 --cache .",
+        "lint:fix": "npm run lint -- --fix",
+        "lc": "npm run lint && npm run check",
+        "lc:watch": "npm run lint && npm run check -- --watch"
+    },
+    "peerDependencies": {
+        "@sveltejs/kit": "2.x",
+        "svelte": "4.x"
     },
     "devDependencies": {
         "@changesets/cli": "2.27.1",
@@ -49,6 +55,8 @@
         "vitest": "1.4.0"
     },
     "dependencies": {
+        "@288-toolkit/types": "workspace:^",
+        "@testing-library/jest-dom": "^6.4.2",
         "prettier-plugin-organize-imports": "3.2.4",
         "prettier-plugin-tailwindcss": "0.5.13"
     }

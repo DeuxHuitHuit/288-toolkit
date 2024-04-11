@@ -11,5 +11,8 @@
 		"./timezones": {
 			"types": "./src/timezones.d.ts"
 		}
+	},
+	"dependencies": {
+		"@288-toolkit/types": "workspace:^"
 	}
 }

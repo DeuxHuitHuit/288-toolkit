@@ -19,8 +19,8 @@
 		"noEmit": true,
 		"lib": ["esnext", "DOM", "DOM.Iterable"],
 		"strictNullChecks": true,
-		"rootDirs": ["./packages", "./scripts"]
+		"rootDirs": ["./packages", "./scripts", "./shared"]
 	},
-	"include": ["./packages", "./scripts"],
+	"include": ["./packages", "./scripts", "./shared"],
 	"exclude": ["node_modules"]
 }
