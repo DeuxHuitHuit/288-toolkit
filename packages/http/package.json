@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/http",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -16,6 +16,11 @@
 		"lint:fix": "npm run lint -- --fix",
 		"lc": "npm run lint && npm run check",
 		"lc:watch": "npm run lint && npm run check -- --watch"
+	},
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x"
