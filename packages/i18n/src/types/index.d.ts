@@ -15,10 +15,10 @@ export type TranslateParams = {
 /**
  * The properties added in the event locals by the i18n handle.
  */
-export type LangInfo<Locales extends readonly Locale[] = string[]> = {
+export type LangInfo<Locales extends readonly Locale[] = Locale[]> = {
 	locale: Locales[number];
 	language: Locales[number] extends `${infer Lang}-${infer _}` ? Lang : string;
-	region: Locales[number] extends `${_}-${infer Region}` ? Region : string;
+	region: Locales[number] extends `${infer _}-${infer Region}` ? Region : string;
 };
 
 /**

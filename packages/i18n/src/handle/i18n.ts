@@ -37,11 +37,14 @@ export const i18n: (params: I18nParams) => Handle = ({ supportedLocales, default
 		const locale =
 			(supportedLocales.find((locale) => locale.startsWith(`${language}-`)) as Locale) ||
 			defaultLocale;
-		// @ts-expect-error Type is added to App.Locals from the project
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		event.locals.locale = locale;
-		// @ts-expect-error Type is added to App.Locals from the project
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		event.locals.language = language;
-		// @ts-expect-error Type is added to App.Locals from the project
+		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+		// @ts-ignore
 		event.locals.region = localeToRegion(locale);
 
 		// Resolve event and output correct html lang attribute
