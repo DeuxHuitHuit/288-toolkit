@@ -1,15 +1,13 @@
 {
 	"name": "@288-toolkit/dates",
-	"version": "1.4.1",
+	"version": "1.5.0",
 	"scripts": {},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"exports": {
-		"./today": {
-			"default": "./src/today.ts"
-		},
-		"./parseLocalDate": {
-			"default": "./src/parseLocalDate.ts"
+		".": {
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
 		}
 	},
 	"dependencies": {
