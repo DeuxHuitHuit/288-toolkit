@@ -100,22 +100,19 @@ export const loadTranslations = createTranslationsLoader([
 	{
 		key: 'global',
 		loaders: {
-			en: () => import('./lib/translations/global/en.ts'),
-			fr: () => import('./lib/translations/global/fr.ts')
+			en: () => import('./lib/translations/global/en'),
+			fr: () => import('./lib/translations/global/fr')
 		}
 	},
 	{
 		key: 'newsletter',
 		loaders: {
-			en: () => import('./lib/translations/newsletter/en.ts'),
-			fr: () => import('./lib/translations/newsletter/fr.ts')
+			en: () => import('./lib/translations/newsletter/en'),
+			fr: () => import('./lib/translations/newsletter/fr')
 		}
 	}
 ]);
 ```
-
-[!NOTE] In order for typescript to accept the `.ts` extension, you need to enable
-`allowImportingTsExtensions` in your `tsconfig`.
 
 To load some translations for a current layout or route, you can use `loadTranslations()` inside a
 load function. It accepts an array of translation keys and the current language.

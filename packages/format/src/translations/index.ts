@@ -6,23 +6,23 @@ import { key as key_relativeTime } from './relativeTime';
 export const duration: Translation = {
 	key: key_duration,
 	loaders: {
-		en: () => import('./duration/en.ts'),
-		fr: () => import('./duration/fr.ts')
+		en: () => import('./duration/en'),
+		fr: () => import('./duration/fr')
 	}
 };
 
 export const filesize: Translation = {
 	key: key_filesize,
 	loaders: {
-		en: () => import('./filesize/en.ts'),
-		fr: () => import('./filesize/fr.ts')
+		en: () => import('./filesize/en'),
+		fr: () => import('./filesize/fr')
 	}
 };
 
 export const relativeTime: Translation = {
 	key: key_relativeTime,
 	loaders: {
-		en: () => import('./relativeTime/en.ts'),
-		fr: () => import('./relativeTime/fr.ts')
+		en: () => import('./relativeTime/en'),
+		fr: () => import('./relativeTime/fr')
 	}
 };
