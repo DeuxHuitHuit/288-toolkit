@@ -2,24 +2,27 @@
 
 [!IMPORTANT] This package only exports typescript files.
 
-## i18n hook
+## i18n handles
 
-The i18n function returns a handle that must be used in `hooks.server.ts`.
+You can create three i18n handles with the `createI18nHandles` function:
+
+-   `langInfo`: Sets the locale, language, and region in the event locals.
+-   `langRedirect`: Redirects to the user's preferred language if the site is localized (has more
+    than one supported locale) and the request is for the root
+-   `langAttribute`: Renders the correct html lang attribute
 
 ```ts
-import { i18n } from '@288-toolkit/i18n/handle';
+import { createI18nHandles } from '@288-toolkit/i18n/handles';
 
-export const handle = sequence(
-	i18n({ supportedLocales: ['en-ca', 'fr-ca'], defaultLocale: ['en-ca'] })
-);
+const { langInfo, langRedirect, langAttribute } = createI18nHandles({
+	supportedLocales: ['en-ca', 'fr-ca'],
+	defaultLocale: ['en-ca']
+});
+
+export const handle = sequence(i18n(langInfo, langRedirect, langAttribute));
 ```
 
-The handle does the following:
-
--   Redirects to the user's preferred language if the site is localized and the request is for the
-    root
--   Sets the locale, language, and region in the event locals
--   Outputs the correct html lang attribute
+Make sure the `langInfo` is always placed before the other two.
 
 Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
 replaced by the current language.

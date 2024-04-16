@@ -1,6 +1,6 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "4.0.6",
+  "version": "5.0.0",
   "scripts": {
 	"test": "vitest run",
 	"test:watch": "vitest",
@@ -23,7 +23,7 @@
     "./types": {
       "types": "./src/types/index.d.ts"
     },
-    "./handle": {
+    "./handles": {
       "default": "./src/handle/index.ts"
     },
     "./translations/server": {
