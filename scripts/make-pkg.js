@@ -40,7 +40,8 @@ const README_CONTENT = `
 
 const TSCONFIG_CONTENT = `
 {
-	"extends": "../../tsconfig.json"
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {}
 }
 `;
 
