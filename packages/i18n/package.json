@@ -1,6 +1,6 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "scripts": {
 	"test": "vitest run",
 	"test:watch": "vitest",

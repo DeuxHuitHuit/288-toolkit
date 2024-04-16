@@ -9,6 +9,8 @@ const DEFAULTS: Intl.NumberFormatOptions = {
 	minimumFractionDigits: 2
 } as const;
 
+export type Price = number;
+
 export type FormatPriceLocale = Locale | USER_LOCALE;
 
 export type FormatPriceOptions = Partial<Intl.NumberFormatOptions> & { locale?: FormatPriceLocale };
@@ -18,7 +20,7 @@ export type FormatPriceOptions = Partial<Intl.NumberFormatOptions> & { locale?: 
  * @param price The price to format.
  * @param options The options to pass to Intl.NumberFormatOptions and the locale to use. Use the `USER_LOCALE` symbol to use the user's locale.
  */
-export const formatPrice = (price: number, options: FormatPriceOptions = {}) => {
+export const formatPrice = (price: Price, options: FormatPriceOptions = {}) => {
 	const { locale, ...formatOptions } = options;
 	const effectiveLocale = locale === USER_LOCALE ? undefined : locale || undefined;
 	try {
