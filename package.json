@@ -6,7 +6,6 @@
 		"type": "git",
 		"url": "https://github.com/DeuxHuitHuitInc/deuxhuithuit"
 	},
-	"private": true,
 	"type": "module",
 	"engine": 20,
 	"scripts": {
