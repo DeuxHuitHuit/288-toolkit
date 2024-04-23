@@ -169,6 +169,30 @@ importers:
         specifier: 4.x
         version: 4.2.12
 
+  packages/slideshow:
+    dependencies:
+      '@288-toolkit/i18n':
+        specifier: workspace:^
+        version: link:../i18n
+      '@288-toolkit/timeout':
+        specifier: workspace:^
+        version: link:../timeout
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0)(svelte@4.2.12)(vite@5.2.10)
+
+  packages/timeout:
+    dependencies:
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0)(svelte@4.2.12)(vite@5.2.10)
+      just-debounce-it:
+        specifier: ^3.2.0
+        version: 3.2.0
+      just-throttle:
+        specifier: ^4.2.0
+        version: 4.2.0
+
   packages/typed-context:
     dependencies:
       svelte:
@@ -2808,8 +2832,16 @@ packages:
       graceful-fs: 4.2.11
     dev: true
 
+  /just-debounce-it@3.2.0:
+    resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
+    dev: false
+
   /just-safe-get@4.2.0:
     resolution: {integrity: sha512-+tS4Bvgr/FnmYxOGbwziJ8I2BFk+cP1gQHm6rm7zo61w1SbxBwWGEq/Ryy9Gb6bvnloPq6pz7Bmm4a0rjTNlXA==}
+    dev: false
+
+  /just-throttle@4.2.0:
+    resolution: {integrity: sha512-/iAZv1953JcExpvsywaPKjSzfTiCLqeguUTE6+VmK15mOcwxBx7/FHrVvS4WEErMR03TRazH8kcBSHqMagYIYg==}
     dev: false
 
   /keyv@4.5.4:
