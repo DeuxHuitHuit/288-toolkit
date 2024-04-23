@@ -1,0 +1,255 @@
+<script lang="ts" context="module">
+	import { readonly, type Readable } from 'svelte/store';
+	import { getContext } from 'svelte';
+
+	export type PaginationState = 'idle' | 'loading' | 'error';
+	export type Filters = Record<string, string[]>;
+	export type ActiveFilter = {
+		key: string;
+		value: string;
+		clear: () => void;
+	};
+	export type ActiveFilters = ActiveFilter[];
+	export type Offset = number;
+
+	export type UpdateArgs = { page?: number; filters?: Filters };
+
+	export interface PagesStore {
+		current: number;
+		prev: number;
+		next: number;
+		total: number;
+		itemsTotal: number;
+		filters: Filters;
+	}
+
+	export interface PaginationInternalApi {
+		update: (params: UpdateArgs) => void;
+		setInitialFilters: (filters: Filters) => void;
+		pages: Readable<PagesStore>;
+		pageKey: string;
+		itemsPerPage: number;
+		setKeepItems: () => void;
+		updateUrl: boolean;
+	}
+
+	export interface PaginationApi<TItem> {
+		items: Readable<TItem[]>;
+		state: Readable<PaginationState>;
+		hasActiveFilters: Readable<boolean>;
+		firstNewResultIndex: Readable<number>;
+	}
+
+	const INTERNAL_CONTEXT_KEY = '__pagination-internal__';
+	const PUBLIC_CONTEXT_KEY = '__pagination__';
+
+	export const getInternalPaginationContext = () =>
+		getContext<PaginationInternalApi>(INTERNAL_CONTEXT_KEY);
+
+	// Using a function declaration because svelte-check doesn't like generics in arrow functions
+	export const getPaginationContext = function <TItem>() {
+		return getContext<PaginationApi<TItem>>(PUBLIC_CONTEXT_KEY);
+	};
+</script>
+
+<script lang="ts">
+	import { mounted } from '@288-toolkit/ui';
+
+	import { replaceState } from '$app/navigation';
+	import { setContext } from 'svelte';
+	import { writable, derived } from 'svelte/store';
+	import machine from 'svelte-fsm';
+	import { page } from '$app/stores';
+
+	type Item = $$Generic;
+	type Items = Item[];
+	type ItemsData = { items: Items; itemsTotal: number };
+	type GetItemsFunction = (offset: Offset, filters?: Filters) => ItemsData | Promise<ItemsData>;
+
+	interface $$Slots {
+		default: { items: Items; state: PaginationState; hasActiveFilters: boolean };
+	}
+
+	/**
+	 * Function that receives the current offset (calculated from the
+	 * requested page) and currently selected filters as parameter and returns the new items to display
+	 * as well as the updated items count
+	 */
+	export let getItems: GetItemsFunction;
+	/**
+	 * The items to display on first page load
+	 */
+	export let initialItems: Items;
+	/**
+	 * The total items count
+	 */
+	export let itemsTotal: number;
+	/**
+	 * The number of items displayed on one page. DEFAULT: 12
+	 */
+	export let itemsPerPage = 12;
+	/**
+	 * The page property key used in the query string (i.e., `?page=3`). DEFAULT:
+	 * "page"
+	 */
+	export let pageKey = 'page';
+	/**
+	 * Wether to update the url query string (using `replaceState`) with
+	 * pagination and filter values. If PaginationLoadMore or PaginationInfiniteScroll is used,
+	 * the url won't be updated and this prop will have no effect. DEFAULT: true
+	 */
+	export let updateUrl = true;
+
+	let keepItems = false;
+
+	const items = writable<Items>(initialItems);
+
+	let initialPage = updateUrl ? Number($page.url.searchParams.get(pageKey)) || 1 : 1;
+
+	const pages = writable<PagesStore>({
+		current: initialPage,
+		prev: initialPage - 1,
+		next: initialPage + 1,
+		total: Math.ceil(itemsTotal / itemsPerPage),
+		itemsTotal,
+		filters: {}
+	});
+
+	const firstNewResultIndex = writable<number>(-1);
+
+	const hasActiveFilters = derived(pages, (p) => {
+		return Object.values(p.filters).flat().filter(Boolean).length > 0;
+	});
+
+	const setKeepItems = () => {
+		keepItems = true;
+		if (!updateUrl) {
+			initialPage = 1;
+		}
+		pages.update((p) => {
+			return {
+				...p,
+				current: initialPage,
+				prev: initialPage - 1,
+				next: initialPage + 1
+			};
+		});
+	};
+
+	const setInitialFilters = (filters: Filters) => {
+		pages.update((p) => {
+			return {
+				...p,
+				filters: {
+					...(p.filters || {}),
+					...filters
+				}
+			};
+		});
+	};
+
+	const updateQueryString = (params: Record<string, string | string[] | null>) => {
+		const query = new URLSearchParams(window.location.search);
+		Object.entries(params).forEach(([key, value]) => {
+			const isFirstPage = key === pageKey && value === '1';
+			if (!value?.length || isFirstPage) {
+				query.delete(key);
+				return;
+			}
+			if (Array.isArray(value)) {
+				query.delete(key);
+				value.forEach((v) => {
+					query.append(key, v);
+				});
+			} else {
+				query.set(key, value);
+			}
+		});
+		const qs = query.toString();
+		const url = qs ? `?${qs}` : $page.url.pathname;
+		replaceState(url, {});
+	};
+
+	const update = (params: UpdateArgs) => {
+		state.update(params);
+	};
+
+	const state = machine('idle', {
+		idle: {
+			update: () => {
+				if (!$mounted) {
+					return;
+				}
+				return 'loading';
+			}
+		},
+		loading: {
+			async _enter({ args }) {
+				const { page, filters }: UpdateArgs = args[0];
+				try {
+					const currentPage = page || 1;
+					const updatedFilters = { ...$pages.filters, ...filters };
+					if (updateUrl) {
+						updateQueryString({
+							[pageKey]: `${currentPage}`,
+							...updatedFilters
+						});
+					}
+					const offset = Math.ceil((currentPage - 1) * itemsPerPage);
+					const itemsData = await getItems(offset, updatedFilters);
+					const pageChanged = currentPage !== $pages.current;
+					if (keepItems && pageChanged) {
+						$items = [...$items, ...itemsData.items];
+						firstNewResultIndex.set($items.length - itemsData.items.length);
+					} else {
+						$items = itemsData.items;
+					}
+					pages.set({
+						total: Math.ceil(itemsData.itemsTotal / itemsPerPage),
+						itemsTotal: itemsData.itemsTotal,
+						current: currentPage,
+						prev: currentPage - 1,
+						next: currentPage + 1,
+						filters: updatedFilters
+					});
+					this.success();
+				} catch (error) {
+					this.error();
+				}
+			},
+			success: 'idle',
+			error: 'error'
+		},
+		error: {
+			update: 'loading'
+		}
+	});
+
+	setContext<PaginationInternalApi>(INTERNAL_CONTEXT_KEY, {
+		update,
+		setInitialFilters,
+		pages: readonly(pages),
+		pageKey,
+		itemsPerPage,
+		setKeepItems,
+		updateUrl
+	});
+
+	setContext<PaginationApi<Item>>(PUBLIC_CONTEXT_KEY, {
+		state,
+		items: readonly(items),
+		hasActiveFilters,
+		firstNewResultIndex: readonly(firstNewResultIndex)
+	});
+</script>
+
+<!--@docs
+	##### Slot props
+
+	Also available in context via the exported `getPaginationContext` function.
+
+	- readonly `items` (`Item[]`): The items of the current page.
+	- readonly `state` (`'idle' | 'loading' | 'error'`): The current state of the component.
+	- readonly `hasActiveFilters (`boolean`): Wether the pagination currently has active filters.
+-->
+<slot items={$items} state={$state} hasActiveFilters={$hasActiveFilters} />

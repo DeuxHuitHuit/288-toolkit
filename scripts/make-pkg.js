@@ -26,6 +26,11 @@ const PACKAGE_JSON_CONTENT = `
 		"lc": "npm run lint && npm run check",
 		"lc:watch": "npm run lint && npm run check -- --watch"
     },
+	"exports": {
+		".": {
+			"default": "./src/index.ts"
+		}
+	},
 	"peerDependencies": {
         "@sveltejs/kit": "2.x",
     }
