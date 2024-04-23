@@ -152,11 +152,11 @@
 		Also available in context via the exported `getPaginationFiltersContext` function.
 
 		-   readonly `activeFilters` (`{ key: string; value: string; clear: () => void }[]`): An array
-        of all the currently selected filter values. Each value is an object containing the filter
-        group `key` (corresponding to the `name` attribute of the filter input), the `value` (the
-        currently selected value) and a `clear` function to clear the value from the active filters.
-    	-   readonly `filter` (`() => void`): A function to submit the filters form. This will trigger a
-        call the `getItems` function with the updated filters and update the items.
+		of all the currently selected filter values. Each value is an object containing the filter
+		group `key` (corresponding to the `name` attribute of the filter input), the `value` (the
+		currently selected value) and a `clear` function to clear the value from the active filters.
+		-   readonly `filter` (`() => void`): A function to submit the filters form. This will trigger a
+		call the `getItems` function with the updated filters and update the items.
 	-->
 		<slot activeFilters={$activeFilters} filter={submit} />
 		{#if !$mounted}
