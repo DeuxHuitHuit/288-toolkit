@@ -9,7 +9,7 @@ export type Locale = `${string}-${string}`;
 export type TranslateParams = {
 	count?: number;
 	ordinal?: boolean;
-	[key: string]: string | number | boolean;
+	[key: string]: string | number | boolean | undefined;
 };
 
 /**
