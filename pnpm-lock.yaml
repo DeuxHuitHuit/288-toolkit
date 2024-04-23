@@ -148,17 +148,26 @@ importers:
   packages/pagination:
     dependencies:
       '@288-toolkit/forms':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../forms
       '@288-toolkit/i18n':
         specifier: workspace:*
         version: link:../i18n
+      '@288-toolkit/typed-context':
+        specifier: workspace:*
+        version: link:../typed-context
       '@288-toolkit/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../ui
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0)(svelte@4.2.12)(vite@5.2.10)
+      svelte:
+        specifier: 4.x
+        version: 4.2.12
+
+  packages/typed-context:
+    dependencies:
       svelte:
         specifier: 4.x
         version: 4.2.12

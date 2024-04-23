@@ -1,4 +1,6 @@
 <script lang="ts" context="module">
+	import { createTypedContext } from '@288-toolkit/typed-context';
+
 	import { readonly, type Readable } from 'svelte/store';
 	import { getContext } from 'svelte';
 
@@ -43,13 +45,15 @@
 	const INTERNAL_CONTEXT_KEY = '__pagination-internal__';
 	const PUBLIC_CONTEXT_KEY = '__pagination__';
 
-	export const getInternalPaginationContext = () =>
-		getContext<PaginationInternalApi>(INTERNAL_CONTEXT_KEY);
+	const { setContext: setInternalContext, getContext: _getInternalPaginationContext } =
+		createTypedContext<PaginationInternalApi>(INTERNAL_CONTEXT_KEY);
 
-	// Using a function declaration because svelte-check doesn't like generics in arrow functions
-	export const getPaginationContext = function <TItem>() {
-		return getContext<PaginationApi<TItem>>(PUBLIC_CONTEXT_KEY);
-	};
+	export const getInternalPaginationContext = _getInternalPaginationContext;
+
+	const { setContext: setPublicContext, getContext: _getPaginationContext } =
+		createTypedContext<PaginationApi<unknown>>(PUBLIC_CONTEXT_KEY);
+
+	export const getPaginationContext = _getPaginationContext;
 </script>
 
 <script lang="ts">
@@ -225,7 +229,7 @@
 		}
 	});
 
-	setContext<PaginationInternalApi>(INTERNAL_CONTEXT_KEY, {
+	setInternalContext({
 		update,
 		setInitialFilters,
 		pages: readonly(pages),
@@ -235,7 +239,7 @@
 		updateUrl
 	});
 
-	setContext<PaginationApi<Item>>(PUBLIC_CONTEXT_KEY, {
+	setPublicContext({
 		state,
 		items: readonly(items),
 		hasActiveFilters,

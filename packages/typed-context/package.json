@@ -1,5 +1,5 @@
 {
-	"name": "@288-toolkit/pagination",
+	"name": "@288-toolkit/typed-context",
 	"version": "1.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
@@ -20,19 +20,9 @@
 	"exports": {
 		".": {
 			"default": "./src/index.ts"
-		},
-		"./translations": {
-			"default": "./src/translations/index.ts"
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x",
 		"svelte": "4.x"
-	},
-	"dependencies": {
-		"@288-toolkit/forms": "workspace:*",
-		"@288-toolkit/i18n": "workspace:*",
-		"@288-toolkit/typed-context": "workspace:*",
-		"@288-toolkit/ui": "workspace:*"
 	}
 }
