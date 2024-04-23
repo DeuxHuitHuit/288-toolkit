@@ -162,6 +162,9 @@ importers:
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0)(svelte@4.2.12)(vite@5.2.10)
+      esm-env:
+        specifier: 1.0.0
+        version: 1.0.0
       svelte:
         specifier: 4.x
         version: 4.2.12

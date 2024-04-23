@@ -2,7 +2,7 @@
 
 [!IMPORTANT] This package only exports typescript files.
 
-## [Pagination.svelte]
+## `Pagination.svelte`
 
 The root component that wraps the others and manages all the logic.
 
@@ -14,7 +14,18 @@ If you don't need the url to be updated, you can pass `false` to the `updateUrl`
 
 By default, the query string page key is 'page'. This can be modified via the `pageKey` prop.
 
-## [PaginationFilters.svelte]
+The component exposes the following via slot props:
+
+-   readonly `items` (`Item[]`): The items of the current page.
+-   readonly `state` (`'idle' | 'loading' | 'error'`): The current state of the component.
+-   readonly `hasActiveFilters` (`boolean`): Wether the pagination currently has active filters.
+-   readonly `firstNewResultIndex` (`number`): The index of the first of the newly loaded results.
+    Can be used to automatically focus that item (see `focusOnLoadMore`).
+
+These are also exposed via context, which you can get by importing the `getPaginationContext`
+function. The context laso
+
+## `PaginationFilters.svelte`
 
 A `GET` form containing the form elements that will serve as filters. When the form is submitted,
 either through a submit button or the `filter` slot prop, the selected filter values will be
@@ -34,7 +45,7 @@ default button of type `submit` will be rendered and then removed once the compo
 you still wish to have a submit button (like, for exemple, an "Apply filters" button), you can use
 the `submit` slot, which will replace the default submit button.
 
-### [PaginationNav.svelte]
+## `PaginationNav.svelte`
 
 A `<nav>` element that wraps the pagination links. It only renders if there are more items then
 items per page.
@@ -42,15 +53,15 @@ items per page.
 Note that you cannot use the navigation components at the same time as `PaginationLoadMore.svelte`
 or `PaginationInfiniteScroll.svelte`.
 
-### [PaginationStep.svelte]
+## `PaginationStep.svelte`
 
 Wraps `PaginationLink.svelte` with steps logic.
 
-### [PaginationLinks.svelte]
+## `PaginationLinks.svelte`
 
 Renders all the page links and ellipses.
 
-#### A note on styling the links
+### A note on styling the links
 
 `PaginationStep.svelte` and `PaginationLinks.svelte` both use the `PaginationLink.svelte` component
 internally. This component renders an anchor element that you can style with classes. If you need
@@ -59,7 +70,7 @@ different styles for the different states of the link, you can use attribute sel
 -   Pagination steps will be disabled with the `aria-disabled` attribute.
 -   Pagination links will marked as current with the `aria-current` attribute.
 
-### Example usage with Filter and Nav
+## Example usage with Filter and Nav
 
 ```svelte
 <!-- +page.svelte -->
@@ -160,14 +171,19 @@ different styles for the different states of the link, you can use attribute sel
 </Pagination>
 ```
 
-### [PaginationLoadMore.svelte](../../src/lib/components/ui/pagination/PaginationLoadMore.svelte)
+## `PaginationLoadMore.svelte`
 
-A "load more" button.
+A 'load more' button.
 
-### [PaginationInfiniteScroll.svelte](../../src/lib/components/ui/pagination/PaginationInfiniteScroll.svelte)
+## `PaginationInfiniteScroll.svelte`
 
 Loads items on scroll until no more items are found by observing a full screen div(`height: 100vh;`)
 and loading new items at a specified threshold.
+
+## `focusOnLoadMore`
+
+An action that can be used on pagination items to focus the first element that was added with a
+'load more' or infinite scroll strategy in order to improve a11y.
 
 #### Example usage
 

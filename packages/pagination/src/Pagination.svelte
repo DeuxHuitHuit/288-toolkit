@@ -1,8 +1,6 @@
 <script lang="ts" context="module">
 	import { createTypedContext } from '@288-toolkit/typed-context';
-
 	import { readonly, type Readable } from 'svelte/store';
-	import { getContext } from 'svelte';
 
 	export type PaginationState = 'idle' | 'loading' | 'error';
 	export type Filters = Record<string, string[]>;
@@ -60,7 +58,6 @@
 	import { mounted } from '@288-toolkit/ui';
 
 	import { replaceState } from '$app/navigation';
-	import { setContext } from 'svelte';
 	import { writable, derived } from 'svelte/store';
 	import machine from 'svelte-fsm';
 	import { page } from '$app/stores';
@@ -71,7 +68,12 @@
 	type GetItemsFunction = (offset: Offset, filters?: Filters) => ItemsData | Promise<ItemsData>;
 
 	interface $$Slots {
-		default: { items: Items; state: PaginationState; hasActiveFilters: boolean };
+		default: {
+			items: Items;
+			state: PaginationState;
+			hasActiveFilters: boolean;
+			firstNewResultIndex: number;
+		};
 	}
 
 	/**
@@ -247,13 +249,9 @@
 	});
 </script>
 
-<!--@docs
-	##### Slot props
-
-	Also available in context via the exported `getPaginationContext` function.
-
-	- readonly `items` (`Item[]`): The items of the current page.
-	- readonly `state` (`'idle' | 'loading' | 'error'`): The current state of the component.
-	- readonly `hasActiveFilters (`boolean`): Wether the pagination currently has active filters.
--->
-<slot items={$items} state={$state} hasActiveFilters={$hasActiveFilters} />
+<slot
+	items={$items}
+	state={$state}
+	hasActiveFilters={$hasActiveFilters}
+	firstNewResultIndex={$firstNewResultIndex}
+/>

@@ -33,6 +33,7 @@
 		"@288-toolkit/forms": "workspace:*",
 		"@288-toolkit/i18n": "workspace:*",
 		"@288-toolkit/typed-context": "workspace:*",
-		"@288-toolkit/ui": "workspace:*"
+		"@288-toolkit/ui": "workspace:*",
+		"esm-env": "1.0.0"
 	}
 }
