@@ -1,59 +1,56 @@
 {
-    "name": "deuxhuithuit",
-    "version": "0.1.0",
-    "homepage": "https://github.com/DeuxHuitHuitInc/deuxhuithuit#readme",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/DeuxHuitHuitInc/deuxhuithuit"
-    },
-    "private": true,
-    "type": "module",
-    "engine": 18,
-    "workspaces": [
-        "packages/*"
-    ],
-    "scripts": {
-        "make-pkg": "node ./scripts/make-pkg.js",
-        "test": "vitest run",
-        "test:watch": "vitest",
-        "format:prettier": "prettier --config ./.prettierrc",
-        "format:file": "npm run format:prettier -- --write",
-        "format": "npm run format:file .",
-        "check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
-        "check:watch": "npm run check -- --watch",
-        "lint": "ESLINT_USE_FLAT_CONFIG=true eslint --max-warnings=0 --cache .",
-        "lint:fix": "npm run lint -- --fix",
-        "lc": "npm run lint && npm run check",
-        "lc:watch": "npm run lint && npm run check -- --watch"
-    },
-    "peerDependencies": {
-        "@sveltejs/kit": "2.x",
-        "svelte": "4.x"
-    },
-    "devDependencies": {
-        "@changesets/cli": "2.27.1",
-        "@sveltejs/package": "2.3.1",
-        "@sveltejs/vite-plugin-svelte": "3.1.0",
-        "@types/node": "20.12.7",
-        "autoprefixer": "10.4.19",
-        "changeset": "0.2.6",
-        "eslint": "8.57.0",
-        "eslint-config-prettier": "9.1.0",
-        "eslint-plugin-svelte": "2.37.0",
-        "jsdom": "24.0.0",
-        "prettier": "3.2.5",
-        "prettier-plugin-svelte": "3.2.3",
-        "svelte-check": "3.6.9",
-        "svelte-fsm": "1.2.0",
-        "svelte-preprocess": "5.1.4",
-        "tslib": "2.6.2",
-        "typescript": "5.4.5",
-        "vite": "5.2.10",
-        "vitest": "1.5.0",
+	"name": "deuxhuithuit",
+	"version": "0.1.0",
+	"homepage": "https://github.com/DeuxHuitHuitInc/deuxhuithuit#readme",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuitInc/deuxhuithuit"
+	},
+	"private": true,
+	"type": "module",
+	"engine": 20,
+	"scripts": {
+		"make-pkg": "node ./scripts/make-pkg.js",
+		"test": "vitest run",
+		"test:watch": "vitest",
+		"format:prettier": "prettier --config ./.prettierrc",
+		"format:file": "npm run format:prettier -- --write",
+		"format": "npm run format:file .",
+		"check": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings",
+		"check:watch": "npm run check -- --watch",
+		"lint": "ESLINT_USE_FLAT_CONFIG=true eslint --max-warnings=0 --cache .",
+		"lint:fix": "npm run lint -- --fix",
+		"lc": "npm run lint && npm run check",
+		"lc:watch": "npm run lint && npm run check -- --watch"
+	},
+	"peerDependencies": {
+		"@sveltejs/kit": "2.x",
+		"svelte": "4.x"
+	},
+	"devDependencies": {
+		"@changesets/cli": "2.27.1",
+		"@sveltejs/package": "2.3.1",
+		"@sveltejs/vite-plugin-svelte": "3.1.0",
+		"@types/node": "20.12.7",
+		"autoprefixer": "10.4.19",
+		"changeset": "0.2.6",
+		"eslint": "8.57.0",
+		"eslint-config-prettier": "9.1.0",
+		"eslint-plugin-svelte": "2.37.0",
+		"jsdom": "24.0.0",
+		"prettier": "3.2.5",
+		"prettier-plugin-svelte": "3.2.3",
+		"svelte-check": "3.6.9",
+		"svelte-fsm": "1.2.0",
+		"svelte-preprocess": "5.1.4",
+		"tslib": "2.6.2",
+		"typescript": "5.4.5",
+		"vite": "5.2.10",
+		"vitest": "1.5.0",
 		"@288-toolkit/types": "workspace:^",
 		"@testing-library/jest-dom": "6.4.2",
 		"prettier-plugin-organize-imports": "3.2.4",
 		"prettier-plugin-tailwindcss": "0.5.14",
 		"typescript-eslint": "7.7.1"
-    }
+	}
 }
