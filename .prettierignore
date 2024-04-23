@@ -1,5 +1,4 @@
 static/**
-package.json
 package-lock.json
 pnpm-lock.yaml
 craft.d.ts
