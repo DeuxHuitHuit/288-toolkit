@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 1.0.3
+
+### Patch Changes
+
+- Add video-embed, svelte-inline-component and html-img packages
+
 ## 1.0.2
 
 ### Patch Changes
