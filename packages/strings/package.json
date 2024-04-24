@@ -1,6 +1,6 @@
 {
-	"name": "@288-toolkit/slideshow",
-	"version": "1.0.2",
+	"name": "@288-toolkit/strings",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -20,16 +20,9 @@
 	"exports": {
 		".": {
 			"default": "./src/index.ts"
-		},
-		"./translations": {
-			"default": "./src/translations/loader.ts"
 		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x"
-	},
-	"dependencies": {
-		"@288-toolkit/i18n": "workspace:^",
-		"@288-toolkit/timeout": "workspace:^"
 	}
 }

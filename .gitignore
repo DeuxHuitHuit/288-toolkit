@@ -16,3 +16,4 @@ build/**
 dist/**
 .turbo
 .eslintcache
+vite.config.ts.timestamp-*

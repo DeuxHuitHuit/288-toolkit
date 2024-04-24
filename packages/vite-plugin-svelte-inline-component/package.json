@@ -1,10 +1,11 @@
 {
-	"name": "@288-toolkit/slideshow",
-	"version": "1.0.2",
+	"name": "@288-toolkit/vite-plugin-svelte-inline-component",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"build": "vite build",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
@@ -19,17 +20,13 @@
 	},
 	"exports": {
 		".": {
-			"default": "./src/index.ts"
-		},
-		"./translations": {
-			"default": "./src/translations/loader.ts"
+			"default": "./dist/index.js"
 		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"@288-toolkit/i18n": "workspace:^",
-		"@288-toolkit/timeout": "workspace:^"
+		"@288-toolkit/strings": "workspace:^"
 	}
 }

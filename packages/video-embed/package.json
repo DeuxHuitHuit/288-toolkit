@@ -1,6 +1,6 @@
 {
-	"name": "@288-toolkit/slideshow",
-	"version": "1.0.2",
+	"name": "@288-toolkit/video-embed",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -19,17 +19,26 @@
 	},
 	"exports": {
 		".": {
-			"default": "./src/index.ts"
+			"default": "./src/lib/index.ts"
 		},
 		"./translations": {
-			"default": "./src/translations/loader.ts"
+			"default": "./src/lib/translations/loader.ts"
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x"
+		"@sveltejs/kit": "2.x",
+		"svelte": "4.x"
 	},
 	"dependencies": {
-		"@288-toolkit/i18n": "workspace:^",
-		"@288-toolkit/timeout": "workspace:^"
+		"@288-toolkit/html-img": "workspace:*",
+		"@288-toolkit/i18n": "workspace:*",
+		"@288-toolkit/strings": "workspace:*",
+		"@288-toolkit/typed-context": "workspace:*",
+		"@288-toolkit/types": "workspace:*",
+		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:*",
+		"@testing-library/svelte": "^5.1.0"
+	},
+	"devDependencies": {
+		"svelte-preprocess": "5.1.4"
 	}
 }
