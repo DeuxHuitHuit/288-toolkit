@@ -22,7 +22,7 @@
 			"default": "./src/index.ts"
 		},
 		"./translations": {
-			"default": "./src/translations/index.ts"
+			"default": "./src/translations/loader.ts"
 		}
 	},
 	"peerDependencies": {
