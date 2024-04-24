@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
-
 	/**
 	 * The year the website was put online.
 	 */

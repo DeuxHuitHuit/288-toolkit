@@ -1,6 +1,6 @@
 {
-	"name": "@288-toolkit/copyright",
-	"version": "1.0.2",
+	"name": "@288-toolkit/html-video",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -24,5 +24,8 @@
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x"
+	},
+	"dependencies": {
+		"@288-toolkit/types": "workspace:^"
 	}
 }
