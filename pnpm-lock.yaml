@@ -91,7 +91,7 @@ importers:
   packages/back-to-top:
     dependencies:
       '@288-toolkit/ui':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../ui
       '@sveltejs/kit':
         specifier: 2.x
@@ -232,7 +232,7 @@ importers:
   packages/ui:
     dependencies:
       '@288-toolkit/device':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../device
       '@sveltejs/kit':
         specifier: 2.x
