@@ -7,15 +7,6 @@ import { readable } from 'svelte/store';
 import { vi } from 'vitest';
 import './window';
 
-// Copied from https://github.com/davipon/svelte-component-test-recipes/blob/d58642856a625be53eb0700ada1c37348a39269b/setupTest.ts
-// Mock SvelteKit runtime module $app/environment
-vi.mock('$app/environment', (): typeof environment => ({
-	browser: false,
-	dev: true,
-	building: false,
-	version: 'any'
-}));
-
 // Mock SvelteKit runtime module $app/navigation
 vi.mock('$app/navigation', (): typeof navigation => ({
 	afterNavigate: vi.fn(),

@@ -39,6 +39,10 @@ const PACKAGE_JSON_CONTENT = `
 
 const README_CONTENT = `
 # ${capitalize(pkgName)}
+
+\`\`\`sh
+pnpm i @288-toolkit/${pkgName}
+\`\`\`
 `;
 
 const TSCONFIG_CONTENT = `
@@ -68,6 +72,7 @@ export default defineConfig(() => {
 
 const TEST_SETUP_FILE_CONTENT = `
 import '../../../shared/test/mocks/sveltekit';
+import type { short } from '../packages/format/src/date';
 `;
 
 const PACKAGES_PATH = path.resolve(__dirname, '../packages');

@@ -29,9 +29,11 @@
 		"svelte": "4.x"
 	},
 	"devDependencies": {
+		"@288-toolkit/types": "workspace:*",
 		"@changesets/cli": "2.27.1",
 		"@sveltejs/package": "2.3.1",
 		"@sveltejs/vite-plugin-svelte": "3.1.0",
+		"@testing-library/jest-dom": "6.4.2",
 		"@types/node": "20.12.7",
 		"autoprefixer": "10.4.19",
 		"changeset": "0.2.6",
@@ -40,18 +42,20 @@
 		"eslint-plugin-svelte": "2.37.0",
 		"jsdom": "24.0.0",
 		"prettier": "3.2.5",
+		"prettier-plugin-organize-imports": "3.2.4",
 		"prettier-plugin-svelte": "3.2.3",
+		"prettier-plugin-tailwindcss": "0.5.14",
 		"svelte-check": "3.6.9",
 		"svelte-fsm": "1.2.0",
 		"svelte-preprocess": "5.1.4",
 		"tslib": "2.6.2",
 		"typescript": "5.4.5",
+		"typescript-eslint": "7.7.1",
 		"vite": "5.2.10",
-		"vitest": "1.5.0",
-		"@288-toolkit/types": "workspace:^",
-		"@testing-library/jest-dom": "6.4.2",
-		"prettier-plugin-organize-imports": "3.2.4",
-		"prettier-plugin-tailwindcss": "0.5.14",
-		"typescript-eslint": "7.7.1"
+		"vitest": "1.5.0"
+	},
+	"dependencies": {
+		"@288-toolkit/strings": "workspace:*",
+		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^"
 	}
 }
