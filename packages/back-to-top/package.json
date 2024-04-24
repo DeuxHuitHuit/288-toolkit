@@ -1,6 +1,6 @@
 {
-	"name": "@288-toolkit/ui",
-	"version": "1.0.1",
+	"name": "@288-toolkit/back-to-top",
+	"version": "1.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -23,10 +23,9 @@
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x",
-		"svelte": "4.x"
+		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"@288-toolkit/device": "workspace:*"
+		"@288-toolkit/ui": "workspace:*"
 	}
 }

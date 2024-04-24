@@ -84,3 +84,4 @@ await createFormattedFileIfNotExist(
 	path.resolve(pkgPath, 'test/setup.ts'),
 	TEST_SETUP_FILE_CONTENT
 );
+await createFormattedFileIfNotExist(path.resolve(pkgPath, 'src/index.ts'), '');

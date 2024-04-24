@@ -1,6 +1,6 @@
 {
-	"name": "@288-toolkit/ui",
-	"version": "1.0.1",
+	"name": "@288-toolkit/device",
+	"version": "1.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -18,8 +18,11 @@
 		"lc:watch": "npm run lint && npm run check -- --watch"
 	},
 	"exports": {
-		".": {
-			"default": "./src/index.ts"
+		"./media": {
+			"default": "./src/media/index.ts"
+		},
+		"./window": {
+			"default": "./src/window/index.ts"
 		}
 	},
 	"peerDependencies": {
@@ -27,6 +30,7 @@
 		"svelte": "4.x"
 	},
 	"dependencies": {
-		"@288-toolkit/device": "workspace:*"
+		"@288-toolkit/types": "workspace:*",
+		"esm-env": "1.0.0"
 	}
 }
