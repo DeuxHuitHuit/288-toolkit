@@ -19,3 +19,44 @@ used with Svelte, Sveltekit and Craft CMS.
 -   [@288-toolkit/typed-context](./packages/typed-context/README.md)
 -   [@288-toolkit/types](./packages/types/README.md)
 -   [@288-toolkit/ui](./packages/ui/README.md)
+
+## Development
+
+### Create a package
+
+To easily create a package:
+
+-   Install pnpm globally:
+
+```sh
+npm i -g pnpm
+```
+
+-   Clone the repo locally
+
+```sh
+git clone https://github.com/DeuxHuitHuit/288-toolkit
+```
+
+-   Create a new branch
+
+```sh
+git checkout -b <package-name>
+```
+
+-   Run the `make-pkg` script:
+
+```sh
+pnpm make-pkg
+```
+
+This will scaffold a basic workspace inside the `packages` folder.
+
+### Publish a package
+
+-   Run `pnpm changeset` then follow the instructions. This will generate a new changeset.
+
+-   Run `pnpm changeset version`. This will update changed packages versions and changelogs.
+
+-   Commit everything and push to your branch. Once the branch is merged into main, the package will
+    automatically get published to npm.
