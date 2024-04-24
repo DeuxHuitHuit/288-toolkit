@@ -265,7 +265,7 @@ importers:
   packages/video-embed:
     dependencies:
       '@288-toolkit/html-img':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../html-img
       '@288-toolkit/i18n':
         specifier: workspace:*
@@ -280,7 +280,7 @@ importers:
         specifier: workspace:*
         version: link:../types
       '@288-toolkit/vite-plugin-svelte-inline-component':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../vite-plugin-svelte-inline-component
       '@sveltejs/kit':
         specifier: 2.x
