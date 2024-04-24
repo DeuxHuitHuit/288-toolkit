@@ -1,7 +1,5 @@
 # i18n
 
-[!IMPORTANT] This package only exports typescript files.
-
 ## i18n handles
 
 You can create three i18n handles with the `createI18nHandles` function:

@@ -39,8 +39,6 @@ const PACKAGE_JSON_CONTENT = `
 
 const README_CONTENT = `
 # ${capitalize(pkgName)}
-
-[!IMPORTANT] This package only exports typescript files. 
 `;
 
 const TSCONFIG_CONTENT = `

@@ -1,6 +1,6 @@
 # Pagination
 
-[!IMPORTANT] This package only exports typescript files.
+Svelte components to manage pagination.
 
 ## `Pagination.svelte`
 

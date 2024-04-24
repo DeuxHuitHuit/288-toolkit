@@ -1,7 +1,5 @@
 # Timeout
 
-[!IMPORTANT] This package only exports typescript files.
-
 A collection of function for timeouts.
 
 ## `sleep`

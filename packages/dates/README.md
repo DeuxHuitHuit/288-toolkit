@@ -1,7 +1,5 @@
 # Dates
 
-[!IMPORTANT] This package only exports typescript files.
-
 A collection of functions to manipulate dates.
 
 ## `parseLocalDates`

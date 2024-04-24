@@ -1,7 +1,5 @@
 # Slideshow
 
-[!IMPORTANT] This package only exports typescript files.
-
 A slideshow component.
 
 ## `Slideshow.svelte`

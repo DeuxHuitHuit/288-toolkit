@@ -1,7 +1,5 @@
 # Format
 
-[!IMPORTANT] This package only exports typescript files.
-
 A collection of functions to format data.
 
 ## `date`

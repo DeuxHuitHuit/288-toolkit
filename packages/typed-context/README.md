@@ -1,7 +1,5 @@
 # Typed-context
 
-[!IMPORTANT] This package only exports typescript files.
-
 Wraps typed versions of Svelte's `getContext` and `setContext` functions with the provided type
 argument and context key.
 

@@ -1,7 +1,5 @@
 # Forms
 
-[!IMPORTANT] This package only exports typescript files.
-
 A collection of functions, actions and stores to build forms.
 
 ## `requestSubmit`
