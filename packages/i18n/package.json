@@ -1,9 +1,9 @@
 {
   "name": "@288-toolkit/i18n",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "scripts": {
-	"test": "vitest run",
-	"test:watch": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "format:prettier": "prettier --config ./.prettierrc",
     "format:file": "npm run format:prettier -- --write",
     "format": "npm run format:file .",
