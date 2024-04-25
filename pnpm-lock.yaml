@@ -269,6 +269,24 @@ importers:
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
 
+  packages/minimap:
+    dependencies:
+      '@288-toolkit/device':
+        specifier: workspace:^
+        version: link:../device
+      '@288-toolkit/timeout':
+        specifier: workspace:^
+        version: link:../timeout
+      '@288-toolkit/types':
+        specifier: workspace:^
+        version: link:../types
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      just-clamp:
+        specifier: ^4.2.0
+        version: 4.2.0
+
   packages/pagination:
     dependencies:
       '@288-toolkit/forms':
@@ -1962,6 +1980,9 @@ packages:
 
   jsonfile@4.0.0:
     resolution: {integrity: sha512-m6F1R3z8jjlf2imQHS2Qez5sjKWQzbuuhuJ/FKYFRZvPE3PuHcSMVZzfsLhGVOkfd20obL5SWEBew5ShlquNxg==}
+
+  just-clamp@4.2.0:
+    resolution: {integrity: sha512-ssHiAxuN7R+VP7jS1XyUP7ju5YC4bTQwQdzYtuZkASTrKe9KsI/X0t+5BJeD6Un6z/dNMDFVNQpQEgUphpXa0w==}
 
   just-debounce-it@3.2.0:
     resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
@@ -5015,6 +5036,8 @@ snapshots:
   jsonfile@4.0.0:
     optionalDependencies:
       graceful-fs: 4.2.11
+
+  just-clamp@4.2.0: {}
 
   just-debounce-it@3.2.0: {}
 
