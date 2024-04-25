@@ -28,5 +28,8 @@
 	},
 	"dependencies": {
 		"@288-toolkit/strings": "workspace:^"
+	},
+	"devDependencies": {
+		"vite-plugin-dts": "^3.9.0"
 	}
 }
