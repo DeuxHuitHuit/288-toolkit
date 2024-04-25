@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/device",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -17,6 +17,9 @@
 		"lc": "npm run lint && npm run check",
 		"lc:watch": "npm run lint && npm run check -- --watch"
 	},
+	"files": [
+		"./src"
+	],
 	"exports": {
 		"./media": {
 			"default": "./src/media/index.ts"

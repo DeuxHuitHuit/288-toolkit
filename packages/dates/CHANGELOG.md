@@ -1,5 +1,14 @@
 # @288-toolkit/dates
 
+## 1.5.4
+
+### Patch Changes
+
+- Add files property
+- Updated dependencies
+  - @288-toolkit/format@1.4.8
+  - @288-toolkit/types@1.3.3
+
 ## 1.5.3
 
 ### Patch Changes

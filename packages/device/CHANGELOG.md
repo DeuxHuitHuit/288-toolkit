@@ -1,15 +1,9 @@
-# @288-toolkit/html-video
+# @288-toolkit/device
 
-## 1.0.2
+## 1.0.1
 
 ### Patch Changes
 
 - Add files property
 - Updated dependencies
   - @288-toolkit/types@1.3.3
-
-## 1.0.1
-
-### Patch Changes
-
-- Add html video package

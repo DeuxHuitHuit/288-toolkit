@@ -1,5 +1,18 @@
 # @288-toolkit/video-embed
 
+## 1.0.7
+
+### Patch Changes
+
+- Add files property
+- Updated dependencies
+  - @288-toolkit/vite-plugin-svelte-inline-component@1.2.2
+  - @288-toolkit/typed-context@1.0.2
+  - @288-toolkit/html-img@1.0.2
+  - @288-toolkit/strings@1.0.2
+  - @288-toolkit/types@1.3.3
+  - @288-toolkit/i18n@5.0.5
+
 ## 1.0.6
 
 ### Patch Changes

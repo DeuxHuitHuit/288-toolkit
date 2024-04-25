@@ -1,5 +1,14 @@
 # @288-toolkit/slideshow
 
+## 1.0.3
+
+### Patch Changes
+
+- Add files property
+- Updated dependencies
+  - @288-toolkit/timeout@1.0.2
+  - @288-toolkit/i18n@5.0.5
+
 ## 1.0.2
 
 ### Patch Changes

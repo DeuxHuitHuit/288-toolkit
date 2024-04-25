@@ -1,5 +1,16 @@
 # @288-toolkit/pagination
 
+## 1.0.4
+
+### Patch Changes
+
+- Add files property
+- Updated dependencies
+  - @288-toolkit/typed-context@1.0.2
+  - @288-toolkit/forms@1.0.2
+  - @288-toolkit/i18n@5.0.5
+  - @288-toolkit/ui@1.0.3
+
 ## 1.0.3
 
 ### Patch Changes
