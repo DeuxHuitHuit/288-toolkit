@@ -314,10 +314,16 @@ importers:
   packages/shares:
     dependencies:
       '@288-toolkit/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x
+        version: 4.2.12
       svelte-copy:
-        specifier: ^1.4.2
+        specifier: 1.4.2
         version: 1.4.2(svelte@4.2.12)
 
   packages/slideshow:
