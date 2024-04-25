@@ -26,6 +26,9 @@ const PACKAGE_JSON_CONTENT = `
 		"lc": "npm run lint && npm run check",
 		"lc:watch": "npm run lint && npm run check -- --watch"
     },
+	"files": [
+		"./src"
+	],
 	"exports": {
 		".": {
 			"default": "./src/index.ts"
