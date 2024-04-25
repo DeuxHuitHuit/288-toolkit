@@ -1,8 +1,9 @@
 import { fromBase64 } from '@288-toolkit/strings';
+import type { Plugin } from 'vite';
 
 export const INLINE_SVELTE_ID = 'virtual:inline-svelte:';
 
-export const svelteInlineComponent = () => {
+export const svelteInlineComponent: () => Plugin = () => {
 	return {
 		name: 'svelte-inline-component',
 		enforce: 'pre',

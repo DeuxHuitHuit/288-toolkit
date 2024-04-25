@@ -1,5 +1,11 @@
 # @288-toolkit/vite-plugin-svelte-inline-component
 
+## 1.1.1
+
+### Patch Changes
+
+- Fix declaration file
+
 ## 1.1.0
 
 ### Minor Changes
