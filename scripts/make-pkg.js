@@ -41,7 +41,7 @@ const README_CONTENT = `
 # ${capitalize(pkgName)}
 
 \`\`\`sh
-pnpm i @288-toolkit/${pkgName}
+npm i @288-toolkit/${pkgName}
 \`\`\`
 `;
 
