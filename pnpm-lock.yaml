@@ -203,6 +203,15 @@ importers:
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
 
+  packages/html-link:
+    dependencies:
+      '@288-toolkit/types':
+        specifier: workspace:^
+        version: link:../types
+      '@288-toolkit/url':
+        specifier: workspace:^
+        version: link:../url
+
   packages/html-video:
     dependencies:
       '@288-toolkit/types':
@@ -316,6 +325,12 @@ importers:
       svelte:
         specifier: 4.x
         version: 4.2.12
+
+  packages/url:
+    dependencies:
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
 
   packages/video-embed:
     dependencies:
