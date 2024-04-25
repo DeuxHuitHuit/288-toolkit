@@ -192,11 +192,6 @@
 	</div>
 	<div class="_track" draggable="false" on:pointerdown={updateScroll}>
 		{#if mounted}
-			<!--@docs
-##### Slot props
-
--   readonly `dragging` (`boolean`): If the user is currently dragging the thumb.
-	-->
 			<slot name="track" {dragging} />
 		{/if}
 		<div
@@ -208,18 +203,13 @@
 			bind:this={thumb}
 		>
 			{#if mounted}
-				<!--@docs
-##### Slot props
-
--   readonly `dragging` (`boolean`): If the user is currently dragging the thumb.
-	-->
 				<slot name="thumb" {dragging} />
 			{/if}
 		</div>
 	</div>
 </div>
 
-<style lang="postcss">
+<style>
 	._map-container {
 		height: 100%;
 	}
