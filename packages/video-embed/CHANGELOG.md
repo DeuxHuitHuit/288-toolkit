@@ -1,5 +1,12 @@
 # @288-toolkit/video-embed
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/vite-plugin-svelte-inline-component@1.1.0
+
 ## 1.0.2
 
 ### Patch Changes
