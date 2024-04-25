@@ -1,5 +1,11 @@
 # @288-toolkit/vite-plugin-svelte-inline-component
 
+## 1.2.0
+
+### Minor Changes
+
+- Export svelte helper from vite plugin
+
 ## 1.1.1
 
 ### Patch Changes

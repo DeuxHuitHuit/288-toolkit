@@ -1,18 +1,23 @@
-const r = typeof Buffer < "u", o = (e) => r ? Buffer.from(e, "base64").toString("ascii") : atob(e), t = "virtual:inline-svelte:", s = () => ({
+const o = typeof Buffer < "u", s = (t) => o ? Buffer.from(t).toString("base64") : btoa(t), a = (t) => o ? Buffer.from(t, "base64").toString("ascii") : atob(t), i = (t, ...e) => String.raw(t, ...e), n = "virtual:inline-svelte:", f = () => ({
   name: "svelte-inline-component",
   enforce: "pre",
-  resolveId(e) {
-    if (e.startsWith(t))
-      return e;
+  resolveId(t) {
+    if (t.startsWith(n))
+      return t;
   },
-  load(e) {
-    if (e.startsWith(t)) {
-      const n = e.split(new RegExp(t))[1].replace(".svelte", "");
-      return o(n);
+  load(t) {
+    if (t.startsWith(n)) {
+      const e = t.split(new RegExp(n))[1].replace(".svelte", "");
+      return a(e);
     }
   }
-});
+}), c = async (t, ...e) => {
+  const r = i(t, ...e);
+  return import(`${n}${s(r)}.svelte`);
+}, p = c;
 export {
-  t as INLINE_SVELTE_ID,
-  s as svelteInlineComponent
+  n as INLINE_SVELTE_ID,
+  p as html,
+  c as svelte,
+  f as svelteInlineComponent
 };

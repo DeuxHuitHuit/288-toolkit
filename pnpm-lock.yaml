@@ -314,7 +314,7 @@ importers:
   packages/vite-plugin-svelte-inline-component:
     dependencies:
       '@288-toolkit/strings':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../strings
       '@sveltejs/kit':
         specifier: 2.x

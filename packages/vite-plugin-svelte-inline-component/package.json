@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/vite-plugin-svelte-inline-component",
-	"version": "1.1.1",
+	"version": "1.2.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -27,7 +27,7 @@
 		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"@288-toolkit/strings": "workspace:^"
+		"@288-toolkit/strings": "workspace:*"
 	},
 	"devDependencies": {
 		"vite-plugin-dts": "^3.9.0"

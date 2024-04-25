@@ -1,6 +1,6 @@
+import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
 import { render } from '@testing-library/svelte';
 import { expect, test } from 'vitest';
-import { svelte } from '../../../shared/test/svelte';
 
 const baseScript = `
 <script lang="ts">

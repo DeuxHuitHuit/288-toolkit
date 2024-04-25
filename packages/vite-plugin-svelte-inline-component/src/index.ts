@@ -1,4 +1,9 @@
-import { fromBase64 } from '@288-toolkit/strings';
+import {
+	fromBase64,
+	taggedTemplateToStringForSyntaxHighlighting,
+	toBase64,
+	type TemplateParamsArray
+} from '@288-toolkit/strings';
 import type { Plugin } from 'vite';
 
 export const INLINE_SVELTE_ID = 'virtual:inline-svelte:';
@@ -22,3 +27,17 @@ export const svelteInlineComponent: () => Plugin = () => {
 		}
 	};
 };
+
+/**
+ * Convert svelte component base64 string and import it from memory
+ */
+export const svelte = async (t: TemplateStringsArray, ...s: TemplateParamsArray) => {
+	const str = taggedTemplateToStringForSyntaxHighlighting(t, ...s);
+	const path = `${INLINE_SVELTE_ID}${toBase64(str)}.svelte`;
+	return import(path);
+};
+
+/**
+ * Convert svelte component base64 string and import it from memory
+ */
+export const html = svelte;
