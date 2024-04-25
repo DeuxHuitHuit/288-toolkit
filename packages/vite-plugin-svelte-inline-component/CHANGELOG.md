@@ -1,5 +1,11 @@
 # @288-toolkit/vite-plugin-svelte-inline-component
 
+## 1.2.1
+
+### Patch Changes
+
+- Update vite plugin doc
+
 ## 1.2.0
 
 ### Minor Changes

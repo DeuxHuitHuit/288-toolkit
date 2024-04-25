@@ -24,7 +24,7 @@ Example (copied from https://github.com/DockYard/svelte-inline-component):
 
 ```ts
 import { cleanup, render } from '@testing-library/svelte';
-import svelte from 'svelte-inline-components';
+import { svelte /** or html */ } from '@288-toolkit/vite-plugin-svelte-inline-components';
 
 describe('MyComponent.svelte', () => {
 	it('renders a link with the given href', async () => {
