@@ -1,5 +1,5 @@
 {
-	"name": "@288-toolkit/dismissable",
+	"name": "@288-toolkit/cookie-popup",
 	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
@@ -19,21 +19,14 @@
 	},
 	"exports": {
 		".": {
-			"default": "./src/lib/index.ts"
+			"default": "./src/index.ts"
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x",
-		"svelte": "4.x"
+		"@sveltejs/kit": "2.x"
 	},
 	"dependencies": {
-		"@288-toolkit/types": "workspace:^",
-		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
-		"esm-env": "1.0.0"
-	},
-	"devDependencies": {
-		"@testing-library/dom": "^10.0.0",
-		"@testing-library/svelte": "^5.1.0",
-		"svelte-preprocess": "5.1.4"
+		"@288-toolkit/dismissable": "workspace:^",
+		"@288-toolkit/types": "workspace:^"
 	}
 }

@@ -10,11 +10,90 @@ the dismissal is expired or if the content has been updated since the last dismi
 
 It is useful for a banner or a cookie consent popup, for example.
 
-##### Examples
+## Props
+
+### key
+
+Used to identify the content being dismissed in browser storage.
+
+```ts
+export let key: string;
+```
+
+### timeout
+
+The delay in milliseconds before the content shows up.
+
+```ts
+export let timeout = 0;
+```
+
+### lastUpdatedAt
+
+The date of the last update of the content.
+
+```ts
+export let lastUpdatedAt: Maybe<Date> = null;
+```
+
+### maxAge
+
+The maximum age of the dismissal in seconds. The content will show up again after this time has
+passed.
+
+```ts
+export let maxAge = 0;
+```
+
+### browserStorage
+
+Whether to use `sessionStorage` or `localStorage`.
+
+```ts
+export let browserStorage: 'local' | 'session' = 'local';
+```
+
+### closeOnNav
+
+Whether to close the content when navigating to another page.
+
+```ts
+export let closeOnNav = false;
+```
+
+### close
+
+A function to close the popup without persistence.
+
+```ts
+export const close: () => void;
+```
+
+### dismiss
+
+A function to dismiss the popup for the provided maxAge.
+
+```ts
+export const dismiss: () => void;
+```
+
+### isDismissed
+
+A function to check if the popup is dismissed.
+
+```ts
+export const isDismissed: () => boolean;
+```
+
+## Slot props
+
+-   `close` (`() => void`): A function to close the popup.
+-   `dismiss` (`() => void`): A function to dismiss the popup.
+-   `dismissed` (`boolean`): Wether the popup is dimissed.
+
+## Examples
 
 The default storage is `localStorage`, but you can also use `sessionStorage`.
-
-@exec DismissableForever.svelte
 
 ```svelte
 <script lang="ts">

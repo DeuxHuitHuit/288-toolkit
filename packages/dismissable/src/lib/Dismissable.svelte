@@ -141,10 +141,5 @@
 </script>
 
 {#if open}
-	<!--@docs
-##### Slot props
-
--   readonly `close` (`() => void`): A function to close the popup.
-	-->
 	<slot {close} {dismiss} {dismissed} />
 {/if}
