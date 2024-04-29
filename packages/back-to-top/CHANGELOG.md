@@ -1,5 +1,12 @@
 # @288-toolkit/back-to-top
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/ui@2.0.0
+
 ## 1.0.4
 
 ### Patch Changes

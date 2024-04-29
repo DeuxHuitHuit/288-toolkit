@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/ui",
-	"version": "1.0.5",
+	"version": "2.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -30,6 +30,7 @@
 		"svelte": "4.x"
 	},
 	"dependencies": {
-		"@288-toolkit/device": "workspace:*"
+		"@288-toolkit/device": "workspace:*",
+		"ts-key-enum": "^2.0.12"
 	}
 }

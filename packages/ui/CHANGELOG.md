@@ -1,5 +1,11 @@
 # @288-toolkit/ui
 
+## 2.0.0
+
+### Major Changes
+
+- Add more ui functions
+
 ## 1.0.5
 
 ### Patch Changes
