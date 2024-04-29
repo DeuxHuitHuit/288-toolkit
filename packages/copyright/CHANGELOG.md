@@ -1,5 +1,11 @@
 # @288-toolkit/copyright
 
+## 2.0.0
+
+### Major Changes
+
+- Make orgName optional
+
 ## 1.0.3
 
 ### Patch Changes

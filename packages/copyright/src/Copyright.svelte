@@ -7,7 +7,8 @@
 	/**
 	 * The organization name to display in the copyright.
 	 */
-	export let orgName: string;
+	export let orgName = '';
+
 	/**
 	 * The element to use for the copyright.
 	 */
@@ -16,8 +17,6 @@
 	const currentYear = new Date().getFullYear();
 </script>
 
-{#if orgName}
-	<svelte:element this={as}>
-		&#169;&nbsp;{publishYear}{#if publishYear < currentYear}&nbsp;&ndash;&nbsp;{currentYear}{/if}&nbsp;{orgName}
-	</svelte:element>
-{/if}
+<svelte:element this={as}>
+	&#169;&nbsp;{publishYear}{#if publishYear < currentYear}&nbsp;&ndash;&nbsp;{currentYear}{/if}{#if orgName}&nbsp;{orgName}{/if}
+</svelte:element>
