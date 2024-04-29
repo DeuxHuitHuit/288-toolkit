@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 1.0.5
+
+### Patch Changes
+
+- @288-toolkit/ui@1.0.4
+
 ## 1.0.4
 
 ### Patch Changes

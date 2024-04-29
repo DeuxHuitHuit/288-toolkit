@@ -1,5 +1,11 @@
 # @288-toolkit/device
 
+## 1.1.0
+
+### Minor Changes
+
+- Add runOnMatchMedia
+
 ## 1.0.1
 
 ### Patch Changes
