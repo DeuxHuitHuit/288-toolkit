@@ -1,5 +1,12 @@
 # @288-toolkit/ui
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@1.2.0
+
 ## 1.0.4
 
 ### Patch Changes

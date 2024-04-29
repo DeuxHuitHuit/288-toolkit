@@ -1,5 +1,11 @@
 # @288-toolkit/device
 
+## 1.2.0
+
+### Minor Changes
+
+- Fix exports
+
 ## 1.1.0
 
 ### Minor Changes
