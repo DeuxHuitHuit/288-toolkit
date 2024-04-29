@@ -461,6 +461,22 @@ importers:
         specifier: ^3.9.0
         version: 3.9.0(@types/node@20.12.7)(rollup@4.14.1)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7))
 
+  packages/vite-plugin-svelte-replacers:
+    dependencies:
+      '@rollup/pluginutils':
+        specifier: ^5.1.0
+        version: 5.1.0(rollup@4.14.1)
+      chalk:
+        specifier: ^5.3.0
+        version: 5.3.0
+    devDependencies:
+      rollup-plugin-node-externals:
+        specifier: ^7.1.2
+        version: 7.1.2(rollup@4.14.1)
+      vite-plugin-dts:
+        specifier: ^3.9.0
+        version: 3.9.0(@types/node@20.12.7)(rollup@4.14.1)(typescript@5.4.5)(vite@5.2.10(@types/node@20.12.7))
+
 packages:
 
   '@aashutoshrathi/word-wrap@1.2.6':
@@ -1280,6 +1296,10 @@ packages:
   chalk@4.1.2:
     resolution: {integrity: sha512-oKnbhFyRIXpUuez8iBMmyEa4nbj4IOQyuhc/wy9kY7/WVPcwIO9VA668Pu8RkO7+0G76SLROeyw9CpQ061i4mA==}
     engines: {node: '>=10'}
+
+  chalk@5.3.0:
+    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
 
   changeset@0.2.6:
     resolution: {integrity: sha512-d21ym9zLPOKMVhIa8ulJo5IV3QR2NNdK6BWuwg48qJA0XSQaMeDjo1UGThcTn7YDmU08j3UpKyFNvb3zplk8mw==}
@@ -2616,6 +2636,12 @@ packages:
   rimraf@3.0.2:
     resolution: {integrity: sha512-JZkJMZkAGFFPP2YqXZXPbMlMBgsxzE8ILs4lMIX/2o0L9UBw9O/Y3o6wFw/i9YLapcUJWwqbi3kdxIPdC62TIA==}
     hasBin: true
+
+  rollup-plugin-node-externals@7.1.2:
+    resolution: {integrity: sha512-cVJFKs+ulZxpMmn/s+oi431d93Jq5+G7Sc5ixWDrL2k+Gj+MqXg0KMNWgKf8Mw5qpaG4jVDpsvuqFfiCvRcGeA==}
+    engines: {node: '>= 21 || ^20.6.0 || ^18.19.0'}
+    peerDependencies:
+      rollup: ^3.0.0 || ^4.0.0
 
   rollup@4.14.1:
     resolution: {integrity: sha512-4LnHSdd3QK2pa1J6dFbfm1HN0D7vSK/ZuZTsdyUAlA6Rr1yTouUTL13HaDOGJVgby461AhrNGBS7sCGXXtT+SA==}
@@ -4250,6 +4276,8 @@ snapshots:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
 
+  chalk@5.3.0: {}
+
   changeset@0.2.6:
     dependencies:
       udc: 1.0.1
@@ -5626,6 +5654,10 @@ snapshots:
   rimraf@3.0.2:
     dependencies:
       glob: 7.2.3
+
+  rollup-plugin-node-externals@7.1.2(rollup@4.14.1):
+    dependencies:
+      rollup: 4.14.1
 
   rollup@4.14.1:
     dependencies:
