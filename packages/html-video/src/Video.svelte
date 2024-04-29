@@ -3,6 +3,7 @@
 	export let disableremoteplayback = true;
 </script>
 
+<!-- svelte-ignore a11y-media-has-caption -->
 <video
 	playsinline={autoplay || null}
 	{autoplay}

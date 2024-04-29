@@ -1,4 +1,4 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type LibraryFormats } from 'vite';
 import dts from 'vite-plugin-dts';
 
 export default defineConfig(() => {
@@ -12,7 +12,7 @@ export default defineConfig(() => {
 			lib: {
 				name: 'vite-plugin-svelte-inline-component',
 				entry: { index: 'src/index.ts' },
-				formats: ['es']
+				formats: ['es' as LibraryFormats]
 			}
 		}
 	};
