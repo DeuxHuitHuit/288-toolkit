@@ -1,2 +1,2 @@
-export { currentLanguage, currentLocale } from './lib/locale';
-export { localeToLanguage, localeToRegion } from './lib/localeTo';
+export { currentLanguage, currentLocale } from './locale';
+export { localeToLanguage, localeToRegion } from './localeTo';

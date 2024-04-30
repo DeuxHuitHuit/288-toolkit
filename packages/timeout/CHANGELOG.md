@@ -1,5 +1,11 @@
 # @288-toolkit/timeout
 
+## 3.0.1
+
+### Patch Changes
+
+- Fix peer deps
+
 ## 3.0.0
 
 ### Major Changes

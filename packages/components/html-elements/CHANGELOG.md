@@ -1,5 +1,11 @@
 # @288-toolkit/html-elements
 
+## 2.0.1
+
+### Patch Changes
+
+- @288-toolkit/format@3.0.1
+
 ## 2.0.0
 
 ### Major Changes

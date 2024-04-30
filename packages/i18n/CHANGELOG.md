@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 7.0.1
+
+### Patch Changes
+
+- Fix peer deps
+
 ## 7.0.0
 
 ### Major Changes

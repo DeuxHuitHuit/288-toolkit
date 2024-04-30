@@ -1,5 +1,12 @@
 # @288-toolkit/minimap
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/timeout@3.0.1
+
 ## 2.0.0
 
 ### Major Changes
