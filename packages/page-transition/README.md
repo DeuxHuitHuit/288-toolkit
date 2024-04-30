@@ -21,6 +21,8 @@ To override the default transition, or simply add a transition for a specific na
 can be any string, as long is it is unique. You must also provide a condition function that returns
 `true` if the transition has to be played. This condition function receives the same
 
+This function MUST be called at component initialization.
+
 ```ts
 /**
  * @see https://kit.svelte.dev/docs/types#public-types-navigation

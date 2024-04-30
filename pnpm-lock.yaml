@@ -94,6 +94,27 @@ importers:
         specifier: 1.5.0
         version: 1.5.0(@types/node@20.12.7)(jsdom@24.0.0)
 
+  packages/animations:
+    dependencies:
+      '@288-toolkit/device':
+        specifier: workspace:*
+        version: link:../device
+      '@288-toolkit/page-transition':
+        specifier: workspace:^
+        version: link:../page-transition
+      '@288-toolkit/types':
+        specifier: workspace:*
+        version: link:../types
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      motion:
+        specifier: 10.x
+        version: 10.17.0
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
+
   packages/components/back-to-top:
     dependencies:
       '@288-toolkit/ui':

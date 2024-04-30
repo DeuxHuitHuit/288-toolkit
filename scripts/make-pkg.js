@@ -75,7 +75,6 @@ export default defineConfig(() => {
 
 const TEST_SETUP_FILE_CONTENT = `
 import '../../../shared/test/mocks/sveltekit';
-import type { short } from '../packages/format/src/date';
 `;
 
 const PACKAGES_PATH = path.resolve(__dirname, '../packages');
