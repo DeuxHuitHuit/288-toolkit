@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 5.0.6
+
+### Patch Changes
+
+- Change dependencies
+
 ## 5.0.5
 
 ### Patch Changes

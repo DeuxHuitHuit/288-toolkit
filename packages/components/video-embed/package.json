@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/video-embed",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -33,7 +33,7 @@
 		"svelte": "4.x"
 	},
 	"dependencies": {
-		"@288-toolkit/html-img": "workspace:*",
+		"@288-toolkit/html-elements": "workspace:*",
 		"@288-toolkit/i18n": "workspace:*",
 		"@288-toolkit/strings": "workspace:*",
 		"@288-toolkit/typed-context": "workspace:*",

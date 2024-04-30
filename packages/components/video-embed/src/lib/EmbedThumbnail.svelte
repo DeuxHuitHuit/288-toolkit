@@ -3,7 +3,7 @@
 	import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube';
 	import { getVideoEmbedContext } from './EmbedGroup.svelte';
 	import type { Maybe } from '@288-toolkit/types';
-	import { Img } from '@288-toolkit/html-img';
+	import { HtmlImg } from '@288-toolkit/html-elements';
 
 	/**
 	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
@@ -33,4 +33,4 @@
 	const posterSrc = getVendorThumbnailUrl();
 </script>
 
-<Img src={posterSrc} {alt} class={classes} />
+<HtmlImg src={posterSrc} {alt} class={classes} />
