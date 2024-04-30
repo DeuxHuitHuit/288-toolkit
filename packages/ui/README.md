@@ -103,3 +103,76 @@ If the initials are longer than the font sizes, the last font size is used.
  */
 const fontSizeFromInitials: (initials: string, fontSizes: readonly string[]) => string;
 ```
+
+## `portal`
+
+Renders an element in a different part of the DOM. Accepts a css selector or an `HTMLElement` as the
+target.
+
+Based on https://github.com/romkor/svelte-portal/tree/master
+
+```svelte
+ <div use:portal={'css selector'}>
+```
+
+## `scrollIntoView`
+
+Scroll an element into view on mount and on update. The scroll behavior is will be overriden to
+`instant` if the user has reduced motion, otherwhise it will be `smooth` by default.
+
+It accepts the same options as the native `scrollIntoView` function extended with `canScroll`, which
+determines if the element can be scrolled to or not.
+
+```svelte
+ <div use:scrollIntoView={{
+	canScroll: $someCondition,
+	block: 'nearest',
+	// ... other ScrollIntoViewOptions
+ }}>
+```
+
+## `autofocus`
+
+Focus an element on mount and on update.
+
+It accepts the same options as the native `focus` function extended with `canFocus`, which
+determines if the element can be scrolled to or not.
+
+```svelte
+ <div use:autofocus={{
+	canFocus: $someCondition,
+	preventScroll: true;
+ }}>
+```
+
+## `autofocusAfterTick`
+
+Focus an element on mount and on update after `tick()` resolves.
+
+Options are the same as `autofocus`.
+
+## `autofocusWithDelay`
+
+Focus an element on mount or on update after a delay.
+
+[!NOTE] Please note that adding a delay will change the focus behavior on mobile: we get the visual
+indicator that the element is focused, but the keyboard will not open automatically.
+
+Options are the same as `autofocus` extended with `delay`.
+
+```svelte
+ <div use:autofocusWithDelay={{
+	canFocus: $someCondition,
+	delay: 100;
+ }}>
+```
+
+## `scrollToAnchor`
+
+Smoothly scroll to the anchor link's target (except if user has reduced motion).
+
+The node has to be an `HTMLAnchorElement`.
+
+```svelte
+<a href="#section" use:scrollToAnchor>Section</a>
+```
