@@ -1,5 +1,27 @@
 # @288-toolkit/minimap
 
+## 2.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/timeout@3.0.0
+  - @288-toolkit/device@3.0.0
+  - @288-toolkit/types@3.0.0
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/timeout@2.0.0
+  - @288-toolkit/device@2.0.0
+  - @288-toolkit/types@2.0.0
+
 ## 1.0.4
 
 ### Patch Changes

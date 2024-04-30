@@ -1,5 +1,25 @@
 # @288-toolkit/dismissable
 
+## 2.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/vite-plugin-svelte-inline-component@2.0.0
+  - @288-toolkit/types@3.0.0
+
+## 1.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@2.0.0
+  - @288-toolkit/vite-plugin-svelte-inline-component@1.2.3
+
 ## 1.0.2
 
 ### Patch Changes

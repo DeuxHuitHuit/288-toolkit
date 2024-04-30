@@ -1,5 +1,29 @@
 # @288-toolkit/pagination
 
+## 2.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/typed-context@3.0.0
+  - @288-toolkit/forms@3.0.0
+  - @288-toolkit/i18n@7.0.0
+  - @288-toolkit/ui@4.0.0
+
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/typed-context@2.0.0
+  - @288-toolkit/forms@2.0.0
+  - @288-toolkit/i18n@6.0.0
+  - @288-toolkit/ui@3.0.0
+
 ## 1.0.9
 
 ### Patch Changes

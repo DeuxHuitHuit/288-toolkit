@@ -1,5 +1,23 @@
 # @288-toolkit/vite-plugin-svelte-inline-component
 
+## 2.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/strings@3.0.0
+
+## 1.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/strings@2.0.0
+
 ## 1.2.2
 
 ### Patch Changes

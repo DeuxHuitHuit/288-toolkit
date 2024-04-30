@@ -6,8 +6,8 @@ import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import type { MaybeUndefined } from '@288-toolkit/types';
 import { get } from 'svelte/store';
-import type { LangInfo, Locale } from '../types';
 import { localeToLanguage } from './localeTo';
+import type { LangInfo, Locale } from './types';
 
 let cachedLocale: MaybeUndefined<Locale>;
 

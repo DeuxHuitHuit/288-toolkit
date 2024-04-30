@@ -1,10 +1,11 @@
 {
 	"name": "@288-toolkit/video-embed",
-	"version": "1.0.8",
+	"version": "2.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"build": "svelte-package",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
@@ -18,14 +19,15 @@
 		"lc:watch": "npm run lint && npm run check -- --watch"
 	},
 	"files": [
-		"./src"
+		"./dist"
 	],
 	"exports": {
 		".": {
-			"default": "./src/lib/index.ts"
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
 		},
 		"./translations": {
-			"default": "./src/lib/translations/loader.ts"
+			"default": "./src/lib/translations/loader.js"
 		}
 	},
 	"peerDependencies": {

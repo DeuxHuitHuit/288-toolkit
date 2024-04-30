@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { parseAcceptLanguage } from '../src/parseAcceptLanguage';
+import { parseAcceptLanguage } from '../src/lib/parseAcceptLanguage';
 
 test('should return null', () => {
 	expect(parseAcceptLanguage('')).toBeNull();

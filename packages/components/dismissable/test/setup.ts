@@ -1,1 +1,1 @@
-import '../../../shared/test/mocks/sveltekit';
+import '../../../../shared/test/mocks/sveltekit';

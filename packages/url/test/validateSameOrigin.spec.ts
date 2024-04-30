@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { validateSameOrigin } from '../src/validateSameOrigin';
+import { validateSameOrigin } from '../src/lib/validateSameOrigin';
 
 const reqUrl = 'https://test.com';
 

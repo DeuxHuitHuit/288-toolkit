@@ -1,10 +1,11 @@
 {
 	"name": "@288-toolkit/device",
-	"version": "1.2.0",
+	"version": "3.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"build": "svelte-package",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
@@ -18,14 +19,16 @@
 		"lc:watch": "npm run lint && npm run check -- --watch"
 	},
 	"files": [
-		"./src"
+		"./dist"
 	],
 	"exports": {
 		"./media": {
-			"default": "./src/media/index.ts"
+			"types": "./dist/media/index.d.ts",
+			"default": "./dist/media/index.js"
 		},
 		"./window": {
-			"default": "./src/window/index.ts"
+			"types": "./dist/window/index.d.ts",
+			"default": "./dist/window/index.js"
 		}
 	},
 	"peerDependencies": {

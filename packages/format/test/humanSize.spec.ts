@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { humanSize } from '../src';
+import { humanSize } from '../src/lib';
 
 test('should return 0 bytes', () => {
 	expect(humanSize(0).toString()).toBe('0.0 b');

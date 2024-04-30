@@ -1,10 +1,11 @@
 {
 	"name": "@288-toolkit/shares",
-	"version": "1.0.1",
+	"version": "3.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"build": "svelte-package",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
@@ -18,11 +19,12 @@
 		"lc:watch": "npm run lint && npm run check -- --watch"
 	},
 	"files": [
-		"./src"
+		"./dist"
 	],
 	"exports": {
 		".": {
-			"default": "./src/index.ts"
+			"types": "./dist/index.d.ts",
+			"default": "./dist/index.js"
 		}
 	},
 	"peerDependencies": {

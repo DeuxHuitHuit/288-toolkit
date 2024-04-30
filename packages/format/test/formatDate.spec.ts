@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { createFormatDate, formatDate } from '../src';
+import { createFormatDate, formatDate } from '../src/lib';
 
 describe('formatDate()', () => {
 	test('It formats in America/Toronto in fr-ca', () => {

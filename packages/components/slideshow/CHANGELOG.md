@@ -1,5 +1,25 @@
 # @288-toolkit/slideshow
 
+## 2.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/timeout@3.0.0
+  - @288-toolkit/i18n@7.0.0
+
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/timeout@2.0.0
+  - @288-toolkit/i18n@6.0.0
+
 ## 1.0.4
 
 ### Patch Changes

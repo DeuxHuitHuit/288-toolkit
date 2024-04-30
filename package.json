@@ -9,6 +9,7 @@
 	"type": "module",
 	"engine": 20,
 	"scripts": {
+		"build": "turbo build",
 		"make-pkg": "node ./scripts/make-pkg.js",
 		"test": "vitest run",
 		"test:watch": "vitest",
@@ -56,6 +57,7 @@
 	},
 	"dependencies": {
 		"@288-toolkit/strings": "workspace:*",
-		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^"
+		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
+		"turbo": "^1.13.3"
 	}
 }

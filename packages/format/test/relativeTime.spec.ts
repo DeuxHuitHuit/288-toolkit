@@ -5,7 +5,7 @@ import {
 	formatRelativeTime,
 	relativeTime,
 	resolveAutoUnit
-} from '../src/relativeTime';
+} from '../src/lib/relativeTime';
 
 const EPOCH = new Date(0);
 

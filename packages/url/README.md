@@ -1,7 +1,7 @@
 # Url
 
 ```sh
-pnpm i @288-toolkit/url
+npm i @288-toolkit/url
 ```
 
 A collection of functions to work with urls.

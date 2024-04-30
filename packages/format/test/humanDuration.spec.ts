@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { humanDuration, humanSeconds } from '../src';
+import { humanDuration, humanSeconds } from '../src/lib';
 
 describe('seconds', () => {
 	test('should return less than 1 second', () => {

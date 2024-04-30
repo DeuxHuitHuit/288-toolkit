@@ -1,5 +1,27 @@
 # @288-toolkit/ui
 
+## 4.0.0
+
+### Major Changes
+
+- Build files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@3.0.0
+
+## 3.0.0
+
+### Major Changes
+
+- Build all files
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@2.0.0
+
 ## 2.1.0
 
 ### Minor Changes

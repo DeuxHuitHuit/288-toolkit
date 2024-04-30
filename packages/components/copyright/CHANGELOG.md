@@ -1,5 +1,11 @@
 # @288-toolkit/copyright
 
+## 3.0.0
+
+### Major Changes
+
+- Build files
+
 ## 2.0.0
 
 ### Major Changes

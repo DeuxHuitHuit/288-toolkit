@@ -1,5 +1,9 @@
 # Ui
 
+```sh
+npm i @288-toolkit/ui
+```
+
 A collection of functions, actions and stores to manipulate ui.
 
 ## `$mounted`

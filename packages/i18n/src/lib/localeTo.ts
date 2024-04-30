@@ -2,7 +2,7 @@
  * This module provide functions to convert a locale to its parts.
  */
 
-import type { LangInfo, Locale } from '../types';
+import type { LangInfo, Locale } from './types';
 
 /**
  * @returns The language part of the given locale.

@@ -20,6 +20,9 @@ importers:
       svelte:
         specifier: 4.x
         version: 4.2.12
+      turbo:
+        specifier: ^1.13.3
+        version: 1.13.3
     devDependencies:
       '@288-toolkit/types':
         specifier: workspace:*
@@ -120,9 +123,9 @@ importers:
       '@288-toolkit/ui':
         specifier: workspace:*
         version: link:../../ui
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/cookie-popup:
     dependencies:
@@ -132,15 +135,15 @@ importers:
       '@288-toolkit/types':
         specifier: workspace:^
         version: link:../../types
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/copyright:
     dependencies:
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/dismissable:
     dependencies:
@@ -157,7 +160,7 @@ importers:
         specifier: 1.0.0
         version: 1.0.0
       svelte:
-        specifier: 4.x
+        specifier: 4.x || 5.x
         version: 4.2.12
     devDependencies:
       '@testing-library/dom':
@@ -190,9 +193,9 @@ importers:
       '@288-toolkit/timeout':
         specifier: workspace:^
         version: link:../../timeout
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/minimap:
     dependencies:
@@ -205,12 +208,12 @@ importers:
       '@288-toolkit/types':
         specifier: workspace:^
         version: link:../../types
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
       just-clamp:
         specifier: ^4.2.0
         version: 4.2.0
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/pagination:
     dependencies:
@@ -244,9 +247,9 @@ importers:
       '@288-toolkit/timeout':
         specifier: workspace:^
         version: link:../../timeout
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/sprite-animation:
     dependencies:
@@ -256,15 +259,15 @@ importers:
       '@288-toolkit/types':
         specifier: workspace:^
         version: link:../../types
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
       esm-env:
         specifier: 1.0.0
         version: 1.0.0
       motion:
         specifier: 10.x
         version: 10.17.0
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
     devDependencies:
       '@288-toolkit/vite-plugin-svelte-inline-component':
         specifier: workspace:^
@@ -424,10 +427,10 @@ importers:
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
       just-debounce-it:
-        specifier: ^3.2.0
+        specifier: 3.2.0
         version: 3.2.0
       just-throttle:
-        specifier: ^4.2.0
+        specifier: 4.2.0
         version: 4.2.0
 
   packages/typed-context:
@@ -436,11 +439,7 @@ importers:
         specifier: 4.x
         version: 4.2.12
 
-  packages/types:
-    dependencies:
-      '@288-toolkit/types':
-        specifier: workspace:^
-        version: 'link:'
+  packages/types: {}
 
   packages/ui:
     dependencies:
@@ -448,20 +447,16 @@ importers:
         specifier: workspace:*
         version: link:../device
       '@sveltejs/kit':
-        specifier: 2.x
+        specifier: ^2.5.1
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
       svelte:
         specifier: 4.x
         version: 4.2.12
       ts-key-enum:
-        specifier: ^2.0.12
+        specifier: 2.0.12
         version: 2.0.12
 
-  packages/url:
-    dependencies:
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+  packages/url: {}
 
   packages/vite-plugin-svelte-inline-component:
     dependencies:
@@ -3007,6 +3002,40 @@ packages:
   tty-table@4.2.3:
     resolution: {integrity: sha512-Fs15mu0vGzCrj8fmJNP7Ynxt5J7praPXqFN0leZeZBXJwkMxv9cb2D454k1ltrtUSJbZ4yH4e0CynsHLxmUfFA==}
     engines: {node: '>=8.0.0'}
+    hasBin: true
+
+  turbo-darwin-64@1.13.3:
+    resolution: {integrity: sha512-glup8Qx1qEFB5jerAnXbS8WrL92OKyMmg5Hnd4PleLljAeYmx+cmmnsmLT7tpaVZIN58EAAwu8wHC6kIIqhbWA==}
+    cpu: [x64]
+    os: [darwin]
+
+  turbo-darwin-arm64@1.13.3:
+    resolution: {integrity: sha512-/np2xD+f/+9qY8BVtuOQXRq5f9LehCFxamiQnwdqWm5iZmdjygC5T3uVSYuagVFsZKMvX3ycySwh8dylGTl6lg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  turbo-linux-64@1.13.3:
+    resolution: {integrity: sha512-G+HGrau54iAnbXLfl+N/PynqpDwi/uDzb6iM9hXEDG+yJnSJxaHMShhOkXYJPk9offm9prH33Khx2scXrYVW1g==}
+    cpu: [x64]
+    os: [linux]
+
+  turbo-linux-arm64@1.13.3:
+    resolution: {integrity: sha512-qWwEl5VR02NqRyl68/3pwp3c/olZuSp+vwlwrunuoNTm6JXGLG5pTeme4zoHNnk0qn4cCX7DFrOboArlYxv0wQ==}
+    cpu: [arm64]
+    os: [linux]
+
+  turbo-windows-64@1.13.3:
+    resolution: {integrity: sha512-Nudr4bRChfJzBPzEmpVV85VwUYRCGKecwkBFpbp2a4NtrJ3+UP1VZES653ckqCu2FRyRuS0n03v9euMbAvzH+Q==}
+    cpu: [x64]
+    os: [win32]
+
+  turbo-windows-arm64@1.13.3:
+    resolution: {integrity: sha512-ouJCgsVLd3icjRLmRvHQDDZnmGzT64GBupM1Y+TjtYn2LVaEBoV6hicFy8x5DUpnqdLy+YpCzRMkWlwhmkX7sQ==}
+    cpu: [arm64]
+    os: [win32]
+
+  turbo@1.13.3:
+    resolution: {integrity: sha512-n17HJv4F4CpsYTvKzUJhLbyewbXjq1oLCi90i5tW1TiWDz16ML1eDG7wi5dHaKxzh5efIM56SITnuVbMq5dk4g==}
     hasBin: true
 
   type-check@0.4.0:
@@ -6047,6 +6076,33 @@ snapshots:
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
       yargs: 17.7.2
+
+  turbo-darwin-64@1.13.3:
+    optional: true
+
+  turbo-darwin-arm64@1.13.3:
+    optional: true
+
+  turbo-linux-64@1.13.3:
+    optional: true
+
+  turbo-linux-arm64@1.13.3:
+    optional: true
+
+  turbo-windows-64@1.13.3:
+    optional: true
+
+  turbo-windows-arm64@1.13.3:
+    optional: true
+
+  turbo@1.13.3:
+    optionalDependencies:
+      turbo-darwin-64: 1.13.3
+      turbo-darwin-arm64: 1.13.3
+      turbo-linux-64: 1.13.3
+      turbo-linux-arm64: 1.13.3
+      turbo-windows-64: 1.13.3
+      turbo-windows-arm64: 1.13.3
 
   type-check@0.4.0:
     dependencies:
