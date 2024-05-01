@@ -41,9 +41,3 @@ define on the `:root`.
 ## `reset.css`
 
 A css reset, added on top of Tailwind's own preflight.css.
-
-## `watchdog.css`
-
-[!NOTE] To be used in dev mode only.
-
-Some useful visual cues to detect faulty markup and styles.
