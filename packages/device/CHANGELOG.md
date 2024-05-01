@@ -1,5 +1,17 @@
 # @288-toolkit/device
 
+## 4.0.0
+
+### Major Changes
+
+- Fix output
+
+## 3.1.0
+
+### Minor Changes
+
+- Add file extensions
+
 ## 3.0.0
 
 ### Major Changes

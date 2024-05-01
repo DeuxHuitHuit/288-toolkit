@@ -1,4 +1,4 @@
-<script>import { t } from './translations';
+<script>import { t } from './translations/index.js';
 import { getVideoEmbedContext } from './EmbedGroup.svelte';
 let classes = '';
 /**

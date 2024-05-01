@@ -1,6 +1,6 @@
 import { BROWSER } from 'esm-env';
 import { derived } from 'svelte/store';
-import { scroll } from './scroll';
+import { scroll } from './scroll.js';
 const scrollPos = { x: 0, y: 0 };
 /**
  * A readable store that returns the current scroll positions

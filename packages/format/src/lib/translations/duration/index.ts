@@ -1,5 +1,5 @@
 import { createTranslate } from '@288-toolkit/i18n/translations/client';
-import type { DurationTranslations } from './en';
+import type { DurationTranslations } from './en.js';
 
 export const key = 'duration';
 

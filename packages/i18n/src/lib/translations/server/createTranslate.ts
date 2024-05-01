@@ -1,7 +1,7 @@
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import type { DataType, TranslateParams, Translation } from '../../types';
 import { translate } from '../translate';
-import { loadTranslationFile } from './createTranslationsLoader';
+import { loadTranslationFile } from './createTranslationsLoader.js';
 
 export const createTranslate = async <
 	TTranslationsObject extends AnonymousObject,

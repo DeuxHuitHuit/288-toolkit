@@ -21,7 +21,7 @@
 	} from './Pagination.svelte';
 	import { createEventDispatcher, onMount } from 'svelte';
 	import { page } from '$app/stores';
-	import { t } from './translations';
+	import { t } from './translations/index.js';
 	import { derived, type Readable } from 'svelte/store';
 	import { requestSubmit } from '@288-toolkit/forms';
 	import { mounted } from '@288-toolkit/ui';

@@ -1,4 +1,4 @@
-import { t } from './translations/duration';
+import { t } from './translations/duration/index.js';
 export const SECONDS_IN_MINUTE = 60;
 export const MINUTES_IN_HOUR = 60;
 /**

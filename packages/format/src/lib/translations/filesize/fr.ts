@@ -1,4 +1,4 @@
-import type { FilesizeTranslations } from './en';
+import type { FilesizeTranslations } from './en.js';
 
 export const fr: FilesizeTranslations = {
 	b: 'octets',

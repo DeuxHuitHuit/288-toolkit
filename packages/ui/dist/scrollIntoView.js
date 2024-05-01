@@ -1,4 +1,4 @@
-import { motionSafeScrollBehavior } from './motionSafeScrollBehavior';
+import { motionSafeScrollBehavior } from './motionSafeScrollBehavior.js';
 /**
  * This action will scroll the element into view on mount.
  * @param node The HTMLElement to scroll into view

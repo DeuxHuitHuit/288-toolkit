@@ -8,7 +8,7 @@ import { expoOut } from 'svelte/easing';
 import {
 	playMotionAnimationInView,
 	type PlayMotionAnimationInViewParams
-} from './playMotionAnimationInView';
+} from './playMotionAnimationInView.js';
 
 export type AnimateInViewParams = {
 	/**

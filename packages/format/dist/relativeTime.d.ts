@@ -24,7 +24,7 @@
  */
 import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 type RelativeTimeLocale = USER_LOCALE | Maybe<Locale>;
 export declare const AUTO_UNIT: unique symbol;
 type AUTO_UNIT = typeof AUTO_UNIT;

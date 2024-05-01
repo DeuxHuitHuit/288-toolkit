@@ -1,8 +1,8 @@
-import { key } from '.';
+import { key } from './index.js';
 export const videoEmbed = {
     key,
     loaders: {
-        en: () => import('./en'),
-        fr: () => import('./fr')
+        en: () => import('./en.js'),
+        fr: () => import('./fr.js')
     }
 };

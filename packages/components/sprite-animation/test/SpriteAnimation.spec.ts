@@ -1,4 +1,4 @@
-import { getByText, render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import SpriteAnimation from '../src/lib/SpriteAnimation.svelte';
 

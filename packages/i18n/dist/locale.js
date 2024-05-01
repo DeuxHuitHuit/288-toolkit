@@ -4,7 +4,7 @@
 import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import { get } from 'svelte/store';
-import { localeToLanguage } from './localeTo';
+import { localeToLanguage } from './localeTo.js';
 let cachedLocale;
 /**
  * This methods deals with isomorphic code and returns the current locale.

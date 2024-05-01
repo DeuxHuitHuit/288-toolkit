@@ -1,6 +1,6 @@
 import { BROWSER } from 'esm-env';
 import { derived } from 'svelte/store';
-import { scroll } from './scroll';
+import { scroll } from './scroll.js';
 
 export type ScrollPosition = {
 	x: number;

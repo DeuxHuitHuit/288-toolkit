@@ -26,8 +26,8 @@
 import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
-import { t } from './translations/relativeTime';
-import { USER_LOCALE } from './userLocale';
+import { t } from './translations/relativeTime/index.js';
+import { USER_LOCALE } from './userLocale.js';
 
 type RelativeTimeLocale = USER_LOCALE | Maybe<Locale>;
 

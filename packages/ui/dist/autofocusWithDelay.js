@@ -1,4 +1,4 @@
-import { autofocus } from './autofocus';
+import { autofocus } from './autofocus.js';
 /**
  * This action will focus its node on mount or on update after a delay.
  * Please note that adding a delay will change the focus behavior on mobile:

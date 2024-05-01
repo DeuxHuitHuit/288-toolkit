@@ -1,5 +1,5 @@
-<script>import { getVimeoThumbnailUrl, isVimeoUrl } from './vimeo';
-import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube';
+<script>import { getVimeoThumbnailUrl, isVimeoUrl } from './vimeo.js';
+import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube.js';
 import { getVideoEmbedContext } from './EmbedGroup.svelte';
 import { HtmlImg } from '@288-toolkit/html-elements';
 /**

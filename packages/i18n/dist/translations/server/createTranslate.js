@@ -1,5 +1,5 @@
 import { translate } from '../translate';
-import { loadTranslationFile } from './createTranslationsLoader';
+import { loadTranslationFile } from './createTranslationsLoader.js';
 export const createTranslate = async (translation, language) => {
     const mod = await loadTranslationFile(translation, String(language));
     const translations = mod[String(language)];

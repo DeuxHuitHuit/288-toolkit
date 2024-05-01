@@ -1,4 +1,4 @@
-import { parallax } from './parallax';
+import { parallax } from './parallax.js';
 const toParallaxOptions = (options, getKeyframes) => {
     return {
         speed: options.speed,

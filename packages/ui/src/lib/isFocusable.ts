@@ -1,4 +1,4 @@
-import { focusableSelector } from './focusableSelector';
+import { focusableSelector } from './focusableSelector.js';
 
 /**
  * Returns true if the given element is focusable.

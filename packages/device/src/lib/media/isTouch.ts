@@ -1,5 +1,5 @@
 import { derived } from 'svelte/store';
-import { createMatchMediaStore } from './createMatchMediaStore';
+import { createMatchMediaStore } from './createMatchMediaStore.js';
 
 /**
  * A readable store that returns whether the user is using a touch device.

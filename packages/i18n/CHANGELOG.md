@@ -1,5 +1,27 @@
 # @288-toolkit/i18n
 
+## 8.0.0
+
+### Major Changes
+
+- Fix output
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/http@4.0.0
+
+## 7.1.0
+
+### Minor Changes
+
+- Add file extensions
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/http@3.1.0
+
 ## 7.0.1
 
 ### Patch Changes

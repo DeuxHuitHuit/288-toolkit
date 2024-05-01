@@ -1,5 +1,5 @@
 import { replaceState } from '$app/navigation';
-import { motionSafeScrollBehavior } from './motionSafeScrollBehavior';
+import { motionSafeScrollBehavior } from './motionSafeScrollBehavior.js';
 /**
  * This action will smoothly scroll to the anchor link's target if it exists while
  * preserving the browser's default behavior.

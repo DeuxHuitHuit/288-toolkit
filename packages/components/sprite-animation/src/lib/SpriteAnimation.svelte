@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	import { estimatedAvailableMegaBytesPerSeconds } from './estimatedAvailableMegaBytesPerSeconds';
+	import { estimatedAvailableMegaBytesPerSeconds } from './estimatedAvailableMegaBytesPerSeconds.js';
 	import { BROWSER, DEV } from 'esm-env';
 
 	interface Animation {

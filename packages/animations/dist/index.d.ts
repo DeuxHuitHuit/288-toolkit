@@ -1,2 +1,2 @@
-export * from './createAnimationArchitect';
-export * from './createMotionArchitect';
+export * from './createAnimationArchitect.js';
+export * from './createMotionArchitect.js';

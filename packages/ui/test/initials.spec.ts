@@ -3,6 +3,7 @@ import { fontSizeFromInitials, formatInitials, initials } from '../src/lib/initi
 
 describe('initials()', () => {
 	test('should return empty string', () => {
+		// @ts-expect-error testing with null
 		expect(initials(null)).toBe('');
 		expect(initials('')).toBe('');
 		expect(initials('  ')).toBe('');

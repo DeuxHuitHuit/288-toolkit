@@ -2,8 +2,8 @@ import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
 import type { DataType, TranslateParams } from '../types';
-import { pluralize } from './pluralize';
-import { resolveData } from './resolveData';
+import { pluralize } from './pluralize.js';
+import { resolveData } from './resolveData.js';
 
 /**
  * Translates a specific key, from a specific translation object.

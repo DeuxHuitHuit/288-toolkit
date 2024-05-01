@@ -1,5 +1,5 @@
-import { t } from './translations/duration';
-import type { DurationTranslations } from './translations/duration/en';
+import type { DurationTranslations } from './translations/duration/en.js';
+import { t } from './translations/duration/index.js';
 
 interface HumanDuration {
 	/**

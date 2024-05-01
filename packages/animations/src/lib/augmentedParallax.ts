@@ -1,5 +1,5 @@
 import type { MotionKeyframesDefinition } from 'motion';
-import { parallax, type ParallaxOptions } from './parallax';
+import { parallax, type ParallaxOptions } from './parallax.js';
 
 export type FromToValue = string | number;
 

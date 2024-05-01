@@ -1,4 +1,3 @@
-import * as environment from '$app/environment';
 import * as navigation from '$app/navigation';
 import * as stores from '$app/stores';
 import type { Navigation, Page } from '@sveltejs/kit';

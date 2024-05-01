@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { derived, type Readable } from 'svelte/store';
-	import { t } from './translations';
+	import { t } from './translations/index.js';
 	import { getInternalPaginationContext } from './Pagination.svelte';
 	import PaginationLink from './PaginationLink.svelte';
 

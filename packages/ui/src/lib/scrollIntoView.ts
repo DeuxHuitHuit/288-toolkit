@@ -1,4 +1,4 @@
-import { motionSafeScrollBehavior } from './motionSafeScrollBehavior';
+import { motionSafeScrollBehavior } from './motionSafeScrollBehavior.js';
 
 type Options = ScrollIntoViewOptions & {
 	canScroll?: boolean;

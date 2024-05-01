@@ -17,7 +17,7 @@ import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe, MaybeUndefined } from '@288-toolkit/types';
 import type { TimeZone } from '@288-toolkit/types/timezones';
 import { DEV } from 'esm-env';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 
 // This is a "safe", as close to ISO as possible locale.
 // @see https://stackoverflow.com/questions/25050034/get-iso-8601-using-intl-datetimeformat

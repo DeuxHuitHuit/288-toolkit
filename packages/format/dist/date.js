@@ -13,7 +13,7 @@
  *    Those function are also available for imports.
  */
 import { DEV } from 'esm-env';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 // This is a "safe", as close to ISO as possible locale.
 // @see https://stackoverflow.com/questions/25050034/get-iso-8601-using-intl-datetimeformat
 export const ISO_LOCALE = 'sv-SE';

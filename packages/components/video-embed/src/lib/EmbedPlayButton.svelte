@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { t } from './translations';
+	import { t } from './translations/index.js';
 	import { getVideoEmbedContext } from './EmbedGroup.svelte';
 
 	let classes = '';

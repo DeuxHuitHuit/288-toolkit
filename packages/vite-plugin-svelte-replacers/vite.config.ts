@@ -13,7 +13,7 @@ export default defineConfig(() => {
 				name: 'node-externals',
 				enforce: 'pre',
 				apply: 'build'
-			}
+			} satisfies Plugin
 		],
 		build: {
 			lib: {

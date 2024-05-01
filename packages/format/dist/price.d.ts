@@ -1,5 +1,5 @@
 import type { Locale } from '@288-toolkit/i18n/types';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 export type Price = number;
 export type FormatPriceLocale = Locale | USER_LOCALE;
 export type FormatPriceOptions = Partial<Intl.NumberFormatOptions> & {

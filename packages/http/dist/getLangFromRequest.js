@@ -1,4 +1,4 @@
-import { parseAcceptLanguage } from './parseAcceptLanguage';
+import { parseAcceptLanguage } from './parseAcceptLanguage.js';
 export const getLangFromRequest = (request, { supportedLanguages, defaultLanguage }) => {
     // Check request path first
     const url = new URL(request.url);

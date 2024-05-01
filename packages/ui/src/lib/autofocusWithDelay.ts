@@ -1,4 +1,4 @@
-import { autofocus, type Options } from './autofocus';
+import { autofocus, type Options } from './autofocus.js';
 
 type OptionsWithDelay = Options & {
 	delay?: number;

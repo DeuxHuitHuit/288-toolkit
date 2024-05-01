@@ -1,4 +1,4 @@
-import type { DurationTranslations } from './en';
+import type { DurationTranslations } from './en.js';
 
 export const fr: DurationTranslations = {
 	units: {

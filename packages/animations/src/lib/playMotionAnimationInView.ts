@@ -2,7 +2,7 @@ import { reducedMotion } from '@288-toolkit/device/media';
 import type { Maybe } from '@288-toolkit/types';
 import { inView, type AnimationControls, type InViewOptions } from 'motion';
 import { get } from 'svelte/store';
-import type { createMotionArchitect } from './createMotionArchitect';
+import type { createMotionArchitect } from './createMotionArchitect.js';
 
 export type PlayMotionAnimationInViewParams = {
 	/**

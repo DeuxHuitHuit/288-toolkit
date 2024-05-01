@@ -1,5 +1,23 @@
 # @288-toolkit/back-to-top
 
+## 3.0.0
+
+### Major Changes
+
+- Fix output
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/ui@5.0.0
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/ui@4.1.0
+
 ## 2.0.0
 
 ### Major Changes

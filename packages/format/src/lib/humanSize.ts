@@ -3,8 +3,8 @@
  * way. It provides a chain-able api for the limit and precision options.
  */
 
-import { t } from './translations/filesize';
-import type { FilesizeTranslations } from './translations/filesize/en';
+import type { FilesizeTranslations } from './translations/filesize/en.js';
+import { t } from './translations/filesize/index.js';
 
 type Unit = keyof FilesizeTranslations;
 

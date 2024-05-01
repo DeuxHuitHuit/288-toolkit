@@ -1,2 +1,2 @@
-export * from './isExternalUrl';
-export * from './validateSameOrigin';
+export * from './isExternalUrl.js';
+export * from './validateSameOrigin.js';

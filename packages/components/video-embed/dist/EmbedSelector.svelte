@@ -1,5 +1,5 @@
-<script>import { isYoutubeUrl } from './youtube';
-import { isVimeoUrl } from './vimeo';
+<script>import { isYoutubeUrl } from './youtube.js';
+import { isVimeoUrl } from './vimeo.js';
 import { getVideoEmbedContext } from './EmbedGroup.svelte';
 import YtEmbed from './YoutubeEmbed.svelte';
 import VimeoEmbed from './VimeoEmbed.svelte';

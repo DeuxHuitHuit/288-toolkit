@@ -1,5 +1,5 @@
 import type { AnimationControls } from 'motion';
-import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect';
+import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect.js';
 
 /**
  *

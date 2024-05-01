@@ -1,1 +1,1 @@
-export { createTranslate } from './createTranslate';
+export { createTranslate } from './createTranslate.js';

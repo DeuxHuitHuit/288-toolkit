@@ -1,5 +1,5 @@
 import type { AnimationControls } from 'motion';
-import { type ArchitectParams } from './createAnimationArchitect';
+import { type ArchitectParams } from './createAnimationArchitect.js';
 /**
  *
  * @param options @see createAnimationArchitect
@@ -9,6 +9,6 @@ import { type ArchitectParams } from './createAnimationArchitect';
  */
 export declare const createMotionArchitect: (options?: ArchitectParams) => {
     registerMotionAnimation: (animation: AnimationControls) => () => void;
-    registerAnimation: (outAnimation: import("./createAnimationArchitect").AnimationFunction) => () => void;
+    registerAnimation: (outAnimation: import("./createAnimationArchitect.js").AnimationFunction) => () => void;
     start: any;
 };

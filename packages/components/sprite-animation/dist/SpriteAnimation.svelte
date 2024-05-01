@@ -1,4 +1,4 @@
-<script context="module">import { estimatedAvailableMegaBytesPerSeconds } from './estimatedAvailableMegaBytesPerSeconds';
+<script context="module">import { estimatedAvailableMegaBytesPerSeconds } from './estimatedAvailableMegaBytesPerSeconds.js';
 import { BROWSER, DEV } from 'esm-env';
 const isNetworkGoodEnough = estimatedAvailableMegaBytesPerSeconds >= 1;
 if (BROWSER && DEV) {

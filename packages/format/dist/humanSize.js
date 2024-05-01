@@ -2,7 +2,7 @@
  * This module makes it easy to format and display sizes in bytes in a human friendly
  * way. It provides a chain-able api for the limit and precision options.
  */
-import { t } from './translations/filesize';
+import { t } from './translations/filesize/index.js';
 const units = ['b', 'kb', 'Mb', 'Gb', 'Tb', 'Pb'];
 const BASE = 1024;
 /**

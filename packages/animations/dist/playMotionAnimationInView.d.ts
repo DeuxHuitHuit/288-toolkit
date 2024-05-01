@@ -1,5 +1,5 @@
 import { type AnimationControls, type InViewOptions } from 'motion';
-import type { createMotionArchitect } from './createMotionArchitect';
+import type { createMotionArchitect } from './createMotionArchitect.js';
 export type PlayMotionAnimationInViewParams = {
     /**
      * The animation to play, returned from either `animate` or `timeline` from Motion.

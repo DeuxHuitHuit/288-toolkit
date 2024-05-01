@@ -1,4 +1,4 @@
-import { augmentedParallax } from './augmentedParallax';
+import { augmentedParallax } from './augmentedParallax.js';
 /**
  * @see parallax
  * Adds a scale animation to the basic parallax

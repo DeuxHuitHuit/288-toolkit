@@ -1,4 +1,4 @@
-import type { DatePartString } from './types';
+import type { DatePartString } from './types.js';
 
 /**
  * Converts a date, in the yyyy-mm-dd format, into a Date object, in the user's

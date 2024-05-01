@@ -1,4 +1,4 @@
-import { createAnimationArchitect } from './createAnimationArchitect';
+import { createAnimationArchitect } from './createAnimationArchitect.js';
 /**
  *
  * @param options @see createAnimationArchitect

@@ -1,7 +1,7 @@
 /// <reference types="svelte" />
 import { type AnimationOptionsWithOverrides, type InViewOptions, type MotionKeyframesDefinition } from 'motion';
 import { expoOut } from 'svelte/easing';
-import { type PlayMotionAnimationInViewParams } from './playMotionAnimationInView';
+import { type PlayMotionAnimationInViewParams } from './playMotionAnimationInView.js';
 export type AnimateInViewParams = {
     /**
      * The keyframes of the animation

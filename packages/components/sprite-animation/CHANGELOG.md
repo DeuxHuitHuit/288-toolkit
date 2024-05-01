@@ -1,5 +1,27 @@
 # @288-toolkit/sprite-animation
 
+## 3.0.0
+
+### Major Changes
+
+- Fix output
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@4.0.0
+
+## 2.1.0
+
+### Minor Changes
+
+- Add file extensions
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@3.1.0
+
 ## 2.0.0
 
 ### Major Changes

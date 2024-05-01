@@ -1,4 +1,4 @@
-import type { SlideshowTranslations } from './en';
+import type { SlideshowTranslations } from './en.js';
 
 export const fr: SlideshowTranslations = {
 	prevSlide: 'Diapositive précédente',

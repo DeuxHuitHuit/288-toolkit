@@ -1,4 +1,4 @@
-import type { PaginationTranslations } from './en';
+import type { PaginationTranslations } from './en.js';
 
 export const fr: PaginationTranslations = {
 	prevPage: 'Page précédente',

@@ -5,7 +5,7 @@ import tsEslint from 'typescript-eslint';
 
 export default tsEslint.config(
 	{
-		ignores: ['**/.*', '**/node_modules/**', '.vercel', '.sveltekit']
+		ignores: ['**/.*', '**/node_modules/**', '.vercel', '.sveltekit', '**/dist/**/*']
 	},
 	eslint.configs.recommended,
 	...tsEslint.configs.recommended,

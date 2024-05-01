@@ -1,4 +1,4 @@
-import type { Options } from './autofocus';
+import type { Options } from './autofocus.js';
 /**
  * This action will focus its node on mount and on update after `tick()` resolves.
  * @param node The HTMLElement to focus

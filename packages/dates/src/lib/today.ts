@@ -4,7 +4,7 @@
 
 import { ISO_LOCALE } from '@288-toolkit/format';
 import type { TimeZone } from '@288-toolkit/types/timezones';
-import type { DatePart } from './types';
+import type { DatePart } from './types.js';
 
 export type TodayOptions = {
 	now: DatePart;

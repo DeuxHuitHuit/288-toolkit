@@ -2,7 +2,7 @@
  * This module makes it easy to format and display sizes in bytes in a human friendly
  * way. It provides a chain-able api for the limit and precision options.
  */
-import type { FilesizeTranslations } from './translations/filesize/en';
+import type { FilesizeTranslations } from './translations/filesize/en.js';
 type Unit = keyof FilesizeTranslations;
 interface HumanSize {
     limit(unit: Unit): HumanSize;

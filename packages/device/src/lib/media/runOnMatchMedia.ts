@@ -1,7 +1,7 @@
 import type { AnonymousObject } from '@288-toolkit/types';
 import type { Action, ActionReturn } from 'svelte/action';
 import { get } from 'svelte/store';
-import type { MatchMediaStore } from './createMatchMediaStore';
+import type { MatchMediaStore } from './createMatchMediaStore.js';
 
 export type RunOnMatchMediaCleanUpFn = void | undefined | (() => void);
 export type RunOnMatchMediaCallback = () => RunOnMatchMediaCleanUpFn;

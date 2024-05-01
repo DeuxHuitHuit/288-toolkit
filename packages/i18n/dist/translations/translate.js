@@ -1,7 +1,7 @@
 import { BROWSER, DEV } from 'esm-env';
 import resolvePath from 'just-safe-get';
-import { pluralize } from './pluralize';
-import { resolveData } from './resolveData';
+import { pluralize } from './pluralize.js';
+import { resolveData } from './resolveData.js';
 /**
  * Translates a specific key, from a specific translation object.
  * It also replaces dynamic values in the translations.

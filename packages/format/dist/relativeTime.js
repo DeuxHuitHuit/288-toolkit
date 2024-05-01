@@ -23,8 +23,8 @@
  *    This is probably the most common use case, so it's provided as a convenience.
  */
 import { DEV } from 'esm-env';
-import { t } from './translations/relativeTime';
-import { USER_LOCALE } from './userLocale';
+import { t } from './translations/relativeTime/index.js';
+import { USER_LOCALE } from './userLocale.js';
 export const AUTO_UNIT = Symbol('auto');
 const timeUnits = [
     'years',

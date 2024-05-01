@@ -2,7 +2,7 @@
 </script>
 
 <script>/** Based on https://github.com/paulirish/lite-youtube-embed */
-import { getYoutubeId } from './youtube';
+import { getYoutubeId } from './youtube.js';
 import { getVideoEmbedContext } from './EmbedGroup.svelte';
 import { objectToQueryString } from '@288-toolkit/strings';
 export let url;

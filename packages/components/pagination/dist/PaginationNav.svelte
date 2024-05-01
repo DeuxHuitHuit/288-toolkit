@@ -7,7 +7,7 @@
 
 <script lang="ts">
 	import { getInternalPaginationContext } from './Pagination.svelte';
-	import { t } from './translations';
+	import { t } from './translations/index.js';
 	import { createEventDispatcher } from 'svelte';
 
 	interface $$Events {

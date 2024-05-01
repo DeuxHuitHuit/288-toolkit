@@ -1,1 +1,1 @@
-export { createI18nHandles } from './createI18nHandles';
+export { createI18nHandles } from './createI18nHandles.js';

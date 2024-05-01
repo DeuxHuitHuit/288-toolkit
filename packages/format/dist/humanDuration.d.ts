@@ -1,4 +1,4 @@
-import type { DurationTranslations } from './translations/duration/en';
+import type { DurationTranslations } from './translations/duration/en.js';
 interface HumanDuration {
     /**
      * Use hours instead of minutes

@@ -1,2 +1,2 @@
-import type { DurationTranslations } from './en';
+import type { DurationTranslations } from './en.js';
 export declare const fr: DurationTranslations;

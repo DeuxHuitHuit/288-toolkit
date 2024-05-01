@@ -1,5 +1,5 @@
 import { DEV } from 'esm-env';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 const DEFAULTS = {
     style: 'currency',
     currency: 'CAD',

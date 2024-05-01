@@ -1,4 +1,4 @@
-import { parseAcceptLanguage } from './parseAcceptLanguage';
+import { parseAcceptLanguage } from './parseAcceptLanguage.js';
 
 export const getLangFromRequest = <Language extends string>(
 	request: Request,

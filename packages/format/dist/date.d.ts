@@ -15,7 +15,7 @@
 import type { Locale } from '@288-toolkit/i18n/types';
 import type { Maybe, MaybeUndefined } from '@288-toolkit/types';
 import type { TimeZone } from '@288-toolkit/types/timezones';
-import { USER_LOCALE } from './userLocale';
+import { USER_LOCALE } from './userLocale.js';
 export declare const ISO_LOCALE: "sv-SE";
 type ISO_LOCALE = typeof ISO_LOCALE;
 export type FormatDateLocale = USER_LOCALE | ISO_LOCALE | Maybe<Locale>;

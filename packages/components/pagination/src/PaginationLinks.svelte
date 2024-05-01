@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getInternalPaginationContext } from './Pagination.svelte';
-	import { t } from './translations';
+	import { t } from './translations/index.js';
 	import PaginationLink from './PaginationLink.svelte';
 
 	interface $$Slots {
