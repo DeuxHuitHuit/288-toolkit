@@ -157,6 +157,15 @@ importers:
         specifier: 4.x || 5.x
         version: 4.2.12
 
+  packages/components/dev-error-page:
+    dependencies:
+      '@288-toolkit/dismissable':
+        specifier: workspace:^
+        version: link:../dismissable
+      '@288-toolkit/math':
+        specifier: workspace:^
+        version: link:../../math
+
   packages/components/dismissable:
     dependencies:
       '@288-toolkit/types':
