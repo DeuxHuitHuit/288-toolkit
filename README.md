@@ -1,8 +1,5 @@
 # 288 Toolkit
 
-[!IMPORTANT] These packages only export typescript and svelte files. It is on the consumer of the
-packages to compile those files to javascript.
-
 This is a collection of package that Deux Huit Huit uses to build websites. They are meant to be
 used with Svelte, Sveltekit and Craft CMS.
 
@@ -53,6 +50,8 @@ pnpm make-pkg
 This will scaffold a basic workspace inside the `packages` folder.
 
 ### Publish a package
+
+-   Run `pnpm build` to build the packages.
 
 -   Run `pnpm changeset` then follow the instructions. This will generate a new changeset.
 
