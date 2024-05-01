@@ -33,7 +33,7 @@
 	</div>
 </Dismissable>
 
-<style lang="postcss">
+<style>
 	._error-overlay {
 		overflow-y: scroll;
 		position: fixed;
@@ -57,7 +57,6 @@
 		padding: 16px;
 		font-size: 20px;
 		color: white;
-
 	}
 
 	._error-ctn > *:not(:first-child) {
@@ -83,7 +82,7 @@
 
 	h1 {
 		font-size: 40px;
-		font-weight: bold
+		font-weight: bold;
 	}
 
 	h2 {
