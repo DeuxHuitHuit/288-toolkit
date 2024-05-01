@@ -118,6 +118,12 @@ importers:
         specifier: 4.x || 5.x
         version: 4.2.12
 
+  packages/base64-filters:
+    dependencies:
+      '@288-toolkit/strings':
+        specifier: workspace:^
+        version: link:../strings
+
   packages/components/back-to-top:
     dependencies:
       '@288-toolkit/ui':
