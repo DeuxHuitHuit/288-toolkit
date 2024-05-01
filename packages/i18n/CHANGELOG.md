@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 8.0.2
+
+### Patch Changes
+
+- Update peer deps
+
 ## 8.0.1
 
 ### Patch Changes

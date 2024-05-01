@@ -1,8 +1,8 @@
 /**@docs
  * This module provide functions to get the current locale and language.
  */
-import { browser } from '$app/environment';
 import { page } from '$app/stores';
+import { BROWSER } from 'esm-env';
 import { get } from 'svelte/store';
 import { localeToLanguage } from './localeTo.js';
 let cachedLocale;
@@ -14,7 +14,7 @@ let cachedLocale;
  * @returns The current or cached locale.
  */
 export const currentLocale = () => {
-    if (!browser) {
+    if (!BROWSER) {
         return get(page).data.locale;
     }
     if (!cachedLocale) {

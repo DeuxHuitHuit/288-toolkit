@@ -2,9 +2,9 @@
  * This module provide functions to get the current locale and language.
  */
 
-import { browser } from '$app/environment';
 import { page } from '$app/stores';
 import type { MaybeUndefined } from '@288-toolkit/types';
+import { BROWSER } from 'esm-env';
 import { get } from 'svelte/store';
 import { localeToLanguage } from './localeTo.js';
 import type { LangInfo, Locale } from './types';
@@ -19,7 +19,7 @@ let cachedLocale: MaybeUndefined<Locale>;
  * @returns The current or cached locale.
  */
 export const currentLocale = (): Locale => {
-	if (!browser) {
+	if (!BROWSER) {
 		return get(page).data.locale as Locale;
 	}
 	if (!cachedLocale) {

@@ -1,5 +1,11 @@
 # @288-toolkit/ui
 
+## 5.0.1
+
+### Patch Changes
+
+- Update peer deps
+
 ## 5.0.0
 
 ### Major Changes

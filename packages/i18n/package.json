@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/i18n",
-	"version": "8.0.1",
+	"version": "8.0.2",
 	"scripts": {
 		"build": "svelte-package",
 		"test": "vitest run",
@@ -43,7 +43,8 @@
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x"
+		"@sveltejs/kit": "2.x",
+		"svelte": "4.x || 5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/http": "workspace:*",

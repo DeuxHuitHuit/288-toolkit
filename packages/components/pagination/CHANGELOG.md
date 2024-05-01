@@ -1,5 +1,13 @@
 # @288-toolkit/pagination
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/i18n@8.0.2
+  - @288-toolkit/ui@5.0.1
+
 ## 3.0.1
 
 ### Patch Changes
