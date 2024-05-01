@@ -5,6 +5,7 @@ export default defineConfig(() => {
 	return {
 		plugins: [sveltekit()],
 		test: {
+			include: ['./test/**/*.spec.ts'],
 			globals: true
 		}
 	};

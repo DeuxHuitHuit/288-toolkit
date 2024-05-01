@@ -123,12 +123,6 @@ importers:
       '@288-toolkit/math':
         specifier: workspace:^
         version: link:../math
-      '@sveltejs/kit':
-        specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
-      svelte:
-        specifier: 4.x || 5.x
-        version: 4.2.12
 
   packages/base64-filters:
     dependencies:
@@ -374,6 +368,12 @@ importers:
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+
+  packages/functions:
+    dependencies:
+      just-once:
+        specifier: ^2.2.0
+        version: 2.2.0
 
   packages/html-parser:
     dependencies:
@@ -2116,6 +2116,9 @@ packages:
 
   just-debounce-it@3.2.0:
     resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
+
+  just-once@2.2.0:
+    resolution: {integrity: sha512-Wo547FgUOUZ98jbrZ1KX8nRezdEdtgIlC2NK1u1RvR1oZ/WoU++FjprP8J8hRbaox776MHyeMZZED4DvhhHVjg==}
 
   just-safe-get@4.2.0:
     resolution: {integrity: sha512-+tS4Bvgr/FnmYxOGbwziJ8I2BFk+cP1gQHm6rm7zo61w1SbxBwWGEq/Ryy9Gb6bvnloPq6pz7Bmm4a0rjTNlXA==}
@@ -5260,6 +5263,8 @@ snapshots:
   just-clamp@4.2.0: {}
 
   just-debounce-it@3.2.0: {}
+
+  just-once@2.2.0: {}
 
   just-safe-get@4.2.0: {}
 
