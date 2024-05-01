@@ -40,11 +40,11 @@
 		inset: 0;
 		z-index: 999;
 		display: flex;
-		align-items: start
+		align-items: start;
 		justify-content: center;
 		width: 100%;
 		height: 100%;
-		background-color: rgba(0,0,0,0.3);
+		background-color: rgba(0, 0, 0, 0.3);
 		padding-top: 16px;
 	}
 
@@ -77,7 +77,7 @@
 	}
 
 	button:hover {
-		background-color: rgba(255,255,255,0.2);
+		background-color: rgba(255, 255, 255, 0.2);
 	}
 
 	h1 {
