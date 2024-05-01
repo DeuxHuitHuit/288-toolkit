@@ -27,15 +27,17 @@ const PACKAGE_JSON_CONTENT = `
 		"lc:watch": "npm run lint && npm run check -- --watch"
     },
 	"files": [
-		"./src"
+		"./dist"
 	],
 	"exports": {
 		".": {
-			"default": "./src/index.ts"
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
 		}
 	},
 	"peerDependencies": {
         "@sveltejs/kit": "2.x",
+		"svelte": "4.x || 5.x"
     }
 }
 `;
