@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/pagination",
-	"version": "3.0.2",
+	"version": "3.0.3",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -27,7 +27,8 @@
 			"svelte": "./dist/index.js"
 		},
 		"./translations": {
-			"default": "./src/translations/loader.js"
+			"types": "./dist/translations/loader.d.ts",
+			"default": "./dist/translations/loader.js"
 		}
 	},
 	"peerDependencies": {
