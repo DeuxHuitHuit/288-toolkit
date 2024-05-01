@@ -1,5 +1,12 @@
 # @288-toolkit/video-embed
 
+## 3.0.5
+
+### Patch Changes
+
+- Fix exports
+  - @288-toolkit/html-elements@3.0.5
+
 ## 3.0.4
 
 ### Patch Changes

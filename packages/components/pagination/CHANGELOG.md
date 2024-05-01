@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 3.0.5
+
+### Patch Changes
+
+- Fix exports
+
 ## 3.0.4
 
 ### Patch Changes

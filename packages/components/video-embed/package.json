@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/video-embed",
-	"version": "3.0.4",
+	"version": "3.0.5",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -28,7 +28,7 @@
 		},
 		"./translations": {
 			"types": "./dist/translations/loader.d.ts",
-			"default": "./dist/translations/loader.js"
+			"svelte": "./dist/translations/loader.js"
 		}
 	},
 	"peerDependencies": {
