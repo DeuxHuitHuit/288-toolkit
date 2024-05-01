@@ -313,6 +313,8 @@ importers:
         specifier: 5.1.4
         version: 5.1.4(postcss-load-config@3.1.4(postcss@8.4.38))(postcss@8.4.38)(svelte@4.2.12)(typescript@5.4.5)
 
+  packages/css: {}
+
   packages/dates:
     dependencies:
       '@288-toolkit/format':
@@ -354,6 +356,15 @@ importers:
       '@sveltejs/kit':
         specifier: 2.x
         version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+
+  packages/html-parser:
+    dependencies:
+      '@288-toolkit/strings':
+        specifier: workspace:^
+        version: link:../strings
+      '@288-toolkit/types':
+        specifier: workspace:*
+        version: link:../types
 
   packages/http:
     dependencies:
