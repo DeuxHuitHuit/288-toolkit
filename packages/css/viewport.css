@@ -1,0 +1,54 @@
+/**
+ * This file controls most of our 'responsive' logic,
+ * where sizes are defined on particular reference points.
+ * We define two reference points: mobile and desktop.
+ */
+
+:root {
+	--viewport-desktop: var(--max-viewport-desktop, 1600);
+	--factor-desktop: 1vw;
+	--viewport-mobile: var(--max-viewport-mobile, 800);
+	--factor-mobile: 2vw;
+
+	--viewport: var(--viewport-mobile);
+	--factor: var(--factor-mobile);
+
+	--viewport-ratio: calc(1000 / var(--viewport) * var(--factor));
+}
+
+@screen bp {
+	:root {
+		--viewport: var(--viewport-desktop);
+		--factor: var(--factor-desktop);
+	}
+}
+
+html {
+	/**
+	* By default, cap 1 rem to a minimum of 9px, which is the smallest value allowed by Safari.
+	* This applies to screens smaller than min screen.
+	*/
+	font-size: 56.25%;
+}
+
+@screen min {
+	html {
+		/**
+		* This is the magic part.
+		* We want the font-size to be our controlled ratio.
+		* This creates truly responsive rem, where 1rem = 10px at exactly 400px and at 1600px and above
+		* You can also use this visualisation to understand the relation between viewport size and rem:
+		* https://www.desmos.com/calculator/dhkjr16m9c
+		*/
+		font-size: var(--viewport-ratio);
+	}
+}
+
+@screen max {
+	html {
+		/**
+		* Cap rem to 10px
+		*/
+		font-size: 62.5%;
+	}
+}

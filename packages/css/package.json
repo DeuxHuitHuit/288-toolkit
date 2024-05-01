@@ -1,0 +1,10 @@
+{
+	"name": "@288-toolkit/css",
+	"version": "1.0.0",
+	"author": "DeuxHuitHuit",
+	"license": "MIT",
+	"type": "module",
+	"files": [
+		"*.css"
+	]
+}
