@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/i18n",
-	"version": "8.0.3",
+	"version": "8.0.4",
 	"scripts": {
 		"build": "svelte-package",
 		"test": "vitest run",
@@ -24,22 +24,22 @@
 	"exports": {
 		".": {
 			"types": "./dist/types/index.d.ts",
-			"default": "./dist/index.js"
+			"svelte": "./dist/index.js"
 		},
 		"./types": {
 			"types": "./dist/types/index.d.ts"
 		},
 		"./handles": {
 			"types": "./dist/handles/index.d.ts",
-			"default": "./dist/handle/index.js"
+			"svelte": "./dist/handle/index.js"
 		},
 		"./translations/server": {
 			"types": "./dist/translations/server/index.d.ts",
-			"default": "./dist/translations/server/index.js"
+			"svelte": "./dist/translations/server/index.js"
 		},
 		"./translations/client": {
 			"types": "./dist/translations/client/index.d.ts",
-			"default": "./dist/translations/client/index.js"
+			"svelte": "./dist/translations/client/index.js"
 		}
 	},
 	"peerDependencies": {
