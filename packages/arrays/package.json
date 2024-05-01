@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/arrays",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -24,12 +24,8 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"default": "./dist/index.js"
 		}
-	},
-	"peerDependencies": {
-		"@sveltejs/kit": "2.x",
-		"svelte": "4.x || 5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/math": "workspace:^"
