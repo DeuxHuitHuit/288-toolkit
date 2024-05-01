@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/i18n",
-	"version": "8.0.0",
+	"version": "8.0.1",
 	"scripts": {
 		"build": "svelte-package",
 		"test": "vitest run",
@@ -17,6 +17,7 @@
 	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
+	"type": "module",
 	"files": [
 		"./dist"
 	],

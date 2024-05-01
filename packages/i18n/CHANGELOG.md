@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 8.0.1
+
+### Patch Changes
+
+- Add type module
+
 ## 8.0.0
 
 ### Major Changes
