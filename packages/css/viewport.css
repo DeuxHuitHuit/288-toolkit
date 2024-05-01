@@ -5,9 +5,9 @@
  */
 
 :root {
-	--viewport-desktop: var(--max-viewport-desktop, 1600);
+	--viewport-desktop: var(--viewport-max, 1600);
 	--factor-desktop: 1vw;
-	--viewport-mobile: var(--max-viewport-mobile, 800);
+	--viewport-mobile: var(--viewport-bp, 800);
 	--factor-mobile: 2vw;
 
 	--viewport: var(--viewport-mobile);
