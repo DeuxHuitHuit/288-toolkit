@@ -71,7 +71,6 @@
 	}
 
 	button {
-		@apply rounded-[0.8rem] border-2 border-currentColor px-[1rem] py-[0.2rem] transition-colors hover:bg-[white]/20;
 		border-radius: 8px;
 		border: 2px solid currentColor;
 		padding: 2px 10px;

@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.0.1
+
+### Patch Changes
+
+- Add enhancePost
+
 ## 4.0.0
 
 ### Major Changes

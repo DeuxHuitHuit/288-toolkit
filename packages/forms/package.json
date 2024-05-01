@@ -1,11 +1,11 @@
 {
 	"name": "@288-toolkit/forms",
-	"version": "4.0.0",
+	"version": "4.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"build": "svelte-package",
+		"build": "svelte-package -i src",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
