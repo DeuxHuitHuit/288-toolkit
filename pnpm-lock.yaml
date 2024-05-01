@@ -160,11 +160,17 @@ importers:
   packages/components/dev-error-page:
     dependencies:
       '@288-toolkit/dismissable':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../dismissable
       '@288-toolkit/math':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../../math
+      '@sveltejs/kit':
+        specifier: 2.x
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.10(@types/node@20.12.7))
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/dismissable:
     dependencies:
