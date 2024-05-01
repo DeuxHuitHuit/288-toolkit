@@ -1,5 +1,11 @@
 # @288-toolkit/cookie-popup
 
+## 3.0.1
+
+### Patch Changes
+
+- @288-toolkit/dismissable@3.0.1
+
 ## 3.0.0
 
 ### Major Changes

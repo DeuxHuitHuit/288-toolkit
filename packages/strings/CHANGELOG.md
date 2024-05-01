@@ -1,5 +1,11 @@
 # @288-toolkit/strings
 
+## 4.1.0
+
+### Minor Changes
+
+- Add more functions
+
 ## 4.0.0
 
 ### Major Changes

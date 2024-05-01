@@ -2,6 +2,18 @@
 
 A collection of functions to work with strings.
 
+## capitalize
+
+Capitalizes the first letter of a string.
+
+## uncapitalize
+
+Uncapitalize the first letter of a string.
+
+## textToId
+
+Converts text to a valid HTML id.
+
 ## objectToQueryString
 
 Returns a string of URL parameters from an object, filtering out `null` values.
