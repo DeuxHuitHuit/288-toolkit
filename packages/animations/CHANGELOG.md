@@ -1,5 +1,13 @@
 # @288-toolkit/animations
 
+## 4.0.1
+
+### Patch Changes
+
+- Fix exports
+- Updated dependencies
+  - @288-toolkit/page-transition@3.0.1
+
 ## 4.0.0
 
 ### Major Changes

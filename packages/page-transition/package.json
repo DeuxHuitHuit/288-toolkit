@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/page-transition",
-	"version": "3.0.0",
+	"version": "3.0.1",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -24,7 +24,7 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"svelte": "./dist/index.js"
 		}
 	},
 	"peerDependencies": {

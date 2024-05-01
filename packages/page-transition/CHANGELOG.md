@@ -1,5 +1,11 @@
 # @288-toolkit/page-transition
 
+## 3.0.1
+
+### Patch Changes
+
+- Fix exports
+
 ## 3.0.0
 
 ### Major Changes
