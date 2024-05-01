@@ -14,6 +14,18 @@ Uncapitalize the first letter of a string.
 
 Converts text to a valid HTML id.
 
+## removeLineBreaks
+
+Removes line breaks from a string.
+
+## removeSpaces
+
+Removes all spaces from a string.
+
+## removeTrailingSlash
+
+Removes trailing slashes from a string.
+
 ## objectToQueryString
 
 Returns a string of URL parameters from an object, filtering out `null` values.
