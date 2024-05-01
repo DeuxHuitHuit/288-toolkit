@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 8.0.6
+
+### Patch Changes
+
+- Fix export
+
 ## 8.0.5
 
 ### Patch Changes
