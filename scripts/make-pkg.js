@@ -14,6 +14,7 @@ const PACKAGE_JSON_CONTENT = `
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
+		"build": "svelte-package -i src",
         "test": "vitest run",
         "test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
