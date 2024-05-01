@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 4.1.0
+
+### Minor Changes
+
+- Add entryUrlBuilder
+
 ## 4.0.0
 
 ### Major Changes
