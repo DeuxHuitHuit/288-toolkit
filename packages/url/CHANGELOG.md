@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 4.1.1
+
+### Patch Changes
+
+- Improve types
+
 ## 4.1.0
 
 ### Minor Changes

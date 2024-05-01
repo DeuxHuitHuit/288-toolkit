@@ -1,8 +1,9 @@
+import type { Maybe } from '@288-toolkit/types';
 import { uriToPath } from './uriToPath.js';
 
 export type Entry = {
-	language?: string;
-	uri: string;
+	language?: Maybe<string>;
+	uri?: Maybe<string>;
 };
 
 export type EntryUrlParams = {
