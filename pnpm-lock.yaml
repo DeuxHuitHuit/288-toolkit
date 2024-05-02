@@ -402,7 +402,7 @@ importers:
         specifier: workspace:*
         version: link:../strings
       '@288-toolkit/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
       '@sveltejs/kit':
         specifier: 2.x
