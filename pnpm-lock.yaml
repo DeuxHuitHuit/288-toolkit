@@ -133,14 +133,17 @@ importers:
   packages/component-loader:
     dependencies:
       '@288-toolkit/types':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../types
       esm-env:
         specifier: 1.0.0
         version: 1.0.0
       just-clone:
-        specifier: ^6.2.0
+        specifier: 6.2.0
         version: 6.2.0
+      svelte:
+        specifier: 4.x || 5.x
+        version: 4.2.12
 
   packages/components/back-to-top:
     dependencies:
