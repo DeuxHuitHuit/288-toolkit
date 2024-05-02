@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 3.0.10
+
+### Patch Changes
+
+- @288-toolkit/i18n@8.0.7
+
 ## 3.0.9
 
 ### Patch Changes

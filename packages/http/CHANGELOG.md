@@ -1,5 +1,11 @@
 # @288-toolkit/http
 
+## 4.1.0
+
+### Minor Changes
+
+- Add cache-control header options and update docs
+
 ## 4.0.0
 
 ### Major Changes

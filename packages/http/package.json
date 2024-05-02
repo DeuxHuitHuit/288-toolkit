@@ -1,11 +1,11 @@
 {
 	"name": "@288-toolkit/http",
-	"version": "4.0.0",
+	"version": "4.1.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"build": "svelte-package",
+		"build": "svelte-package -i src",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",
@@ -27,10 +27,7 @@
 			"default": "./dist/index.js"
 		}
 	},
-	"peerDependencies": {
-		"@sveltejs/kit": "2.x"
-	},
 	"dependencies": {
-		"@288-toolkit/types": "workspace:^"
+		"@288-toolkit/types": "workspace:*"
 	}
 }

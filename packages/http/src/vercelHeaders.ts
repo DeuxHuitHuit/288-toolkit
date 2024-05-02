@@ -1,3 +1,6 @@
+/**
+ * Get Vercel headers from a request.
+ */
 export const getVercelIpHeaders = (request: Request) => {
 	return {
 		country: request.headers.get('x-vercel-ip-country'),

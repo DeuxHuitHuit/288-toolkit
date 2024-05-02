@@ -4,9 +4,19 @@ export type CacheHeadersOptions = {
     sMaxAge?: number;
     staleWhileRevalidate?: number;
     staleIfError?: number;
-    revalidate?: number;
+    private?: boolean;
     public?: boolean;
+    noCache?: boolean;
+    noStore?: boolean;
+    noTransform?: boolean;
+    immutable?: boolean;
+    mustRevalidate?: boolean;
+    proxyRevalidate?: boolean;
+    mustUnderstand?: boolean;
 };
+/**
+ * Generate cache headers
+ */
 export declare const cacheHeaders: (options?: Partial<CacheHeadersOptions>) => {
     'cache-control': string;
 };
