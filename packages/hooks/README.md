@@ -33,7 +33,7 @@ the app is building.
 ```ts
 import { building } from '$app/environment';
 
-export const handle = sequence(httpAuth({ authString: 'username:password', disabled: building }));
+export const handle = sequence(httpAuth({ authString: 'username:password', enabled: !building }));
 ```
 
 ### `performanceHeaders`
