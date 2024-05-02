@@ -6,7 +6,7 @@ export type HttpAuthHandleOptions = {
 	/**
 	 * Whether the middleware is enabled.
 	 */
-	enabled: boolean;
+	enabled?: boolean;
 	/**
 	 * The HTTP Basic Auth string.
 	 */
