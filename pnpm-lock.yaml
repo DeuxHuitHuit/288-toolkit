@@ -130,6 +130,18 @@ importers:
         specifier: workspace:^
         version: link:../strings
 
+  packages/component-loader:
+    dependencies:
+      '@288-toolkit/types':
+        specifier: workspace:^
+        version: link:../types
+      esm-env:
+        specifier: 1.0.0
+        version: 1.0.0
+      just-clone:
+        specifier: ^6.2.0
+        version: 6.2.0
+
   packages/components/back-to-top:
     dependencies:
       '@288-toolkit/ui':
@@ -2143,6 +2155,9 @@ packages:
 
   just-clamp@4.2.0:
     resolution: {integrity: sha512-ssHiAxuN7R+VP7jS1XyUP7ju5YC4bTQwQdzYtuZkASTrKe9KsI/X0t+5BJeD6Un6z/dNMDFVNQpQEgUphpXa0w==}
+
+  just-clone@6.2.0:
+    resolution: {integrity: sha512-1IynUYEc/HAwxhi3WDpIpxJbZpMCvvrrmZVqvj9EhpvbH8lls7HhdhiByjL7DkAaWlLIzpC0Xc/VPvy/UxLNjA==}
 
   just-debounce-it@3.2.0:
     resolution: {integrity: sha512-WXzwLL0745uNuedrCsCs3rpmfD6DBaf7uuVwaq98/8dafURfgQaBsSpjiPp5+CW6Vjltwy9cOGI6qE71b3T8iQ==}
@@ -5291,6 +5306,8 @@ snapshots:
       graceful-fs: 4.2.11
 
   just-clamp@4.2.0: {}
+
+  just-clone@6.2.0: {}
 
   just-debounce-it@3.2.0: {}
 
