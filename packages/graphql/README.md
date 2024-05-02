@@ -6,7 +6,8 @@ npm i @288-toolkit/graphql
 
 ## `gql`
 
-A tagged template literal function to get GraphQL syntax highlighting. Returns the string unchanged.
+Simple GraphQL template tag to support syntax highlighting and formatting. Returns the string
+unchanged.
 
 ```ts
 import { gql } from '@288-toolkit/graphql';
