@@ -11,11 +11,9 @@ export type DynamicImportEntryWithSvelteComponent<
 	svelteComponent?: ComponentType;
 };
 
-export type DynamicImport = {
+export type DynamicImport<TEntry extends DynamicImportEntry = DynamicImportEntry> = {
 	key: string;
-	getImport: <TEntry extends DynamicImportEntry>(
-		entry: TEntry
-	) => void | Promise<{ default: ComponentType }>;
+	getImport: (entry: TEntry) => void | Promise<{ default: ComponentType }>;
 };
 
 const getAllImports = (

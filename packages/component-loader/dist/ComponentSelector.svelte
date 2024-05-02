@@ -1,12 +1,9 @@
-<script lang="ts">
+<script lang="ts" generics="TEntry extends DynamicImportEntryWithSvelteComponent">
 	import type { Maybe } from '@288-toolkit/types';
 	import { DEV } from 'esm-env';
 	import type { DynamicImportEntryWithSvelteComponent } from './createComponentLoader';
 
-	type TEntry = $$Generic<DynamicImportEntryWithSvelteComponent>;
-	type ComponentSelectorEntry = Maybe<TEntry>;
-
-	export let entries: ComponentSelectorEntry[] = [];
+	export let entries: Maybe<TEntry>[] = [];
 </script>
 
 {#if entries?.length}
