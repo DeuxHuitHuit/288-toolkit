@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/forms",
-	"version": "4.0.2",
+	"version": "4.1.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -16,18 +16,30 @@
 		"lint": "eslint --max-warnings=0 --cache .",
 		"lint:fix": "npm run lint -- --fix",
 		"lc": "npm run lint && npm run check",
-		"lc:watch": "npm run lint && npm run check -- --watch"
+		"lc:watch": "npm run lint && npm run check -- --watch",
+		"postinstall": "node postinstall.js"
 	},
 	"files": [
-		"./dist"
+		"./dist",
+		"./postinstall.js"
 	],
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
 			"default": "./dist/index.js"
+		},
+		"./translations": {
+			"types": "./dist/translations/index.d.ts",
+			"default": "./dist/translations/index.js"
 		}
 	},
 	"peerDependencies": {
-		"@sveltejs/kit": "2.x"
+		"@melt-ui/svelte": "0.x",
+		"@sveltejs/kit": "2.x",
+		"zod": "3.x"
+	},
+	"dependencies": {
+		"@288-toolkit/i18n": "workspace:*",
+		"@288-toolkit/types": "workspace:*"
 	}
 }

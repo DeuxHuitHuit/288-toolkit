@@ -1,5 +1,16 @@
 # @288-toolkit/forms
 
+## 4.1.0
+
+### Minor Changes
+
+- Add forms builders
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/i18n@8.1.0
+
 ## 4.0.2
 
 ### Patch Changes

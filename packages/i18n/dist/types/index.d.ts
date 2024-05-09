@@ -1,5 +1,6 @@
 import { AnonymousObject } from '@288-toolkit/types';
 import type { createTranslate } from '../translations/client/createTranslate';
+export * from '@288-toolkit/types';
 
 export type Locale = `${string}-${string}`;
 

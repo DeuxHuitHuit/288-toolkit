@@ -1,6 +1,6 @@
 import { getLangFromRequest } from '@288-toolkit/http';
 import type { Handle } from '@sveltejs/kit';
-import { localeToLanguage, localeToRegion } from '../localeTo';
+import { localeToLanguage, localeToRegion } from '../localeTo.js';
 import type { Locale } from '../types';
 
 export type I18nParams = {

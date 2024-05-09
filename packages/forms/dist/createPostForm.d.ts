@@ -1,0 +1,60 @@
+/// <reference types="svelte" />
+import type { AnonymousObject, Maybe } from '@288-toolkit/types';
+export type CreatePostFormOptions = {
+    /**
+     * The delay in milliseconds before the form is reset
+     * after a successful submission.
+     */
+    resetDelay?: Maybe<number>;
+    /**
+     * The key of the form in the page store. Must be used if there are
+     * multiple forms on the page.
+     */
+    formKey?: Maybe<string>;
+    /**
+     * Applies the novalidate attribute to the form element, which disables browser validation, only when
+     * javascript is enabled.
+     */
+    novalidate?: boolean;
+};
+export type FormState = 'idle' | 'submitting' | 'success' | 'error';
+export type FormValues = Record<string, string | string[]>;
+export type FormErrors = Record<string, string>;
+export type FormData<TData extends AnonymousObject = AnonymousObject> = {
+    values?: FormValues;
+    errors?: FormErrors;
+    success?: boolean;
+} & TData;
+export declare const DEFAULT_RESET_DELAY = 10000;
+export declare const createPostForm: <TData extends AnonymousObject>(options?: CreatePostFormOptions) => {
+    elements: {
+        form: import("@melt-ui/svelte/internal/helpers").MeltElement<import("svelte/store").Stores | undefined, (node: HTMLFormElement) => {
+            destroy: () => void;
+        }, (() => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: any) => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: any[]) => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: [any, ...any[]]) => Record<string, any> | ((...args: any[]) => Record<string, any>)), "form">;
+        honeypot: import("@melt-ui/svelte/internal/helpers").MeltElement<import("svelte/store").Stores | undefined, import("svelte/action").Action<any, any, Record<never, any>>, () => {
+            type: string;
+            class: string;
+            style: string;
+            tabindex: string;
+            autocomplete: string;
+            name: string;
+        }, "hp">;
+    };
+    states: {
+        state: {
+            input: ((...args: any[]) => string | symbol) | (((e: Event) => string | symbol) & (() => string));
+            submit: ((...args: any[]) => string | symbol) | (((cancel: () => void) => string | symbol) & (() => string) & (() => string));
+            reset: ((...args: any[]) => string | symbol) | (() => string);
+            error: ((...args: any[]) => string | symbol) | (() => string);
+            success: ((...args: any[]) => string | symbol) | (() => string);
+        } & {
+            subscribe: (callback: (state: "error" | "idle" | "success" | "submitting") => void) => () => void;
+        };
+    };
+    helpers: {
+        submit: () => void;
+        data: import("svelte/store").Readable<{}>;
+        values: import("svelte/store").Readable<any>;
+        errors: import("svelte/store").Readable<any>;
+    };
+};

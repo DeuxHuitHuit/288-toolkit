@@ -1,5 +1,5 @@
 import { getLangFromRequest } from '@288-toolkit/http';
-import { localeToLanguage, localeToRegion } from '../localeTo';
+import { localeToLanguage, localeToRegion } from '../localeTo.js';
 export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
     const isLocalized = supportedLocales.length > 1;
     const defaultLanguage = localeToLanguage(defaultLocale);

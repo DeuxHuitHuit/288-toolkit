@@ -3,8 +3,8 @@ import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
 import { BROWSER, DEV } from 'esm-env';
 import { get } from 'svelte/store';
 import type { DataType, TranslateParams, Translation } from '../../types';
-import { getTranslationKey } from '../getTranslationKey';
-import { translate } from '../translate';
+import { getTranslationKey } from '../getTranslationKey.js';
+import { translate } from '../translate.js';
 
 export const createTranslate = <TTranslationsObject extends AnonymousObject>(
 	translationKey: Translation['key']

@@ -1,8 +1,8 @@
 import { page } from '$app/stores';
 import { BROWSER, DEV } from 'esm-env';
 import { get } from 'svelte/store';
-import { getTranslationKey } from '../getTranslationKey';
-import { translate } from '../translate';
+import { getTranslationKey } from '../getTranslationKey.js';
+import { translate } from '../translate.js';
 export const createTranslate = (translationKey) => {
     let currentTranslations;
     return (path, data = {}) => {

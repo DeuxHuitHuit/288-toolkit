@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 8.1.0
+
+### Minor Changes
+
+- Add forms builders
+
 ## 8.0.7
 
 ### Patch Changes
