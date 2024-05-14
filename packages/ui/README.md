@@ -110,13 +110,25 @@ const fontSizeFromInitials: (initials: string, fontSizes: readonly string[]) => 
 
 ## `portal`
 
-Renders an element in a different part of the DOM. Accepts a css selector or an `HTMLElement` as the
-target.
+Renders the element in a different part of the DOM. Accepts a css selector or an `HTMLElement` as
+the target.
 
 Based on https://github.com/romkor/svelte-portal/tree/master
 
 ```svelte
- <div use:portal={'css selector'}>
+<div use:portal={'css selector'}></div>
+```
+
+## `clickOutside`
+
+Run a callback when a click outside of the element occurs.
+
+```svelte
+<div
+	use:clickOutside={() => {
+		console.log('clicked outside!');
+	}}
+></div>
 ```
 
 ## `scrollIntoView`

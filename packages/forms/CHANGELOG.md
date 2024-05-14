@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.1.1
+
+### Patch Changes
+
+- Add clickoutside action
+
 ## 4.1.0
 
 ### Minor Changes

@@ -1,6 +1,7 @@
 export * from './autofocus.js';
 export * from './autofocusAfterTick.js';
 export * from './autofocusWithDelay.js';
+export * from './clickOutside.js';
 export * from './focalPointToObjectPosition.js';
 export * from './focusableSelector.js';
 export * from './imageSizes.js';

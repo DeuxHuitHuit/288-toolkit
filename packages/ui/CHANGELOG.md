@@ -1,5 +1,12 @@
 # @288-toolkit/ui
 
+## 5.2.0
+
+### Minor Changes
+
+- Add clickOutside action
+- Add clickoutside action
+
 ## 5.1.0
 
 ### Minor Changes
