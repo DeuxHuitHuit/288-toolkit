@@ -7,18 +7,7 @@ if (process.env.CI) {
 	process.exit(0);
 }
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-const gitConfig = await fs.readFile(path.join(__dirname, '../../.git/config'), {
-	encoding: 'utf-8'
-});
-
-const inToolkit = !!gitConfig?.match(
-	new RegExp('\\[remote "origin"\\]\\s+url = .+288-toolkit\\.git')
-)?.[0];
-
-// Skip this script if we are in the toolkit
-if (inToolkit) {
+if (!process.cwd().includes('node_modules')) {
 	process.exit(0);
 }
 

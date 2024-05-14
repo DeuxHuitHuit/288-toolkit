@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.2.1
+
+### Patch Changes
+
+- Fix postinstall script
+
 ## 4.2.0
 
 ### Minor Changes
