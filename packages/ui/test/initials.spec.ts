@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { fontSizeFromInitials, formatInitials, initials } from '../src/lib/initials';
+import { fontSizeFromInitials, formatInitials, initials } from '../src/initials';
 
 describe('initials()', () => {
 	test('should return empty string', () => {

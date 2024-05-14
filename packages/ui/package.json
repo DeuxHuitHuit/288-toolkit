@@ -1,11 +1,11 @@
 {
 	"name": "@288-toolkit/ui",
-	"version": "5.0.1",
+	"version": "5.1.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
 	"scripts": {
-		"build": "svelte-package",
+		"build": "svelte-package -i src",
 		"test": "vitest run",
 		"test:watch": "vitest",
 		"format:prettier": "prettier --config ./.prettierrc",

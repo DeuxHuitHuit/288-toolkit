@@ -1,3 +1,6 @@
+export * from './autofocus.js';
+export * from './autofocusAfterTick.js';
+export * from './autofocusWithDelay.js';
 export * from './focalPointToObjectPosition.js';
 export * from './focusableSelector.js';
 export * from './imageSizes.js';
@@ -7,3 +10,6 @@ export * from './keys.js';
 export * from './motionSafeScrollBehavior.js';
 export * from './mounted.js';
 export * from './navigated.js';
+export * from './portal.js';
+export * from './scrollIntoView.js';
+export * from './scrollToAnchor.js';
