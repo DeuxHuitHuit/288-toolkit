@@ -4,7 +4,21 @@
 
 import { ISO_LOCALE } from '@288-toolkit/format';
 import type { TimeZone } from '@288-toolkit/types/timezones';
-import type { DatePart } from './types.js';
+
+/**
+ * The minimal date-like interface we need to represent a date without a time.
+ */
+export interface DatePart {
+	getTime: () => number;
+	getFullYear: () => number;
+	getMonth: () => number;
+	getDate: () => number;
+}
+
+/**
+ * The string representation of a date without a time.
+ */
+export type DatePartString = `${number}-${number}-${number}`;
 
 export type TodayOptions = {
 	now: DatePart;

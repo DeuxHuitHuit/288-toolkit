@@ -1,5 +1,11 @@
 # @288-toolkit/dates
 
+## 4.0.10
+
+### Patch Changes
+
+- Fix type exports
+
 ## 4.0.9
 
 ### Patch Changes

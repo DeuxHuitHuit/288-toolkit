@@ -1,6 +1,6 @@
 import type { TimeZone } from '@288-toolkit/types/timezones';
 import { describe, expect, test } from 'vitest';
-import { computeTimezoneOffset, today } from '../src/lib/today';
+import { computeTimezoneOffset, today } from '../src/today';
 
 const timeZone = 'America/Toronto' as const;
 
