@@ -5,3 +5,4 @@ export { default as PaginationLinks } from './PaginationLinks.svelte';
 export { default as PaginationLoadMore } from './PaginationLoadMore.svelte';
 export { default as PaginationNav } from './PaginationNav.svelte';
 export { default as PaginationStep } from './PaginationStep.svelte';
+export * from './focusOnLoadMore.js';
