@@ -1,6 +1,6 @@
 /// <reference types="svelte" />
 import { type Readable } from 'svelte/store';
-import type { FormErrors, FormValues } from './createPostForm';
+import type { FormErrors, FormValues } from './createPostForm.js';
 export type FieldOptions = {
     /**
      * The type of the input element. DEFAULT: 'text'

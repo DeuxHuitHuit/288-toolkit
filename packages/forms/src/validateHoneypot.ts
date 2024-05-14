@@ -1,5 +1,6 @@
 import { error, type RequestEvent } from '@sveltejs/kit';
 import { z } from 'zod';
+import { HONEYPOT_NAME } from './constants.js';
 
 /**
  * A function to validate the honeypot field in a form submission.
@@ -9,7 +10,7 @@ export const validateHoneypot = async (event: RequestEvent) => {
 	const schema = z.string().max(0).optional().nullable();
 	const request = event.request.clone();
 	const data = await request.formData();
-	const honey = data.get(import.meta.env.HONEYPOT_NAME) as string;
+	const honey = data.get(HONEYPOT_NAME) as string;
 	const validation = schema.safeParse(honey);
 	if (!validation.success) {
 		error(404);

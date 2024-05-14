@@ -4,7 +4,8 @@ import { page } from '$app/stores';
 import { makeElement } from '@melt-ui/svelte/internal/helpers';
 import svelteFsm from 'svelte-fsm';
 import { derived, get, readonly, writable } from 'svelte/store';
-import { HONEYPOT_NAME } from './constants.js';
+import { HONEYPOT_NAME, STYLE_SR_ONLY } from './constants.js';
+import { createHoneypot } from './createHoneypot.js';
 import { enhancePost } from './enhancePost.js';
 import { requestSubmit } from './requestSubmit.js';
 export const DEFAULT_RESET_DELAY = 10000;
@@ -122,30 +123,11 @@ export const createPostForm = (options) => {
             };
         }
     });
-    const honeypot = makeElement('hp', {
-        returned: () => ({
-            type: 'text',
-            class: 'form_email',
-            style: `
-			position: absolute;
-			width: 1px;
-			height: 1px;
-			padding: 0;
-			margin: -1px;
-			overflow: hidden;
-			clip: rect(0, 0, 0, 0);
-			white-space: nowrap;
-			border-width: 0;
-			`,
-            tabindex: '-1',
-            autocomplete: 'no',
-            name: HONEYPOT_NAME
-        })
-    });
+    const honeypot = createHoneypot();
     return {
         elements: {
-            form,
-            honeypot
+            ...honeypot.elements,
+            form
         },
         states: {
             state

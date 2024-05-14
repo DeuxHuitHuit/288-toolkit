@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.2.0
+
+### Minor Changes
+
+- Fix build
+
 ## 4.1.1
 
 ### Patch Changes
