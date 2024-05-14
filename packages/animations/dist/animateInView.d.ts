@@ -32,8 +32,8 @@ export type AnimateInViewParams = {
      */
     inViewOptions?: InViewOptions;
 };
-export declare const DEFAULT_DURATION = 1;
-export declare const DEFAULT_EASING: typeof expoOut;
+export declare const DEFAULT_ANIMATE_IN_VIEW_DURATION = 1;
+export declare const DEFAULT_ANIMATE_IN_VIEW_EASING: typeof expoOut;
 export declare const DEFAULT_OPTIONS: {
     duration: number;
     easing: typeof expoOut;

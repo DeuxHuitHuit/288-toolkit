@@ -1,8 +1,8 @@
 import { animate } from 'motion';
 import { expoOut } from 'svelte/easing';
 import { playMotionAnimationInView } from './playMotionAnimationInView.js';
-export const DEFAULT_DURATION = 1;
-export const DEFAULT_EASING = expoOut;
+export const DEFAULT_ANIMATE_IN_VIEW_DURATION = 1;
+export const DEFAULT_ANIMATE_IN_VIEW_EASING = expoOut;
 export const DEFAULT_OPTIONS = {
     duration: 1,
     easing: expoOut

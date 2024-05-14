@@ -1,5 +1,11 @@
 # @288-toolkit/animations
 
+## 4.1.0
+
+### Minor Changes
+
+- Fix exports
+
 ## 4.0.1
 
 ### Patch Changes
