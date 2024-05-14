@@ -1,8 +1,15 @@
+export * from './Pagination.svelte';
 export { default as Pagination } from './Pagination.svelte';
+export * from './PaginationFilters.svelte';
 export { default as PaginationFilters } from './PaginationFilters.svelte';
+export * from './PaginationInfiniteScroll.svelte';
 export { default as PaginationInfiniteScroll } from './PaginationInfiniteScroll.svelte';
+export * from './PaginationLinks.svelte';
 export { default as PaginationLinks } from './PaginationLinks.svelte';
+export * from './PaginationLoadMore.svelte';
 export { default as PaginationLoadMore } from './PaginationLoadMore.svelte';
+export * from './PaginationNav.svelte';
 export { default as PaginationNav } from './PaginationNav.svelte';
+export * from './PaginationStep.svelte';
 export { default as PaginationStep } from './PaginationStep.svelte';
 export * from './focusOnLoadMore.js';
