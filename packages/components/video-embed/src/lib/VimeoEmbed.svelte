@@ -8,7 +8,7 @@
 		background?: boolean; // background mode (no controls, no nothing)
 	};
 
-	export const DEFAULTS: VimeoEmbedOptions = {
+	export const VIMEO_DEFAULTS: VimeoEmbedOptions = {
 		byline: false,
 		title: false,
 		portrait: false,
@@ -28,7 +28,7 @@
 	export let autoplay = true;
 	export let loop = false;
 	export let start: Maybe<number> = null;
-	export let options: VimeoEmbedOptions = DEFAULTS;
+	export let options: VimeoEmbedOptions = VIMEO_DEFAULTS;
 
 	const api = getVideoEmbedContext();
 	const { playing, preconnect } = api || {};

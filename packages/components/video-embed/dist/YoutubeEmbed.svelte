@@ -1,4 +1,4 @@
-<script context="module">export const DEFAULTS = {};
+<script context="module">export const YOUTUBE_DEFAULTS = {};
 </script>
 
 <script>/** Based on https://github.com/paulirish/lite-youtube-embed */
@@ -11,7 +11,7 @@ export let muted = false;
 export let autoplay = true;
 export let loop = false;
 export let start = null;
-export let options = DEFAULTS;
+export let options = YOUTUBE_DEFAULTS;
 const videoId = url ? getYoutubeId(url) : null;
 const playlist = loop ? videoId : options?.playlist || null;
 const api = getVideoEmbedContext();

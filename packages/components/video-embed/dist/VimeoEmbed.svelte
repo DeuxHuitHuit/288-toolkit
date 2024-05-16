@@ -1,4 +1,4 @@
-<script context="module">export const DEFAULTS = {
+<script context="module">export const VIMEO_DEFAULTS = {
     byline: false,
     title: false,
     portrait: false,
@@ -15,7 +15,7 @@ export let muted = false;
 export let autoplay = true;
 export let loop = false;
 export let start = null;
-export let options = DEFAULTS;
+export let options = VIMEO_DEFAULTS;
 const api = getVideoEmbedContext();
 const { playing, preconnect } = api || {};
 const videoParams = url ? new URL(url).pathname.replace('/', '') : '';

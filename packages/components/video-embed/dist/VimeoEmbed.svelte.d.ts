@@ -7,7 +7,7 @@ export type VimeoEmbedOptions = {
     autopause?: boolean | string;
     background?: boolean;
 };
-export declare const DEFAULTS: VimeoEmbedOptions;
+export declare const VIMEO_DEFAULTS: VimeoEmbedOptions;
 declare const __propDef: {
     props: {
         url: Maybe<string>;

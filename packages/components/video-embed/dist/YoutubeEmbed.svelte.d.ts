@@ -20,7 +20,7 @@ export type YoutubeEmbedOptions = {
     rel?: boolean;
     widget_referrer?: string;
 };
-export declare const DEFAULTS: YoutubeEmbedOptions;
+export declare const YOUTUBE_DEFAULTS: YoutubeEmbedOptions;
 declare const __propDef: {
     props: {
         url: Maybe<string>;

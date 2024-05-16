@@ -21,7 +21,7 @@
 		widget_referrer?: string;
 	};
 
-	export const DEFAULTS: YoutubeEmbedOptions = {} as const;
+	export const YOUTUBE_DEFAULTS: YoutubeEmbedOptions = {} as const;
 </script>
 
 <script lang="ts">
@@ -37,7 +37,7 @@
 	export let autoplay = true;
 	export let loop = false;
 	export let start: Maybe<number> = null;
-	export let options: Maybe<YoutubeEmbedOptions> = DEFAULTS;
+	export let options: Maybe<YoutubeEmbedOptions> = YOUTUBE_DEFAULTS;
 
 	const videoId = url ? getYoutubeId(url) : null;
 	const playlist = loop ? videoId : options?.playlist || null;

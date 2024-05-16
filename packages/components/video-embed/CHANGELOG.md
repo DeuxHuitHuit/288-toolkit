@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 3.1.0
+
+### Minor Changes
+
+- Add all exports
+
 ## 3.0.15
 
 ### Patch Changes
