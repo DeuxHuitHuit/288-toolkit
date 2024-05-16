@@ -1,9 +1,10 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         /**
              * The consent event pushed to the dataLayer when the user accepts cookies
-             */ gtmConsentEvent?: any;
+             */ gtmConsentEvent?: Maybe<string> | undefined;
         /**
              * The storage key used to persist the popup dismissal. Must be unique across projects.
              */ key: string;

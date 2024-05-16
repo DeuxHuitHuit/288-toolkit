@@ -1,3 +1,4 @@
+import type { Maybe } from '@288-toolkit/types';
 export type YtThumbnailFormat = 'default' | 'mqdefault' | 'hqdefault' | 'sddefault' | 'maxresdefault';
 /**
  * Check if a URL is a valid YouTube URL

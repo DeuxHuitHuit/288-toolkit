@@ -1,8 +1,9 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 import type { DynamicImportEntryWithSvelteComponent } from './createComponentLoader';
 declare class __sveltets_Render<TEntry extends DynamicImportEntryWithSvelteComponent> {
     props(): {
-        entries?: Maybe<TEntry_1>[] | undefined;
+        entries?: Maybe<TEntry>[] | undefined;
     };
     events(): {} & {
         [evt: string]: CustomEvent<any>;
@@ -10,7 +11,7 @@ declare class __sveltets_Render<TEntry extends DynamicImportEntryWithSvelteCompo
     slots(): {
         default: {
             component: any;
-            entry: Maybe<TEntry_1>;
+            entry: Maybe<TEntry>;
         };
     };
 }

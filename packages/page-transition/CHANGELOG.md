@@ -1,5 +1,12 @@
 # @288-toolkit/page-transition
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+
 ## 3.0.1
 
 ### Patch Changes

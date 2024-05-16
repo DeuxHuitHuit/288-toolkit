@@ -1,4 +1,5 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         /**
@@ -9,7 +10,7 @@ declare const __propDef: {
              */ timeout?: number | undefined;
         /**
              * The date of the last update of the content.
-             */ lastUpdatedAt?: any;
+             */ lastUpdatedAt?: Maybe<Date> | undefined;
         /**
              * The maximum age of the dismissal in seconds.
              * The content will show up again after this time has past.

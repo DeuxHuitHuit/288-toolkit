@@ -21,15 +21,16 @@ export type YoutubeEmbedOptions = {
     widget_referrer?: string;
 };
 export declare const YOUTUBE_DEFAULTS: YoutubeEmbedOptions;
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         url: Maybe<string>;
-        title?: any;
+        title?: Maybe<string> | undefined;
         muted?: boolean | undefined;
         autoplay?: boolean | undefined;
         loop?: boolean | undefined;
-        start?: any;
-        options?: any;
+        start?: Maybe<number> | undefined;
+        options?: Maybe<YoutubeEmbedOptions> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

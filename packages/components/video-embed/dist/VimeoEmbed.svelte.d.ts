@@ -8,14 +8,15 @@ export type VimeoEmbedOptions = {
     background?: boolean;
 };
 export declare const VIMEO_DEFAULTS: VimeoEmbedOptions;
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         url: Maybe<string>;
-        title?: any;
+        title?: Maybe<string> | undefined;
         muted?: boolean | undefined;
         autoplay?: boolean | undefined;
         loop?: boolean | undefined;
-        start?: any;
+        start?: Maybe<number> | undefined;
         options?: VimeoEmbedOptions | undefined;
     };
     events: {

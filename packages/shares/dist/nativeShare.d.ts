@@ -1,4 +1,5 @@
 /// <reference types="svelte" />
+import type { MaybeUndefined } from '@288-toolkit/types';
 import type { ActionReturn } from 'svelte/action';
 type Attributes = {
     'on:nativesharesunsupported'?: (e: CustomEvent<{

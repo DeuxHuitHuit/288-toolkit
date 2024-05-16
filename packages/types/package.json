@@ -1,18 +1,9 @@
 {
 	"name": "@288-toolkit/types",
-	"version": "3.0.0",
-	"scripts": {},
+	"version": "3.1.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
-	"exports": {
-		".": {
-			"types": "./src/index.d.ts"
-		},
-		"./timezones": {
-			"types": "./src/timezones.d.ts"
-		}
-	},
 	"files": [
-		"./src"
+		"./*.d.ts"
 	]
 }

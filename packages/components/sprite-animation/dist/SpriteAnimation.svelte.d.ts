@@ -1,4 +1,5 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         /**
@@ -24,7 +25,7 @@ declare const __propDef: {
              */ loop?: boolean | undefined;
         /**
              * The still image to show when the animation is not running.
-             */ still?: any;
+             */ still?: Maybe<string> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

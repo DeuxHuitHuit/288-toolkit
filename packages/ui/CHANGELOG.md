@@ -1,5 +1,11 @@
 # @288-toolkit/ui
 
+## 5.2.1
+
+### Patch Changes
+
+- @288-toolkit/device@4.0.1
+
 ## 5.2.0
 
 ### Minor Changes

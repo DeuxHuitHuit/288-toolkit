@@ -1,5 +1,13 @@
 # @288-toolkit/i18n
 
+## 8.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+  - @288-toolkit/http@4.1.1
+
 ## 8.1.0
 
 ### Minor Changes

@@ -1,10 +1,11 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         [x: string]: any;
         src: Maybe<string>;
-        srcset?: any;
-        alt?: any;
+        srcset?: Maybe<string> | undefined;
+        alt?: Maybe<string> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;

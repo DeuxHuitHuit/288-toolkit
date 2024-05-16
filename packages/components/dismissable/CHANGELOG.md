@@ -1,5 +1,12 @@
 # @288-toolkit/dismissable
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+
 ## 3.0.4
 
 ### Patch Changes

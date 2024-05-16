@@ -1,3 +1,4 @@
+import type { Maybe } from '@288-toolkit/types';
 export type ThumbnailOptions = {
     width: string;
     height?: string;

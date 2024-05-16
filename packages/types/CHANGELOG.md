@@ -1,5 +1,11 @@
 # @288-toolkit/types
 
+## 3.1.0
+
+### Minor Changes
+
+- Fix types package
+
 ## 3.0.0
 
 ### Major Changes

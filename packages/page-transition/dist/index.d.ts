@@ -28,7 +28,11 @@ type EndTransitionParam = EndTransitionCallback | Event;
  * happening. The `key` of the `Transition` object will always be the key that was passed to the
  * function. That way, the store is scoped to this particular transition.
  */
-export declare const registerTransition: <TKey extends TransitionKey>(key: TKey, ...args: TKey extends typeof DEFAULT ? [options: TransitionOptions<TKey>] | [] : [options: TransitionOptions<TKey>]) => import("svelte/store").Readable<any>;
+export declare const registerTransition: <TKey extends TransitionKey>(key: TKey, ...args: TKey extends typeof DEFAULT ? [options: TransitionOptions<TKey>] | [] : [options: TransitionOptions<TKey>]) => import("svelte/store").Readable<{
+    from: Maybe<NavigationTarget>;
+    to: Maybe<NavigationTarget>;
+    key: TransitionKey;
+} | null>;
 /**
  * Skips all transition if the condition is `true`.
  * @param {function} condition  A function that determines wether navigation condition matches. If `true`, the transition will be skipped.
@@ -45,9 +49,5 @@ export declare const endTransition: (callback?: EndTransitionParam) => void;
  * This is useful if you want to easily run some code for a transition outside of the component that
  * has registered it, or for several transitions with similar keys, for example.
  */
-export declare const transitioning: import("svelte/store").Readable<Maybe<{
-    from: Maybe<NavigationTarget>;
-    to: Maybe<NavigationTarget>;
-    key: TransitionKey;
-}>>;
+export declare const transitioning: import("svelte/store").Readable<Transition>;
 export {};

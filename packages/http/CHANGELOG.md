@@ -1,5 +1,12 @@
 # @288-toolkit/http
 
+## 4.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+
 ## 4.1.0
 
 ### Minor Changes

@@ -10,4 +10,4 @@ export type DynamicImport<TEntry extends DynamicImportEntry = DynamicImportEntry
         default: ComponentType;
     }>;
 };
-export declare const createComponentLoader: (dynamicImports: DynamicImport[]) => <TEntry extends AnonymousObject>(entry: TEntry) => Promise<TEntry>;
+export declare const createComponentLoader: (dynamicImports: DynamicImport[]) => <TEntry extends DynamicImportEntry>(entry: TEntry) => Promise<DynamicImportEntryWithSvelteComponent<TEntry>>;

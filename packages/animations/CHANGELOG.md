@@ -1,5 +1,14 @@
 # @288-toolkit/animations
 
+## 4.1.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+  - @288-toolkit/device@4.0.1
+  - @288-toolkit/page-transition@3.0.2
+
 ## 4.1.0
 
 ### Minor Changes

@@ -1,5 +1,12 @@
 # @288-toolkit/shares
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/types@3.1.0
+
 ## 4.0.0
 
 ### Major Changes

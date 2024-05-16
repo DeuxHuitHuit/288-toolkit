@@ -1,12 +1,13 @@
 import { SvelteComponent } from "svelte";
+import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
         /**
              * The url of the video. Already provided if this component is used inside an EmbedGroup.
-             */ url?: any;
+             */ url?: Maybe<string> | undefined;
         /**
              * The alt text for the image.
-             */ alt?: any;
+             */ alt?: Maybe<string> | undefined;
         /**
              * The classes to apply to the img element.
              */ class?: string | undefined;

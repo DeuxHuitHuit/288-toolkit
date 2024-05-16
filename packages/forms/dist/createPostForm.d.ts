@@ -53,8 +53,8 @@ export declare const createPostForm: <TData extends AnonymousObject>(options?: C
     };
     helpers: {
         submit: () => void;
-        data: import("svelte/store").Readable<{}>;
-        values: import("svelte/store").Readable<any>;
-        errors: import("svelte/store").Readable<any>;
+        data: import("svelte/store").Readable<FormData<TData>>;
+        values: import("svelte/store").Readable<FormValues>;
+        errors: import("svelte/store").Readable<FormErrors>;
     };
 };

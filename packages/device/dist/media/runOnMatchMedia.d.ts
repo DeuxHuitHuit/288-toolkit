@@ -1,4 +1,5 @@
 /// <reference types="svelte" />
+import type { AnonymousObject } from '@288-toolkit/types';
 import type { Action } from 'svelte/action';
 export type RunOnMatchMediaCleanUpFn = void | undefined | (() => void);
 export type RunOnMatchMediaCallback = () => RunOnMatchMediaCleanUpFn;

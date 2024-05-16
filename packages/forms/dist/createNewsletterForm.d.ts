@@ -1,4 +1,5 @@
 /// <reference types="svelte" />
+import type { Maybe } from '@288-toolkit/types';
 import { type CreatePostFormOptions } from './createPostForm.js';
 export type NewsletterFormOptions = CreatePostFormOptions;
 export declare const createNewsletterForm: (options: NewsletterFormOptions) => {
@@ -36,9 +37,11 @@ export declare const createNewsletterForm: (options: NewsletterFormOptions) => {
         emailError: import("svelte/store").Readable<string>;
         emailValue: import("svelte/store").Readable<string | string[]>;
         submit: () => void;
-        data: import("svelte/store").Readable<{}>;
-        values: import("svelte/store").Readable<any>;
-        errors: import("svelte/store").Readable<any>;
+        data: import("svelte/store").Readable<import("./createPostForm.js").FormData<{
+            error?: Maybe<string> | undefined;
+        }>>;
+        values: import("svelte/store").Readable<import("./createPostForm.js").FormValues>;
+        errors: import("svelte/store").Readable<import("./createPostForm.js").FormErrors>;
     };
     states: {
         state: {

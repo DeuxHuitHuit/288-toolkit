@@ -26,7 +26,7 @@ export interface VideoEmbedApi {
 export declare const getVideoEmbedContext: any;
 declare const __propDef: {
     props: {
-        url?: any;
+        url?: Maybe<string> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
