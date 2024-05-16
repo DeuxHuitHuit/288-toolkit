@@ -1,7 +1,7 @@
 import { localeToLanguage } from './localeTo.js';
 import { currentLocale } from './stores/currentLocale.js';
 import { currentTranslations } from './stores/currentTranslations.js';
-import type { Locale, Translation } from './types';
+import type { Locale, Translation } from './types/index.js';
 
 export const loadTranslationFile = async (translation: Translation, language: string) => {
 	return translation.loaders[language]();

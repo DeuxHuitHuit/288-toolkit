@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/i18n",
-	"version": "9.0.0",
+	"version": "9.0.1",
 	"scripts": {
 		"build": "svelte-package -i src",
 		"test": "vitest run",
@@ -29,9 +29,6 @@
 		"./server": {
 			"types": "./dist/server/index.d.ts",
 			"default": "./dist/server/index.js"
-		},
-		"./types": {
-			"types": "./dist/types/index.d.ts"
 		}
 	},
 	"peerDependencies": {

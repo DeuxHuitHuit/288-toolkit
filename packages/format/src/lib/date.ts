@@ -13,7 +13,7 @@
  *    Those function are also available for imports.
  */
 
-import type { Locale } from '@288-toolkit/i18n/types';
+import type { Locale } from '@288-toolkit/i18n';
 import type { Maybe, MaybeUndefined } from '@288-toolkit/types';
 import type { TimeZone } from '@288-toolkit/types/timezones';
 import { DEV } from 'esm-env';

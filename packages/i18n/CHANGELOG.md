@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 9.0.1
+
+### Patch Changes
+
+- Improve exported types
+
 ## 9.0.0
 
 ### Major Changes

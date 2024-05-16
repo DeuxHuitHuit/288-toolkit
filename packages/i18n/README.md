@@ -30,7 +30,7 @@ Finally, to get type safety for the locals, you need to extend the `App.Locals` 
 In `app.d.ts`:
 
 ```ts
-import type { LangInfo } from '@288-toolkit/i18n/types';
+import type { LangInfo } from '@288-toolkit/i18n';
 
 declare global {
 	namespace App {
@@ -371,7 +371,7 @@ the same as the client side version.
 
 ```ts
 import { createServerTranslate } from '@288-toolkit/i18n/server';
-import type { Translation } from '@288-toolkit/i18n/types';
+import type { Translation } from '@288-toolkit/i18n';
 
 const translationObject: Translation = {
 	key: 'global',

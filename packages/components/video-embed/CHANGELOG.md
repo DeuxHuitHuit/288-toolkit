@@ -1,5 +1,14 @@
 # @288-toolkit/video-embed
 
+## 3.2.2
+
+### Patch Changes
+
+- Improve exported types
+- Updated dependencies
+  - @288-toolkit/i18n@9.0.1
+  - @288-toolkit/html-elements@3.0.16
+
 ## 3.2.1
 
 ### Patch Changes

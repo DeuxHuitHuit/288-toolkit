@@ -1,7 +1,7 @@
 /**@docs
  * This module provide functions to get the current locale and language.
  */
-import type { LangInfo, Locale } from './types';
+import type { LangInfo, Locale } from './types/index.js';
 /**
  * This methods deals with isomorphic code and returns the current locale.
  * In the browser, it returns the cached locale from the page store.

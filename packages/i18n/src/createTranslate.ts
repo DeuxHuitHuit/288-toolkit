@@ -3,7 +3,7 @@ import { BROWSER, DEV } from 'esm-env';
 import { get } from 'svelte/store';
 import { translate } from './lib/translate.js';
 import { currentTranslations } from './stores/currentTranslations.js';
-import type { DataType, TranslateParams, Translation } from './types';
+import type { DataType, TranslateParams, Translation } from './types/index.js';
 
 export const createTranslate = <TTranslationsObject extends AnonymousObject>(
 	translationKey: Translation['key']

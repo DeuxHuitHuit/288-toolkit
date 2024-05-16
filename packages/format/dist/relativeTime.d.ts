@@ -22,7 +22,7 @@
  * 3- `timeAgo(date)`: formats the date relative to now, using the default options, unit and locale.
  *    This is probably the most common use case, so it's provided as a convenience.
  */
-import type { Locale } from '@288-toolkit/i18n/types';
+import type { Locale } from '@288-toolkit/i18n';
 import type { Maybe } from '@288-toolkit/types';
 import { USER_LOCALE } from './userLocale.js';
 type RelativeTimeLocale = USER_LOCALE | Maybe<Locale>;

@@ -1,4 +1,4 @@
-import type { Locale } from '@288-toolkit/i18n/types';
+import type { Locale } from '@288-toolkit/i18n';
 import { DEV } from 'esm-env';
 import { USER_LOCALE } from './userLocale.js';
 

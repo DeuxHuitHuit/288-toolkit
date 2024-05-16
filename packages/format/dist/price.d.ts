@@ -1,4 +1,4 @@
-import type { Locale } from '@288-toolkit/i18n/types';
+import type { Locale } from '@288-toolkit/i18n';
 import { USER_LOCALE } from './userLocale.js';
 export type Price = number;
 export type FormatPriceLocale = Locale | USER_LOCALE;

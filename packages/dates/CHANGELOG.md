@@ -1,5 +1,12 @@
 # @288-toolkit/dates
 
+## 4.0.15
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/format@4.1.2
+
 ## 4.0.14
 
 ### Patch Changes

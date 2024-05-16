@@ -23,7 +23,7 @@
  *    This is probably the most common use case, so it's provided as a convenience.
  */
 
-import type { Locale } from '@288-toolkit/i18n/types';
+import type { Locale } from '@288-toolkit/i18n';
 import type { Maybe } from '@288-toolkit/types';
 import { DEV } from 'esm-env';
 import { t } from './translations/relativeTime/index.js';

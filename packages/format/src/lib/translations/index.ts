@@ -1,4 +1,3 @@
-import type { Translation } from '@288-toolkit/i18n/types';
 import { key as key_duration } from './duration/index.js';
 import { key as key_filesize } from './filesize/index.js';
 import { key as key_relativeTime } from './relativeTime/index.js';
@@ -9,7 +8,7 @@ export const duration = {
 		en: () => import('./duration/en.js'),
 		fr: () => import('./duration/fr.js')
 	}
-} as const satisfies Translation;
+} as const;
 
 export const filesize = {
 	key: key_filesize,
@@ -17,7 +16,7 @@ export const filesize = {
 		en: () => import('./filesize/en.js'),
 		fr: () => import('./filesize/fr.js')
 	}
-} as const satisfies Translation;
+} as const;
 
 export const relativeTime = {
 	key: key_relativeTime,
@@ -25,4 +24,4 @@ export const relativeTime = {
 		en: () => import('./relativeTime/en.js'),
 		fr: () => import('./relativeTime/fr.js')
 	}
-} as const satisfies Translation;
+} as const;

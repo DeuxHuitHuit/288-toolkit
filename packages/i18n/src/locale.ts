@@ -7,7 +7,7 @@ import { BROWSER } from 'esm-env';
 import { get } from 'svelte/store';
 import { localeToLanguage } from './localeTo.js';
 import { currentLocale as currentLocaleStore } from './stores/currentLocale.js';
-import type { LangInfo, Locale } from './types';
+import type { LangInfo, Locale } from './types/index.js';
 
 let cachedLocale: Maybe<Locale>;
 
