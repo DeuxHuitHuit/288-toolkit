@@ -1,4 +1,6 @@
 /// <reference types="svelte" />
+/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
+/// <reference types="svelte" />
 import { type Readable } from 'svelte/store';
 import type { FormErrors, FormValues } from './createPostForm.js';
 export type FieldOptions = {

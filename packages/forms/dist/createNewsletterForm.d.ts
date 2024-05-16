@@ -1,4 +1,6 @@
 /// <reference types="svelte" />
+/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
+/// <reference types="svelte" />
 import type { Maybe } from '@288-toolkit/types';
 import { type CreatePostFormOptions } from './createPostForm.js';
 export type NewsletterFormOptions = CreatePostFormOptions;

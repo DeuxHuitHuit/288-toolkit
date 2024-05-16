@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.3.0
+
+### Minor Changes
+
+- Fix i18n imports
+
 ## 4.2.3
 
 ### Patch Changes

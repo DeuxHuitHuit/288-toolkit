@@ -1,5 +1,11 @@
 # @288-toolkit/format
 
+## 4.1.0
+
+### Minor Changes
+
+- Fix i18n imports
+
 ## 4.0.11
 
 ### Patch Changes

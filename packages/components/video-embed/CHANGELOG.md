@@ -1,5 +1,15 @@
 # @288-toolkit/video-embed
 
+## 3.2.0
+
+### Minor Changes
+
+- Fix i18n imports
+
+### Patch Changes
+
+- @288-toolkit/html-elements@3.0.14
+
 ## 3.1.2
 
 ### Patch Changes

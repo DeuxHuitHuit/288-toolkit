@@ -1,5 +1,11 @@
 # @288-toolkit/slideshow
 
+## 3.2.0
+
+### Minor Changes
+
+- Fix i18n imports
+
 ## 3.1.2
 
 ### Patch Changes
