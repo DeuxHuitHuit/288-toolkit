@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.3.1
+
+### Patch Changes
+
+- Improve loader types
+
 ## 4.3.0
 
 ### Minor Changes

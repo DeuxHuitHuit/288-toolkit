@@ -1,5 +1,12 @@
 # @288-toolkit/video-embed
 
+## 3.2.1
+
+### Patch Changes
+
+- Improve loader types
+  - @288-toolkit/html-elements@3.0.15
+
 ## 3.2.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @288-toolkit/format
 
+## 4.1.1
+
+### Patch Changes
+
+- Improve loader types
+
 ## 4.1.0
 
 ### Minor Changes

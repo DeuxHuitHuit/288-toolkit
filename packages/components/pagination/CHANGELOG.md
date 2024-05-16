@@ -1,5 +1,13 @@
 # @288-toolkit/pagination
 
+## 3.2.1
+
+### Patch Changes
+
+- Improve loader types
+- Updated dependencies
+  - @288-toolkit/forms@4.3.1
+
 ## 3.2.0
 
 ### Minor Changes

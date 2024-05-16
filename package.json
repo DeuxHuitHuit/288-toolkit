@@ -9,7 +9,7 @@
 	"type": "module",
 	"engine": 20,
 	"scripts": {
-		"build": "turbo build",
+		"build": "turbo build --filter='./packages/**'",
 		"make-pkg": "node ./scripts/make-pkg.js",
 		"test": "vitest run",
 		"test:watch": "vitest",
