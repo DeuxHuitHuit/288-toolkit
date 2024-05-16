@@ -10,14 +10,14 @@ You can create three i18n handles with the `createI18nHandles` function:
 -   `langAttribute`: Renders the correct html lang attribute
 
 ```ts
-import { createI18nHandles } from '@288-toolkit/i18n/handles';
+import { createI18nHandles } from '@288-toolkit/i18n/server';
 
 const { langInfo, langRedirect, langAttribute } = createI18nHandles({
 	supportedLocales: ['en-ca', 'fr-ca'],
 	defaultLocale: ['en-ca']
 });
 
-export const handle = sequence(i18n(langInfo, langRedirect, langAttribute));
+export const handle = sequence(langInfo, langRedirect, langAttribute);
 ```
 
 Make sure the `langInfo` is always placed before the other two.
@@ -81,9 +81,9 @@ folders as you want and load them only as needed.
 
 ## Loading translations
 
-To load the translations, you must create a loader with `createTranslationsLoader`. For every
-translation, you must provide a key and a loader for every supported language. A loader is
-essentially a function that returns a dynamic import.
+To load the translations, use `createTranslationsLoader`. It accepts an array of translation
+objects. Each translation must have a key and an object of loader functions for every supported
+language. A loader function is essentially a function that returns a dynamic import.
 
 [!IMPORTANT] Do NOT `await` the import or it will not work. The 'awaiting' happens later.
 
@@ -92,7 +92,7 @@ writing the import path. They are listed here:
 [https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations](https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations).
 
 ```ts
-import { createTranslationsLoader } from '@288-toolkit/i18n/translations/server';
+import { createTranslationsLoader } from '@288-toolkit/i18n';
 
 export const loadTranslations = createTranslationsLoader([
 	{
@@ -112,21 +112,27 @@ export const loadTranslations = createTranslationsLoader([
 ]);
 ```
 
-To load some translations for a current layout or route, you can use `loadTranslations()` inside a
-load function. It accepts an array of translation keys and the current language.
+To load some translations for a current layout or route, call `loadTranslations()` inside a
+**universal** load function. It accepts an array of translation keys and the current **locale**.
+Therefore, we suggest passing i18n locals to the client via a server load function.
 
-The function returns an object containing all the loaded translations. Each translation has a unique
-key which is used by the `createTranslate()` function to pick up the translations on the client.
-Therefore, it is important the you always spread the object in the returned data.
+In `+layout.server.ts`:
 
 ```ts
-export const load = async (event) => {
-	// We can access `language` from the event locals thanks to the i18n handle
-	const language = event.locals.language;
-	const translations = await loadTranslations(['global', 'newsletter'], language);
+export const load = async ({ event }) => {
 	return {
-		...translations
+		locale: event.locals.locale,
+		language: event.locals.language,
+		region: event.locals.region
 	};
+};
+```
+
+In `+layout.ts`:
+
+```ts
+export const load = async ({ data }) => {
+	await loadTranslations(['global', 'newsletter'], data.locale);
 };
 ```
 
@@ -138,13 +144,13 @@ config (the same that you used with `loadTranslations()`). You can also pass you
 to get typesafety for the translation keys.
 
 ```ts
-import { createTranslate } from '@288-toolkit/i18n/translations/client';
+import { createTranslate } from '@288-toolkit/i18n';
 
 export const t = createTranslate<GlobalTranslations>('global');
 ```
 
 ```ts
-import { createTranslate } from '@288-toolkit/i18n/translations/client';
+import { createTranslate } from '@288-toolkit/i18n';
 
 export const t = createTranslate<NewsletterTranslations>('newsletter');
 ```
@@ -364,10 +370,10 @@ differences are that this one returns a promise, accepts a `Translation` object 
 the same as the client side version.
 
 ```ts
-import { createTranslate } from '@288-toolkit/i18n/translations/server';
+import { createServerTranslate } from '@288-toolkit/i18n/server';
 import type { Translation } from '@288-toolkit/i18n/types';
 
-const globalTranslation: Translation = {
+const translationObject: Translation = {
 	key: 'global',
 	loaders: {
 		en: () => import('./lib/translations/global/en.ts'),
@@ -376,7 +382,10 @@ const globalTranslation: Translation = {
 };
 
 export const load = async (event) => {
-	const t = await createTranslate<GlobalTranslations>(globalTranslation, event.locals.language);
+	const t = await createServerTranslate<GlobalTranslations>(
+		translationObject,
+		event.locals.language
+	);
 	return {
 		title: t('myTitle')
 	};

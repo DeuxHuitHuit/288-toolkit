@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 9.0.0
+
+### Major Changes
+
+- Rework translations loading api
+
 ## 8.1.1
 
 ### Patch Changes

@@ -1,2 +1,4 @@
-export { currentLanguage, currentLocale } from './locale.js';
-export { localeToLanguage, localeToRegion } from './localeTo.js';
+export * from './createTranslate.js';
+export * from './createTranslationsLoader.js';
+export * from './locale.js';
+export * from './localeTo.js';

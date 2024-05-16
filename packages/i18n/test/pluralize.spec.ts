@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { pluralize } from '../src/lib/translations/pluralize';
+import { pluralize } from '../src/lib/pluralize';
 
 const en = {
 	cardinal: `

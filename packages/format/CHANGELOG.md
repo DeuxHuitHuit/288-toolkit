@@ -1,5 +1,12 @@
 # @288-toolkit/format
 
+## 4.0.11
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/i18n@9.0.0
+
 ## 4.0.10
 
 ### Patch Changes
