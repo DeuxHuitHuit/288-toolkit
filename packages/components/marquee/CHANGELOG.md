@@ -1,5 +1,11 @@
 # @288-toolkit/marquee
 
+## 3.0.1
+
+### Patch Changes
+
+- Make marquee more resilient to resize and namespace variables
+
 ## 3.0.0
 
 ### Major Changes

@@ -63,28 +63,32 @@
 
 <style>
 	._marquee-ctn {
-		--default-speed: 12000ms;
+		--__MARQUEE__default-speed: 12000ms;
+		--__MARQUEE__gap: var(--gap, 0px);
 		display: flex;
 		overflow: hidden;
-		gap: var(--gap, 0);
+		gap: var(--__MARQUEE__gap);
 	}
 
 	._marquee-ctn[data-orientation='vertical'] {
 		height: 100%;
+		max-height: 100vh;
 		flex-direction: column;
 
 		._marquee {
-			animation: marqueeVertical var(--speed, var(--default-speed)) linear infinite both;
+			animation: marqueeVertical var(--speed, var(--__MARQUEE__default-speed)) linear infinite
+				both;
 		}
 	}
 
 	._marquee-ctn[data-orientation='horizontal'] {
 		width: 100%;
+		max-width: 100vw;
 	}
 
 	._marquee {
 		flex-shrink: 0;
-		animation: marquee var(--speed, var(--default-speed)) linear infinite both;
+		animation: marquee var(--speed, var(--__MARQUEE__default-speed)) linear infinite both;
 	}
 
 	._marquee-ctn.inverted ._marquee {
@@ -102,7 +106,7 @@
 			transform: translateX(0);
 		}
 		100% {
-			transform: translateX(calc(-100% - var(--gap)));
+			transform: translateX(calc(-100% - var(--__MARQUEE__gap)));
 		}
 	}
 
@@ -111,7 +115,7 @@
 			transform: translateY(0);
 		}
 		100% {
-			transform: translateY(calc(-100% - var(--gap)));
+			transform: translateY(calc(-100% - var(--__MARQUEE__gap)));
 		}
 	}
 </style>
