@@ -19,7 +19,7 @@
  * ```
  */
 
-import { createTranslate, createTranslationsLoader } from '@288-toolkit/i18n/translations/server';
+import { createServerTranslate } from '@288-toolkit/i18n/server';
 import { fail, type Action } from '@sveltejs/kit';
 import { z } from 'zod';
 import { zodErrorToObject } from './lib/zodErrorToObject.js';
@@ -35,7 +35,7 @@ export const validateNewsletter: (language: string, callback?: Callback) => Acti
 	return async (event) => {
 		await validateHoneypot(event);
 
-		const t = await createTranslate(newsletterForm, language);
+		const t = await createServerTranslate(newsletterForm, language);
 
 		const emailError = t('emailError');
 

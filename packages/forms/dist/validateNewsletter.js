@@ -18,7 +18,7 @@
  * };
  * ```
  */
-import { createTranslate, createTranslationsLoader } from '@288-toolkit/i18n/translations/server';
+import { createServerTranslate } from '@288-toolkit/i18n/server';
 import { fail } from '@sveltejs/kit';
 import { z } from 'zod';
 import { zodErrorToObject } from './lib/zodErrorToObject.js';
@@ -27,7 +27,7 @@ import { validateHoneypot } from './validateHoneypot.js';
 export const validateNewsletter = (language, callback) => {
     return async (event) => {
         await validateHoneypot(event);
-        const t = await createTranslate(newsletterForm, language);
+        const t = await createServerTranslate(newsletterForm, language);
         const emailError = t('emailError');
         const newsletterSchema = z.object({
             email: z

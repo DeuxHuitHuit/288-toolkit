@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/forms",
-	"version": "4.3.2",
+	"version": "4.3.3",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -26,7 +26,8 @@
 	"exports": {
 		".": {
 			"types": "./dist/index.d.ts",
-			"default": "./dist/index.js"
+			"default": "./dist/index.js",
+			"svelte": "./dist/index.js"
 		},
 		"./translations": {
 			"types": "./dist/translations/index.d.ts",
