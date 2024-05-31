@@ -1,5 +1,12 @@
 # @288-toolkit/slideshow
 
+## 3.2.3
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/i18n@9.0.2
+
 ## 3.2.2
 
 ### Patch Changes

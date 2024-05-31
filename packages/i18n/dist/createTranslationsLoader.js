@@ -29,9 +29,14 @@ export const createTranslationsLoader = (translations) => {
             };
         }));
         currentLocale.set(locale);
-        currentTranslations.set(modules.reduce((obj, { key, messages }) => {
-            obj[key] = messages;
-            return obj;
-        }, {}));
+        currentTranslations.update((current) => {
+            return {
+                ...current,
+                ...modules.reduce((obj, { key, messages }) => {
+                    obj[key] = messages;
+                    return obj;
+                }, {})
+            };
+        });
     };
 };

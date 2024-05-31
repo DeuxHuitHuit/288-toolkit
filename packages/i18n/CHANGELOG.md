@@ -1,5 +1,11 @@
 # @288-toolkit/i18n
 
+## 9.0.2
+
+### Patch Changes
+
+- Fix loading multiple translations
+
 ## 9.0.1
 
 ### Patch Changes
