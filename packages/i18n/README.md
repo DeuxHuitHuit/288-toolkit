@@ -14,7 +14,7 @@ import { createI18nHandles } from '@288-toolkit/i18n/server';
 
 const { langInfo, langRedirect, langAttribute } = createI18nHandles({
 	supportedLocales: ['en-ca', 'fr-ca'],
-	defaultLocale: ['en-ca']
+	defaultLocale: 'en-ca'
 });
 
 export const handle = sequence(langInfo, langRedirect, langAttribute);
