@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 4.1.4
+
+### Patch Changes
+
+- Build
+
 ## 4.1.3
 
 ### Patch Changes

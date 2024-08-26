@@ -10,7 +10,6 @@ export const validateSameOrigin = (requestUrl, urlToTest) => {
         return url.origin === validUrl.origin;
     }
     catch (error) {
-        console.error(error);
         return false;
     }
 };
