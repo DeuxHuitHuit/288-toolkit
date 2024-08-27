@@ -11,7 +11,7 @@
 
 	const pagination = getInternalPaginationContext();
 
-	const { pages, update, itemsPerPage, setKeepItems, updateUrl } = pagination;
+	const { pages, update, setKeepItems, updateUrl } = pagination;
 
 	setKeepItems();
 
@@ -20,11 +20,9 @@
 	};
 
 	const label = t('loadMore');
-
-	$: itemsTotal = $pages.itemsTotal;
 </script>
 
-{#if pagination && itemsTotal > itemsPerPage && $pages.next <= $pages.total}
+{#if pagination}
 	{#if updateUrl}
 		<PaginationLink {label} page={$pages.next} class={classes} on:click={onLoadMoreClick}>
 			<slot {label}>

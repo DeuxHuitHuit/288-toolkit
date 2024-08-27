@@ -31,6 +31,7 @@
 		itemsPerPage: number;
 		setKeepItems: () => void;
 		updateUrl: boolean;
+		hasMore: Readable<boolean>;
 	}
 
 	export interface PaginationApi<TItem> {
@@ -38,6 +39,7 @@
 		state: Readable<PaginationState>;
 		hasActiveFilters: Readable<boolean>;
 		firstNewResultIndex: Readable<number>;
+		hasMore: Readable<boolean>;
 	}
 
 	const INTERNAL_CONTEXT_KEY = '__pagination-internal__';
@@ -73,6 +75,7 @@
 			state: PaginationState;
 			hasActiveFilters: boolean;
 			firstNewResultIndex: number;
+			hasMore: boolean;
 		};
 	}
 
@@ -122,6 +125,10 @@
 	});
 
 	const firstNewResultIndex = writable<number>(-1);
+	const hasMore = derived(
+		pages,
+		({ itemsTotal, next, total }) => itemsTotal > itemsPerPage && next <= total
+	);
 
 	const hasActiveFilters = derived(pages, (p) => {
 		return Object.values(p.filters).flat().filter(Boolean).length > 0;
@@ -238,14 +245,16 @@
 		pageKey,
 		itemsPerPage,
 		setKeepItems,
-		updateUrl
+		updateUrl,
+		hasMore
 	});
 
 	setPublicContext({
 		state,
 		items: readonly(items),
 		hasActiveFilters,
-		firstNewResultIndex: readonly(firstNewResultIndex)
+		firstNewResultIndex: readonly(firstNewResultIndex),
+		hasMore
 	});
 </script>
 
@@ -254,4 +263,5 @@
 	state={$state}
 	hasActiveFilters={$hasActiveFilters}
 	firstNewResultIndex={$firstNewResultIndex}
+	hasMore={$hasMore}
 />

@@ -29,12 +29,14 @@ export interface PaginationInternalApi {
     itemsPerPage: number;
     setKeepItems: () => void;
     updateUrl: boolean;
+    hasMore: Readable<boolean>;
 }
 export interface PaginationApi<TItem> {
     items: Readable<TItem[]>;
     state: Readable<PaginationState>;
     hasActiveFilters: Readable<boolean>;
     firstNewResultIndex: Readable<number>;
+    hasMore: Readable<boolean>;
 }
 export declare const getInternalPaginationContext: any;
 export declare const getPaginationContext: any;
@@ -79,6 +81,7 @@ declare class __sveltets_Render<Item> {
             state: PaginationState;
             hasActiveFilters: boolean;
             firstNewResultIndex: number;
+            hasMore: boolean;
         };
     };
 }

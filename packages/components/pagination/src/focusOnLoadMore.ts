@@ -1,4 +1,3 @@
-import { DEV } from 'esm-env';
 import { get } from 'svelte/store';
 import { getPaginationContext } from './Pagination.svelte';
 
@@ -13,7 +12,6 @@ const groupIndices: Record<string, number> = {};
 export const focusOnLoadMore = (node: HTMLElement, group: string) => {
 	const { firstNewResultIndex } = getPaginationContext() ?? {};
 	if (!firstNewResultIndex) {
-		DEV && console.warn('`focusOnLoadMore` must be used inside `Pagination.svelte`');
 		return;
 	}
 	const groupIndex = groupIndices[group];

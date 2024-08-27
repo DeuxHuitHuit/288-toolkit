@@ -21,6 +21,8 @@ The component exposes the following via slot props:
 -   readonly `hasActiveFilters` (`boolean`): Wether the pagination currently has active filters.
 -   readonly `firstNewResultIndex` (`number`): The index of the first of the newly loaded results.
     Can be used to automatically focus that item (see `focusOnLoadMore`).
+-   readonly `hasMore` (`boolean`): Wether there are more items that can be shown. Useful to hide a
+    "Load more" button, for example.
 
 These are also exposed via context, which you can get by importing the `getPaginationContext`
 function. The context laso
@@ -177,8 +179,9 @@ A 'load more' button.
 
 ## `PaginationInfiniteScroll.svelte`
 
-Loads items on scroll until no more items are found by observing a full screen div(`height: 100vh;`)
-and loading new items at a specified threshold.
+Loads items on scroll until no more items are found by observing a full screen `div`
+(`height: 100vh;`) and loading new items at a specified threshold. The `div` is automatically
+removed when there are no more items.
 
 ## `focusOnLoadMore`
 

@@ -9,14 +9,11 @@
 
 	const pagination = getInternalPaginationContext();
 
-	const { pages, update, itemsPerPage, setKeepItems } = pagination;
+	const { pages, update, hasMore, setKeepItems } = pagination;
 
 	setKeepItems();
 
 	$: nextPage = $pages.next;
-	$: pagesTotal = $pages.total;
-	$: itemsTotal = $pages.itemsTotal;
-	$: done = itemsTotal <= itemsPerPage || nextPage > pagesTotal;
 
 	const onScroll: IntersectionObserverCallback = ([entry]) => {
 		if (entry.isIntersecting) {
@@ -38,14 +35,6 @@
 	};
 </script>
 
-{#if pagination}
-	<!--@docs
-			##### Slot props
-			
-			- readonly `done` (`boolean`): Wether there are more items to load or not.
-		-->
-	<slot {done} />
-	{#if !done}
-		<div style="height: 100vh;" use:setup />
-	{/if}
+{#if pagination && $hasMore}
+	<div style="height: 100vh;" use:setup />
 {/if}

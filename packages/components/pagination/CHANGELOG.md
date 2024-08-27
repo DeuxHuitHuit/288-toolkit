@@ -1,5 +1,14 @@
 # @288-toolkit/pagination
 
+## 4.0.0
+
+### Major Changes
+
+- - Remove dev warning when `focusOnLoadMore` is used outside the pagination.
+  - Add `hasMore` slot prop and `$hasMore` context store in `Pagination.svelte`, which tells wether there are more items to load.
+  - Remove the `done` slot prop from `PaginationInfiniteScroll.svelte`.
+  - `PaginationLoadMore.svelte` no longer removes the button when there are no more items. This can be re-implemented with `hasMore`.
+
 ## 3.2.4
 
 ### Patch Changes

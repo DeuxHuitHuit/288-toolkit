@@ -9,11 +9,7 @@ declare const __propDef: {
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {
-        default: {
-            done: boolean;
-        };
-    };
+    slots: {};
 };
 export type PaginationInfiniteScrollProps = typeof __propDef.props;
 export type PaginationInfiniteScrollEvents = typeof __propDef.events;
