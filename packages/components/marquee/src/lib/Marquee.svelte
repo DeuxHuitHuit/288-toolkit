@@ -66,7 +66,6 @@
 		--__MARQUEE__default-speed: 12000ms;
 		--__MARQUEE__gap: var(--gap, 0px);
 		display: flex;
-		overflow: hidden;
 		gap: var(--__MARQUEE__gap);
 	}
 
@@ -74,6 +73,7 @@
 		height: 100%;
 		max-height: 100vh;
 		flex-direction: column;
+		overflow-y: clip;
 
 		._marquee {
 			animation: marqueeVertical var(--speed, var(--__MARQUEE__default-speed)) linear infinite
@@ -84,6 +84,7 @@
 	._marquee-ctn[data-orientation='horizontal'] {
 		width: 100%;
 		max-width: 100vw;
+		overflow-x: clip;
 	}
 
 	._marquee {

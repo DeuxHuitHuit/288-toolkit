@@ -1,5 +1,11 @@
 # @288-toolkit/marquee
 
+## 3.1.0
+
+### Minor Changes
+
+- Use overflow: clip instead of hidden
+
 ## 3.0.1
 
 ### Patch Changes
