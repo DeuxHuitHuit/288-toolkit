@@ -1,5 +1,11 @@
 # @288-toolkit/animations
 
+## 4.1.2
+
+### Patch Changes
+
+- Export playMotionAnimationInView
+
 ## 4.1.1
 
 ### Patch Changes
