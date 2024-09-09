@@ -1,0 +1,79 @@
+{
+  "name": "rollup-plugin-node-externals",
+  "version": "7.1.2",
+  "description": "Automatically declare NodeJS built-in modules and npm dependencies as 'external' in Rollup config",
+  "author": "Stephan Schreiber <septh@sfr.fr>",
+  "contributors": [
+    "Tomer Aberbach <tomeraberbach@gmail.com>",
+    "Elad Ossadon <eossadon@lyft.com>"
+  ],
+  "keywords": [
+    "rollup",
+    "vite",
+    "plugin",
+    "rollup-plugin",
+    "vite-plugin",
+    "external",
+    "externals",
+    "node",
+    "builtin",
+    "builtins",
+    "dependencies",
+    "devDependencies",
+    "peerDependencies",
+    "optionalDependencies",
+    "modules",
+    "monorepo"
+  ],
+  "homepage": "https://github.com/Septh/rollup-plugin-node-externals#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Septh/rollup-plugin-node-externals"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">= 21 || ^20.6.0 || ^18.19.0"
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.map"
+  ],
+  "type": "module",
+  "exports": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build:dts": "tsc --emitDeclarationOnly --removeComments false",
+    "watch": "tsc -w",
+    "test": "ava",
+    "lint": "eslint source/index.ts",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run lint && npm run clean && npm run build && npm run build:dts"
+  },
+  "devDependencies": {
+    "@fast-check/ava": "^1.2.1",
+    "@septh/ts-run": "^1.0.2",
+    "@types/node": "^18.19.10",
+    "@typescript-eslint/eslint-plugin": "^7.3.1",
+    "@typescript-eslint/parser": "^7.3.1",
+    "ava": "^6.1.0",
+    "eslint": "^8.56.0",
+    "fast-check": "^3.15.0",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.9.6",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3"
+  },
+  "peerDependencies": {
+    "rollup": "^3.0.0 || ^4.0.0"
+  },
+  "ava": {
+    "workerThreads": false,
+    "extensions": {
+      "ts": "module"
+    },
+    "nodeArguments": [
+      "--import=@septh/ts-run/register"
+    ]
+  }
+}

@@ -1,0 +1,68 @@
+import { useFocusTrap, useEscapeKeydown, useFloating, usePortal, } from '../index.js';
+import { executeCallbacks, noop, isHTMLElement, } from '../../helpers/index.js';
+import { useModal } from '../modal/action.js';
+import { usePreventTextSelectionOverflow } from '../prevent-text-selection-overflow/action.js';
+const defaultConfig = {
+    floating: {},
+    focusTrap: {},
+    modal: {},
+    escapeKeydown: {},
+    portal: 'body',
+    preventTextSelectionOverflow: {},
+};
+export const usePopper = ((popperElement, args) => {
+    popperElement.dataset.escapee = '';
+    const { anchorElement, open, options } = args;
+    if (!anchorElement || !open || !options) {
+        return { destroy: noop };
+    }
+    const opts = { ...defaultConfig, ...options };
+    const callbacks = [];
+    if (opts.portal !== null) {
+        callbacks.push(usePortal(popperElement, opts.portal).destroy);
+    }
+    callbacks.push(useFloating(anchorElement, popperElement, opts.floating).destroy);
+    if (opts.focusTrap !== null) {
+        callbacks.push(useFocusTrap(popperElement, {
+            fallbackFocus: popperElement,
+            ...opts.focusTrap,
+        }).destroy);
+    }
+    if (opts.modal !== null) {
+        callbacks.push(useModal(popperElement, {
+            onClose: () => {
+                if (isHTMLElement(anchorElement)) {
+                    open.set(false);
+                    anchorElement.focus();
+                }
+            },
+            shouldCloseOnInteractOutside: (e) => {
+                if (e.defaultPrevented)
+                    return false;
+                if (isHTMLElement(anchorElement) && anchorElement.contains(e.target)) {
+                    return false;
+                }
+                return true;
+            },
+            ...opts.modal,
+        }).destroy);
+    }
+    if (opts.escapeKeydown !== null) {
+        callbacks.push(useEscapeKeydown(popperElement, {
+            handler: () => {
+                open.set(false);
+            },
+            ...opts.escapeKeydown,
+        }).destroy);
+    }
+    if (opts.preventTextSelectionOverflow !== null) {
+        callbacks.push(usePreventTextSelectionOverflow(popperElement).destroy);
+    }
+    // @ts-expect-error - This works and is correct, but TS doesn't like it
+    const unsubscribe = executeCallbacks(...callbacks);
+    return {
+        destroy() {
+            unsubscribe();
+        },
+    };
+});

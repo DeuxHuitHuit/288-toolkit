@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 3.3.0
+
+### Minor Changes
+
+- 523ec51: Support multiple Youtube urls formats
+
 ## 3.2.5
 
 ### Patch Changes
