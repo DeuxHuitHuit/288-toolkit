@@ -1,0 +1,35 @@
+{
+  "name": "just-clamp",
+  "version": "4.2.0",
+  "description": "restrict a number within a range",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./index.cjs",
+      "import": "./index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "index.cjs",
+  "types": "index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c"
+  },
+  "repository": "https://github.com/angus-c/just",
+  "keywords": [
+    "clamp",
+    "restrict",
+    "greater",
+    "less",
+    "range",
+    "number",
+    "just"
+  ],
+  "author": "Angus Croll",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/angus-c/just/issues"
+  }
+}
