@@ -14,6 +14,7 @@
 		"make-pkg": "node ./scripts/make-pkg.js",
 		"test": "vitest run",
 		"test:watch": "vitest",
+		"sync": "svelte-kit sync",
 		"format:prettier": "prettier --config ./.prettierrc",
 		"format:file": "npm run format:prettier -- --write",
 		"format": "npm run format:file .",

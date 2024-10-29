@@ -25,5 +25,7 @@ jobs:
               run: npm i pnpm@latest -g
             - name: install dependencies
               run: pnpm install
+            - name: sync
+              run: pnpm sync
             - name: run tests
               run: pnpm test
