@@ -11,6 +11,8 @@
 		}
 	};
 
+	// These attributes are not well handled by Svelte (see https://github.com/sveltejs/svelte/issues/6536)
+	// so we update them manually
 	$: if (el) {
 		updateAttribute('muted', muted);
 		updateAttribute('controls', controls);
