@@ -4,6 +4,9 @@ declare const __propDef: {
         [x: string]: any;
         autoplay?: boolean | undefined;
         disableremoteplayback?: boolean | undefined;
+        muted?: boolean | undefined;
+        controls?: boolean | undefined;
+        el?: HTMLVideoElement | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
