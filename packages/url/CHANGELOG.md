@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 4.2.0
+
+### Minor Changes
+
+- 9b55970: Add encodePath() function
+
 ## 4.1.4
 
 ### Patch Changes
