@@ -1,5 +1,5 @@
-import * as navigation from '$app/navigation';
-import * as stores from '$app/stores';
+import type * as navigation from '$app/navigation';
+import type * as stores from '$app/stores';
 import type { Navigation, Page } from '@sveltejs/kit';
 import '@testing-library/jest-dom';
 import { readable } from 'svelte/store';
@@ -14,7 +14,7 @@ vi.mock('$app/navigation', (): typeof navigation => ({
 	goto: () => Promise.resolve(),
 	invalidate: () => Promise.resolve(),
 	invalidateAll: () => Promise.resolve(),
-	preloadData: () => Promise.resolve({ status: 200, type: 'loaded', data: {} }),
+	preloadData: () => Promise.resolve({ status: 200, type: 'loaded', data: {} } as const),
 	preloadCode: () => Promise.resolve(),
 	onNavigate: () => Promise.resolve(),
 	pushState: vi.fn(),
