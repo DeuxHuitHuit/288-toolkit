@@ -1,3 +1,4 @@
+/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
