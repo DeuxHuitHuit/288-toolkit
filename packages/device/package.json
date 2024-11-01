@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/device",
-	"version": "4.0.1",
+	"version": "5.0.0",
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
@@ -33,7 +33,7 @@
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x",
-		"svelte": "4.x"
+		"svelte": "4.x || 5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/types": "workspace:*",

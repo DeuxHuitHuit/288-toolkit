@@ -28,7 +28,7 @@
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x",
-		"svelte": "4.x"
+		"svelte": "4.x || 5.x"
 	},
 	"devDependencies": {
 		"@288-toolkit/types": "workspace:*",

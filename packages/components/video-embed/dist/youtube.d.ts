@@ -5,9 +5,18 @@ export type YtThumbnailFormat = 'default' | 'mqdefault' | 'hqdefault' | 'sddefau
  */
 export declare const isYoutubeUrl: (url: Maybe<string>) => boolean;
 /**
- * Get the YouTube video ID from a URL
+ * Get the YouTube video ID from a URL.
+ * YouTube urls can have different formats:
+ * - https://www.youtube.com/watch?v=[VIDEO_ID]
+ * - https://www.youtube.com/embed/[VIDEO_ID]
+ * - https://www.youtube.com/v/[VIDEO_ID]
+ * - https://www.youtube.com/watch/[VIDEO_ID]
+ * - https://www.youtube.com/shorts/[VIDEO_ID]
+ * - https://youtu.be/[VIDEO_ID]
+ *
+ * @param url The YouTube URL
  */
-export declare const getYoutubeId: (url: string) => string | null;
+export declare const getYoutubeId: (url: string) => string;
 /**
  * Get the URL of a YouTube video thumbnail
  */

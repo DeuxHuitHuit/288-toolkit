@@ -1,5 +1,11 @@
 # @288-toolkit/device
 
+## 5.0.0
+
+### Major Changes
+
+- Svelte 5 compat
+
 ## 4.0.1
 
 ### Patch Changes

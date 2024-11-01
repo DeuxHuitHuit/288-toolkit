@@ -1,5 +1,11 @@
 # @288-toolkit/typed-context
 
+## 4.0.0
+
+### Major Changes
+
+- Svelte 5 compat
+
 ## 3.0.0
 
 ### Major Changes

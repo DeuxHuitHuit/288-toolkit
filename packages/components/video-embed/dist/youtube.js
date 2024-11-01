@@ -9,17 +9,55 @@ export const isYoutubeUrl = (url) => {
     return YOUTUBE_URL_REGEX.test(url);
 };
 /**
- * Get the YouTube video ID from a URL
+ * Get the YouTube video ID from a URL.
+ * YouTube urls can have different formats:
+ * - https://www.youtube.com/watch?v=[VIDEO_ID]
+ * - https://www.youtube.com/embed/[VIDEO_ID]
+ * - https://www.youtube.com/v/[VIDEO_ID]
+ * - https://www.youtube.com/watch/[VIDEO_ID]
+ * - https://www.youtube.com/shorts/[VIDEO_ID]
+ * - https://youtu.be/[VIDEO_ID]
+ *
+ * @param url The YouTube URL
  */
 export const getYoutubeId = (url) => {
     if (!url) {
         return '';
     }
-    const urlObj = new URL(url);
-    if (urlObj.host === 'youtu.be') {
-        return urlObj.pathname.replace('/', '');
+    if (!URL.canParse(url)) {
+        return '';
     }
-    return urlObj.searchParams.get('v');
+    const urlObj = new URL(url);
+    // Check search params first
+    if (urlObj.searchParams.has('v')) {
+        const v = urlObj.searchParams.get('v')?.trim();
+        if (v) {
+            return v;
+        }
+    }
+    const pathParts = urlObj.pathname.split('/').filter(Boolean);
+    // https://www.youtube.com/embed/[VIDEO_ID]
+    if (pathParts.length > 1 && pathParts[0] === 'embed') {
+        return pathParts[1];
+        // https://www.youtube.com/v/[VIDEO_ID]
+    }
+    else if (pathParts.length > 1 && pathParts[0] === 'v') {
+        return pathParts[1];
+        // https://www.youtube.com/shorts/[VIDEO_ID]
+    }
+    else if (pathParts.length > 1 && pathParts[0] === 'shorts') {
+        return pathParts[1];
+        // https://www.youtube.com/watch/[VIDEO_ID]
+    }
+    else if (pathParts.length > 1 && pathParts[0] === 'watch') {
+        return pathParts[1];
+        // https://youtu.be/[VIDEO_ID]
+    }
+    else if (pathParts.length === 1) {
+        return pathParts[0];
+    }
+    // Not found...
+    return '';
 };
 /**
  * Get the URL of a YouTube video thumbnail

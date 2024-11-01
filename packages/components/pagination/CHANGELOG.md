@@ -1,5 +1,13 @@
 # @288-toolkit/pagination
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/typed-context@4.0.0
+  - @288-toolkit/ui@5.2.2
+
 ## 5.0.0
 
 ### Major Changes

@@ -1,5 +1,17 @@
 # @288-toolkit/video-embed
 
+## 4.0.0
+
+### Major Changes
+
+- Svelte 5 compat
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/typed-context@4.0.0
+  - @288-toolkit/html-elements@3.0.22
+
 ## 3.3.2
 
 ### Patch Changes

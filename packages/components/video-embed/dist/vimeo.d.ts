@@ -9,6 +9,8 @@ export type ThumbnailOptions = {
 export declare const isVimeoUrl: (url: Maybe<string>) => boolean;
 /**
  * Get the Vimeo video ID from a URL
+ * The supported Vimeo URL formats is as follows:
+ * - https://vimeo.com/[VIDEO_ID]
  */
 export declare const getVimeoId: (url: string) => string;
 /**

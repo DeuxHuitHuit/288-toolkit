@@ -13,6 +13,13 @@ export const createEntryUrlBuilder = ({ siteUrl, localize, homeUri }) => {
              */
             raw: url,
             /**
+             * Makes sure the pathname is properly encoded.
+             * This can be needed when the pathname contains special characters.
+             */
+            encodePath() {
+                url.pathname = encodeURIComponent(url.pathname);
+            },
+            /**
              * Returns the full URL string.
              */
             toString() {

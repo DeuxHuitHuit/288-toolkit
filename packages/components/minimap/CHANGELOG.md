@@ -1,5 +1,12 @@
 # @288-toolkit/minimap
 
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/device@5.0.0
+
 ## 3.0.1
 
 ### Patch Changes

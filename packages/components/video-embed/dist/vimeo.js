@@ -10,8 +10,15 @@ export const isVimeoUrl = (url) => {
 };
 /**
  * Get the Vimeo video ID from a URL
+ * The supported Vimeo URL formats is as follows:
+ * - https://vimeo.com/[VIDEO_ID]
  */
-export const getVimeoId = (url) => new URL(url).pathname.replace('/', '');
+export const getVimeoId = (url) => {
+    if (!URL.canParse(url)) {
+        return '';
+    }
+    return new URL(url).pathname.replace('/', '');
+};
 /**
  * Get the URL of a Vimeo video thumbnail. Make sure to setup the `vimeo-thumbnail.jpg` route in your app (see README).
  */

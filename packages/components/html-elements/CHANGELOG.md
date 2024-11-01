@@ -1,5 +1,12 @@
 # @288-toolkit/html-elements
 
+## 3.0.22
+
+### Patch Changes
+
+- Updated dependencies
+  - @288-toolkit/url@5.0.0
+
 ## 3.0.21
 
 ### Patch Changes
