@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 5.0.0
+
+### Major Changes
+
+- d3df95d: Svelte 5 compat
+
 ## 4.0.0
 
 ### Major Changes
