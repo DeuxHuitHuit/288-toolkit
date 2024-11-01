@@ -20,3 +20,4 @@ vite.config.ts.timestamp-*
 *.tsbuildinfo
 sandbox/src/lib
 sandbox/src/routes
+.npmrc
