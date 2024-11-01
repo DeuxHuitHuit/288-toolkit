@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 4.2.2
+
+### Patch Changes
+
+- Bump version
+
 ## 4.2.0
 
 ### Minor Changes
