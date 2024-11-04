@@ -7,7 +7,6 @@ declare const __propDef: {
         disableremoteplayback?: boolean | undefined;
         muted?: boolean | undefined;
         controls?: boolean | undefined;
-        el?: HTMLVideoElement | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
