@@ -1,24 +1,35 @@
 <script lang="ts">
 	import { formatDate, type FormatDateOptions } from '@288-toolkit/format';
 
-	/**
-	 * The date to display
-	 */
-	export let date: Date;
-	/**
-	 * The date formatting options
-	 */
-	export let formatOptions: FormatDateOptions = {
-		dateStyle: 'medium'
-	};
+	interface Props {
+		/**
+		 * The date to display
+		 */
+		date: Date;
+		/**
+		 * The date formatting options
+		 */
+		formatOptions?: FormatDateOptions;
+		children?: import('svelte').Snippet<[{ formattedDate: string }]>;
+	}
+
+	let {
+		date,
+		formatOptions = {
+			dateStyle: 'medium'
+		},
+		children
+	}: Props = $props();
 
 	const formattedDate = formatDate(date, formatOptions);
 </script>
 
 {#if date}
 	<time datetime={date.toISOString()}>
-		<slot {formattedDate}>
+		{#if children}
+			{@render children({ formattedDate })}
+		{:else}
 			{formattedDate}
-		</slot>
+		{/if}
 	</time>
 {/if}

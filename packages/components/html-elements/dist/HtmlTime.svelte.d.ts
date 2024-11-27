@@ -2,20 +2,21 @@ import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
         /**
-             * The date to display
-             */ date: Date;
+         * The date to display
+         */
+        date: Date;
         /**
-             * The date formatting options
-             */ formatOptions?: any;
+         * The date formatting options
+         */
+        formatOptions?: any;
+        children?: import("svelte").Snippet<[{
+            formattedDate: string;
+        }]> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {
-        default: {
-            formattedDate: any;
-        };
-    };
+    slots: {};
 };
 export type HtmlTimeProps = typeof __propDef.props;
 export type HtmlTimeEvents = typeof __propDef.events;

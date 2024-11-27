@@ -2,7 +2,7 @@ import { SvelteComponent } from "svelte";
 import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
-        [x: string]: any;
+        [key: string]: any;
         src: Maybe<string>;
         srcset?: Maybe<string> | undefined;
         alt?: Maybe<string> | undefined;
