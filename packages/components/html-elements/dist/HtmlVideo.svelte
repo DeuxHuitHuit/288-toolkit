@@ -1,15 +1,21 @@
 <script lang="ts">
-	export let autoplay = false;
-	export let disableremoteplayback = true;
+	interface Props {
+		autoplay?: boolean;
+		disableremoteplayback?: boolean;
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
+
+	let { autoplay = false, disableremoteplayback = true, children, ...rest }: Props = $props();
 </script>
 
-<!-- svelte-ignore a11y-media-has-caption -->
+<!-- svelte-ignore a11y_media_has_caption -->
 <video
 	playsinline={autoplay || null}
 	{autoplay}
 	{disableremoteplayback}
 	x-webkit-airplay={disableremoteplayback ? 'deny' : 'allow'}
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </video>

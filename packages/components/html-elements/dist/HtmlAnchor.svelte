@@ -2,18 +2,24 @@
 	import { isExternalUrl } from '@288-toolkit/url';
 	import type { Maybe } from '@288-toolkit/types';
 
-	export let href: string;
-	export let rel: Maybe<string> = null;
-	export let target: Maybe<string> = null;
+	interface Props {
+		href: string;
+		rel?: Maybe<string>;
+		target?: Maybe<string>;
+		children?: import('svelte').Snippet<[{ external: boolean }]>;
+		[key: string]: any;
+	}
 
-	const isExternal = href && isExternalUrl(href);
+	let { href, rel = null, target = null, children, ...rest }: Props = $props();
+
+	const isExternal = href ? isExternalUrl(href) : false;
 </script>
 
 <a
 	{href}
 	rel={isExternal ? 'noopener noreferrer' : rel}
 	target={target || isExternal ? '_blank' : null}
-	{...$$restProps}
+	{...rest}
 >
-	<slot external={isExternal} />
+	{@render children?.({ external: isExternal })}
 </a>
