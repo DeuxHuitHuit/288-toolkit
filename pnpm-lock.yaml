@@ -233,8 +233,8 @@ importers:
         specifier: workspace:^
         version: link:../../timeout
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.2.12
+        specifier: 5.x
+        version: 5.2.10
 
   packages/components/minimap:
     dependencies:
@@ -5434,7 +5434,7 @@ snapshots:
   esrap@1.2.2:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
-      '@types/estree': 1.0.5
+      '@types/estree': 1.0.6
 
   esrecurse@4.3.0:
     dependencies:
