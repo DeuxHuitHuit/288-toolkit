@@ -1,5 +1,5 @@
 import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
-import { fireEvent } from '@testing-library/dom';
+import { fireEvent, getByText } from '@testing-library/dom';
 import { render } from '@testing-library/svelte';
 import { tick } from 'svelte';
 import { expect, test, vi } from 'vitest';
@@ -12,21 +12,17 @@ import Dismissable from '$lib/Dismissable.svelte';
 `;
 
 test('it does not render by default', async () => {
-	const { component, container } = render(Dismissable, {
+	const { container } = render(Dismissable, {
 		props: {
 			key: 'test'
 		}
 	});
 
 	expect(container).toBeInTheDocument();
-	expect(document.body.innerHTML).toBe('<!--<Dismissable>-->');
-
-	expect(component.key).toBe('test');
-	expect(component.timeout).toBe(0);
-	expect(component.maxAge).toBe(0);
+	expect(container.innerHTML).toBe('<!---->');
 });
 
-test.skip('it renders with content after timeout and render', async () => {
+test('it renders with content after timeout and render', async () => {
 	vi.useFakeTimers();
 
 	const { container } = render(
@@ -35,10 +31,7 @@ test.skip('it renders with content after timeout and render', async () => {
 			<Dismissable key="test">
 				<div>Dismissable content</div>
 			</Dismissable>
-		`,
-		{
-			target: document.body
-		}
+		`
 	);
 
 	expect(container).toBeInTheDocument();
@@ -53,15 +46,17 @@ test.skip('it renders with content after timeout and render', async () => {
 	expect(getByText(container, 'Dismissable content')).toBeInTheDocument();
 });
 
-test.skip('it closes without persistance', async () => {
+test('it closes without persistance', async () => {
 	vi.useFakeTimers();
 
 	const { container } = render(
 		await svelte`
 			${compImport};
-			<Dismissable key="test" let:close>
-				<div>Dismissable content</div>
-				<button on:click="{close}">Close</button>
+			<Dismissable key="test">
+				{#snippet children({ close })}
+					<div>Dismissable content</div>
+					<button on:click="{close}">Close</button>
+				{/snippet}
 			</Dismissable>
 		`
 	);
@@ -86,15 +81,17 @@ test.skip('it closes without persistance', async () => {
 	expect(window.localStorage.getItem('test-dismissed')).toBeNull();
 });
 
-test.skip('it dismisses properly', async () => {
+test('it dismisses properly', async () => {
 	vi.useFakeTimers();
 
 	const { container } = render(
 		await svelte`
 			${compImport};
-			<Dismissable key="test" let:dismiss>
-				<div>Dismissable content</div>
-				<button on:click="{dismiss}">Dismiss</button>
+			<Dismissable key="test">
+				{#snippet children({ dismiss })}
+					<div>Dismissable content</div>
+					<button on:click="{dismiss}">Dismiss</button>
+				{/snippet}
 			</Dismissable>
 		`
 	);
@@ -120,7 +117,7 @@ test.skip('it dismisses properly', async () => {
 	window.localStorage.removeItem('test-dismissed');
 });
 
-test.skip('it respects max age: dismiss', async () => {
+test('it respects max age: dismiss', async () => {
 	vi.useFakeTimers();
 
 	// Dismiss it now
@@ -148,7 +145,7 @@ test.skip('it respects max age: dismiss', async () => {
 	window.localStorage.removeItem('test-dismissed');
 });
 
-test.skip('it respects max age: expired', async () => {
+test('it respects max age: expired', async () => {
 	vi.useFakeTimers();
 
 	// Dismiss it 10 seconds ago
@@ -178,7 +175,7 @@ test.skip('it respects max age: expired', async () => {
 	window.localStorage.removeItem('test-dismissed');
 });
 
-test.skip('it respects max age with lastUpdatedAt: dismiss', async () => {
+test('it respects max age with lastUpdatedAt: dismiss', async () => {
 	vi.useFakeTimers();
 
 	// Dismiss it now
@@ -206,7 +203,7 @@ test.skip('it respects max age with lastUpdatedAt: dismiss', async () => {
 	window.localStorage.removeItem('test-dismissed');
 });
 
-test.skip('it respects max age with lastUpdatedAt: expired', async () => {
+test('it respects max age with lastUpdatedAt: expired', async () => {
 	vi.useFakeTimers();
 
 	// Dismiss it now
