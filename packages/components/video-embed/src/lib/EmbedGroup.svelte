@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { writable, type Readable, readonly } from 'svelte/store';
 	import type { Maybe } from '@288-toolkit/types';
 	import { createTypedContext } from '@288-toolkit/typed-context';
@@ -34,7 +34,21 @@
 </script>
 
 <script lang="ts">
-	export let url: Maybe<string> = null;
+	interface Props {
+		url?: Maybe<string>;
+		children?: import('svelte').Snippet<
+			[
+				{
+					playing: boolean;
+					preconnect: boolean;
+					play: () => void;
+					requestPreconnect: () => void;
+				}
+			]
+		>;
+	}
+
+	let { url = null, children }: Props = $props();
 
 	interface $$Slots {
 		default: {
@@ -65,4 +79,4 @@
 	});
 </script>
 
-<slot playing={$playing} preconnect={$preconnect} {play} {requestPreconnect} />
+{@render children?.({ playing: $playing, preconnect: $preconnect, play, requestPreconnect })}
