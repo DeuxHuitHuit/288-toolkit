@@ -20,7 +20,6 @@
 </script>
 
 <script lang="ts">
-	import { run } from 'svelte/legacy';
 	import { inView } from 'motion';
 	import type { Maybe } from '@288-toolkit/types';
 
