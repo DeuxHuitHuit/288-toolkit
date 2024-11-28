@@ -10,8 +10,13 @@ export default defineConfig(({ mode }) => {
 			setupFiles: ['./test/setup.ts'],
 			environment: 'jsdom',
 			css: true,
-			globals: true,
-			alias: [{ find: /^svelte$/, replacement: 'svelte/internal' }]
-		}
+			globals: true
+		},
+		// Tell Vitest to use the `browser` entry points in `package.json` files, even though it's running in Node
+		resolve: process.env.VITEST
+			? {
+					conditions: ['browser']
+				}
+			: undefined
 	};
 });
