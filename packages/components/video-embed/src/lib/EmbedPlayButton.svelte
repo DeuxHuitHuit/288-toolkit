@@ -2,11 +2,15 @@
 	import { t } from './translations/index.js';
 	import { getVideoEmbedContext } from './EmbedGroup.svelte';
 
-	let classes = '';
+	interface Props {
+		class?: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { class: classes = '', children }: Props = $props();
 	/**
 	 * The classes to apply to the button element.
 	 */
-	export { classes as class };
 
 	const api = getVideoEmbedContext();
 	const { requestPreconnect, play } = api;
@@ -15,9 +19,9 @@
 <button
 	class={classes}
 	type="button"
-	on:pointerover={requestPreconnect}
-	on:click={play}
+	onpointerover={requestPreconnect}
+	onclick={play}
 	aria-label={t('play')}
 >
-	<slot />
+	{@render children?.()}
 </button>

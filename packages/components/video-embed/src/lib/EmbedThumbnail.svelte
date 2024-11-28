@@ -5,19 +5,22 @@
 	import type { Maybe } from '@288-toolkit/types';
 	import { HtmlImg } from '@288-toolkit/html-elements';
 
-	/**
-	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
-	 */
-	export let url: Maybe<string> = getVideoEmbedContext()?.url;
-	/**
-	 * The alt text for the image.
-	 */
-	export let alt: Maybe<string> = null;
-	let classes = '';
+	interface Props {
+		/**
+		 * The url of the video. Already provided if this component is used inside an EmbedGroup.
+		 */
+		url?: Maybe<string>;
+		/**
+		 * The alt text for the image.
+		 */
+		alt?: Maybe<string>;
+		class?: string;
+	}
+
+	let { url = getVideoEmbedContext()?.url, alt = null, class: classes = '' }: Props = $props();
 	/**
 	 * The classes to apply to the img element.
 	 */
-	export { classes as class };
 
 	const getVendorThumbnailUrl = () => {
 		if (!url) {
