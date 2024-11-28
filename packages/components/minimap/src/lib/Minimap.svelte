@@ -1,35 +1,46 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
 	import { resize, scroll } from '@288-toolkit/device/window';
 	import { throttleRaf } from '@288-toolkit/timeout';
 	import clamp from 'just-clamp';
 	import type { Maybe } from '@288-toolkit/types';
 
-	/**
-	 * The content that should be copied in the minimap
-	 */
-	export let content: HTMLElement;
-	/**
-	 * Wether to allow dragging the thumb on the minimap
-	 */
-	export let draggable = true;
-	/**
-	 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
-	 * before it is appended to the minimap.
-	 */
-	export let onSetup: (content: HTMLElement) => void = () => {
-		/* noop */
-	};
+	interface Props {
+		/**
+		 * The content that should be copied in the minimap
+		 */
+		content: HTMLElement;
+		/**
+		 * Wether to allow dragging the thumb on the minimap
+		 */
+		draggable?: boolean;
+		/**
+		 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
+		 * before it is appended to the minimap.
+		 */
+		onSetup?: (content: HTMLElement) => void;
+		track?: import('svelte').Snippet<[{ dragging: boolean }]>;
+		thumb?: import('svelte').Snippet<[{ dragging: boolean }]>;
+	}
 
-	let mounted = false;
-	let scale = 0;
-	let mapContainer: HTMLElement;
-	let map: HTMLElement;
-	let thumb: HTMLElement;
-	let mapY = 0;
-	let thumbY = 0;
-	let thumbHeight = 0;
-	let dragging = false;
+	let {
+		content,
+		draggable = true,
+		onSetup = () => {
+			/* noop */
+		},
+		track,
+		thumb
+	}: Props = $props();
+
+	let mounted = $state(false);
+	let scale = $state(0);
+	let mapContainer: HTMLElement = $state();
+	let map: HTMLElement = $state();
+	let thumbEl: HTMLElement = $state();
+	let mapY = $state(0);
+	let thumbY = $state(0);
+	let thumbHeight = $state(0);
+	let dragging = $state(false);
 	let pointerAnchor = 0;
 
 	const setup = () => {
@@ -135,23 +146,24 @@
 	};
 
 	const addDragListeners = (e: PointerEvent) => {
-		thumb.setPointerCapture(e.pointerId);
-		thumb.addEventListener('pointermove', updateScroll);
-		thumb.addEventListener('pointerup', onDrop);
+		thumbEl.setPointerCapture(e.pointerId);
+		thumbEl.addEventListener('pointermove', updateScroll);
+		thumbEl.addEventListener('pointerup', onDrop);
 	};
 
 	const removeDragListeners = (e: PointerEvent) => {
-		thumb.releasePointerCapture(e.pointerId);
-		thumb.removeEventListener('pointermove', updateScroll);
-		thumb.removeEventListener('pointerup', onDrop);
+		thumbEl.releasePointerCapture(e.pointerId);
+		thumbEl.removeEventListener('pointermove', updateScroll);
+		thumbEl.removeEventListener('pointerup', onDrop);
 	};
 
 	const onDrag = (e: PointerEvent) => {
+		e.stopPropagation();
 		if (!draggable) {
 			return;
 		}
 		const { clientY } = e;
-		pointerAnchor = clientY - thumb.getBoundingClientRect().top;
+		pointerAnchor = clientY - thumbEl.getBoundingClientRect().top;
 		addDragListeners(e);
 		dragging = true;
 	};
@@ -163,21 +175,22 @@
 		e.preventDefault();
 	};
 
-	// ONMOUNT
-	// We can't use svelte's `onMount` because the `content` prop is still undefined when it runs.
-	// We wait for svelte to get the ref, then run the setup.
-	$: if (content && map) {
-		onResize();
-		onScroll();
-		setup();
-		const resizeUnsub = resize.subscribe(throttleRaf(onResize));
-		const scrollUnsub = scroll.subscribe(onScroll);
-		onDestroy(() => {
-			resizeUnsub();
-			scrollUnsub();
-		});
-		mounted = true;
-	}
+	$effect(() => {
+		let resizeUnsub: () => void;
+		let scrollUnsub: () => void;
+		if (content && map) {
+			onResize();
+			onScroll();
+			setup();
+			resizeUnsub = resize.subscribe(throttleRaf(onResize));
+			scrollUnsub = scroll.subscribe(onScroll);
+			mounted = true;
+		}
+		return () => {
+			resizeUnsub?.();
+			scrollUnsub?.();
+		};
+	});
 </script>
 
 <div
@@ -190,20 +203,20 @@
 	<div class="_map-overflow" draggable="false">
 		<div class="_map" inert draggable="false" bind:this={map}></div>
 	</div>
-	<div class="_track" draggable="false" on:pointerdown={updateScroll}>
+	<div class="_track" draggable="false" onpointerdown={updateScroll}>
 		{#if mounted}
-			<slot name="track" {dragging} />
+			{@render track?.({ dragging })}
 		{/if}
 		<div
 			class="_thumb"
 			style="height: {thumbHeight}px"
 			draggable="false"
-			on:pointerdown|stopPropagation={onDrag}
-			on:touchstart|capture={onTouchStart}
-			bind:this={thumb}
+			onpointerdown={onDrag}
+			ontouchstartcapture={onTouchStart}
+			bind:this={thumbEl}
 		>
 			{#if mounted}
-				<slot name="thumb" {dragging} />
+				{@render thumb?.({ dragging })}
 			{/if}
 		</div>
 	</div>
