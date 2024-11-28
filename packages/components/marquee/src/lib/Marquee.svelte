@@ -1,22 +1,32 @@
 <script lang="ts">
 	import { debounce } from '@288-toolkit/timeout';
 
-	/**
-	 * The direction of the marquee.
-	 */
-	export let direction: 'natural' | 'inverted' = 'natural';
-	/**
-	 * The orientation of the marquee. Default: `horizontal`.
-	 */
-	export let orientation: 'vertical' | 'horizontal' = 'horizontal';
-	/**
-	 * Wether the marquee should pause when hovered. Default: `false`.
-	 */
-	export let stopOnHover = false;
+	interface Props {
+		/**
+		 * The direction of the marquee.
+		 */
+		direction?: 'natural' | 'inverted';
+		/**
+		 * The orientation of the marquee. Default: `horizontal`.
+		 */
+		orientation?: 'vertical' | 'horizontal';
+		/**
+		 * Wether the marquee should pause when hovered. Default: `false`.
+		 */
+		stopOnHover?: boolean;
+		children?: import('svelte').Snippet<[any]>;
+	}
+
+	let {
+		direction = 'natural',
+		orientation = 'horizontal',
+		stopOnHover = false,
+		children
+	}: Props = $props();
 
 	const minCopies = 2;
 
-	let copies = minCopies;
+	let copies = $state(minCopies);
 
 	const setCopies = (el: HTMLElement) => {
 		const observer = new ResizeObserver(
@@ -55,7 +65,7 @@
 		{#each new Array(copies) as _, i}
 			{@const copy = i > 0}
 			<div class="_marquee" aria-hidden={copy || null}>
-				<slot {copy} />
+				{@render children?.({ copy })}
 			</div>
 		{/each}
 	{/key}
