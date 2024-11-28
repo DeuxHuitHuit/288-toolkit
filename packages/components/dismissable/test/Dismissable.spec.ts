@@ -1,6 +1,6 @@
 import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
 import { fireEvent, getByText } from '@testing-library/dom';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte/svelte5';
 import { tick } from 'svelte';
 import { expect, test, vi } from 'vitest';
 import Dismissable from '../src/lib/Dismissable.svelte';
