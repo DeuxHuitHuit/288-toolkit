@@ -1,16 +1,15 @@
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
-        [x: string]: any;
+        [key: string]: any;
         autoplay?: boolean | undefined;
         disableremoteplayback?: boolean | undefined;
+        children?: import("svelte").Snippet<[]> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {
-        default: {};
-    };
+    slots: {};
 };
 export type HtmlVideoProps = typeof __propDef.props;
 export type HtmlVideoEvents = typeof __propDef.events;
