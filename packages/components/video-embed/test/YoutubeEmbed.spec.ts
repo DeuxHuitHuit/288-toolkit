@@ -1,5 +1,5 @@
 import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte/svelte5';
 import { expect, test } from 'vitest';
 
 const baseScript = `

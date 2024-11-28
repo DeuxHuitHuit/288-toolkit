@@ -5,11 +5,24 @@
 	import YtEmbed from './YoutubeEmbed.svelte';
 	import VimeoEmbed from './VimeoEmbed.svelte';
 	import type { Maybe } from '@288-toolkit/types';
+	import { Component } from 'svelte';
 
-	/**
-	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
-	 */
-	export let url: Maybe<string> = getVideoEmbedContext()?.url;
+	interface Props {
+		/**
+		 * The url of the video. Already provided if this component is used inside an EmbedGroup.
+		 */
+		url?: Maybe<string>;
+		children?: import('svelte').Snippet<
+			[
+				{
+					provider: Maybe<keyof typeof providers>;
+					EmbedComponent: Component;
+				}
+			]
+		>;
+	}
+
+	let { url = getVideoEmbedContext()?.url, children }: Props = $props();
 
 	const providers = {
 		youtube: YtEmbed,
@@ -25,8 +38,8 @@
 	const EmbedComponent = provider ? providers[provider] : null;
 </script>
 
-<slot {provider} {EmbedComponent}>
-	{#if EmbedComponent}
-		<svelte:component this={EmbedComponent} {url} />
-	{/if}
-</slot>
+{#if children}
+	{@render children({ provider, EmbedComponent })}
+{:else if EmbedComponent}
+	<EmbedComponent {url} />
+{/if}
