@@ -148,8 +148,8 @@ importers:
         specifier: workspace:*
         version: link:../../ui
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.2.12
+        specifier: 5.x
+        version: 5.2.10
 
   packages/components/cookie-popup:
     dependencies:
