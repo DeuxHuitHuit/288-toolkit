@@ -311,6 +311,9 @@ importers:
       '@288-toolkit/vite-plugin-svelte-inline-component':
         specifier: workspace:^
         version: link:../../vite-plugin-svelte-inline-component
+      '@testing-library/jest-dom':
+        specifier: ^6.6.3
+        version: 6.6.3
       '@testing-library/svelte':
         specifier: ^5.1.0
         version: 5.1.0(svelte@4.0.0)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))
@@ -633,6 +636,9 @@ importers:
         version: 5.2.11(@types/node@20.12.7)
 
 packages:
+
+  '@adobe/css-tools@4.4.1':
+    resolution: {integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==}
 
   '@adobe/css-tools@4.4.1':
     resolution: {integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==}
@@ -3710,6 +3716,8 @@ snapshots:
 
   '@adobe/css-tools@4.4.1': {}
 
+  '@adobe/css-tools@4.4.1': {}
+
   '@ampproject/remapping@2.3.0':
     dependencies:
       '@jridgewell/gen-mapping': 0.3.5
@@ -4994,6 +5002,8 @@ snapshots:
     dependencies:
       mdn-data: 2.0.30
       source-map-js: 1.2.1
+
+  css.escape@1.5.1: {}
 
   css.escape@1.5.1: {}
 
