@@ -2,19 +2,18 @@ import { SvelteComponent } from "svelte";
 import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
     props: {
-        [x: string]: any;
+        [key: string]: any;
         href: string;
         rel?: Maybe<string> | undefined;
         target?: Maybe<string> | undefined;
+        children?: import("svelte").Snippet<[{
+            external: boolean;
+        }]> | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
     };
-    slots: {
-        default: {
-            external: any;
-        };
-    };
+    slots: {};
 };
 export type HtmlAnchorProps = typeof __propDef.props;
 export type HtmlAnchorEvents = typeof __propDef.events;
