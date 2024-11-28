@@ -5,7 +5,7 @@ export default defineWorkspace([
 	'./packages/base64-filters/vitest.config.js',
 	'./packages/components/dismissable/vitest.config.js',
 	'./packages/components/sprite-animation/vitest.config.js',
-	//'./packages/components/video-embed/vitest.config.js',
+	'./packages/components/video-embed/vitest.config.js',
 	'./packages/dates/vitest.config.js',
 	'./packages/format/vitest.config.js',
 	'./packages/html-parser/vitest.config.js',
