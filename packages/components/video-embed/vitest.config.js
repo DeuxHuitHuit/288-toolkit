@@ -7,8 +7,7 @@ export default mergeConfig(
 	baseConfig,
 	defineProject({
 		test: {
-			setupFiles: ['./test/setup.ts'],
-			alias: [{ find: /^svelte$/, replacement: 'svelte/internal' }]
+			setupFiles: ['./test/setup.ts']
 		},
 		plugins: [sveltekit(), svelteInlineComponent()]
 	})
