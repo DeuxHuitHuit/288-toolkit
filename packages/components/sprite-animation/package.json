@@ -28,8 +28,8 @@
 		}
 	},
 	"peerDependencies": {
-		"svelte": "5.x",
-		"motion": "10.x"
+		"motion": "10.x",
+		"svelte": "5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/device": "workspace:^",
@@ -38,6 +38,7 @@
 	},
 	"devDependencies": {
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
+		"@testing-library/jest-dom": "^6.6.3",
 		"@testing-library/svelte": "^5.1.0",
 		"svelte-preprocess": "^6.0.0"
 	}
