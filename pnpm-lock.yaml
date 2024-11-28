@@ -179,10 +179,10 @@ importers:
         version: link:../../math
       '@sveltejs/kit':
         specifier: 2.x
-        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.12)(vite@5.2.11(@types/node@20.12.7)))(svelte@4.2.12)(vite@5.2.11(@types/node@20.12.7))
+        version: 2.5.5(@sveltejs/vite-plugin-svelte@3.1.0(svelte@5.2.10)(vite@5.2.11(@types/node@20.12.7)))(svelte@5.2.10)(vite@5.2.11(@types/node@20.12.7))
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.2.12
+        specifier: 5.x
+        version: 5.2.10
 
   packages/components/dismissable:
     dependencies:
