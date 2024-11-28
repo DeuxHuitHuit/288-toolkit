@@ -1,7 +1,6 @@
 import type * as navigation from '$app/navigation';
 import type * as stores from '$app/stores';
 import type { Navigation, Page } from '@sveltejs/kit';
-import '@testing-library/jest-dom';
 import { readable } from 'svelte/store';
 import { vi } from 'vitest';
 import './window';
