@@ -15,22 +15,24 @@
 	const unknownErrorMessageIndex = randomInt(0, unknownErrorMessage.length - 1);
 </script>
 
-<Dismissable key="error-page" let:close let:dismiss browserStorage="session">
-	<div class="_error-overlay">
-		<div class="_error-ctn">
-			<div class="_btn-ctn">
-				<button on:click={dismiss}>Disable for session</button>
-				<button on:click={close}>Close &times;</button>
+<Dismissable key="error-page" browserStorage="session">
+	{#snippet children({ close, dismiss })}
+		<div class="_error-overlay">
+			<div class="_error-ctn">
+				<div class="_btn-ctn">
+					<button onclick={dismiss}>Disable for session</button>
+					<button onclick={close}>Close &times;</button>
+				</div>
+				<h1>{status}</h1>
+				{#if error}
+					<pre>{JSON.stringify(error, null, 4)}</pre>
+				{:else}
+					<h2>Unknown error</h2>
+					<h3>{unknownErrorMessage[unknownErrorMessageIndex]}</h3>
+				{/if}
 			</div>
-			<h1>{status}</h1>
-			{#if error}
-				<pre>{JSON.stringify(error, null, 4)}</pre>
-			{:else}
-				<h2>Unknown error</h2>
-				<h3>{unknownErrorMessage[unknownErrorMessageIndex]}</h3>
-			{/if}
 		</div>
-	</div>
+	{/snippet}
 </Dismissable>
 
 <style>
