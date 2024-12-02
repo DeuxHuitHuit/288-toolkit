@@ -1,4 +1,4 @@
-export type ImageSizeUnits = 'vw' | 'rem';
+export type ImageSizeUnits = 'vw' | 'rem' | 'px';
 export type ImageSizeMediaQueryUnits = 'px' | 'rem';
 export type ImageSizeSupportedMediaQuery = 'min-width' | 'max-width';
 export type ImageSize = {
