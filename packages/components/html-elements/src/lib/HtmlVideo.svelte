@@ -3,7 +3,7 @@
 		autoplay?: boolean;
 		disableremoteplayback?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { autoplay = false, disableremoteplayback = true, children, ...rest }: Props = $props();
