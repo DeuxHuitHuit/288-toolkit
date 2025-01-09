@@ -101,7 +101,7 @@ The Vimeo embed component. Automatically rendered by `ProviderSelector`.
 <script lang="ts">
 	import type { AssetInterface } from 'src/craft';
 	import { fade } from 'svelte/transition';
-	import VideoEmbed from '@288-toolkit/video-embed';
+	import { VideoEmbed } from '@288-toolkit/video-embed';
 	import PlayIcon from '$com/ui/PlayIcon.svelte';
 	import Media from '$com/ui/Media.svelte';
 
@@ -182,3 +182,27 @@ import { vimeoThumbnailHandler } from '@288-toolkit/video-embed';
 
 export const GET = vimeoThumbnailHandler;
 ```
+
+## Migration from latest Svelte 4 version
+
+-   Translations have been removed. Make sure to remove them from your translation loader.
+-   The `PlayButton` component now requires a `label` prop for screen readers.
+-   Individual component imports have been deprecated. While they still work, prefer using the
+    `VideoEmbed` export instead and use dot notation to access the components (see examples above).
+-   The `useVideoEmbed()` function has replaced `getVideoEmbedContext()`.
+-   When using the api via context, make sure to access `playing` and `preconnect` directly on the
+    variable instead of destructuring them. This keeps the values reactive.
+
+    ```ts
+    // Good
+    const api = useVideoEmbed();
+
+    api.playing;
+    api.preconnect;
+
+    // Bad
+    const { playing, preconnect } = useVideoEmbed();
+
+    playing;
+    preconnect;
+    ```
