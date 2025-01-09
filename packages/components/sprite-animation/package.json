@@ -28,18 +28,17 @@
 		}
 	},
 	"peerDependencies": {
-		"motion": "10.x",
+		"motion": "11.x",
 		"svelte": "5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/device": "workspace:^",
 		"@288-toolkit/types": "workspace:^",
-		"esm-env": "1.0.0"
+		"esm-env": "1.2.2"
 	},
 	"devDependencies": {
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
 		"@testing-library/jest-dom": "^6.6.3",
-		"@testing-library/svelte": "^5.1.0",
-		"svelte-preprocess": "^6.0.0"
+		"@testing-library/svelte": "^5.2.6"
 	}
 }
