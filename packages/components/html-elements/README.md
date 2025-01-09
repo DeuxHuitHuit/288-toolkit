@@ -8,10 +8,10 @@ A collection of convenient wrapper components around basic html elements.
 
 ## `HtmlAnchor.svelte`
 
-Renders a HTML link (anchor). External links will have `noopener noreferrer` rel and `_blank` target
-attributes applied. The only required prop is `href`.
+Renders an HTML link (anchor). External links will have `noopener noreferrer` rel and `_blank`
+target attributes applied. The only required prop is `href`.
 
-## Slot props
+## Children props
 
 -   `external` (`boolean`): Wether the url is an external url.
 
@@ -41,7 +41,7 @@ A wrapper component arund the <time> html element.
 -   `formatOptions` (`FormatDateOptions`): The date formatting options (see
     [format package](../format/README.md))
 
-## Slot props
+## Children props
 
 -   `formattedDate` (`string`): The formatted date
 
@@ -55,13 +55,11 @@ A wrapper component arund the <time> html element.
 ```
 
 ```svelte
-<Time
-	date={new Date('2023-04-17T21:34:50.360Z')}
-	formatOptions={{ day: 'numeric', month: 'long' }}
-	let:formattedDate
->
-	<span class="text-[red]">
-		{formattedDate}
-	</span>
+<Time date={new Date('2023-04-17T21:34:50.360Z')} formatOptions={{ day: 'numeric', month: 'long' }}>
+	{#snippet children({ formattedDate })}
+		<span class="text-[red]">
+			{formattedDate}
+		</span>
+	{/snippet}
 </Time>
 ```
