@@ -3,13 +3,13 @@
 		/**
 		 * The year the website was put online.
 		 */
-		publishYear: number;
+		publishYear?: number;
 		/**
 		 * The organization name to display in the copyright.
 		 */
 		orgName?: string;
 		/**
-		 * The element to use for the copyright.
+		 * The element to use for the copyright. DEFAULT: `<small>`
 		 */
 		as?: string;
 		[key: string]: unknown;
