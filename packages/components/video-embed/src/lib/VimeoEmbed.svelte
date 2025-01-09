@@ -38,7 +38,7 @@
 	import type { Maybe } from '@288-toolkit/types';
 
 	interface Props {
-		url: Maybe<string>;
+		url?: Maybe<string>;
 		title?: Maybe<string>;
 		muted?: boolean;
 		autoplay?: boolean;
@@ -47,8 +47,10 @@
 		options?: VimeoEmbedOptions;
 	}
 
+	const api = videoEmbedContext.get();
+
 	let {
-		url,
+		url = api?.url,
 		title = null,
 		muted = false,
 		autoplay = true,
@@ -56,8 +58,6 @@
 		start = null,
 		options = VIMEO_DEFAULTS
 	}: Props = $props();
-
-	const api = videoEmbedContext.get();
 
 	const videoParams = url ? new URL(url).pathname.replace('/', '') : '';
 	const [videoId, unlistedHash] = videoParams.split('/');

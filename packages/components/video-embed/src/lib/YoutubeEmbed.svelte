@@ -34,7 +34,7 @@
 	import { objectToQueryString } from '@288-toolkit/strings';
 
 	interface Props {
-		url: Maybe<string>;
+		url?: Maybe<string>;
 		title?: Maybe<string>;
 		muted?: boolean;
 		autoplay?: boolean;
@@ -43,8 +43,10 @@
 		options?: Maybe<YoutubeEmbedOptions>;
 	}
 
+	const api = videoEmbedContext.get();
+
 	let {
-		url,
+		url = api?.url,
 		title = null,
 		muted = false,
 		autoplay = true,
@@ -55,8 +57,6 @@
 
 	const videoId = url ? getYoutubeId(url) : null;
 	const playlist = loop ? videoId : options?.playlist || null;
-
-	const api = videoEmbedContext.get();
 
 	const paramString = objectToQueryString({
 		autoplay: autoplay ? '1' : autoplay,
