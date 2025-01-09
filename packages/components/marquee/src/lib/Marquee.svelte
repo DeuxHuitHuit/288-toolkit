@@ -14,7 +14,7 @@
 		 * Wether the marquee should pause when hovered. Default: `false`.
 		 */
 		stopOnHover?: boolean;
-		children?: import('svelte').Snippet<[any]>;
+		children?: import('svelte').Snippet<[{ copy: boolean }]>;
 	}
 
 	let {
