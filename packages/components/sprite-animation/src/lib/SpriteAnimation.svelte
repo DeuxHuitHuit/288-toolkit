@@ -208,7 +208,7 @@
 {/if}
 
 <style>
-	:global(._sprite-animation) {
+	._sprite-animation {
 		width: 100%;
 		height: 0;
 		padding-bottom: var(--padding-bottom, 100%);
