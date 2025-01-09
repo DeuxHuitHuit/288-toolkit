@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { navigating } from '$app/stores';
 	import { DEV } from 'esm-env';
 	import type { Maybe } from '@288-toolkit/types';
+	import type { Snippet } from 'svelte';
+	import { beforeNavigate } from '$app/navigation';
 
 	interface Props {
 		/**
@@ -30,9 +31,7 @@
 		 * Wether to close the content when navigating to another page.
 		 */
 		closeOnNav?: boolean;
-		children?: import('svelte').Snippet<
-			[{ close: () => void; dismiss: () => void; dismissed: boolean }]
-		>;
+		children?: Snippet<[{ close: () => void; dismiss: () => void; dismissed: boolean }]>;
 	}
 
 	let {
@@ -141,10 +140,8 @@
 		// Maybe close on navigation
 		let navUnsubscribe: () => void;
 		if (closeOnNav) {
-			navUnsubscribe = navigating.subscribe((nav) => {
-				if (nav) {
-					open = false;
-				}
+			beforeNavigate(() => {
+				open = false;
 			});
 		}
 
