@@ -1,6 +1,7 @@
 export * from './VimeoEmbed.svelte';
 export * from './YoutubeEmbed.svelte';
 export * as VideoEmbed from './exports.js';
+export * from './useVideoEmbed.js';
 export * from './vimeo.js';
 export * from './vimeoThumbnailHandler.js';
 export * from './youtube.js';
