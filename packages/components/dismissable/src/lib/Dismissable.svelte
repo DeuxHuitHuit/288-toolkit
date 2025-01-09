@@ -1,40 +1,54 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { navigating } from '$app/stores';
 	import { DEV } from 'esm-env';
 	import type { Maybe } from '@288-toolkit/types';
+	import type { Snippet } from 'svelte';
+	import { beforeNavigate } from '$app/navigation';
 
-	/**
-	 * Used to identify the content being dismissed in browser storage.
-	 */
-	export let key: string;
-	/**
-	 * The delay in ms before the content shows up.
-	 */
-	export let timeout = 0;
-	/**
-	 * The date of the last update of the content.
-	 */
-	export let lastUpdatedAt: Maybe<Date> = null;
-	/**
-	 * The maximum age of the dismissal in seconds.
-	 * The content will show up again after this time has past.
-	 */
-	export let maxAge = 0;
-	/**
-	 * Wether to use `sessionStorage` or `localStorage`.
-	 */
-	export let browserStorage: 'local' | 'session' = 'local';
-	/**
-	 * Wether to close the content when navigating to another page.
-	 */
-	export let closeOnNav = false;
+	interface Props {
+		/**
+		 * Used to identify the content being dismissed in browser storage.
+		 */
+		key: string;
+		/**
+		 * The delay in ms before the content shows up.
+		 */
+		timeout?: number;
+		/**
+		 * The date of the last update of the content.
+		 */
+		lastUpdatedAt?: Maybe<Date>;
+		/**
+		 * The maximum age of the dismissal in seconds.
+		 * The content will show up again after this time has past.
+		 */
+		maxAge?: number;
+		/**
+		 * Wether to use `sessionStorage` or `localStorage`.
+		 */
+		browserStorage?: 'local' | 'session';
+		/**
+		 * Wether to close the content when navigating to another page.
+		 */
+		closeOnNav?: boolean;
+		children?: Snippet<[{ close: () => void; dismiss: () => void; dismissed: boolean }]>;
+	}
+
+	let {
+		key,
+		timeout = 0,
+		lastUpdatedAt = null,
+		maxAge = 0,
+		browserStorage = 'local',
+		closeOnNav = false,
+		children
+	}: Props = $props();
 
 	const storageKey = `${key}-dismissed`;
 	const storage = (): Storage => window[`${browserStorage}Storage`];
 	const FOREVER = 'true';
-	let open = false;
-	$: dismissed = false;
+	let open = $state(false);
+	let dismissed = $state(false);
 
 	const getExpiryDate = () => {
 		if (maxAge) {
@@ -126,10 +140,8 @@
 		// Maybe close on navigation
 		let navUnsubscribe: () => void;
 		if (closeOnNav) {
-			navUnsubscribe = navigating.subscribe((nav) => {
-				if (nav) {
-					open = false;
-				}
+			beforeNavigate(() => {
+				open = false;
 			});
 		}
 
@@ -141,5 +153,5 @@
 </script>
 
 {#if open}
-	<slot {close} {dismiss} {dismissed} />
+	{@render children?.({ close, dismiss, dismissed })}
 {/if}

@@ -29,16 +29,19 @@
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x",
-		"svelte": "4.x || 5.x"
+		"svelte": "5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/types": "workspace:^",
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
-		"esm-env": "1.0.0"
+		"@sveltejs/package": "2.3.7",
+		"@testing-library/svelte": "^5.2.6",
+		"esm-env": "1.2.0"
 	},
 	"devDependencies": {
-		"@testing-library/dom": "^10.0.0",
-		"@testing-library/svelte": "^5.1.0",
-		"svelte-preprocess": "5.1.4"
+		"@testing-library/dom": "^10.4.0",
+		"@testing-library/jest-dom": "^6.6.3",
+		"jsdom": "25.0.1",
+		"svelte-preprocess": "6.0.3"
 	}
 }
