@@ -1,27 +1,22 @@
 <script lang="ts">
-	import { t } from './translations/index.js';
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
 
 	interface Props {
-		class?: string;
+		/**
+		 * The aria-label to use for the button. REQUIRED.
+		 */
+		label: string;
 		children?: import('svelte').Snippet;
+		[key: string]: unknown;
 	}
 
-	let { class: classes = '', children }: Props = $props();
-	/**
-	 * The classes to apply to the button element.
-	 */
+	let { label, children, ...rest }: Props = $props();
 
-	const api = getVideoEmbedContext();
+	const api = videoEmbedContext.get();
+
 	const { requestPreconnect, play } = api;
 </script>
 
-<button
-	class={classes}
-	type="button"
-	onpointerover={requestPreconnect}
-	onclick={play}
-	aria-label={t('play')}
->
+<button type="button" onpointerover={requestPreconnect} onclick={play} aria-label={label} {...rest}>
 	{@render children?.()}
 </button>

@@ -1,6 +1,8 @@
 <script module lang="ts">
+	/**
+	 * See https://developers.google.com/youtube/player_parameters#Parameters for more information.
+	 */
 	export type YoutubeEmbedOptions = {
-		/** https://developers.google.com/youtube/player_parameters#Parameters */
 		cc_lang_pref?: string;
 		cc_load_policy?: boolean;
 		color?: 'red' | 'white';
@@ -27,7 +29,7 @@
 <script lang="ts">
 	/** Based on https://github.com/paulirish/lite-youtube-embed */
 	import { getYoutubeId } from './youtube.js';
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
 	import type { Maybe } from '@288-toolkit/types';
 	import { objectToQueryString } from '@288-toolkit/strings';
 
@@ -54,8 +56,7 @@
 	const videoId = url ? getYoutubeId(url) : null;
 	const playlist = loop ? videoId : options?.playlist || null;
 
-	const api = getVideoEmbedContext();
-	const { playing, preconnect } = api || {};
+	const api = videoEmbedContext.get();
 
 	const paramString = objectToQueryString({
 		autoplay: autoplay ? '1' : autoplay,
@@ -71,8 +72,8 @@
 		? null
 		: `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?${paramString}`;
 
-	let _preconnect = $derived($preconnect ?? false);
-	let _playing = $derived($playing ?? true);
+	let _preconnect = $derived(api?.preconnect ?? false);
+	let _playing = $derived(api?.playing ?? true);
 </script>
 
 <svelte:head>

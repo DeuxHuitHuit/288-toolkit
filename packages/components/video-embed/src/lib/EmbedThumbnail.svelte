@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getVimeoThumbnailUrl, isVimeoUrl } from './vimeo.js';
 	import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube.js';
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
 	import type { Maybe } from '@288-toolkit/types';
 	import { HtmlImg } from '@288-toolkit/html-elements';
 
@@ -14,13 +14,12 @@
 		 * The alt text for the image.
 		 */
 		alt?: Maybe<string>;
-		class?: string;
+		[key: string]: unknown;
 	}
 
-	let { url = getVideoEmbedContext()?.url, alt = null, class: classes = '' }: Props = $props();
-	/**
-	 * The classes to apply to the img element.
-	 */
+	const api = videoEmbedContext.get();
+
+	let { url = api?.url, alt = null, ...rest }: Props = $props();
 
 	const getVendorThumbnailUrl = () => {
 		if (!url) {
@@ -36,4 +35,4 @@
 	const posterSrc = getVendorThumbnailUrl();
 </script>
 
-<HtmlImg src={posterSrc} {alt} class={classes} />
+<HtmlImg src={posterSrc} {alt} {...rest} />

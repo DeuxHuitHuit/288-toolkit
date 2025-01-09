@@ -1,11 +1,18 @@
 <script lang="ts">
 	import { isYoutubeUrl } from './youtube.js';
 	import { isVimeoUrl } from './vimeo.js';
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
 	import YtEmbed from './YoutubeEmbed.svelte';
 	import VimeoEmbed from './VimeoEmbed.svelte';
 	import type { Maybe } from '@288-toolkit/types';
 	import { Component } from 'svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
+
+	const providers = {
+		youtube: YtEmbed,
+		vimeo: VimeoEmbed
+	};
+
+	const api = videoEmbedContext.get();
 
 	interface Props {
 		/**
@@ -22,12 +29,7 @@
 		>;
 	}
 
-	let { url = getVideoEmbedContext()?.url, children }: Props = $props();
-
-	const providers = {
-		youtube: YtEmbed,
-		vimeo: VimeoEmbed
-	};
+	let { url = api?.url, children }: Props = $props();
 
 	const provider: Maybe<keyof typeof providers> = isYoutubeUrl(url)
 		? 'youtube'
