@@ -16,7 +16,7 @@
 		 * How long the cookie popup should take to re-appear when dismissed.
 		 * Default: 30 days
 		 */
-		maxAge?: any; // 30 days
+		maxAge?: number; // 30 days
 		/**
 		 * How long the popup should take to show up on the page
 		 * Default: 0
@@ -30,37 +30,36 @@
 		key,
 		maxAge = 1000 * 60 * 60 * 24 * 30,
 		timeout = 0,
-		children
+		children: childrenProp
 	}: Props = $props();
 
 	const consentEvent = gtmConsentEvent || 'gtm.consent';
 
-	let dismiss: () => void = $state();
-	let isDismissed: () => boolean = $state();
+	let dismissable: Dismissable;
 
 	const pushConsent = () => {
+		// @ts-expect-error window.dataLayer is loaded externally
 		if (window.dataLayer?.push) {
+			// @ts-expect-error window.dataLayer is loaded externally
 			window.dataLayer.push({ event: consentEvent });
 		}
 	};
 
 	const accept = () => {
 		pushConsent();
-		dismiss();
+		dismissable.dismiss();
 	};
 
 	onMount(() => {
 		// Send consent if the popup is already dismissed
-		if (isDismissed()) {
+		if (dismissable.isDismissed()) {
 			pushConsent();
 		}
 	});
-
-	const children_render = $derived(children);
 </script>
 
-<Dismissable {key} {maxAge} {timeout} bind:dismiss bind:isDismissed>
+<Dismissable {key} {maxAge} {timeout} bind:this={dismissable}>
 	{#snippet children({ close })}
-		{@render children_render?.({ accept, deny: close })}
+		{@render childrenProp?.({ accept, deny: close })}
 	{/snippet}
 </Dismissable>
