@@ -3,13 +3,14 @@ A button that scrolls the window back to the top when clicked.
 -->
 <script lang="ts">
 	import { motionSafeScrollBehavior } from '@288-toolkit/ui';
+	import type { HTMLButtonAttributes } from 'svelte/elements';
 
-	interface Props {
+	let {
+		children,
+		...rest
+	}: {
 		children?: import('svelte').Snippet;
-		[key: string]: unknown;
-	}
-
-	let { children, ...rest }: Props = $props();
+	} & HTMLButtonAttributes = $props();
 
 	const onClick = () => {
 		window.scrollTo({ top: 0, left: 0, behavior: motionSafeScrollBehavior() });
