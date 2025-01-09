@@ -1,17 +1,16 @@
 import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
-import { render } from '@testing-library/svelte';
+import { render } from '@testing-library/svelte/svelte5';
 import { expect, test } from 'vitest';
 
 const baseScript = `
 <script lang="ts">
-import { setContext } from 'svelte';
-import { readable } from 'svelte/store';
-import YoutubeEmbed from '$lib/YoutubeEmbed.svelte';
+	import YoutubeEmbed from '$lib/YoutubeEmbed.svelte';
+	import { VideoEmbedApi, videoEmbedContext } from '$lib/videoEmbed.svelte.js';
 
-setContext('__videoEmbed__', {
-	playing: readable(true),
-	preconnect: readable(true)
-});
+	const api = videoEmbedContext.set(new VideoEmbedApi());
+
+	api.requestPreconnect();
+	api.play();
 </script>
 
 `;

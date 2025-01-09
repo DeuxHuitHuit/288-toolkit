@@ -7,7 +7,7 @@
 		rel?: Maybe<string>;
 		target?: Maybe<string>;
 		children?: import('svelte').Snippet<[{ external: boolean }]>;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { href, rel = null, target = null, children, ...rest }: Props = $props();

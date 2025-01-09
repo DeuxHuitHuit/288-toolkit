@@ -1,11 +1,26 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	export type VimeoEmbedOptions = {
 		h?: string;
-		title?: boolean | string; // show title
-		byline?: boolean | string; // show 'by' line
-		portrait?: boolean | string; // show portrait
-		autopause?: boolean | string; // mandatory if you have multiple vimeo embeds on the same page on autoplay
-		background?: boolean; // background mode (no controls, no nothing)
+		/**
+		 * Show the title.
+		 */
+		title?: boolean | string;
+		/**
+		 * Show the 'by' line.
+		 */
+		byline?: boolean | string;
+		/**
+		 * Show the portrait.
+		 */
+		portrait?: boolean | string;
+		/**
+		 * Autopause. Mandatory if you have multiple vimeo embeds on the same page on autoplay
+		 */
+		autopause?: boolean | string;
+		/**
+		 * Background mode (no controls, no nothing).
+		 */
+		background?: boolean;
 	};
 
 	export const VIMEO_DEFAULTS: VimeoEmbedOptions = {
@@ -18,20 +33,31 @@
 </script>
 
 <script lang="ts">
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
 	import { objectToQueryString } from '@288-toolkit/strings';
 	import type { Maybe } from '@288-toolkit/types';
 
-	export let url: Maybe<string>;
-	export let title: Maybe<string> = null;
-	export let muted = false;
-	export let autoplay = true;
-	export let loop = false;
-	export let start: Maybe<number> = null;
-	export let options: VimeoEmbedOptions = VIMEO_DEFAULTS;
+	interface Props {
+		url?: Maybe<string>;
+		title?: Maybe<string>;
+		muted?: boolean;
+		autoplay?: boolean;
+		loop?: boolean;
+		start?: Maybe<number>;
+		options?: VimeoEmbedOptions;
+	}
 
-	const api = getVideoEmbedContext();
-	const { playing, preconnect } = api || {};
+	const api = videoEmbedContext.get();
+
+	let {
+		url = api?.url,
+		title = null,
+		muted = false,
+		autoplay = true,
+		loop = false,
+		start = null,
+		options = VIMEO_DEFAULTS
+	}: Props = $props();
 
 	const videoParams = url ? new URL(url).pathname.replace('/', '') : '';
 	const [videoId, unlistedHash] = videoParams.split('/');
@@ -46,8 +72,8 @@
 		? `https://player.vimeo.com/video/${videoId}?${paramString}${start ? `#t=${start}s` : ''}`
 		: null;
 
-	$: _preconnect = $preconnect ?? false;
-	$: _playing = $playing ?? true;
+	let _preconnect = $derived(api?.preconnect ?? false);
+	let _playing = $derived(api?.playing ?? true);
 </script>
 
 <svelte:head>
@@ -64,5 +90,5 @@
 		frameborder="0"
 		allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
 		allowfullscreen
-	/>
+	></iframe>
 {/if}

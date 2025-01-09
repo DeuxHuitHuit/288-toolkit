@@ -5,7 +5,7 @@
 		src: Maybe<string>;
 		srcset?: Maybe<string>;
 		alt?: Maybe<string>;
-		[key: string]: any;
+		[key: string]: unknown;
 	}
 
 	let { src, srcset = null, alt = null, ...rest }: Props = $props();
