@@ -1,23 +1,25 @@
 <script lang="ts">
 	import { getVimeoThumbnailUrl, isVimeoUrl } from './vimeo.js';
 	import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube.js';
-	import { getVideoEmbedContext } from './EmbedGroup.svelte';
+	import { videoEmbedContext } from './videoEmbed.svelte.js';
 	import type { Maybe } from '@288-toolkit/types';
 	import { HtmlImg } from '@288-toolkit/html-elements';
 
-	/**
-	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
-	 */
-	export let url: Maybe<string> = getVideoEmbedContext()?.url;
-	/**
-	 * The alt text for the image.
-	 */
-	export let alt: Maybe<string> = null;
-	let classes = '';
-	/**
-	 * The classes to apply to the img element.
-	 */
-	export { classes as class };
+	interface Props {
+		/**
+		 * The url of the video. Already provided if this component is used inside an EmbedGroup.
+		 */
+		url?: Maybe<string>;
+		/**
+		 * The alt text for the image.
+		 */
+		alt?: Maybe<string>;
+		[key: string]: unknown;
+	}
+
+	const api = videoEmbedContext.get();
+
+	let { url = api?.url, alt = null, ...rest }: Props = $props();
 
 	const getVendorThumbnailUrl = () => {
 		if (!url) {
@@ -33,4 +35,4 @@
 	const posterSrc = getVendorThumbnailUrl();
 </script>
 
-<HtmlImg src={posterSrc} {alt} class={classes} />
+<HtmlImg src={posterSrc} {alt} {...rest} />

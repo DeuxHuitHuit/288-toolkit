@@ -25,26 +25,22 @@
 		".": {
 			"types": "./dist/index.d.ts",
 			"svelte": "./dist/index.js"
-		},
-		"./translations": {
-			"types": "./dist/translations/loader.d.ts",
-			"svelte": "./dist/translations/loader.js"
 		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x",
-		"svelte": "4.x || 5.x"
+		"svelte": "5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/html-elements": "workspace:*",
-		"@288-toolkit/i18n": "workspace:*",
 		"@288-toolkit/strings": "workspace:*",
-		"@288-toolkit/typed-context": "workspace:*",
 		"@288-toolkit/types": "workspace:*",
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:*",
-		"@testing-library/svelte": "^5.1.0"
+		"@testing-library/svelte": "^5.1.0",
+		"runed": "^0.23.0"
 	},
 	"devDependencies": {
-		"svelte-preprocess": "5.1.4"
+		"@testing-library/jest-dom": "^6.6.3",
+		"vitest": "link:@testing-library/jest-dom/vitest"
 	}
 }

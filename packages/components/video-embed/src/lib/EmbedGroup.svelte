@@ -1,68 +1,15 @@
-<script context="module" lang="ts">
-	import { writable, type Readable, readonly } from 'svelte/store';
-	import type { Maybe } from '@288-toolkit/types';
-	import { createTypedContext } from '@288-toolkit/typed-context';
-
-	export interface VideoEmbedApi {
-		/**
-		 * A readable store that indicates if the video is currently playing
-		 */
-		playing: Readable<boolean>;
-		/**
-		 * A readable store that indicates if preconnect has been requested
-		 */
-		preconnect: Readable<boolean>;
-		/**
-		 * Request preconnect
-		 */
-		requestPreconnect: () => void;
-		/**
-		 * Play the video
-		 */
-		play: () => void;
-		/**
-		 * The URL of the video
-		 */
-		url: Maybe<string>;
-	}
-
-	const CONTEXT_KEY = '__videoEmbed__';
-
-	const { setContext, getContext } = createTypedContext<VideoEmbedApi>(CONTEXT_KEY);
-
-	export const getVideoEmbedContext = getContext;
-</script>
-
 <script lang="ts">
-	export let url: Maybe<string> = null;
+	import type { Maybe } from '@288-toolkit/types';
+	import { VideoEmbedApi, videoEmbedContext } from './videoEmbed.svelte.js';
 
-	interface $$Slots {
-		default: {
-			playing: boolean;
-			preconnect: boolean;
-			play: () => void;
-			requestPreconnect: () => void;
-		};
+	interface Props {
+		url?: Maybe<string>;
+		children?: import('svelte').Snippet<[VideoEmbedApi]>;
 	}
 
-	const playing = writable(false);
-	const preconnect = writable(false);
+	let { url = null, children }: Props = $props();
 
-	const requestPreconnect = () => {
-		preconnect.set(true);
-	};
-
-	const play = () => {
-		playing.set(true);
-	};
-
-	setContext({
-		playing: readonly(playing),
-		preconnect: readonly(preconnect),
-		requestPreconnect,
-		play,
-		url
-	});
+	const api = videoEmbedContext.set(new VideoEmbedApi(url));
 </script>
 
-<slot playing={$playing} preconnect={$preconnect} {play} {requestPreconnect} />
+{@render children?.(api)}

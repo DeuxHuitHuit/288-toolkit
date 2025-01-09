@@ -2,19 +2,35 @@
 
 A collection of Svelte components and functions to work with Vimeo and Youtube embeds.
 
-## Components
+## Structure
 
-### `EmbedGroup.svelte`
+```svelte
+<script>
+	import { VideoEmbed } from '@288-toolkit/video-embed';
 
-An embed group that provides a context for video embeds.
+	const embedUrl = 'https://youtube.com/watch?v=dQw4w9WgXcQ';
+</script>
 
-#### Props
+<VideoEmbed.Root url={embedUrl} let:playing>
+	{#snippet children({ playing })}
+		<VideoEmbed.ProviderSelector />
+		<!-- Or -->
+		<VideoEmbed.Youtube />
+		<!-- Or -->
+		<VideoEmbed.Vimeo />
+		{#if !playing}
+			<VideoEmbed.PlayButton>
+				<VideoEmbed.Thumbnail />
+			</VideoEmbed.PlayButton>
+		{/if}
+	{/snippet}
+</VideoEmbed.Root>
+```
 
--   `url` (`string`): The url of the video.
+## Api
 
-#### Slot props
-
-Slot props are also available via `getVideoEmbedContext()`.
+The video embed Api is available via `useVideoEmbed()` as well as the `Root` component children
+props.
 
 -   `playing` (`boolean`): `true` if the video embed is currently loaded and playing.
 -   `play` (`() => void`): Play the video.
@@ -22,50 +38,62 @@ Slot props are also available via `getVideoEmbedContext()`.
 -   `preconnect` (`boolean`): `true` if preconnect has been requested
 -   `url` (`string`): The URL of the video
 
+## Components
+
+### `Root`
+
+Provides the context for the other components.
+
+#### Props
+
+-   `url` (`string`): The url of the video.
+
+#### Children props
+
+The video embed Api.
+
 ### `EmbedPlayButton.svelte`
 
 A button that calls `requestPreconnect` when hovered and plays the video on click.
 
 #### Props
 
--   `class` (`string`): The classes to apply to the button element.
+-   `label` (`string`): The aria-label to use for the button. REQUIRED.
 
-### `EmbedThumbnail.svelte`
+### `Thumbnail.svelte`
 
 An img element that renders the default video thumbnail. Make sure to setup the
 `vimeo-thumbnail.jpg` endpoint before using (documented below).
 
 #### Props
 
--   `url` (`string`): The url of the video. Already provided if this component is used inside an
-    `EmbedGroup`.
+-   `url` (`string`): The url of the video. Already provided if this component is used inside an a
+    `Root` component.
 -   `alt` (`string`): The alt text for the image.
--   `class` (`string`): The classes to apply to the img element.
 
-### `EmbedSelector.svelte`
+### `ProviderSelector.svelte`
 
 A selector component that automatically determines the provider and renders the appropriate embed.
-For more control over how the markup is rendered, the component has a slot that provides the embed
-component.
+For more control over how the markup is rendered, the component has a children prop that provides
+the embed component.
 
 #### Props
 
--   `url` (`string`): The url of the video. Already provided if this component is used inside an
-    `EmbedGroup`.
+-   `url` (`string`): The url of the video. Already provided if this component is used inside a
+    `Root` component.
 
-#### Slot props
+#### Children props
 
 -   `provider` (`'vimeo' | 'youtube'`): The embed provider, determined from the url.
-
 -   `EmbedComponent` (`SvelteComponent`): The Svelte component of the embed.
 
-### `YoutubeEmbed.svelte`
+### `Youtube.svelte`
 
-The Youtube embed component. Automatically rendered by `EmbedSelector`.
+The Youtube embed component. Automatically rendered by `ProviderSelector`.
 
-### `VimeoEmbed.svelte`
+### `Vimeo.svelte`
 
-The Vimeo embed component. Automatically rendered by `EmbedSelector`.
+The Vimeo embed component. Automatically rendered by `ProviderSelector`.
 
 ## Example
 
@@ -73,39 +101,45 @@ The Vimeo embed component. Automatically rendered by `EmbedSelector`.
 <script lang="ts">
 	import type { AssetInterface } from 'src/craft';
 	import { fade } from 'svelte/transition';
-	import EmbedGroup from '$com/ui/video-embed/EmbedGroup.svelte';
-	import EmbedSelector from '$com/ui/video-embed/EmbedSelector.svelte';
-	import EmbedPoster from '$com/ui/video-embed/decoration/EmbedPoster.svelte';
-	import EmbedPlayButton from '$com/ui/video-embed/decoration/EmbedPlayButton.svelte';
+	import { VideoEmbed } from '@288-toolkit/video-embed';
 	import PlayIcon from '$com/ui/PlayIcon.svelte';
-	import LazyMedia from '$com/ui/LazyMedia.svelte';
+	import Media from '$com/ui/Media.svelte';
 
-	export let embedUrl: Maybe<string>;
-	export let poster: Maybe<AssetInterface>;
+	const {
+		embedUrl,
+		poster
+	}: {
+		embedUrl: Maybe<string>;
+		poster: Maybe<AssetInterface>;
+	} = $props();
 </script>
 
-<EmbedGroup url={embedUrl} let:playing>
+<VideoEmbed.Root url={embedUrl} let:playing>
 	<div class="grid-stack grid aspect-[2/1] w-full overflow-hidden rounded">
-		<EmbedSelector />
+		<VideoEmbed.ProviderSelector class="size-full" />
 		{#if !playing}
-			<div class="h-full w-full" out:fade={{ duration: 200 }}>
-				<EmbedPlayButton>
-					<div class="grid-stack grid h-full w-full place-items-center">
+			<div class="size-full" out:fade={{ duration: 200 }}>
+				<VideoEmbed.PlayButton>
+					<div class="grid-stack grid size-full place-items-center">
 						{#if poster}
-							<Media media={poster} class="h-full w-full object-cover" />
+							<Media media={poster} class="size-full object-cover" />
 						{:else}
-							<EmbedThumbnail />
+							<VideoEmbed.Thumbnail />
 						{/if}
 						<PlayIcon />
 					</div>
-				</EmbedPlayButton>
+				</VideoEmbed.PlayButton>
 			</div>
 		{/if}
 	</div>
-</EmbedGroup>
+</VideoEmbed.Root>
 ```
 
 ## Functions
+
+### `useVideoEmbed()`
+
+Returns the video embed Api if used inside a `Root` component, otherwise returns `null`.
 
 ### `isYoutubeUrl()`
 
@@ -119,7 +153,7 @@ Get the YouTube video ID from a URL
 
 Get the URL of a YouTube video thumbnail
 
-## `isVimeoUrl()`
+### `isVimeoUrl()`
 
 Check if a URL is a valid Vimeo URL
 
@@ -148,3 +182,27 @@ import { vimeoThumbnailHandler } from '@288-toolkit/video-embed';
 
 export const GET = vimeoThumbnailHandler;
 ```
+
+## Migration from latest Svelte 4 version
+
+-   Translations have been removed. Make sure to remove them from your translation loader.
+-   The `PlayButton` component now requires a `label` prop for screen readers.
+-   Individual component imports have been deprecated. While they still work, prefer using the
+    `VideoEmbed` export instead and use dot notation to access the components (see examples above).
+-   The `useVideoEmbed()` function has replaced `getVideoEmbedContext()`.
+-   When using the api via context, make sure to access `playing` and `preconnect` directly on the
+    variable instead of destructuring them. This keeps the values reactive.
+
+    ```ts
+    // Good
+    const api = useVideoEmbed();
+
+    api.playing;
+    api.preconnect;
+
+    // Bad
+    const { playing, preconnect } = useVideoEmbed();
+
+    playing;
+    preconnect;
+    ```
