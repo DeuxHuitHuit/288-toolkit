@@ -18,7 +18,13 @@
 		 * before it is appended to the minimap.
 		 */
 		onSetup?: (content: HTMLElement) => void;
+		/**
+		 * The snippet for the track.
+		 */
 		track?: import('svelte').Snippet<[{ dragging: boolean }]>;
+		/**
+		 * The snippet for the thumb.
+		 */
 		thumb?: import('svelte').Snippet<[{ dragging: boolean }]>;
 	}
 
