@@ -233,8 +233,8 @@ importers:
         specifier: workspace:^
         version: link:../../timeout
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.0.0
+        specifier: 5.x
+        version: 5.17.2
 
   packages/components/minimap:
     dependencies:
@@ -252,7 +252,7 @@ importers:
         version: 4.2.0
       svelte:
         specifier: 4.x || 5.x
-        version: 4.0.0
+        version: 4.2.17
 
   packages/components/pagination:
     dependencies:
@@ -4416,14 +4416,6 @@ snapshots:
     optionalDependencies:
       vite: 5.2.11(@types/node@20.12.7)
       vitest: link:packages/components/video-embed/@testing-library/jest-dom/vitest
-
-  '@testing-library/svelte@5.2.6(svelte@4.2.17)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))':
-    dependencies:
-      '@testing-library/dom': 10.4.0
-      svelte: 4.2.17
-    optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.7)
-      vitest: 2.1.6(@types/node@20.12.7)(jsdom@24.0.0)
 
   '@testing-library/svelte@5.2.6(svelte@4.2.17)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))':
     dependencies:
