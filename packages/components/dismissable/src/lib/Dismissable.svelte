@@ -138,7 +138,6 @@
 		const timer = setTimeout(() => (open = true), timeout);
 
 		// Maybe close on navigation
-		let navUnsubscribe: () => void;
 		if (closeOnNav) {
 			beforeNavigate(() => {
 				open = false;
@@ -147,7 +146,6 @@
 
 		return () => {
 			clearTimeout(timer);
-			navUnsubscribe?.();
 		};
 	});
 </script>
