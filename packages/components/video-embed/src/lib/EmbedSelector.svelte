@@ -4,7 +4,7 @@
 	import YtEmbed from './YoutubeEmbed.svelte';
 	import VimeoEmbed from './VimeoEmbed.svelte';
 	import type { Maybe } from '@288-toolkit/types';
-	import { Component } from 'svelte';
+	import type { Component } from 'svelte';
 	import { videoEmbedContext } from './videoEmbed.svelte.js';
 
 	const providers = {
