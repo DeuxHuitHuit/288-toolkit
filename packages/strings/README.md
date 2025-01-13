@@ -14,6 +14,10 @@ Uncapitalize the first letter of a string.
 
 Converts text to a valid HTML id.
 
+## normalize
+
+Normalizes a string by replacing accents with their base characters.
+
 ## removeLineBreaks
 
 Removes line breaks from a string.
