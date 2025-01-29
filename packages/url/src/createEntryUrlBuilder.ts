@@ -1,26 +1,57 @@
+import { removeTrailingSlash } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
-import { uriToPath } from './uriToPath.js';
 
 export type Entry = {
-	language?: Maybe<string>;
-	uri?: Maybe<string>;
+	url?: Maybe<string>;
 };
 
 export type EntryUrlParams = {
-	localize: boolean;
+	/**
+	 * The site URL, i.e. the URL of your deployment.
+	 * The protocol and host are required and will be forced on the entry URL.
+	 */
 	siteUrl: string;
-	homeUri: string;
+	/**
+	 * Whether to remove the trailing slash from the pathname.
+	 * This is required because the home page in craft is an empty pathname, which,
+	 * when contacted with the site URL, will result in a trailing slash because Craft
+	 * forces the trailing slash on the site URL.
+	 *
+	 * @default true
+	 */
+	shouldRemoveTrailingSlash?: boolean;
 };
 
 /**
  * Creates a function that builds URLs for entries.
+ * Craft 5 compatible. (Not compatible with Craft 4)
  */
-export const createEntryUrlBuilder = ({ siteUrl, localize, homeUri }: EntryUrlParams) => {
+export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = true }: EntryUrlParams) => {
+	if (!URL.canParse(siteUrl)) {
+		throw new Error('Invalid site URL');
+	}
+	const SITE_URL = new URL(siteUrl);
 	return (entry: Entry) => {
-		const language = entry?.language && localize ? `/${entry.language}` : '';
-		const uri = uriToPath(entry?.uri || '', homeUri);
-		const url = new URL(`${language}${uri}`, siteUrl);
+		if (!entry?.url || !URL.canParse(entry.url)) {
+			return {
+				raw: null,
+				encodePath: () => null,
+				toAbsolute: () => null,
+				toSchemeLess: () => null,
+				toLanguageRelative: () => null,
+				toString: () => null
+			};
+		}
+		const url = new URL(entry.url);
+		// Replace host and protocol with the site URL
+		url.host = SITE_URL.host;
+		url.protocol = SITE_URL.protocol;
+		// Replace trailing slash in the pathname
+		if (shouldRemoveTrailingSlash) {
+			url.pathname = removeTrailingSlash(url.pathname);
+		}
 
+		// Return the entry URL object
 		return {
 			/**
 			 * The URL object.
@@ -54,9 +85,10 @@ export const createEntryUrlBuilder = ({ siteUrl, localize, homeUri }: EntryUrlPa
 			},
 			/**
 			 * Returns the entry uri relative to the language.
+			 * @deprecated Use `toSchemeLess` instead.
 			 */
 			toLanguageRelative() {
-				return uri;
+				return url;
 			}
 		};
 	};

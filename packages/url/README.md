@@ -20,14 +20,12 @@ Creates a function that builds URLs for entries.
 
 ```ts
 const getEntryUrl = createEntryUrlBuilder({
-	localize: true,
 	siteUrl: 'https://example.org',
-	homeUri: '__home__'
+	shouldRemoveTrailingSlash: true
 });
 
 getEntryUrl(mockEntry).raw; // The URL object.
 getEntryUrl(mockEntry).toAbsolute(); // Returns the full URL string.
 getEntryUrl(mockEntry).toString(); // Returns the full URL string.
 getEntryUrl(mockEntry).toSchemeLess(); // Returns the URL string without the scheme, composed of the pathname, search, and hash.
-getEntryUrl(mockEntry).toLanguageRelative(); // Returns the entry uri relative to the language.
 ```
