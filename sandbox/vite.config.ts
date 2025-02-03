@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 export default defineConfig({
 	plugins: [sveltekit()],
 	server: {
-		port: 3000,
+		port: process.env.CI || process.env.VITEST ? undefined : 3000,
 		strictPort: true
 	}
 });
