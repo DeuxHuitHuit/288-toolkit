@@ -1,6 +1,6 @@
 import { normalize, removeTrailingSlash } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
-import { urlCanParse } from './urlCanParse';
+import { urlCanParse } from './urlCanParse.js';
 
 export type Entry = {
 	url?: Maybe<string>;

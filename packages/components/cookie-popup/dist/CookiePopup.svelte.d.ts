@@ -26,6 +26,8 @@ declare const __propDef: {
             deny: any;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type CookiePopupProps = typeof __propDef.props;
 export type CookiePopupEvents = typeof __propDef.events;

@@ -1,5 +1,5 @@
 import { normalize, removeTrailingSlash } from '@288-toolkit/strings';
-import { urlCanParse } from './urlCanParse';
+import { urlCanParse } from './urlCanParse.js';
 /**
  * Creates a function that builds URLs for entries.
  * Craft 5 compatible. (Not compatible with Craft 4)

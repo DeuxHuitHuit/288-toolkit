@@ -41,6 +41,8 @@ declare const __propDef: {
             dismissed: boolean;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type DismissableProps = typeof __propDef.props;
 export type DismissableEvents = typeof __propDef.events;
