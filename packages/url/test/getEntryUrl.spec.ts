@@ -79,3 +79,17 @@ describe('`toSchemeLess` should return the pathname, search params and hash', ()
 		expect(getEntryUrl(localMock).toSchemeLess()).toBe('/en/articles/my-article?test=yes#hash');
 	});
 });
+
+/**
+ * @deprecated
+ */
+describe('`toLanguageRelative` should return the pathname relative to the language', () => {
+	test('removes the language from the pathname', () => {
+		const localMock = { ...mockEntry };
+		const getEntryUrl = createEntryUrlBuilder(globals);
+		localMock.url = 'https://example.org/en/articles/my-article/';
+		const languageRelativePath = getEntryUrl(localMock).toLanguageRelative();
+		expect(languageRelativePath).toBe('articles/my-article');
+	});
+});
+/* @enddeprecated */

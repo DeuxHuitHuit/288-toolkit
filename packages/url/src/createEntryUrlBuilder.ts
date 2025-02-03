@@ -97,10 +97,12 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
 			/**
 			 * Returns the entry uri relative to the language.
 			 * @deprecated Use `toSchemeLess` instead.
+			 * It now 'assumes' that the language is the first part of the pathname.
 			 */
 			toLanguageRelative() {
-				return url.toString();
+				return url.pathname.split('/').filter(Boolean).slice(1).join('/');
 			}
+			/* @enddeprecated */
 		};
 	};
 };
