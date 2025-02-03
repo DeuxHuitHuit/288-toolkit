@@ -30,10 +30,9 @@ export interface EntryUrl {
 	raw: Maybe<URL>;
 
 	/**
-	 * Makes sure the pathname is properly encoded.
-	 * This can be needed when the pathname contains special characters.
+	 * Returns the pathname decoded.
 	 */
-	encodePath(): EntryUrl;
+	decodedPath(): string;
 
 	/**
 	 * Normalizes the pathname by removing accents.
@@ -81,7 +80,7 @@ export const createEntryUrlBuilder = ({
 		if (!entry?.url || !urlCanParse(entry.url)) {
 			const empty = {
 				raw: null,
-				encodePath: () => empty,
+				decodedPath: () => '',
 				normalizePath: () => empty,
 				toAbsolute: () => null,
 				toSchemeLess: () => null,
@@ -103,12 +102,14 @@ export const createEntryUrlBuilder = ({
 
 		const self = {
 			raw: url,
-			encodePath() {
-				url.pathname = url.pathname.split('/').map(encodeURIComponent).join('/');
-				return self;
+			decodedPath() {
+				return url.pathname.split('/').map(decodeURIComponent).join('/');
 			},
 			normalizePath() {
-				url.pathname = normalize(url.pathname);
+				url.pathname = url.pathname
+					.split('/')
+					.map((part) => normalize(decodeURIComponent(part)))
+					.join('/');
 				return self;
 			},
 			toString() {

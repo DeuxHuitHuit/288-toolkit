@@ -86,17 +86,17 @@ describe('`normalizePath` should return the normalized pathname', () => {
 		const getEntryUrl = createEntryUrlBuilder(globals);
 		localMock.url = 'https://example.org/en/àrticlés/my-artïçle/';
 		const normalizedPath = getEntryUrl(localMock).normalizePath().toSchemeLess();
-		expect(normalizedPath).toBe('/articles/my-article');
+		expect(normalizedPath).toBe('/en/articles/my-article');
 	});
 });
 
-describe('`encodePath` should return the encoded pathname', () => {
-	test('removes accents', () => {
+describe('`decodedPath` should return the decoded pathname', () => {
+	test('decodes the pathname', () => {
 		const localMock = { ...mockEntry };
 		const getEntryUrl = createEntryUrlBuilder(globals);
 		localMock.url = 'https://example.org/en/àrticlés/my-artïçle/';
-		const encodedPath = getEntryUrl(localMock).encodePath().toSchemeLess();
-		expect(encodedPath).toBe('/en/%25C3%25A0rticl%25C3%25A9s/my-art%25C3%25AF%25C3%25A7le');
+		const decodedPath = getEntryUrl(localMock).decodedPath();
+		expect(decodedPath).toBe('/en/àrticlés/my-artïçle');
 	});
 });
 
