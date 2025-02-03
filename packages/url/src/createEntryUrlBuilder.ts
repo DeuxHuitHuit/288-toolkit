@@ -1,4 +1,5 @@
 import { removeTrailingSlash } from '@288-toolkit/strings';
+import { normalize } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
 import { urlCanParse } from './urlCanParse';
 
@@ -37,8 +38,10 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
 			return {
 				raw: null,
 				encodePath: () => null,
+				normalizePath: () => null,
 				toAbsolute: () => null,
 				toSchemeLess: () => null,
+				/** @deprecated Use `toSchemeLess` instead. */
 				toLanguageRelative: () => null,
 				toString: () => null
 			};
@@ -64,6 +67,13 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
 			 */
 			encodePath() {
 				url.pathname = encodeURIComponent(url.pathname);
+			},
+			/**
+			 * Normalizes the pathname by removing accents.
+			 * @see {@link @288-toolkit/strings#normalize}
+			 */
+			normalizePath() {
+				url.pathname = normalize(url.pathname);
 			},
 			/**
 			 * Returns the full URL string.
