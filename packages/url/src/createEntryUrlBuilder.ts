@@ -99,7 +99,7 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
 			 * @deprecated Use `toSchemeLess` instead.
 			 */
 			toLanguageRelative() {
-				return url;
+				return url.toString();
 			}
 		};
 	};
