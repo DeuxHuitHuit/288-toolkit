@@ -1,3 +1,4 @@
+import { normalize } from '@288-toolkit/strings';
 import { urlCanParse } from './urlCanParse';
 
 /**
@@ -24,6 +25,17 @@ export const parsedUrl = (url: string | URL) => {
 				return null;
 			}
 			parsed.pathname = encodeURIComponent(parsed.pathname);
+			return api;
+		},
+		/**
+		 * Normalizes the pathname by removing accents.
+		 * @see {@link @288-toolkit/strings#normalize}
+		 */
+		normalizePath: () => {
+			if (!parsed) {
+				return null;
+			}
+			parsed.pathname = normalize(parsed.pathname);
 			return api;
 		},
 		/**
