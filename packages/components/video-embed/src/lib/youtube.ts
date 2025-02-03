@@ -1,4 +1,5 @@
 import type { Maybe } from '@288-toolkit/types';
+import { urlCanParse } from '@288-toolkit/url';
 
 export type YtThumbnailFormat =
 	| 'default'
@@ -35,7 +36,7 @@ export const getYoutubeId = (url: string) => {
 	if (!url) {
 		return '';
 	}
-	if (!URL.canParse(url)) {
+	if (!urlCanParse(url)) {
 		return '';
 	}
 

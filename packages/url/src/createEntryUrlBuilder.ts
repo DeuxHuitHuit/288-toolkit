@@ -33,7 +33,7 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
 	}
 	const SITE_URL = new URL(siteUrl);
 	return (entry: Entry) => {
-		if (!entry?.url || !URL.canParse(entry.url)) {
+		if (!entry?.url || !urlCanParse(entry.url)) {
 			return {
 				raw: null,
 				encodePath: () => null,
