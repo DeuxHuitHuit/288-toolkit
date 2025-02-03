@@ -14,9 +14,15 @@ Check if a URL is external.
 
 Validate if the URL is from the same origin as the request URL.
 
+## `parsedUrl()`
+
+Safely parses a URL and expose and nice API to access the parts of the URL.
+If the URL is not valid, all functions returns null.
+
 ## `createEntryUrlBuilder`
 
 Creates a function that builds URLs for entries.
+Its api is similar to the `parsedUrl` function.
 
 ```ts
 const getEntryUrl = createEntryUrlBuilder({
