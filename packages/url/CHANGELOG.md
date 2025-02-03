@@ -1,80 +1,86 @@
 # @288-toolkit/url
 
+## 5.1.0
+
+### Minor Changes
+
+-   ea2e772: Make createEntryUrlBuilder() Craft 5 compatible
+
 ## 5.0.0
 
 ### Major Changes
 
-- Svelte 5 compat
+-   Svelte 5 compat
 
 ## 4.2.2
 
 ### Patch Changes
 
-- Bump version
+-   Bump version
 
 ## 4.2.0
 
 ### Minor Changes
 
-- 9b55970: Add encodePath() function
+-   9b55970: Add encodePath() function
 
 ## 4.1.4
 
 ### Patch Changes
 
-- Build
+-   Build
 
 ## 4.1.3
 
 ### Patch Changes
 
-- Remove error log
+-   Remove error log
 
 ## 4.1.2
 
 ### Patch Changes
 
-- Updated dependencies
-  - @288-toolkit/types@3.1.0
+-   Updated dependencies
+    -   @288-toolkit/types@3.1.0
 
 ## 4.1.1
 
 ### Patch Changes
 
-- Improve types
+-   Improve types
 
 ## 4.1.0
 
 ### Minor Changes
 
-- Add entryUrlBuilder
+-   Add entryUrlBuilder
 
 ## 4.0.0
 
 ### Major Changes
 
-- Fix output
+-   Fix output
 
 ## 3.1.0
 
 ### Minor Changes
 
-- Add file extensions
+-   Add file extensions
 
 ## 3.0.0
 
 ### Major Changes
 
-- Build files
+-   Build files
 
 ## 2.0.0
 
 ### Major Changes
 
-- Build all files
+-   Build all files
 
 ## 1.0.1
 
 ### Patch Changes
 
-- Add files property
+-   Add files property

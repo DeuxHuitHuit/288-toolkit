@@ -1,5 +1,13 @@
 # @288-toolkit/video-embed
 
+## 4.0.3
+
+### Patch Changes
+
+-   Updated dependencies [ea2e772]
+    -   @288-toolkit/url@5.1.0
+    -   @288-toolkit/html-elements@3.1.1
+
 ## 4.0.2
 
 ### Patch Changes
