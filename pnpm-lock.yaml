@@ -335,6 +335,9 @@ importers:
       '@288-toolkit/types':
         specifier: workspace:*
         version: link:../../types
+      '@288-toolkit/url':
+        specifier: workspace:*
+        version: link:../../url
       '@288-toolkit/vite-plugin-svelte-inline-component':
         specifier: workspace:*
         version: link:../../vite-plugin-svelte-inline-component
@@ -544,6 +547,9 @@ importers:
 
   packages/url:
     dependencies:
+      '@288-toolkit/strings':
+        specifier: workspace:^
+        version: link:../strings
       '@288-toolkit/types':
         specifier: workspace:^
         version: link:../types
@@ -873,6 +879,7 @@ packages:
 
   /@emotion/memoize@0.7.4:
     resolution: {integrity: sha512-Ja/Vfqe3HpuzRsG1oBtWTHk2PGZ7GR+2Vz5iYGelAw8dx32K0y7PjVuxK6z1nMpZOqAFsRUPCkK1YjJ56qJlgw==}
+    requiresBuild: true
     dev: false
     optional: true
 
