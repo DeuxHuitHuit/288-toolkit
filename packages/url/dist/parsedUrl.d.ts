@@ -14,6 +14,11 @@ export declare const parsedUrl: (url: string | URL) => {
      */
     encodePath: () => any | null;
     /**
+     * Normalizes the pathname by removing accents.
+     * @see {@link @288-toolkit/strings#normalize}
+     */
+    normalizePath: () => any | null;
+    /**
      * Returns the full URL string.
      */
     toString: () => string | null;

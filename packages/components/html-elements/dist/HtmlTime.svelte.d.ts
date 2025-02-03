@@ -1,4 +1,3 @@
-/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
@@ -17,6 +16,8 @@ declare const __propDef: {
             formattedDate: any;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type HtmlTimeProps = typeof __propDef.props;
 export type HtmlTimeEvents = typeof __propDef.events;

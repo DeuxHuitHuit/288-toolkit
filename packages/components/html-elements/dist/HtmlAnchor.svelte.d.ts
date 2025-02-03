@@ -1,4 +1,3 @@
-/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 import { SvelteComponent } from "svelte";
 import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
@@ -16,6 +15,8 @@ declare const __propDef: {
             external: any;
         };
     };
+    exports?: undefined;
+    bindings?: undefined;
 };
 export type HtmlAnchorProps = typeof __propDef.props;
 export type HtmlAnchorEvents = typeof __propDef.events;

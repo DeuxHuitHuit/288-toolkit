@@ -39,6 +39,8 @@ declare const __propDef: {
             requestPreconnect: () => void;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type EmbedGroupProps = typeof __propDef.props;
 export type EmbedGroupEvents = typeof __propDef.events;
