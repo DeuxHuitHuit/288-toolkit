@@ -4,7 +4,13 @@ A collection of functions to manipulate dates.
 
 ## `parseLocalDates`
 
-Converts a date, in the yyyy-mm-dd format, into a Date object, in the user's timezone, at midnight.
+Converts a DAY date, in the yyyy-mm-dd format, into a Date object, in the user's timezone, at
+midnight.
+
+## `parseDateTime`
+
+Converts a string date in a Date object. It makes sure that the date is valid. If not valid, it
+returns `null`. This is useful in UI to avoid throwing errors while formatting dates.
 
 ## `today`
 
