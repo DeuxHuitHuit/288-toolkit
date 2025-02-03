@@ -28,6 +28,7 @@
 		}
 	},
 	"dependencies": {
+		"@288-toolkit/strings": "workspace:^",
 		"@288-toolkit/types": "workspace:^"
 	}
 }
