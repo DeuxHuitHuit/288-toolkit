@@ -1,63 +1,133 @@
+import { normalize, removeTrailingSlash } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
-import { uriToPath } from './uriToPath.js';
+import { urlCanParse } from './urlCanParse';
 
 export type Entry = {
-	language?: Maybe<string>;
-	uri?: Maybe<string>;
+	url?: Maybe<string>;
 };
 
 export type EntryUrlParams = {
-	localize: boolean;
+	/**
+	 * The site URL, i.e. the URL of your deployment.
+	 * The protocol and host are required and will be forced on the entry URL.
+	 */
 	siteUrl: string;
-	homeUri: string;
+	/**
+	 * Whether to remove the trailing slash from the pathname.
+	 * This is required because the home page in craft is an empty pathname, which,
+	 * when contacted with the site URL, will result in a trailing slash because Craft
+	 * forces the trailing slash on the site URL.
+	 *
+	 * @default true
+	 */
+	shouldRemoveTrailingSlash?: boolean;
 };
+
+export interface EntryUrl {
+	/**
+	 * The URL object.
+	 */
+	raw: Maybe<URL>;
+
+	/**
+	 * Returns the pathname decoded.
+	 */
+	decodedPath(): string;
+
+	/**
+	 * Normalizes the pathname by removing accents.
+	 * @see {@link @288-toolkit/strings#normalize}
+	 */
+	normalizePath(): EntryUrl;
+
+	/**
+	 * Returns the full URL string.
+	 */
+	toString(): string;
+
+	/**
+	 * Returns the full URL string.
+	 */
+	toAbsolute(): Maybe<string>;
+
+	/**
+	 * Returns the URL string without the scheme, composed of the pathname, search, and hash.
+	 */
+	toSchemeLess(): Maybe<string>;
+
+	/**
+	 * Returns the entry uri relative to the language.
+	 * @deprecated Use `toSchemeLess` instead.
+	 * It now 'assumes' that the language is the first part of the pathname.
+	 */
+	toLanguageRelative(): Maybe<string>;
+	/* @enddeprecated */
+}
 
 /**
  * Creates a function that builds URLs for entries.
+ * Craft 5 compatible. (Not compatible with Craft 4)
  */
-export const createEntryUrlBuilder = ({ siteUrl, localize, homeUri }: EntryUrlParams) => {
+export const createEntryUrlBuilder = ({
+	siteUrl,
+	shouldRemoveTrailingSlash = true
+}: EntryUrlParams): ((entry: Entry) => EntryUrl) => {
+	if (!urlCanParse(siteUrl)) {
+		throw new Error('Invalid site URL');
+	}
+	const SITE_URL = new URL(siteUrl);
 	return (entry: Entry) => {
-		const language = entry?.language && localize ? `/${entry.language}` : '';
-		const uri = uriToPath(entry?.uri || '', homeUri);
-		const url = new URL(`${language}${uri}`, siteUrl);
+		if (!entry?.url || !urlCanParse(entry.url)) {
+			const empty = {
+				raw: null,
+				decodedPath: () => '',
+				normalizePath: () => empty,
+				toAbsolute: () => null,
+				toSchemeLess: () => null,
+				/** @deprecated Use `toSchemeLess` instead. */
+				toLanguageRelative: () => null,
+				/* @enddeprecated */
+				toString: () => ''
+			} satisfies EntryUrl;
+			return empty;
+		}
+		const url = new URL(entry.url);
+		// Replace host and protocol with the site URL
+		url.host = SITE_URL.host;
+		url.protocol = SITE_URL.protocol;
+		// Replace trailing slash in the pathname
+		if (shouldRemoveTrailingSlash) {
+			url.pathname = removeTrailingSlash(url.pathname);
+		}
 
-		return {
-			/**
-			 * The URL object.
-			 */
+		const self = {
 			raw: url,
-			/**
-			 * Makes sure the pathname is properly encoded.
-			 * This can be needed when the pathname contains special characters.
-			 */
-			encodePath() {
-				url.pathname = encodeURIComponent(url.pathname);
+			decodedPath() {
+				return url.pathname.split('/').map(decodeURIComponent).join('/');
 			},
-			/**
-			 * Returns the full URL string.
-			 */
+			normalizePath() {
+				url.pathname = url.pathname
+					.split('/')
+					.map((part) => normalize(decodeURIComponent(part)))
+					.join('/');
+				return self;
+			},
 			toString() {
 				return url.toString();
 			},
-			/**
-			 * Returns the full URL string.
-			 */
 			toAbsolute() {
 				return url.toString();
 			},
-			/**
-			 * Returns the URL string without the scheme, composed of the pathname, search, and hash.
-			 */
 			toSchemeLess() {
 				const { pathname, hash, search } = url;
 				return `${pathname}${search}${hash}`;
 			},
-			/**
-			 * Returns the entry uri relative to the language.
-			 */
+			/** @deprecated Use `toSchemeLess` instead. */
 			toLanguageRelative() {
-				return uri;
+				return url.pathname.split('/').filter(Boolean).slice(1).join('/');
 			}
-		};
+			/* @enddeprecated */
+		} satisfies EntryUrl;
+		return self;
 	};
 };

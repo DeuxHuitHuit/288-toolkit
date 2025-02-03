@@ -1,4 +1,5 @@
 import type { Maybe } from '@288-toolkit/types';
+import { urlCanParse } from '@288-toolkit/url';
 
 export type ThumbnailOptions = {
 	width: string;
@@ -23,7 +24,7 @@ export const isVimeoUrl = (url: Maybe<string>): boolean => {
  * - https://vimeo.com/[VIDEO_ID]
  */
 export const getVimeoId = (url: string) => {
-	if (!URL.canParse(url)) {
+	if (!urlCanParse(url)) {
 		return '';
 	}
 	return new URL(url).pathname.replace('/', '')

@@ -41,6 +41,7 @@
 		"@288-toolkit/strings": "workspace:*",
 		"@288-toolkit/typed-context": "workspace:*",
 		"@288-toolkit/types": "workspace:*",
+		"@288-toolkit/url": "workspace:*",
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:*",
 		"@testing-library/svelte": "^5.1.0"
 	},

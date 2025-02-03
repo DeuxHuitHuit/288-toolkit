@@ -1,9 +1,12 @@
+import { normalize } from '@288-toolkit/strings';
+import { urlCanParse } from './urlCanParse';
+
 /**
  * Safely parses a URL and expose and nice API to access the parts of the URL.
  * If the URL is not valid, all functions returns null.
  */
 export const parsedUrl = (url: string | URL) => {
-	const parsed = URL.canParse(url) ? new URL(url) : null;
+	const parsed = urlCanParse(url) ? new URL(url) : null;
 
 	const api = {
 		/**
@@ -22,6 +25,17 @@ export const parsedUrl = (url: string | URL) => {
 				return null;
 			}
 			parsed.pathname = encodeURIComponent(parsed.pathname);
+			return api;
+		},
+		/**
+		 * Normalizes the pathname by removing accents.
+		 * @see {@link @288-toolkit/strings#normalize}
+		 */
+		normalizePath: () => {
+			if (!parsed) {
+				return null;
+			}
+			parsed.pathname = normalize(parsed.pathname);
 			return api;
 		},
 		/**
