@@ -29,3 +29,9 @@ getEntryUrl(mockEntry).toAbsolute(); // Returns the full URL string.
 getEntryUrl(mockEntry).toString(); // Returns the full URL string.
 getEntryUrl(mockEntry).toSchemeLess(); // Returns the URL string without the scheme, composed of the pathname, search, and hash.
 ```
+
+## `urlCanParse`
+
+Checks if a URL can be parsed.
+
+This is a fallback for environments that don't support the `URL.canParse` method.

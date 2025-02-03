@@ -1,5 +1,6 @@
 import { removeTrailingSlash } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
+import { urlCanParse } from './urlCanParse';
 
 export type Entry = {
 	url?: Maybe<string>;
@@ -27,7 +28,7 @@ export type EntryUrlParams = {
  * Craft 5 compatible. (Not compatible with Craft 4)
  */
 export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = true }: EntryUrlParams) => {
-	if (!URL.canParse(siteUrl)) {
+	if (!urlCanParse(siteUrl)) {
 		throw new Error('Invalid site URL');
 	}
 	const SITE_URL = new URL(siteUrl);
