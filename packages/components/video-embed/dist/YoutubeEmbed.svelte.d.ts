@@ -36,6 +36,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type YoutubeEmbedProps = typeof __propDef.props;
 export type YoutubeEmbedEvents = typeof __propDef.events;

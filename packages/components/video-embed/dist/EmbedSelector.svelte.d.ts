@@ -17,6 +17,8 @@ declare const __propDef: {
             EmbedComponent: typeof YtEmbed | typeof VimeoEmbed | null;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type EmbedSelectorProps = typeof __propDef.props;
 export type EmbedSelectorEvents = typeof __propDef.events;

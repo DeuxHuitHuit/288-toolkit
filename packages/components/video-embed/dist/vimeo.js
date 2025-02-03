@@ -1,3 +1,4 @@
+import { urlCanParse } from '@288-toolkit/url';
 const VIMEO_URL_REGEX = /^https:\/\/(www.)?vimeo.com/;
 /**
  * Check if a URL is a valid Vimeo URL
@@ -14,7 +15,7 @@ export const isVimeoUrl = (url) => {
  * - https://vimeo.com/[VIDEO_ID]
  */
 export const getVimeoId = (url) => {
-    if (!URL.canParse(url)) {
+    if (!urlCanParse(url)) {
         return '';
     }
     return new URL(url).pathname.replace('/', '');

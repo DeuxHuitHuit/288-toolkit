@@ -1,4 +1,3 @@
-/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 import { SvelteComponent } from "svelte";
 import type { Maybe } from '@288-toolkit/types';
 declare const __propDef: {
@@ -12,6 +11,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: undefined;
+    bindings?: undefined;
 };
 export type HtmlImgProps = typeof __propDef.props;
 export type HtmlImgEvents = typeof __propDef.events;

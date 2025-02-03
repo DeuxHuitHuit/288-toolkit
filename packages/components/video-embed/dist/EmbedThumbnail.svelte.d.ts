@@ -16,6 +16,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type EmbedThumbnailProps = typeof __propDef.props;
 export type EmbedThumbnailEvents = typeof __propDef.events;

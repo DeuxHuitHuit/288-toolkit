@@ -1,4 +1,3 @@
-/// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 import { SvelteComponent } from "svelte";
 declare const __propDef: {
     props: {
@@ -14,6 +13,8 @@ declare const __propDef: {
     slots: {
         default: {};
     };
+    exports?: undefined;
+    bindings?: undefined;
 };
 export type HtmlVideoProps = typeof __propDef.props;
 export type HtmlVideoEvents = typeof __propDef.events;

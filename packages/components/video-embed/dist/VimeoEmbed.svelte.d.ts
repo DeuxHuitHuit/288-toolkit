@@ -23,6 +23,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type VimeoEmbedProps = typeof __propDef.props;
 export type VimeoEmbedEvents = typeof __propDef.events;

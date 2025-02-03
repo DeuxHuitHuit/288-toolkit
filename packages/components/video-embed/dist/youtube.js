@@ -1,3 +1,4 @@
+import { urlCanParse } from '@288-toolkit/url';
 const YOUTUBE_URL_REGEX = /^https:\/\/(www.)?(youtube.com|youtu.be)/;
 /**
  * Check if a URL is a valid YouTube URL
@@ -24,7 +25,7 @@ export const getYoutubeId = (url) => {
     if (!url) {
         return '';
     }
-    if (!URL.canParse(url)) {
+    if (!urlCanParse(url)) {
         return '';
     }
     const urlObj = new URL(url);
