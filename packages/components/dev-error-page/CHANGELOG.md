@@ -1,5 +1,13 @@
 # @288-toolkit/dev-error-page
 
+## 1.0.6
+
+### Patch Changes
+
+-   897b640: Broken imports in client code
+-   Updated dependencies [897b640]
+    -   @288-toolkit/dismissable@3.0.7
+
 ## 1.0.5
 
 ### Patch Changes

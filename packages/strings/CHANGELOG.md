@@ -1,5 +1,11 @@
 # @288-toolkit/strings
 
+## 4.3.1
+
+### Patch Changes
+
+-   897b640: Broken imports in client code
+
 ## 4.3.0
 
 ### Minor Changes

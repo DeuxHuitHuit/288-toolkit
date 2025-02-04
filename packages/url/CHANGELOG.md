@@ -1,5 +1,13 @@
 # @288-toolkit/url
 
+## 5.1.1
+
+### Patch Changes
+
+-   897b640: Broken imports in client code
+-   Updated dependencies [897b640]
+    -   @288-toolkit/strings@4.3.1
+
 ## 5.1.0
 
 ### Minor Changes
