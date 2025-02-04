@@ -5,6 +5,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type DevErrorPageProps = typeof __propDef.props;
 export type DevErrorPageEvents = typeof __propDef.events;

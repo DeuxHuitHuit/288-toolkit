@@ -31,6 +31,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type SpriteAnimationProps = typeof __propDef.props;
 export type SpriteAnimationEvents = typeof __propDef.events;
