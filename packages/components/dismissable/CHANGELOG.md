@@ -1,5 +1,12 @@
 # @288-toolkit/dismissable
 
+## 3.0.7
+
+### Patch Changes
+
+-   897b640: Broken imports in client code
+    -   @288-toolkit/vite-plugin-svelte-inline-component@3.0.6
+
 ## 3.0.6
 
 ### Patch Changes
