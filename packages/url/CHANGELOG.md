@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 5.1.2
+
+### Patch Changes
+
+-   e473be3: Fix another export problem
+
 ## 5.1.1
 
 ### Patch Changes
