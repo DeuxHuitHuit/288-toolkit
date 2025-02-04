@@ -1,5 +1,5 @@
 import { normalize } from '@288-toolkit/strings';
-import { urlCanParse } from './urlCanParse';
+import { urlCanParse } from './urlCanParse.js';
 /**
  * Safely parses a URL and expose and nice API to access the parts of the URL.
  * If the URL is not valid, all functions returns null.
