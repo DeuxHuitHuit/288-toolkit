@@ -1,5 +1,8 @@
-import { normalize, removeTrailingSlash } from '@288-toolkit/strings';
+import { removeTrailingSlash } from '@288-toolkit/strings';
 import type { Maybe } from '@288-toolkit/types';
+import { decodePath } from './decodePath.js';
+import { protocolLessUrl, schemeLessUrl } from './lessUrl.js';
+import { normalizePath } from './normalizePath.js';
 import { urlCanParse } from './urlCanParse.js';
 
 export type Entry = {
@@ -51,6 +54,11 @@ export interface EntryUrl {
 	toAbsolute(): Maybe<string>;
 
 	/**
+	 * Returns the URL string without the protocol, composed of the hostname, pathname, search, and hash.
+	 */
+	toProtocolLess(): Maybe<string>;
+
+	/**
 	 * Returns the URL string without the scheme, composed of the pathname, search, and hash.
 	 */
 	toSchemeLess(): Maybe<string>;
@@ -83,6 +91,7 @@ export const createEntryUrlBuilder = ({
 				decodedPath: () => '',
 				normalizePath: () => empty,
 				toAbsolute: () => null,
+				toProtocolLess: () => null,
 				toSchemeLess: () => null,
 				/** @deprecated Use `toSchemeLess` instead. */
 				toLanguageRelative: () => null,
@@ -103,13 +112,10 @@ export const createEntryUrlBuilder = ({
 		const self = {
 			raw: url,
 			decodedPath() {
-				return url.pathname.split('/').map(decodeURIComponent).join('/');
+				return decodePath(url.pathname);
 			},
 			normalizePath() {
-				url.pathname = url.pathname
-					.split('/')
-					.map((part) => normalize(decodeURIComponent(part)))
-					.join('/');
+				url.pathname = normalizePath(url.pathname);
 				return self;
 			},
 			toString() {
@@ -118,9 +124,11 @@ export const createEntryUrlBuilder = ({
 			toAbsolute() {
 				return url.toString();
 			},
+			toProtocolLess() {
+				return protocolLessUrl(url);
+			},
 			toSchemeLess() {
-				const { pathname, hash, search } = url;
-				return `${pathname}${search}${hash}`;
+				return schemeLessUrl(url);
 			},
 			/** @deprecated Use `toSchemeLess` instead. */
 			toLanguageRelative() {
