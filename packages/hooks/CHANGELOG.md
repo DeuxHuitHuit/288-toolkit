@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.1.0
+
+### Minor Changes
+
+-   a9ae3d0: Blackhole .well-known/ requests
+
 ## 1.0.4
 
 ### Patch Changes
