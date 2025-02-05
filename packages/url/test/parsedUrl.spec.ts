@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { parsedUrl } from "../src/parsedUrl.js";
+import { parsedUrl } from '../src/parsedUrl.js';
 
 describe('`parsed` property should return the url object', () => {
 	test('localized', () => {
@@ -40,9 +40,16 @@ describe('`toAbsolute` method should return the absolute url string', () => {
 	});
 });
 
+describe('`toProtocolLess` method should return the url string without the protocol', () => {
+	test('valid', () => {
+		const url = parsedUrl('https://example.com/path/to/resource');
+		expect(url.toProtocolLess()).toBe('//example.com/path/to/resource');
+	});
+});
+
 describe('`toSchemeLess` method should return the url string without the scheme', () => {
 	test('valid', () => {
 		const url = parsedUrl('https://example.com/path/to/resource');
-		expect(url.toSchemeLess()).toBe('//example.com/path/to/resource');
+		expect(url.toSchemeLess()).toBe('/path/to/resource');
 	});
 });
