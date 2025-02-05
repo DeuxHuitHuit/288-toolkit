@@ -7,7 +7,7 @@
 		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
 	},
 	"type": "module",
-	"engine": 20,
+	"engine": 22,
 	"packageManager": "pnpm@9.1.0",
 	"scripts": {
 		"build": "turbo build --filter='./packages/**'",
