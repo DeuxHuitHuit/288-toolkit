@@ -79,6 +79,11 @@ export const preflightCheck: Handle = ({ event, resolve }) => {
 		return error404();
 	}
 
+	// Empty responses for .well-known/ requests
+	if (event.url.pathname.startsWith('/.well-known/')) {
+		return error404();
+	}
+
 	return resolve(event);
 };
 
