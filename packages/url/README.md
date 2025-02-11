@@ -16,7 +16,7 @@ Validate if the URL is from the same origin as the request URL.
 
 ## `parsedUrl()`
 
-Safely parses a URL and expose and nice API to access the parts of the URL. If the URL is not valid,
+Safely parses a URL and exposes a nice API to access the parts of the URL. If the URL is not valid,
 all functions returns null.
 
 This should be used instead of the `URL` constructor, since it can throw errors.
