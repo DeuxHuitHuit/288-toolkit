@@ -1,4 +1,7 @@
-import { normalize, removeTrailingSlash } from '@288-toolkit/strings';
+import { removeTrailingSlash } from '@288-toolkit/strings';
+import { decodePath } from './decodePath.js';
+import { protocolLessUrl, schemeLessUrl } from './lessUrl.js';
+import { normalizePath } from './normalizePath.js';
 import { urlCanParse } from './urlCanParse.js';
 /**
  * Creates a function that builds URLs for entries.
@@ -16,6 +19,7 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
                 decodedPath: () => '',
                 normalizePath: () => empty,
                 toAbsolute: () => null,
+                toProtocolLess: () => null,
                 toSchemeLess: () => null,
                 /** @deprecated Use `toSchemeLess` instead. */
                 toLanguageRelative: () => null,
@@ -35,13 +39,10 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
         const self = {
             raw: url,
             decodedPath() {
-                return url.pathname.split('/').map(decodeURIComponent).join('/');
+                return decodePath(url.pathname);
             },
             normalizePath() {
-                url.pathname = url.pathname
-                    .split('/')
-                    .map((part) => normalize(decodeURIComponent(part)))
-                    .join('/');
+                url.pathname = normalizePath(url.pathname);
                 return self;
             },
             toString() {
@@ -50,9 +51,11 @@ export const createEntryUrlBuilder = ({ siteUrl, shouldRemoveTrailingSlash = tru
             toAbsolute() {
                 return url.toString();
             },
+            toProtocolLess() {
+                return protocolLessUrl(url);
+            },
             toSchemeLess() {
-                const { pathname, hash, search } = url;
-                return `${pathname}${search}${hash}`;
+                return schemeLessUrl(url);
             },
             /** @deprecated Use `toSchemeLess` instead. */
             toLanguageRelative() {

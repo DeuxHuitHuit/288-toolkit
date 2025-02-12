@@ -31,6 +31,8 @@ jobs:
               run: pnpm sync
             - name: build
               run: pnpm build
+            - name: add build files
+              run: git add .
             - name: create and publish versions
               uses: changesets/action@v1
               with:
