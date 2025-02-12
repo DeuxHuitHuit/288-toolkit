@@ -41,6 +41,10 @@ export interface EntryUrl {
      */
     toAbsolute(): Maybe<string>;
     /**
+     * Returns the URL string without the protocol, composed of the hostname, pathname, search, and hash.
+     */
+    toProtocolLess(): Maybe<string>;
+    /**
      * Returns the URL string without the scheme, composed of the pathname, search, and hash.
      */
     toSchemeLess(): Maybe<string>;

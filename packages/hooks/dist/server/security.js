@@ -82,6 +82,10 @@ export const preflightCheck = ({ event, resolve }) => {
         event.url.pathname.startsWith('/wp-includes')) {
         return error404();
     }
+    // Empty responses for .well-known/ requests
+    if (event.url.pathname.startsWith('/.well-known/')) {
+        return error404();
+    }
     return resolve(event);
 };
 /**
