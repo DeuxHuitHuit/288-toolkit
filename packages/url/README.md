@@ -16,24 +16,24 @@ Validate if the URL is from the same origin as the request URL.
 
 ## `parsedUrl()`
 
-Safely parses a URL and expose and nice API to access the parts of the URL.
-If the URL is not valid, all functions returns null.
+Safely parses a URL and exposes a nice API to access the parts of the URL. If the URL is not valid,
+all functions return null.
+
+This should be used instead of the `URL` constructor, since it can throw errors.
 
 ## `createEntryUrlBuilder`
 
-Creates a function that builds URLs for entries.
-Its api is similar to the `parsedUrl` function.
+Creates a function that builds URLs for entries. Its api is similar to the `parsedUrl` function, but
+is requires global options, so a builder function is exposed.
 
 ```ts
-const getEntryUrl = createEntryUrlBuilder({
+const entryUrl = createEntryUrlBuilder({
 	siteUrl: 'https://example.org',
 	shouldRemoveTrailingSlash: true
 });
 
-getEntryUrl(mockEntry).raw; // The URL object.
-getEntryUrl(mockEntry).toAbsolute(); // Returns the full URL string.
-getEntryUrl(mockEntry).toString(); // Returns the full URL string.
-getEntryUrl(mockEntry).toSchemeLess(); // Returns the URL string without the scheme, composed of the pathname, search, and hash.
+entryUrl({ url: '...' }).toAbsolute(); // Returns the full URL string.
+entryUrl({ url: '...' }).toSchemeLess(); // Returns the URL string without the scheme, composed of the pathname, search, and hash.
 ```
 
 ## `urlCanParse`
