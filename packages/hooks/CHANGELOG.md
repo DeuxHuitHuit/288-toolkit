@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.1.1
+
+### Patch Changes
+
+-   2723288: Fix broken 1.1.0 build
+
 ## 1.1.0
 
 ### Minor Changes
