@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 5.2.0
+
+### Minor Changes
+
+-   2fc065b: Refactor the code around parsed and entry
+
 ## 5.1.2
 
 ### Patch Changes
