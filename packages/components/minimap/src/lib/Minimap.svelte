@@ -1,79 +1,68 @@
 <script lang="ts">
-	import { resize, scroll } from '@288-toolkit/device/window';
+	import { type Snippet } from 'svelte';
 	import { throttleRaf } from '@288-toolkit/timeout';
 	import clamp from 'just-clamp';
 	import type { Maybe } from '@288-toolkit/types';
+	import { on } from 'svelte/events';
 
-	interface Props {
+	let {
+		track: trackChildren,
+		thumb: thumbChildren,
+		content,
+		draggable = true,
+		onSetup
+	}: {
 		/**
 		 * The content that should be copied in the minimap
 		 */
 		content: HTMLElement;
 		/**
-		 * Wether to allow dragging the thumb on the minimap
+		 * Wether to allow dragging the thumb on the minimap. DEFAULT: true
 		 */
 		draggable?: boolean;
 		/**
 		 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
-		 * before it is appended to the minimap.
+		 * when it is rendered in the minimap.
 		 */
 		onSetup?: (content: HTMLElement) => void;
 		/**
-		 * The snippet for the track.
+		 * Snippet to style the track with your own elements
 		 */
-		track?: import('svelte').Snippet<[{ dragging: boolean }]>;
+		track: Snippet<[{ dragging: boolean }]>;
 		/**
-		 * The snippet for the thumb.
+		 * Snippet to style the thumb with your own elements
 		 */
-		thumb?: import('svelte').Snippet<[{ dragging: boolean }]>;
-	}
+		thumb: Snippet<[{ dragging: boolean }]>;
+	} = $props();
 
-	let {
-		content,
-		draggable = true,
-		onSetup = () => {
-			/* noop */
-		},
-		track,
-		thumb
-	}: Props = $props();
+	let contentHtml = $derived(content?.outerHTML ?? '');
 
-	let mounted = $state(false);
+	let mapContainerEl: HTMLElement;
+	let mapEl: HTMLElement;
+	let thumbEl: HTMLElement;
+
 	let scale = $state(0);
-	let mapContainer: HTMLElement = $state();
-	let map: HTMLElement = $state();
-	let thumbEl: HTMLElement = $state();
 	let mapY = $state(0);
 	let thumbY = $state(0);
 	let thumbHeight = $state(0);
 	let dragging = $state(false);
-	let pointerAnchor = 0;
+	let pointerAnchor = $state(0);
 
-	const setup = () => {
-		if (!content || !map) {
-			return;
-		}
-		const copy = content.cloneNode(true) as HTMLElement;
+	const setupContent = (node: HTMLElement) => {
 		// Mute all videos
-		copy.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
+		node.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
 			video.muted = true;
 		});
 		// Pause all audios
-		copy.querySelectorAll<HTMLAudioElement>('audio').forEach((audio) => {
+		node.querySelectorAll<HTMLAudioElement>('audio').forEach((audio) => {
 			audio.pause();
 		});
-		onSetup(copy);
-		map.replaceChildren(copy);
+		onSetup?.(node);
 	};
-
-	/**
-	 * A function to update the minimap content. Useful if the original content's DOM is changed.
-	 */
-	export const update = setup;
 
 	const onResize = () => {
 		// Set scale
-		scale = mapContainer.offsetWidth / content.offsetWidth;
+		scale = mapContainerEl.offsetWidth / content.offsetWidth;
 		// Set thumb height
 		thumbHeight = window.innerHeight * scale;
 	};
@@ -81,7 +70,7 @@
 	const onScroll = () => {
 		const contentRect = content.getBoundingClientRect();
 		const contentMax = contentRect.height - window.innerHeight;
-		const mapContainerHeight = mapContainer.offsetHeight;
+		const mapContainerHeight = mapContainerEl.offsetHeight;
 		// Get real content scroll progress %
 		const scrollProgress = clamp(0, -contentRect.top / contentMax, 1);
 		// Get map content height from the content rect. Getting it directly from the map element
@@ -114,41 +103,47 @@
 
 		const contentRect = content.getBoundingClientRect();
 		const contentTop = contentRect.top + window.scrollY;
-		const mapContainerRect = mapContainer.getBoundingClientRect();
+		const mapContainerRect = mapContainerEl.getBoundingClientRect();
 		const mapContainerTop = mapContainerRect.top;
-		const mapHeight = map.getBoundingClientRect().height;
+		const mapHeight = mapEl.getBoundingClientRect().height;
 
 		let top: Maybe<number> = null;
+		let progress = 0;
 
-		if (dragging) {
-			// Dragging
+		const handleThumbDrag = () => {
 			const contentMax = contentRect.height - window.innerHeight;
 			const containerRelativePointerY = clientY - pointerAnchor - mapContainerTop;
 			const dragRange = Math.min(mapContainerRect.height, mapHeight) - thumbHeight;
 			// Progress is between 0 and 1
-			const progress = Math.min(containerRelativePointerY / dragRange, 1);
+			progress = Math.min(containerRelativePointerY / dragRange, 1);
 			top = progress * contentMax + contentTop;
-		} else {
+			if (progress > 0) {
+				window.scrollTo({
+					top,
+					behavior: 'instant'
+				});
+			}
+		};
+
+		const handleTrackClick = () => {
 			// Track map click
 			const contentMax = contentRect.height;
-			const mapTop = map.getBoundingClientRect().top;
+			const mapTop = mapEl.getBoundingClientRect().top;
 			const mapRelativePointerY = clientY - mapTop;
 			// Progress is between 0 and 1
-			const progress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
+			progress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
 			top = progress * contentMax + contentTop;
-		}
-
-		if (typeof top === 'number') {
 			window.scrollTo({
 				top,
 				behavior: 'instant'
 			});
-		}
-	};
+		};
 
-	const onDrop = (e: PointerEvent) => {
-		dragging = false;
-		removeDragListeners(e);
+		if (dragging) {
+			handleThumbDrag();
+		} else {
+			handleTrackClick();
+		}
 	};
 
 	const addDragListeners = (e: PointerEvent) => {
@@ -174,6 +169,11 @@
 		dragging = true;
 	};
 
+	const onDrop = (e: PointerEvent) => {
+		dragging = false;
+		removeDragListeners(e);
+	};
+
 	const onTouchStart = (e: TouchEvent) => {
 		if (!draggable) {
 			return;
@@ -182,20 +182,16 @@
 	};
 
 	$effect(() => {
-		let resizeUnsub: () => void;
-		let scrollUnsub: () => void;
-		if (content && map) {
+		if (content && mapEl) {
+			const resizeUnsub = on(window, 'resize', throttleRaf(onResize));
+			const scrollUnsub = on(window, 'scroll', onScroll);
 			onResize();
 			onScroll();
-			setup();
-			resizeUnsub = resize.subscribe(throttleRaf(onResize));
-			scrollUnsub = scroll.subscribe(onScroll);
-			mounted = true;
+			return () => {
+				resizeUnsub();
+				scrollUnsub();
+			};
 		}
-		return () => {
-			resizeUnsub?.();
-			scrollUnsub?.();
-		};
 	});
 </script>
 
@@ -204,43 +200,57 @@
 	style="--scale: {scale}; --map-y: {mapY}px; --thumb-y: {thumbY}px"
 	aria-hidden="true"
 	draggable="false"
-	bind:this={mapContainer}
+	bind:this={mapContainerEl}
 >
-	<div class="_map-overflow" draggable="false">
-		<div class="_map" inert draggable="false" bind:this={map}></div>
-	</div>
-	<div class="_track" draggable="false" onpointerdown={updateScroll}>
-		{#if mounted}
-			{@render track?.({ dragging })}
-		{/if}
-		<div
-			class="_thumb"
-			style="height: {thumbHeight}px"
-			draggable="false"
-			onpointerdown={onDrag}
-			ontouchstartcapture={onTouchStart}
-			bind:this={thumbEl}
-		>
-			{#if mounted}
-				{@render thumb?.({ dragging })}
-			{/if}
+	{#key contentHtml}
+		<div class="_map-overflow" draggable="false">
+			<div class="_map" inert draggable="false" bind:this={mapEl} use:setupContent>
+				{@html contentHtml}
+			</div>
 		</div>
-	</div>
+		<div class="_track" draggable="false" onpointerdown={updateScroll}>
+			{#if contentHtml}
+				<div class="_track-content">{@render trackChildren?.({ dragging })}</div>
+			{/if}
+			<div
+				class="_thumb"
+				style="height: {thumbHeight}px"
+				draggable="false"
+				onpointerdown={onDrag}
+				ontouchstartcapture={onTouchStart}
+				bind:this={thumbEl}
+			>
+				{#if contentHtml}
+					<div class="_thumb-content">{@render thumbChildren?.({ dragging })}</div>
+				{/if}
+			</div>
+		</div>
+	{/key}
 </div>
 
 <style>
-	._map-container {
-		height: 100%;
-	}
-
 	._map-container,
 	._track {
 		display: grid;
 		grid-template: 100% / 100%;
+	}
 
-		:global(> div) {
-			grid-area: 1 / 1;
-		}
+	._map-overflow,
+	._track,
+	._thumb,
+	._track-content,
+	._thumb-content {
+		grid-area: 1 / 1;
+	}
+
+	._track-content,
+	._thumb-content {
+		height: 100%;
+		width: 100%;
+	}
+
+	._map-container {
+		height: 100%;
 	}
 
 	._map-overflow {
@@ -248,6 +258,7 @@
 	}
 
 	._track {
+		height: 100%;
 		z-index: 10;
 	}
 
