@@ -37,9 +37,9 @@
 
 	let contentHtml = $derived(content?.outerHTML ?? '');
 
-	let mapContainerEl: HTMLElement;
-	let mapEl: HTMLElement;
-	let thumbEl: HTMLElement;
+	let mapContainerEl = $state() as HTMLElement;
+	let mapEl = $state() as HTMLElement;
+	let thumbEl = $state() as HTMLElement;
 
 	let scale = $state(0);
 	let mapY = $state(0);
