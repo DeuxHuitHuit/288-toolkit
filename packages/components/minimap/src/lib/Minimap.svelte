@@ -1,16 +1,18 @@
 <script lang="ts">
-	import { type Snippet } from 'svelte';
+	import { untrack, type Snippet } from 'svelte';
 	import { throttleRaf } from '@288-toolkit/timeout';
 	import clamp from 'just-clamp';
 	import type { Maybe } from '@288-toolkit/types';
 	import { on } from 'svelte/events';
+	import { motionSafeScrollBehavior } from '@288-toolkit/ui';
 
 	let {
 		track: trackChildren,
 		thumb: thumbChildren,
 		content,
 		draggable = true,
-		onSetup
+		onSetup,
+		scrollBehavior = motionSafeScrollBehavior()
 	}: {
 		/**
 		 * The content that should be copied in the minimap
@@ -21,6 +23,11 @@
 		 */
 		draggable?: boolean;
 		/**
+		 * Scroll behavior when clicking on the minimap.
+		 * DEFAULT: 'instant' if the user prefers reduced motions, otherwise 'smooth'
+		 */
+		scrollBehavior?: ScrollBehavior;
+		/**
 		 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
 		 * when it is rendered in the minimap.
 		 */
@@ -28,11 +35,11 @@
 		/**
 		 * Snippet to style the track with your own elements
 		 */
-		track: Snippet<[{ dragging: boolean }]>;
+		track: Snippet<[{ dragging: boolean; scrollProgress: number }]>;
 		/**
 		 * Snippet to style the thumb with your own elements
 		 */
-		thumb: Snippet<[{ dragging: boolean }]>;
+		thumb: Snippet<[{ dragging: boolean; scrollProgress: number }]>;
 	} = $props();
 
 	let contentHtml = $derived(content?.outerHTML ?? '');
@@ -67,26 +74,30 @@
 		thumbHeight = window.innerHeight * scale;
 	};
 
+	let scrollProgress = $state(0);
+
 	const onScroll = () => {
 		const contentRect = content.getBoundingClientRect();
 		const contentMax = contentRect.height - window.innerHeight;
 		const mapContainerHeight = mapContainerEl.offsetHeight;
 		// Get real content scroll progress %
-		const scrollProgress = clamp(0, -contentRect.top / contentMax, 1);
+		scrollProgress = clamp(0, -contentRect.top / contentMax, 1);
 		// Get map content height from the content rect. Getting it directly from the map element
 		// is not reliable.
 		const mapHeight = contentRect.height * scale;
-		// Translate map if map height is greater than container
-		if (mapHeight > mapContainerHeight) {
-			const mapMax = mapHeight - mapContainerHeight;
-			const mapProgress = scrollProgress * mapMax;
-			// Convert progress to negative, make sure its not above 0 and set it on content
-			mapY = -mapProgress;
-		}
-		// Set thumb progress
-		const thumbMax = Math.min(mapContainerHeight, mapHeight) - thumbHeight;
-		const thumbProgress = scrollProgress * thumbMax;
-		thumbY = thumbProgress;
+		untrack(() => {
+			// Translate map if map height is greater than container
+			if (mapHeight > mapContainerHeight) {
+				const mapMax = mapHeight - mapContainerHeight;
+				const mapProgress = scrollProgress * mapMax;
+				// Convert progress to negative, make sure its not above 0 and set it on content
+				mapY = -mapProgress;
+			}
+			// Set thumb progress
+			const thumbMax = Math.min(mapContainerHeight, mapHeight) - thumbHeight;
+			const thumbProgress = scrollProgress * thumbMax;
+			thumbY = thumbProgress;
+		});
 	};
 
 	const updateScroll = (e: PointerEvent) => {
@@ -108,16 +119,15 @@
 		const mapHeight = mapEl.getBoundingClientRect().height;
 
 		let top: Maybe<number> = null;
-		let progress = 0;
 
 		const handleThumbDrag = () => {
 			const contentMax = contentRect.height - window.innerHeight;
 			const containerRelativePointerY = clientY - pointerAnchor - mapContainerTop;
 			const dragRange = Math.min(mapContainerRect.height, mapHeight) - thumbHeight;
 			// Progress is between 0 and 1
-			progress = Math.min(containerRelativePointerY / dragRange, 1);
-			top = progress * contentMax + contentTop;
-			if (progress > 0) {
+			scrollProgress = Math.min(containerRelativePointerY / dragRange, 1);
+			top = scrollProgress * contentMax + contentTop;
+			if (scrollProgress > 0) {
 				window.scrollTo({
 					top,
 					behavior: 'instant'
@@ -131,11 +141,11 @@
 			const mapTop = mapEl.getBoundingClientRect().top;
 			const mapRelativePointerY = clientY - mapTop;
 			// Progress is between 0 and 1
-			progress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
-			top = progress * contentMax + contentTop;
+			scrollProgress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
+			top = scrollProgress * contentMax + contentTop;
 			window.scrollTo({
 				top,
-				behavior: 'instant'
+				behavior: scrollBehavior
 			});
 		};
 
@@ -210,7 +220,9 @@
 		</div>
 		<div class="_track" draggable="false" onpointerdown={updateScroll}>
 			{#if contentHtml}
-				<div class="_track-content">{@render trackChildren?.({ dragging })}</div>
+				<div class="_track-content">
+					{@render trackChildren?.({ dragging, scrollProgress })}
+				</div>
 			{/if}
 			<div
 				class="_thumb"
@@ -221,7 +233,9 @@
 				bind:this={thumbEl}
 			>
 				{#if contentHtml}
-					<div class="_thumb-content">{@render thumbChildren?.({ dragging })}</div>
+					<div class="_thumb-content">
+						{@render thumbChildren?.({ dragging, scrollProgress })}
+					</div>
 				{/if}
 			</div>
 		</div>
