@@ -1,8 +1,6 @@
 import { reducedMotion } from '@288-toolkit/device/media';
-import { animate, scroll, type KeyframeOptions, type MotionKeyframesDefinition } from 'motion';
+import { animate, DOMKeyframesDefinition, scroll, type Easing } from 'motion';
 import { get } from 'svelte/store';
-
-export type Easing = KeyframeOptions['easing'];
 
 export type ParallaxOptions = {
 	/**
@@ -12,11 +10,11 @@ export type ParallaxOptions = {
 	/**
 	 * Easing of the animation. DEFAULT: 'linear'
 	 */
-	easing?: Easing;
+	ease?: Easing;
 	/**
 	 * Extra keyframes to add more animation effects.
 	 */
-	keyframes?: MotionKeyframesDefinition;
+	keyframes?: DOMKeyframesDefinition;
 };
 
 export const DEFAULT_SPEED = 0.2;
@@ -26,7 +24,7 @@ export const DEFAULT_EXTRA_KEYFRAMES = {};
 const getOptions = (options?: ParallaxOptions) => {
 	return {
 		speed: options?.speed ?? DEFAULT_SPEED,
-		easing: options?.easing || DEFAULT_EASING,
+		ease: options?.ease || DEFAULT_EASING,
 		keyframes: options?.keyframes || DEFAULT_EXTRA_KEYFRAMES
 	};
 };
@@ -34,13 +32,13 @@ const getOptions = (options?: ParallaxOptions) => {
 const initParallax = ({
 	node,
 	speed,
-	easing,
+	ease,
 	keyframes
 }: {
 	node: HTMLElement;
 	speed: number;
-	easing: Easing;
-	keyframes: MotionKeyframesDefinition;
+	ease: Easing;
+	keyframes: DOMKeyframesDefinition;
 }) => {
 	if (speed === 0 || get(reducedMotion)) {
 		return null;
@@ -58,7 +56,7 @@ const initParallax = ({
 				]
 			},
 			{
-				easing
+				ease: ease
 			}
 		),
 		{
