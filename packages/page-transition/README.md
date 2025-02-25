@@ -6,8 +6,8 @@ npm i @288-toolkit/page-transition
 
 This page transition system leverages Sveltekit's `onNavigate` and allows for multiple different
 transitions within the same site. Each transition has to be registered with a unique key and a
-condition. A store will then be provided so the components can get notified when the transition is
-triggered.
+condition. A reactive object is then returned so the components can get notified when the transition
+is triggered.
 
 ## `registerTransition()` and `endTransition()`
 
@@ -30,10 +30,10 @@ This function MUST be called at component initialization.
 type TransitionCondition = (nav: Navigation) => boolean;
 ```
 
-`registerTransition` returns a readable store that is `null` by default, and is a `Transition`
-object while the transition is happening. The `key` of the `Transition` object will always be the
-key that was passed to `registerTransition`. That way, the store is scoped to this particular
-transition.
+`registerTransition` returns an object with a reactive `current` property that is `null` by default,
+and is a `Transition` object while the transition is happening. The `key` of the `Transition` object
+will always be the key that was passed to `registerTransition`. That way, `current` is scoped to
+this particular transition.
 
 ```ts
 /**
@@ -64,7 +64,7 @@ It accepts an optional callback that will run after the new page is rendered.
 	const transitioning = registerTransition('default');
 </script>
 
-{#if !$transitioning}
+{#if !transitioning.current}
 	<div transition:fade={{ duration: 150 }} on:outroEnd={endTransition}>
 		<slot />
 	</div>
@@ -91,7 +91,7 @@ It accepts an optional callback that will run after the new page is rendered.
 	});
 </script>
 
-{#if !$transitioning}
+{#if !transitioning.current}
 	<div out:fly={{ duration: 700, y: '100%' }} on:outroEnd={endTransition}>
 		<slot />
 	</div>
@@ -120,19 +120,19 @@ If the condition returns `true`, all transitions are skipped.
 <!-- ... -->
 ```
 
-## `$transitioning`
+## `transitioning`
 
-The module exports a general readable store that is updated with a `Transition` object whenever any
-transition occurs and is `null` the rest of the time. This is useful if you want to easily run some
-code for a transition outside of the component that has registered it, or for several transitions
-with similar keys, for example.
+The module exports an object with a reactive `current` property that is updated with a `Transition`
+object whenever any transition occurs and is `null` the rest of the time. This is useful if you want
+to easily run some code for a transition outside of the component that has registered it, or for
+several transitions with similar keys, for example.
 
 ```svelte
 <script lang="ts">
 	import { transitioning } from '@288-toolkit/page-transition';
 </script>
 
-{#if $transitioning?.key.startsWith('article-')}
+{#if transitioning.current?.key.startsWith('article-')}
 	<!-- ... -->
 {/if}
 ```
