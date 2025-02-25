@@ -1,86 +1,103 @@
 <script lang="ts">
-	import { onDestroy } from 'svelte';
-	import { resize, scroll } from '@288-toolkit/device/window';
+	import { untrack, type Snippet } from 'svelte';
 	import { throttleRaf } from '@288-toolkit/timeout';
 	import clamp from 'just-clamp';
 	import type { Maybe } from '@288-toolkit/types';
+	import { on } from 'svelte/events';
+	import { motionSafeScrollBehavior } from '@288-toolkit/ui';
 
-	/**
-	 * The content that should be copied in the minimap
-	 */
-	export let content: HTMLElement;
-	/**
-	 * Wether to allow dragging the thumb on the minimap
-	 */
-	export let draggable = true;
-	/**
-	 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
-	 * before it is appended to the minimap.
-	 */
-	export let onSetup: (content: HTMLElement) => void = () => {
-		/* noop */
-	};
+	let {
+		track: trackChildren,
+		thumb: thumbChildren,
+		content,
+		draggable = true,
+		onSetup,
+		scrollBehavior = motionSafeScrollBehavior()
+	}: {
+		/**
+		 * The content that should be copied in the minimap
+		 */
+		content: HTMLElement;
+		/**
+		 * Wether to allow dragging the thumb on the minimap. DEFAULT: true
+		 */
+		draggable?: boolean;
+		/**
+		 * Scroll behavior when clicking on the minimap.
+		 * DEFAULT: 'instant' if the user prefers reduced motions, otherwise 'smooth'
+		 */
+		scrollBehavior?: ScrollBehavior;
+		/**
+		 * Function called when the minimap is setup and updated. Useful to modify the content's DOM
+		 * when it is rendered in the minimap.
+		 */
+		onSetup?: (content: HTMLElement) => void;
+		/**
+		 * Snippet to style the track with your own elements
+		 */
+		track: Snippet<[{ dragging: boolean; scrollProgress: number }]>;
+		/**
+		 * Snippet to style the thumb with your own elements
+		 */
+		thumb: Snippet<[{ dragging: boolean; scrollProgress: number }]>;
+	} = $props();
 
-	let mounted = false;
-	let scale = 0;
-	let mapContainer: HTMLElement;
-	let map: HTMLElement;
-	let thumb: HTMLElement;
-	let mapY = 0;
-	let thumbY = 0;
-	let thumbHeight = 0;
-	let dragging = false;
-	let pointerAnchor = 0;
+	let contentHtml = $derived(content?.outerHTML ?? '');
 
-	const setup = () => {
-		if (!content || !map) {
-			return;
-		}
-		const copy = content.cloneNode(true) as HTMLElement;
+	let mapContainerEl = $state() as HTMLElement;
+	let mapEl = $state() as HTMLElement;
+	let thumbEl = $state() as HTMLElement;
+
+	let scale = $state(0);
+	let mapY = $state(0);
+	let thumbY = $state(0);
+	let thumbHeight = $state(0);
+	let dragging = $state(false);
+	let pointerAnchor = $state(0);
+
+	const setupContent = (node: HTMLElement) => {
 		// Mute all videos
-		copy.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
+		node.querySelectorAll<HTMLVideoElement>('video').forEach((video) => {
 			video.muted = true;
 		});
 		// Pause all audios
-		copy.querySelectorAll<HTMLAudioElement>('audio').forEach((audio) => {
+		node.querySelectorAll<HTMLAudioElement>('audio').forEach((audio) => {
 			audio.pause();
 		});
-		onSetup(copy);
-		map.replaceChildren(copy);
+		onSetup?.(node);
 	};
-
-	/**
-	 * A function to update the minimap content. Useful if the original content's DOM is changed.
-	 */
-	export const update = setup;
 
 	const onResize = () => {
 		// Set scale
-		scale = mapContainer.offsetWidth / content.offsetWidth;
+		scale = mapContainerEl.offsetWidth / content.offsetWidth;
 		// Set thumb height
 		thumbHeight = window.innerHeight * scale;
 	};
 
+	let scrollProgress = $state(0);
+
 	const onScroll = () => {
 		const contentRect = content.getBoundingClientRect();
 		const contentMax = contentRect.height - window.innerHeight;
-		const mapContainerHeight = mapContainer.offsetHeight;
+		const mapContainerHeight = mapContainerEl.offsetHeight;
 		// Get real content scroll progress %
-		const scrollProgress = clamp(0, -contentRect.top / contentMax, 1);
+		scrollProgress = clamp(0, -contentRect.top / contentMax, 1);
 		// Get map content height from the content rect. Getting it directly from the map element
 		// is not reliable.
 		const mapHeight = contentRect.height * scale;
-		// Translate map if map height is greater than container
-		if (mapHeight > mapContainerHeight) {
-			const mapMax = mapHeight - mapContainerHeight;
-			const mapProgress = scrollProgress * mapMax;
-			// Convert progress to negative, make sure its not above 0 and set it on content
-			mapY = -mapProgress;
-		}
-		// Set thumb progress
-		const thumbMax = Math.min(mapContainerHeight, mapHeight) - thumbHeight;
-		const thumbProgress = scrollProgress * thumbMax;
-		thumbY = thumbProgress;
+		untrack(() => {
+			// Translate map if map height is greater than container
+			if (mapHeight > mapContainerHeight) {
+				const mapMax = mapHeight - mapContainerHeight;
+				const mapProgress = scrollProgress * mapMax;
+				// Convert progress to negative, make sure its not above 0 and set it on content
+				mapY = -mapProgress;
+			}
+			// Set thumb progress
+			const thumbMax = Math.min(mapContainerHeight, mapHeight) - thumbHeight;
+			const thumbProgress = scrollProgress * thumbMax;
+			thumbY = thumbProgress;
+		});
 	};
 
 	const updateScroll = (e: PointerEvent) => {
@@ -97,63 +114,74 @@
 
 		const contentRect = content.getBoundingClientRect();
 		const contentTop = contentRect.top + window.scrollY;
-		const mapContainerRect = mapContainer.getBoundingClientRect();
+		const mapContainerRect = mapContainerEl.getBoundingClientRect();
 		const mapContainerTop = mapContainerRect.top;
-		const mapHeight = map.getBoundingClientRect().height;
+		const mapHeight = mapEl.getBoundingClientRect().height;
 
 		let top: Maybe<number> = null;
 
-		if (dragging) {
-			// Dragging
+		const handleThumbDrag = () => {
 			const contentMax = contentRect.height - window.innerHeight;
 			const containerRelativePointerY = clientY - pointerAnchor - mapContainerTop;
 			const dragRange = Math.min(mapContainerRect.height, mapHeight) - thumbHeight;
 			// Progress is between 0 and 1
-			const progress = Math.min(containerRelativePointerY / dragRange, 1);
-			top = progress * contentMax + contentTop;
-		} else {
+			scrollProgress = Math.min(containerRelativePointerY / dragRange, 1);
+			top = scrollProgress * contentMax + contentTop;
+			if (scrollProgress > 0) {
+				window.scrollTo({
+					top,
+					behavior: 'instant'
+				});
+			}
+		};
+
+		const handleTrackClick = () => {
 			// Track map click
 			const contentMax = contentRect.height;
-			const mapTop = map.getBoundingClientRect().top;
+			const mapTop = mapEl.getBoundingClientRect().top;
 			const mapRelativePointerY = clientY - mapTop;
 			// Progress is between 0 and 1
-			const progress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
-			top = progress * contentMax + contentTop;
-		}
-
-		if (typeof top === 'number') {
+			scrollProgress = Math.min((mapRelativePointerY - thumbHeight / 2) / mapHeight, 1);
+			top = scrollProgress * contentMax + contentTop;
 			window.scrollTo({
 				top,
-				behavior: 'instant'
+				behavior: scrollBehavior
 			});
+		};
+
+		if (dragging) {
+			handleThumbDrag();
+		} else {
+			handleTrackClick();
 		}
+	};
+
+	const addDragListeners = (e: PointerEvent) => {
+		thumbEl.setPointerCapture(e.pointerId);
+		thumbEl.addEventListener('pointermove', updateScroll);
+		thumbEl.addEventListener('pointerup', onDrop);
+	};
+
+	const removeDragListeners = (e: PointerEvent) => {
+		thumbEl.releasePointerCapture(e.pointerId);
+		thumbEl.removeEventListener('pointermove', updateScroll);
+		thumbEl.removeEventListener('pointerup', onDrop);
+	};
+
+	const onDrag = (e: PointerEvent) => {
+		e.stopPropagation();
+		if (!draggable) {
+			return;
+		}
+		const { clientY } = e;
+		pointerAnchor = clientY - thumbEl.getBoundingClientRect().top;
+		addDragListeners(e);
+		dragging = true;
 	};
 
 	const onDrop = (e: PointerEvent) => {
 		dragging = false;
 		removeDragListeners(e);
-	};
-
-	const addDragListeners = (e: PointerEvent) => {
-		thumb.setPointerCapture(e.pointerId);
-		thumb.addEventListener('pointermove', updateScroll);
-		thumb.addEventListener('pointerup', onDrop);
-	};
-
-	const removeDragListeners = (e: PointerEvent) => {
-		thumb.releasePointerCapture(e.pointerId);
-		thumb.removeEventListener('pointermove', updateScroll);
-		thumb.removeEventListener('pointerup', onDrop);
-	};
-
-	const onDrag = (e: PointerEvent) => {
-		if (!draggable) {
-			return;
-		}
-		const { clientY } = e;
-		pointerAnchor = clientY - thumb.getBoundingClientRect().top;
-		addDragListeners(e);
-		dragging = true;
 	};
 
 	const onTouchStart = (e: TouchEvent) => {
@@ -163,21 +191,18 @@
 		e.preventDefault();
 	};
 
-	// ONMOUNT
-	// We can't use svelte's `onMount` because the `content` prop is still undefined when it runs.
-	// We wait for svelte to get the ref, then run the setup.
-	$: if (content && map) {
-		onResize();
-		onScroll();
-		setup();
-		const resizeUnsub = resize.subscribe(throttleRaf(onResize));
-		const scrollUnsub = scroll.subscribe(onScroll);
-		onDestroy(() => {
-			resizeUnsub();
-			scrollUnsub();
-		});
-		mounted = true;
-	}
+	$effect(() => {
+		if (content && mapEl) {
+			const resizeUnsub = on(window, 'resize', throttleRaf(onResize));
+			const scrollUnsub = on(window, 'scroll', onScroll);
+			onResize();
+			onScroll();
+			return () => {
+				resizeUnsub();
+				scrollUnsub();
+			};
+		}
+	});
 </script>
 
 <div
@@ -185,43 +210,61 @@
 	style="--scale: {scale}; --map-y: {mapY}px; --thumb-y: {thumbY}px"
 	aria-hidden="true"
 	draggable="false"
-	bind:this={mapContainer}
+	bind:this={mapContainerEl}
 >
-	<div class="_map-overflow" draggable="false">
-		<div class="_map" inert draggable="false" bind:this={map}></div>
-	</div>
-	<div class="_track" draggable="false" on:pointerdown={updateScroll}>
-		{#if mounted}
-			<slot name="track" {dragging} />
-		{/if}
-		<div
-			class="_thumb"
-			style="height: {thumbHeight}px"
-			draggable="false"
-			on:pointerdown|stopPropagation={onDrag}
-			on:touchstart|capture={onTouchStart}
-			bind:this={thumb}
-		>
-			{#if mounted}
-				<slot name="thumb" {dragging} />
-			{/if}
+	{#key contentHtml}
+		<div class="_map-overflow" draggable="false">
+			<div class="_map" inert draggable="false" bind:this={mapEl} use:setupContent>
+				{@html contentHtml}
+			</div>
 		</div>
-	</div>
+		<div class="_track" draggable="false" onpointerdown={updateScroll}>
+			{#if contentHtml}
+				<div class="_track-content">
+					{@render trackChildren?.({ dragging, scrollProgress })}
+				</div>
+			{/if}
+			<div
+				class="_thumb"
+				style="height: {thumbHeight}px"
+				draggable="false"
+				onpointerdown={onDrag}
+				ontouchstartcapture={onTouchStart}
+				bind:this={thumbEl}
+			>
+				{#if contentHtml}
+					<div class="_thumb-content">
+						{@render thumbChildren?.({ dragging, scrollProgress })}
+					</div>
+				{/if}
+			</div>
+		</div>
+	{/key}
 </div>
 
 <style>
-	._map-container {
-		height: 100%;
-	}
-
 	._map-container,
 	._track {
 		display: grid;
 		grid-template: 100% / 100%;
+	}
 
-		:global(> div) {
-			grid-area: 1 / 1;
-		}
+	._map-overflow,
+	._track,
+	._thumb,
+	._track-content,
+	._thumb-content {
+		grid-area: 1 / 1;
+	}
+
+	._track-content,
+	._thumb-content {
+		height: 100%;
+		width: 100%;
+	}
+
+	._map-container {
+		height: 100%;
 	}
 
 	._map-overflow {
@@ -229,6 +272,7 @@
 	}
 
 	._track {
+		height: 100%;
 		z-index: 10;
 	}
 
