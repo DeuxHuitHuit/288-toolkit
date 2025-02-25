@@ -1,10 +1,10 @@
 import { reducedMotion } from '@288-toolkit/device/media';
-import { tweened } from 'svelte/motion';
+import { Tween, type TweenedOptions } from 'svelte/motion';
 import { get } from 'svelte/store';
 
 export interface SlideOptions {
 	open: boolean;
-	options?: Parameters<typeof tweened<number>>[1];
+	options?: TweenedOptions<number>;
 	closedHeight?: number;
 }
 
@@ -12,13 +12,13 @@ export const slide = (
 	node: HTMLElement,
 	{ open, options = {}, closedHeight = 0 }: SlideOptions
 ) => {
-	const slideHeight = tweened<number>(0, {
+	const slideHeight = new Tween<number>(0, {
 		...options,
 		duration: get(reducedMotion) ? 0 : options.duration
 	});
 
-	const slideUnsubscribe = slideHeight.subscribe((height) => {
-		node.style.height = `${height}px`;
+	$effect(() => {
+		node.style.height = `${slideHeight.current}px`;
 	});
 
 	const calculateHeight = () => {
@@ -44,7 +44,6 @@ export const slide = (
 	return {
 		update: ({ open, options = {}, closedHeight }: SlideOptions) => {
 			setHeight(open, options, closedHeight);
-		},
-		destroy: slideUnsubscribe
+		}
 	};
 };
