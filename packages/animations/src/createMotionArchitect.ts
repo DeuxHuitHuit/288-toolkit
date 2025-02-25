@@ -1,4 +1,4 @@
-import type { AnimationControls } from 'motion';
+import { type AnimationPlaybackControls } from 'motion';
 import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect.js';
 
 /**
@@ -11,18 +11,18 @@ import { createAnimationArchitect, type ArchitectParams } from './createAnimatio
 export const createMotionArchitect = (options?: ArchitectParams) => {
 	const architect = createAnimationArchitect(options);
 
-	const registerMotionAnimation = (animation: AnimationControls) => {
+	const registerMotionAnimation = (animation: AnimationPlaybackControls) => {
 		return architect.registerAnimation(({ duration }) => {
-			const { duration: animDuration, playbackRate } = animation;
-			// Set the animation duration to the out duration
-			animation.playbackRate =
-				animDuration <= duration ? playbackRate : animDuration / duration;
+			const { duration: animDuration, speed } = animation;
 			// If the animation was currently running (i.e. we're changing
-			// the page as soon as it was opened), we want to stop it before reversing it
-			if (animation.playState === 'running') {
-				animation.stop();
-			}
-			animation.reverse();
+			// the page as soon as it was opened), we want to pause it before reversing it
+			animation.pause();
+			// Calculate the new speed to fit the out duration
+			const newSpeed = animDuration <= duration ? speed : animDuration / duration;
+			// Set a negative speed to reverse the animation
+			animation.speed = -newSpeed;
+			// Play the animation
+			animation.play();
 		});
 	};
 
