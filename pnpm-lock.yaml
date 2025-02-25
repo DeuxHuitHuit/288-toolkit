@@ -233,8 +233,8 @@ importers:
         specifier: workspace:^
         version: link:../../timeout
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.0.0
+        specifier: 5.x
+        version: 5.17.2
 
   packages/components/minimap:
     dependencies:
@@ -252,7 +252,7 @@ importers:
         version: 4.2.0
       svelte:
         specifier: 4.x || 5.x
-        version: 4.0.0
+        version: 4.2.17
 
   packages/components/pagination:
     dependencies:
