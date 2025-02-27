@@ -1,0 +1,30 @@
+name: Create build
+on:
+    push:
+        branches:
+            - main
+env:
+    CI: true
+jobs:
+    version:
+        timeout-minutes: 15
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code repository
+              uses: actions/checkout@v4
+            - name: setup node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version-file: .nvmrc
+            - name: install pnpm
+              run: npm i pnpm@latest -g
+            - name: install dependencies
+              run: pnpm install
+            - name: sync
+              run: pnpm sync
+            - name: build
+              run: pnpm build
+            - uses: stefanzweifel/git-auto-commit-action@master
+              if: ${{ github.ref_name == 'main' }}
+              with:
+                  commit_message: '(chore) Add build files'

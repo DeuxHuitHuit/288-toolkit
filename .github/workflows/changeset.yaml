@@ -2,7 +2,7 @@ name: Changesets
 on:
     push:
         branches:
-            - main
+            - releases
 env:
     CI: true
 jobs:
@@ -15,7 +15,7 @@ jobs:
             - name: setup node.js
               uses: actions/setup-node@v4
               with:
-                  node-version: 20
+                  node-version-file: .nvmrc
             - name: install pnpm
               run: npm i pnpm@latest -g
             - name: Creating .npmrc
@@ -29,10 +29,6 @@ jobs:
               run: pnpm install
             - name: sync
               run: pnpm sync
-            - name: build
-              run: pnpm build
-            - name: add build files
-              run: git add .
             - name: create and publish versions
               uses: changesets/action@v1
               with:
