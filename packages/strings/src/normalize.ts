@@ -66,7 +66,6 @@ const CHAR_MAP = {
 	ÿ: 'y'
 } as const;
 
-
 /**
  * Replaces all accents with their base characters in a case sensitive manner
  */

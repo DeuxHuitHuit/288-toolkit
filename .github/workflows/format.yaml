@@ -1,0 +1,59 @@
+# When not in an integration branch, the action will first attempt to fix and
+# format the code, than commit the results.
+# In all cases, it checks and lints the code
+
+name: Format, fix and check code
+
+on:
+    push:
+        branches-ignore:
+            - main
+            - releases
+        paths:
+            - '**.svelte'
+            - '**.ts'
+            - '**.js'
+            - '**.cjs'
+            - '**.md'
+            - '**.yaml'
+            - 'src/**.css'
+            - 'src/**.json'
+            - '.eslint*'
+            - '.prettier*'
+            - 'tsconfig.json'
+            - '*.config.js'
+            - '*.config.cjs'
+            - 'package-lock.json'
+
+jobs:
+    format:
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+        permissions:
+            contents: write
+
+        steps:
+            - uses: actions/checkout@master
+              with:
+                  ref: ${{ github.head_ref }}
+
+            - uses: actions/setup-node@master
+              with:
+                  node-version-file: '.nvmrc'
+
+            - name: node version
+              run: node --version && npm --version
+
+            - name: install pnpm
+              run: npm i pnpm@latest -g
+
+            - name: install dependencies
+              run: pnpm install
+            - name: sync
+              run: pnpm sync
+            - name: format
+              run: pnpm format
+
+            - uses: stefanzweifel/git-auto-commit-action@master
+              with:
+                  commit_message: (chore) Format code

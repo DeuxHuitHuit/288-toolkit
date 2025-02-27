@@ -1,5 +1,4 @@
-
-import { expect, describe, test } from 'vitest';
+import { describe, expect, test } from 'vitest';
 import { getYoutubeId } from '../src/lib/youtube';
 
 describe('getYoutubeId', () => {
