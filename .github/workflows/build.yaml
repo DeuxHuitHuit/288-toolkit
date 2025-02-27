@@ -24,7 +24,14 @@ jobs:
               run: pnpm sync
             - name: build
               run: pnpm build
-            - uses: stefanzweifel/git-auto-commit-action@master
-              if: ${{ github.ref_name == 'main' }}
+            - name: create pull request
+              id: pr
+              uses: peter-evans/create-pull-request@main
               with:
-                  commit_message: '(chore) Add build files'
+                  commit-message: '(chore) Add build files'
+                  title: '(chore) Add build files'
+                  delete-branch: true
+                  branch: build/${{ github.run_id }}
+                  add-paths: packages/
+                  reviewers: ${{ github.actor }}
+                  assignees: ${{ github.actor }}
