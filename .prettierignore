@@ -4,3 +4,4 @@ pnpm-lock.yaml
 craft.d.ts
 craft-*.d.ts
 src/**/*.js
+**/dist/**
