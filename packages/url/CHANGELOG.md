@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 5.2.1
+
+### Patch Changes
+
+-   63a630b: Replace port in entry url
+
 ## 5.2.0
 
 ### Minor Changes
