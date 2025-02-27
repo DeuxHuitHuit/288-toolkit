@@ -27,7 +27,7 @@ export const getVimeoId = (url: string) => {
 	if (!urlCanParse(url)) {
 		return '';
 	}
-	return new URL(url).pathname.replace('/', '')
+	return new URL(url).pathname.replace('/', '');
 };
 
 /**
