@@ -13,6 +13,8 @@ declare const __propDef: {
             label: any;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type PaginationLoadMoreProps = typeof __propDef.props;
 export type PaginationLoadMoreEvents = typeof __propDef.events;

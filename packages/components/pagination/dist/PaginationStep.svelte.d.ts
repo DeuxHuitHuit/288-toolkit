@@ -16,6 +16,8 @@ declare const __propDef: {
             disabled: boolean;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type PaginationStepProps = typeof __propDef.props;
 export type PaginationStepEvents = typeof __propDef.events;

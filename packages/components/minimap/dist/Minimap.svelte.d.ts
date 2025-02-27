@@ -26,6 +26,8 @@ declare const __propDef: {
             dragging: boolean;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type MinimapProps = typeof __propDef.props;
 export type MinimapEvents = typeof __propDef.events;

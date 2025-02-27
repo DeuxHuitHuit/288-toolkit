@@ -24,6 +24,8 @@ declare const __propDef: {
         };
         ellipsis: Record<string, never>;
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type PaginationLinksProps = typeof __propDef.props;
 export type PaginationLinksEvents = typeof __propDef.events;
