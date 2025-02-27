@@ -101,9 +101,10 @@ export const createEntryUrlBuilder = ({
 			return empty;
 		}
 		const url = new URL(entry.url);
-		// Replace host and protocol with the site URL
+		// Replace protocol, host and port with the site URL
 		url.host = SITE_URL.host;
 		url.protocol = SITE_URL.protocol;
+		url.port = SITE_URL.port;
 		// Replace trailing slash in the pathname
 		if (shouldRemoveTrailingSlash) {
 			url.pathname = removeTrailingSlash(url.pathname);
