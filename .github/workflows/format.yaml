@@ -44,6 +44,9 @@ jobs:
             - name: node version
               run: node --version && npm --version
 
+            - name: install pnpm
+              run: npm i pnpm@latest -g
+
             - name: install dependencies
               run: pnpm install
             - name: sync
