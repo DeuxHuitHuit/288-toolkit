@@ -49,6 +49,30 @@ describe('`toAbsolute` should return the full url string', () => {
 		const fullUrl = getEntryUrl(localMock).toAbsolute();
 		expect(fullUrl).toBe(localMock.url);
 	});
+
+	test('preserves custom port from siteUrl', () => {
+		const getEntryUrl = createEntryUrlBuilder({
+			...globals,
+			siteUrl: 'https://example.org:8080'
+		});
+		const localMock = {
+			url: 'https://example.com:3000/articles/my-article'
+		};
+		const fullUrl = getEntryUrl(localMock).toAbsolute();
+		expect(fullUrl).toBe('https://example.org:8080/articles/my-article');
+	});
+
+	test('uses protocol and default port from siteUrl', () => {
+		const getEntryUrl = createEntryUrlBuilder({
+			...globals,
+			siteUrl: 'http://example.org'
+		});
+		const localMock = {
+			url: 'https://example.com:3000/articles/my-article'
+		};
+		const fullUrl = getEntryUrl(localMock).toAbsolute();
+		expect(fullUrl).toBe('http://example.org/articles/my-article');
+	});
 });
 
 describe('`toString` should return the full url string', () => {
