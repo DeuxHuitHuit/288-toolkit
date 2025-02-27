@@ -14,6 +14,8 @@ declare const __propDef: {
     slots: {
         default: {};
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type SlideshowButtonProps = typeof __propDef.props;
 export type SlideshowButtonEvents = typeof __propDef.events;

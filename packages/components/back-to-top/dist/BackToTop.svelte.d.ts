@@ -9,6 +9,8 @@ declare const __propDef: {
     slots: {
         default: {};
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type BackToTopProps = typeof __propDef.props;
 export type BackToTopEvents = typeof __propDef.events;

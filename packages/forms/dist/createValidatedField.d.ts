@@ -1,4 +1,3 @@
-/// <reference types="svelte" />
 /// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 /// <reference types="svelte" />
 import { type Readable } from 'svelte/store';
@@ -30,18 +29,8 @@ export type ValidatedField = ReturnType<typeof createValidatedField>;
 export declare const DEFAULT_TYPE = "text";
 export declare const createValidatedField: (options: FieldOptions) => {
     elements: {
-        input: import("@melt-ui/svelte/internal/helpers").MeltElement<[Readable<string | string[]>, Readable<string>], (node: FieldElement) => {
-            destroy: import("svelte/store").Unsubscriber;
-        } | undefined, ([value, error]: [string | string[], string]) => {
-            type: string;
-            name: string;
-            value: string | string[];
-            'aria-invalid': true | null;
-            'aria-describedby': string | null;
-        }, "input">;
-        hint: import("@melt-ui/svelte/internal/helpers").MeltElement<Readable<string>, import("svelte/action").Action<any, any, Record<never, any>>, () => {
-            id: string;
-        }, "hint">;
+        input: any;
+        hint: any;
     };
     helpers: {
         value: Readable<string | string[]>;

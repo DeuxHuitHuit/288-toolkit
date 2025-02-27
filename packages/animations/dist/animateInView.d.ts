@@ -42,5 +42,5 @@ export declare const DEFAULT_OPTIONS: {
  * Wraps `playMotionAnimationInView` and provides some nice defaults and options.
  */
 export declare const animateInView: (node: HTMLElement, params: AnimateInViewParams) => {
-    destroy: VoidFunction;
+    destroy: any;
 } | undefined;

@@ -1,4 +1,3 @@
-/// <reference types="svelte" />
 /// <reference types=".pnpm/svelte@4.2.17/node_modules/svelte" />
 /// <reference types="svelte" />
 import type { AnonymousObject, Maybe } from '@288-toolkit/types';
@@ -30,17 +29,8 @@ export type FormData<TData extends AnonymousObject = AnonymousObject> = {
 export declare const DEFAULT_RESET_DELAY = 10000;
 export declare const createPostForm: <TData extends AnonymousObject>(options?: CreatePostFormOptions) => {
     elements: {
-        form: import("@melt-ui/svelte/internal/helpers").MeltElement<import("svelte/store").Stores | undefined, (node: HTMLFormElement) => {
-            destroy: () => void;
-        }, (() => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: any) => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: any[]) => Record<string, any> | ((...args: any[]) => Record<string, any>)) | ((values: [any, ...any[]]) => Record<string, any> | ((...args: any[]) => Record<string, any>)), "form">;
-        honeypot: import("@melt-ui/svelte/internal/helpers").MeltElement<import("svelte/store").Stores | undefined, import("svelte/action").Action<any, any, Record<never, any>>, () => {
-            type: string;
-            class: string;
-            style: string;
-            tabindex: string;
-            autocomplete: string;
-            name: string;
-        }, "hp">;
+        form: any;
+        honeypot: any;
     };
     states: {
         state: {

@@ -27,5 +27,5 @@ export type PlayMotionAnimationInViewParams = {
  * Make sure that the animation is set to `autoplay: false`, otherwise it will play immediately, potentially before the element is in view.
  */
 export declare const playMotionAnimationInView: (node: HTMLElement, params: PlayMotionAnimationInViewParams) => {
-    destroy: VoidFunction;
+    destroy: any;
 };

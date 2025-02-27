@@ -15,6 +15,8 @@ declare const __propDef: {
     slots: {
         default: {};
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type PaginationLinkProps = typeof __propDef.props;
 export type PaginationLinkEvents = typeof __propDef.events;

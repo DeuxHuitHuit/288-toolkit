@@ -10,6 +10,8 @@ declare const __propDef: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {};
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type PaginationInfiniteScrollProps = typeof __propDef.props;
 export type PaginationInfiniteScrollEvents = typeof __propDef.events;

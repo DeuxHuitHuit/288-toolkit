@@ -19,6 +19,8 @@ declare const __propDef: {
             copy: any;
         };
     };
+    exports?: {} | undefined;
+    bindings?: string | undefined;
 };
 export type MarqueeProps = typeof __propDef.props;
 export type MarqueeEvents = typeof __propDef.events;
