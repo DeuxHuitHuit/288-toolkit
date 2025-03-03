@@ -33,7 +33,6 @@
 		"svelte": "5.x"
 	},
 	"dependencies": {
-		"@288-toolkit/device": "workspace:*",
 		"@288-toolkit/page-transition": "workspace:^",
 		"@288-toolkit/types": "workspace:*"
 	}

@@ -1,6 +1,5 @@
-import { reducedMotion } from '@288-toolkit/device/media';
-import { animate, DOMKeyframesDefinition, scroll, type Easing } from 'motion';
-import { get } from 'svelte/store';
+import { animate, scroll, type DOMKeyframesDefinition, type Easing } from 'motion';
+import { prefersReducedMotion } from 'svelte/motion';
 
 export type ParallaxOptions = {
 	/**
@@ -40,7 +39,7 @@ const initParallax = ({
 	ease: Easing;
 	keyframes: DOMKeyframesDefinition;
 }) => {
-	if (speed === 0 || get(reducedMotion)) {
+	if (speed === 0 || prefersReducedMotion.current) {
 		return null;
 	}
 	const translateY = speed * 100;

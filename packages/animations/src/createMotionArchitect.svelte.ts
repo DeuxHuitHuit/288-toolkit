@@ -1,5 +1,5 @@
 import { type AnimationPlaybackControls } from 'motion';
-import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect.js';
+import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect.svelte.js';
 
 /**
  *
@@ -14,9 +14,6 @@ export const createMotionArchitect = (options?: ArchitectParams) => {
 	const registerMotionAnimation = (animation: AnimationPlaybackControls) => {
 		return architect.registerAnimation(({ duration }) => {
 			const { duration: animDuration, speed } = animation;
-			// If the animation was currently running (i.e. we're changing
-			// the page as soon as it was opened), we want to pause it before reversing it
-			animation.pause();
 			// Calculate the new speed to fit the out duration
 			const newSpeed = animDuration <= duration ? speed : animDuration / duration;
 			// Set a negative speed to reverse the animation

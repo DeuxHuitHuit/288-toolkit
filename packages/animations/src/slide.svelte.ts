@@ -1,6 +1,4 @@
-import { reducedMotion } from '@288-toolkit/device/media';
-import { Tween, type TweenedOptions } from 'svelte/motion';
-import { get } from 'svelte/store';
+import { Tween, prefersReducedMotion, type TweenedOptions } from 'svelte/motion';
 
 export interface SlideOptions {
 	open: boolean;
@@ -14,7 +12,7 @@ export const slide = (
 ) => {
 	const slideHeight = new Tween<number>(0, {
 		...options,
-		duration: get(reducedMotion) ? 0 : options.duration
+		duration: prefersReducedMotion.current ? 0 : options.duration
 	});
 
 	$effect(() => {
