@@ -23,13 +23,13 @@
 	],
 	"exports": {
 		".": {
-			"types": "./dist/index.d.ts",
-			"svelte": "./dist/index.js"
+			"types": "./dist/index.svelte.d.ts",
+			"svelte": "./dist/index.svelte.js"
 		}
 	},
 	"peerDependencies": {
 		"@sveltejs/kit": "2.x",
-		"svelte": "4.x || 5.x"
+		"svelte": "5.x"
 	},
 	"dependencies": {
 		"@288-toolkit/types": "workspace:^",

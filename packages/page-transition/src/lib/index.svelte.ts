@@ -2,8 +2,7 @@ import { beforeNavigate, onNavigate } from '$app/navigation';
 import type { Maybe } from '@288-toolkit/types';
 import type { Navigation, NavigationTarget } from '@sveltejs/kit';
 import { BROWSER, DEV } from 'esm-env';
-import { onDestroy } from 'svelte';
-import { derived, readonly, writable } from 'svelte/store';
+import { onDestroy, untrack } from 'svelte';
 
 const DEFAULT = 'default' as const;
 
@@ -31,34 +30,48 @@ export type EndTransitionCallback = () => void;
  */
 type EndTransitionParam = EndTransitionCallback | Event;
 
-/**
- * The current transition value, used for internal tracking
- */
-let inTransition: Transition = null;
-/**
- * A boolean flag so we don't register `onNavigate` and `beforeNavigate` callbacks more than once
- */
-let transitionsInited = false;
+class PageTransition {
+	/**
+	 * The current transition value
+	 */
+	transition = $state<Transition | null>(null);
+	/**
+	 * A boolean flag so we don't register `onNavigate` and `beforeNavigate` callbacks more than once
+	 */
+	initialized = false;
+	/**
+	 * When set to a function, that promise returned from `onNavigate` will resolve with an optionally provided callback
+	 */
+	endTransitionCallback = $state<Maybe<EndTransitionCallback>>(null);
+}
 
-/**
- * The store that notifies us to resolve the promise returned from `onNavigate` with an optionally provided callback
- */
-const transitionEnded = writable<Maybe<EndTransitionCallback>>(null, (set) => {
-	// Stop function when there a no subscribers anymore
-	return () => {
-		set(null);
-	};
-});
+class ScopedTransition {
+	key: TransitionKey;
 
-/**
- * The main `transitioning` store.
- */
-const store = writable<Transition>(inTransition);
+	constructor(key?: TransitionKey) {
+		if (key) {
+			this.key = key;
+		}
+	}
 
-const setTransitionStore = (value: Transition) => {
-	inTransition = value;
-	store.set(inTransition);
-};
+	get current() {
+		if (!this.key) {
+			return pageTransition.transition;
+		}
+		if (this.key === pageTransition.transition?.key) {
+			return pageTransition.transition;
+		}
+		return null;
+	}
+}
+
+class Transitioning {
+	get current() {
+		return pageTransition.transition;
+	}
+}
+
+const pageTransition = new PageTransition();
 
 const TRANSITIONS = new Map<TransitionKey, TransitionOptions<TransitionKey>>();
 const SKIP_CONDITIONS = new Set<TransitionCondition>();
@@ -69,12 +82,15 @@ const SKIP_CONDITIONS = new Set<TransitionCondition>();
  * @param key The current transition key
  */
 const beginTransition = ({ to, from, type, willUnload }: Navigation, key: TransitionKey) => {
-	if (inTransition && inTransition.to?.url.toString() !== to?.url.toString()) {
-		setTransitionStore(null);
+	if (
+		pageTransition.transition &&
+		pageTransition.transition.to?.url.toString() !== to?.url.toString()
+	) {
+		pageTransition.transition = null;
 		return;
 	}
 	if (
-		inTransition ||
+		pageTransition.transition ||
 		!to?.url ||
 		to?.url.toString() === from?.url.toString() ||
 		type === 'popstate' ||
@@ -82,14 +98,14 @@ const beginTransition = ({ to, from, type, willUnload }: Navigation, key: Transi
 	) {
 		return;
 	}
-	setTransitionStore({ from, to, key });
+	pageTransition.transition = { from, to, key };
 };
 
 /**
  * Registers the `beforeNavigate` and `onNavigate` callbacks that start the transition
  */
 const initTransitions = () => {
-	if (transitionsInited) {
+	if (pageTransition.initialized) {
 		return;
 	}
 	beforeNavigate((nav) => {
@@ -117,28 +133,33 @@ const initTransitions = () => {
 		}
 	});
 	onNavigate(() => {
-		if (!inTransition?.to) {
+		if (!pageTransition.transition?.to) {
 			return;
 		}
 		return new Promise((resolve) => {
 			// Wait for the transition to be ended before updating the page
-			const unsubscribe = transitionEnded.subscribe((callback) => {
-				if (callback) {
-					resolve(() => {
-						callback();
-						unsubscribe();
-					});
-					setTransitionStore(null);
-				}
+			const rootCleanup = $effect.root(() => {
+				$effect(() => {
+					if (pageTransition.endTransitionCallback) {
+						resolve(() => {
+							untrack(() => {
+								pageTransition.endTransitionCallback?.();
+								pageTransition.transition = null;
+								pageTransition.endTransitionCallback = null;
+								rootCleanup();
+							});
+						});
+					}
+				});
 			});
 		});
 	});
-	transitionsInited = true;
+	pageTransition.initialized = true;
 	// Since the `beforeNavigate` and `onNavigate` callbacks are only active as long as
 	// the first component that called `initTransition` is mounted, we have to register them again
 	// whenever that component is destroyed.
 	onDestroy(() => {
-		transitionsInited = false;
+		pageTransition.initialized = false;
 	});
 };
 
@@ -147,7 +168,7 @@ const initTransitions = () => {
  * @param {string} key The transition key. Must be unique.
  * @param {object} options
  * - options.condition: A function that determines wether navigation condition matches. If `true`, the transition will be triggered.
- * @returns A readable store that is `null` by default, and is a `Transition` object while the transition is
+ * @returns An object with a reactive `current` property that is `null` by default, and is a `Transition` object while the transition is
  * happening. The `key` of the `Transition` object will always be the key that was passed to the
  * function. That way, the store is scoped to this particular transition.
  */
@@ -157,15 +178,10 @@ export const registerTransition = <TKey extends TransitionKey>(
 		? [options: TransitionOptions<TKey>] | []
 		: [options: TransitionOptions<TKey>]
 ) => {
+	const transitioning = new ScopedTransition(key);
 	if (!BROWSER) {
-		return store;
+		return transitioning;
 	}
-	const transitioning = derived(store, ($transition) => {
-		if ($transition?.key === key) {
-			return $transition;
-		}
-		return null;
-	});
 	if (TRANSITIONS.has(key)) {
 		DEV &&
 			console.warn(
@@ -205,24 +221,24 @@ export const skipTransition = (condition: TransitionCondition) => {
  */
 export const endTransition = (callback?: EndTransitionParam) => {
 	// Calling `endTransition` before we're actually transitioning should do nothing
-	if (!inTransition?.to) {
+	if (!pageTransition.transition?.to) {
 		if (DEV) {
 			console.warn('Calling `endTransition` here has no effect.');
 		}
 		return;
 	}
 	// Notify that the transition is done, Sveltekit can display the new page as soon as its ready
-	transitionEnded.set(() => {
+	pageTransition.endTransitionCallback = () => {
 		if (typeof callback === 'function') {
 			callback();
 		}
-	});
+	};
 };
 
 /**
- * A readable store that is updated with a `Transition` object whenever any transition occurs and is
+ * An object with a reactive `current` property that is updated with a `Transition` object whenever any transition occurs and is
  * `null` the rest of the time.
  * This is useful if you want to easily run some code for a transition outside of the component that
  * has registered it, or for several transitions with similar keys, for example.
  */
-export const transitioning = readonly(store);
+export const transitioning = new Transitioning();

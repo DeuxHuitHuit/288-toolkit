@@ -1,7 +1,5 @@
-import { reducedMotion } from '@288-toolkit/device/media';
-import { endTransition, registerTransition, type Transition } from '@288-toolkit/page-transition';
-import { onDestroy } from 'svelte';
-import { get } from 'svelte/store';
+import { endTransition, registerTransition } from '@288-toolkit/page-transition';
+import { prefersReducedMotion } from 'svelte/motion';
 
 export type AnimationFunction = (params: { durationMs: number; duration: number }) => void;
 
@@ -67,13 +65,14 @@ export const createAnimationArchitect = (options?: ArchitectParams) => {
 	 * @param args The arguments passed to `registerTransition`
 	 * @returns the `$transitioning` store for registered transition.
 	 */
-	const start: ArchitectInstance['start'] = (...args) => {
+	const start = ((...args) => {
 		const transitioning = registerTransition(...args);
-		const unsubscribe = transitioning.subscribe((transition: Transition) => {
-			if (!transition) {
+		const reducedMotion = prefersReducedMotion.current;
+		$effect(() => {
+			if (!transitioning.current) {
 				return;
 			}
-			if (get(reducedMotion)) {
+			if (reducedMotion) {
 				// Bail out if reduced motion is enabled
 				endTransition();
 				// Remove all animations
@@ -95,9 +94,8 @@ export const createAnimationArchitect = (options?: ArchitectParams) => {
 			// Remove all animations
 			animations.clear();
 		});
-		onDestroy(unsubscribe);
 		return transitioning;
-	};
+	}) as ArchitectInstance['start'];
 
 	const instance = {
 		registerAnimation,
