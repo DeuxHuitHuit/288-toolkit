@@ -1,5 +1,8 @@
 import { type AnimationPlaybackControls } from 'motion';
-import { createAnimationArchitect, type ArchitectParams } from './createAnimationArchitect.svelte.js';
+import {
+	createAnimationArchitect,
+	type ArchitectParams
+} from './createAnimationArchitect.svelte.js';
 
 /**
  *
@@ -13,9 +16,9 @@ export const createMotionArchitect = (options?: ArchitectParams) => {
 
 	const registerMotionAnimation = (animation: AnimationPlaybackControls) => {
 		return architect.registerAnimation(({ duration }) => {
-			const { duration: animDuration, speed } = animation;
+			const { duration: animDuration } = animation;
 			// Calculate the new speed to fit the out duration
-			const newSpeed = animDuration <= duration ? speed : animDuration / duration;
+			const newSpeed = animDuration / duration;
 			// Set a negative speed to reverse the animation
 			animation.speed = -newSpeed;
 			// Play the animation
