@@ -96,9 +96,6 @@ importers:
 
   packages/animations:
     dependencies:
-      '@288-toolkit/device':
-        specifier: workspace:*
-        version: link:../device
       '@288-toolkit/page-transition':
         specifier: workspace:^
         version: link:../page-transition
