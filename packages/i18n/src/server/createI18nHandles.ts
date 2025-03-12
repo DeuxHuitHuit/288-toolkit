@@ -13,19 +13,22 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 	const defaultLanguage = localeToLanguage(defaultLocale);
 	const supportedLanguages = supportedLocales.map(localeToLanguage);
 
-	const i18nRedirect: (location: (event: RequestEvent) => string) => Handle =
-		(location) =>
-		({ event, resolve }) => {
-			if (isLocalized && event.url.pathname === '/') {
-				return new Response(null, {
-					status: 303,
-					headers: new Headers({
-						location: location(event)
-					})
-				});
-			}
-			return resolve(event);
-		};
+	const i18nRedirect: (location: (event: RequestEvent) => string) => Handle = !isLocalized
+		? () =>
+				({ event, resolve }) =>
+					resolve(event)
+		: (location) =>
+				({ event, resolve }) => {
+					if (event.url.pathname === '/') {
+						return new Response(null, {
+							status: 303,
+							headers: new Headers({
+								location: location(event)
+							})
+						});
+					}
+					return resolve(event);
+				};
 
 	/**
 	 * Sets the locale, language and region in the event locals based on the supported languages.
