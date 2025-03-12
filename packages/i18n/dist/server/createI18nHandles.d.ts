@@ -6,6 +6,8 @@ export type I18nParams = {
 };
 export declare const createI18nHandles: ({ supportedLocales, defaultLocale }: I18nParams) => {
     langInfo: Handle;
+    localeInfo: Handle;
     langRedirect: Handle;
+    localeRedirect: Handle;
     langAttribute: Handle;
 };
