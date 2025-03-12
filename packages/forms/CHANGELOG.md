@@ -1,126 +1,133 @@
 # @288-toolkit/forms
 
+## 4.3.5
+
+### Patch Changes
+
+-   Updated dependencies [850c9e4]
+    -   @288-toolkit/i18n@9.1.0
+
 ## 4.3.4
 
 ### Patch Changes
 
-- Updated dependencies
-  - @288-toolkit/i18n@9.0.2
+-   Updated dependencies
+    -   @288-toolkit/i18n@9.0.2
 
 ## 4.3.3
 
 ### Patch Changes
 
-- Fix form imports and exports
+-   Fix form imports and exports
 
 ## 4.3.2
 
 ### Patch Changes
 
-- Improve exported types
-- Updated dependencies
-  - @288-toolkit/i18n@9.0.1
+-   Improve exported types
+-   Updated dependencies
+    -   @288-toolkit/i18n@9.0.1
 
 ## 4.3.1
 
 ### Patch Changes
 
-- Improve loader types
+-   Improve loader types
 
 ## 4.3.0
 
 ### Minor Changes
 
-- Fix i18n imports
+-   Fix i18n imports
 
 ## 4.2.3
 
 ### Patch Changes
 
-- Updated dependencies
-  - @288-toolkit/i18n@9.0.0
+-   Updated dependencies
+    -   @288-toolkit/i18n@9.0.0
 
 ## 4.2.2
 
 ### Patch Changes
 
-- Updated dependencies
-  - @288-toolkit/types@3.1.0
-  - @288-toolkit/i18n@8.1.1
+-   Updated dependencies
+    -   @288-toolkit/types@3.1.0
+    -   @288-toolkit/i18n@8.1.1
 
 ## 4.2.1
 
 ### Patch Changes
 
-- Fix postinstall script
+-   Fix postinstall script
 
 ## 4.2.0
 
 ### Minor Changes
 
-- Fix build
+-   Fix build
 
 ## 4.1.1
 
 ### Patch Changes
 
-- Add clickoutside action
+-   Add clickoutside action
 
 ## 4.1.0
 
 ### Minor Changes
 
-- Add forms builders
+-   Add forms builders
 
 ### Patch Changes
 
-- Updated dependencies
-  - @288-toolkit/i18n@8.1.0
+-   Updated dependencies
+    -   @288-toolkit/i18n@8.1.0
 
 ## 4.0.2
 
 ### Patch Changes
 
-- Build
+-   Build
 
 ## 4.0.1
 
 ### Patch Changes
 
-- Add enhancePost
+-   Add enhancePost
 
 ## 4.0.0
 
 ### Major Changes
 
-- Fix output
+-   Fix output
 
 ## 3.1.0
 
 ### Minor Changes
 
-- Add file extensions
+-   Add file extensions
 
 ## 3.0.0
 
 ### Major Changes
 
-- Build files
+-   Build files
 
 ## 2.0.0
 
 ### Major Changes
 
-- Build all files
+-   Build all files
 
 ## 1.0.2
 
 ### Patch Changes
 
-- Add files property
+-   Add files property
 
 ## 1.0.1
 
 ### Patch Changes
 
-- Use changesets
+-   Use changesets
