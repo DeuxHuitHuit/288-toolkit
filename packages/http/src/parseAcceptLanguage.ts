@@ -53,7 +53,5 @@ export const parseAcceptLanguage = (al: string): Maybe<AcceptLanguageEntry[]> =>
 			});
 		})
 		.filter((x) => !!x)
-		.sort(
-			(a: AcceptLanguageEntry, b: AcceptLanguageEntry) => b.priority - a.priority
-		);
+		.sort((a: AcceptLanguageEntry, b: AcceptLanguageEntry) => b.priority - a.priority);
 };
