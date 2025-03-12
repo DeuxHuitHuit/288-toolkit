@@ -4,8 +4,13 @@
 
 You can create three i18n handles with the `createI18nHandles` function:
 
--   `langInfo`: Sets the locale, language, and region in the event locals.
+-   `langInfo`: Sets the locale, language and region in the event locals based on the supported
+    languages.
+-   `localeInfo`: Sets the locale, language and region in the event locals based on the supported
+    locales.
 -   `langRedirect`: Redirects to the user's preferred language if the site is localized (has more
+    than one supported locale) and the request is for the root
+-   `localeRedirect`: Redirects to the user's preferred locale if the site is localized (has more
     than one supported locale) and the request is for the root
 -   `langAttribute`: Renders the correct html lang attribute
 
@@ -20,7 +25,11 @@ const { langInfo, langRedirect, langAttribute } = createI18nHandles({
 export const handle = sequence(langInfo, langRedirect, langAttribute);
 ```
 
-Make sure the `langInfo` is always placed before the other two.
+If you want your site's localization to be based on a language, use `langInfo` and `langRedirect`.
+To use a locale instead, use `localeInfo` and `localeRedirect`. `langAttribute` can be used for
+both.
+
+Make sure the `langInfo`/`localeInfo` is always placed before the other two.
 
 Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
 replaced by the current language.
@@ -30,11 +39,11 @@ Finally, to get type safety for the locals, you need to extend the `App.Locals` 
 In `app.d.ts`:
 
 ```ts
-import type { LangInfo } from '@288-toolkit/i18n';
+import type { I18nInfo } from '@288-toolkit/i18n';
 
 declare global {
 	namespace App {
-		interface Locals extends LangInfo<typeof ['en-ca', 'fr-ca']> {
+		interface Locals extends I18nInfo<typeof ['en-ca', 'fr-ca']> {
 			// ...
 		}
 	}
