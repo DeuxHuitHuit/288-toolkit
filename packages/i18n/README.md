@@ -25,9 +25,9 @@ const { langInfo, langRedirect, langAttribute } = createI18nHandles({
 export const handle = sequence(langInfo, langRedirect, langAttribute);
 ```
 
-If you want a language to be the first parameter of your site's paths, use `langInfo` and
-`langRedirect`. To use a locale instead, use `localeInfo` and `localeRedirect`. `langAttribute` can
-be used for both.
+If you want your site's localization to be based on a language, use `langInfo` and `langRedirect`.
+To use a locale instead, use `localeInfo` and `localeRedirect`. `langAttribute` can be used for
+both.
 
 Make sure the `langInfo`/`localeInfo` is always placed before the other two.
 
