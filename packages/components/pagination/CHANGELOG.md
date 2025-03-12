@@ -1,5 +1,13 @@
 # @288-toolkit/pagination
 
+## 5.0.3
+
+### Patch Changes
+
+-   Updated dependencies [850c9e4]
+    -   @288-toolkit/i18n@9.1.0
+    -   @288-toolkit/forms@4.3.5
+
 ## 5.0.2
 
 ### Patch Changes
