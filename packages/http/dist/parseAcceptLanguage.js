@@ -38,6 +38,6 @@ export const parseAcceptLanguage = (al) => {
             return result;
         });
     })
-        .filter(Boolean)
+        .filter((x) => !!x)
         .sort((a, b) => b.priority - a.priority);
 };
