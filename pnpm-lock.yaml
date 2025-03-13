@@ -97,7 +97,7 @@ importers:
   packages/animations:
     dependencies:
       '@288-toolkit/page-transition':
-        specifier: workspace:^
+        specifier: workspace:*
         version: link:../page-transition
       '@288-toolkit/types':
         specifier: workspace:*
