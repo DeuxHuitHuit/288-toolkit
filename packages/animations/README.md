@@ -26,8 +26,8 @@ The outro duration in ms that the animations must be played for. Default: `400`.
 #### `start`
 
 A wrapper around `registerTransition` that initializes the architect. This function MUST be called
-at component initialization. It accepts the same arguments and returns the `$transitioning` store
-for the registered transition.
+at component initialization. It accepts the same arguments and returns the `transitioning` reactive
+object for the registered transition.
 
 #### `registerAnimation`
 
@@ -204,11 +204,11 @@ disabled?: boolean;
 		},
 		options: {
 			transform: {
-				easing: expoOut,
+				ease: expoOut,
 				duration: 0.7
 			},
 			opacity: {
-				easing: 'linear',
+				ease: 'linear',
 				duration: 0.2
 			},
 			delay: stagger(0.1)
@@ -265,9 +265,7 @@ closedHeight: number;
 ### Example
 
 ```svelte
-<div
-	use:slide={{ open: $open, options: { duration: 700, easing: expoOut }, closedHeight: 50 }}
-></div>
+<div use:slide={{ open: $open, options: { duration: 700, ease: expoOut }, closedHeight: 50 }}></div>
 ```
 
 ## `use:parallax`
@@ -287,12 +285,12 @@ Speed of the animation. Negative values invert the direction. 0 disables the ani
 speed?: number;
 ```
 
-#### easing
+#### ease
 
 Easing of the animation. DEFAULT: 'linear'.
 
 ```ts
-easing?: Easing;
+ease?: Easing;
 ```
 
 #### keyframes
@@ -350,12 +348,12 @@ Speed of the animation. Negative values invert the direction. 0 disables the ani
 speed?: number;
 ```
 
-#### easing
+#### ease
 
 Easing of the animation. DEFAULT: 'linear'.
 
 ```ts
-easing?: Easing;
+ease?: Easing;
 ```
 
 ## `use:parallaxScale`
@@ -390,12 +388,12 @@ Speed of the animation. Negative values invert the direction. 0 disables the ani
 speed?: number;
 ```
 
-#### easing
+#### ease
 
 Easing of the animation. DEFAULT: 'linear'.
 
 ```ts
-easing?: Easing;
+ease?: Easing;
 ```
 
 ### `augmentedParallax()`
@@ -404,3 +402,14 @@ A convenience function to augment the basic `parallax` action with more animatio
 
 See [`parallaxFade`](./src/parallaxFade.ts) and [`parallaxScale`](./src/parallaxScale.ts) for
 examples.
+
+## v4 to v5 migration guide
+
+-   v5 uses `motion` v12, `svelte` v5 and `@288-toolkit/page-transition` v4, so you should update
+    those dependencies first. You can also consult the migration guides for
+    [`motion`](https://motion.dev/docs/upgrade-guide) and
+    [`svelte`](https://svelte.dev/docs/svelte/v5-migration-guide).
+-   Since `motion` v11, the `easing` has been changed option to `ease`, the `easing` option for
+    `parallax`, `parallaxScale` and `parallaxFade` has been deprecated in favor of `ease`.
+-   The return value `createAnimationArchitect` and `createMotionArchitect` has been changed from a
+    Svelte store to a reactive object with a `current` property.
