@@ -1,7 +1,5 @@
-import { reducedMotion } from '@288-toolkit/device/media';
-import { endTransition, registerTransition, type Transition } from '@288-toolkit/page-transition';
-import { onDestroy } from 'svelte';
-import { get } from 'svelte/store';
+import { endTransition, registerTransition } from '@288-toolkit/page-transition';
+import { prefersReducedMotion } from 'svelte/motion';
 
 export type AnimationFunction = (params: { durationMs: number; duration: number }) => void;
 
@@ -31,7 +29,7 @@ const DEFAULTS: Pick<ArchitectOptions, 'outDuration'> = {
  * - `outDuration`: The outro duration in ms that the animations must be played for. Default: `400`.
  * @returns The architect instance:
  * - `start`: A wrapper around {@link registerTransition | page transition} that initializes the architect. This function
- * MUST be called at component initialization. It returns the `$transitioning` store for registered transition.
+ * MUST be called at component initialization. It returns the `transitioning` object for registered transition.
  * - `registerAnimation`: The function to register your outro animations.
  */
 export const createAnimationArchitect = (options?: ArchitectParams) => {
@@ -63,17 +61,18 @@ export const createAnimationArchitect = (options?: ArchitectParams) => {
 
 	/**
 	 * A wrapper around {@link registerTransition | page transition} that initializes the architect. This function
-	 * MUST be called at component initialization. It returns the `$transitioning` store for registered transition.
+	 * MUST be called at component initialization. It returns the `transitioning` object that is used to register transition.
 	 * @param args The arguments passed to `registerTransition`
-	 * @returns the `$transitioning` store for registered transition.
+	 * @returns the `transitioning` object for registered transition.
 	 */
-	const start: ArchitectInstance['start'] = (...args) => {
+	const start = ((...args) => {
 		const transitioning = registerTransition(...args);
-		const unsubscribe = transitioning.subscribe((transition: Transition) => {
-			if (!transition) {
+		const reducedMotion = prefersReducedMotion.current;
+		$effect(() => {
+			if (!transitioning.current) {
 				return;
 			}
-			if (get(reducedMotion)) {
+			if (reducedMotion) {
 				// Bail out if reduced motion is enabled
 				endTransition();
 				// Remove all animations
@@ -95,9 +94,8 @@ export const createAnimationArchitect = (options?: ArchitectParams) => {
 			// Remove all animations
 			animations.clear();
 		});
-		onDestroy(unsubscribe);
 		return transitioning;
-	};
+	}) as ArchitectInstance['start'];
 
 	const instance = {
 		registerAnimation,

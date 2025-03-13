@@ -1,8 +1,5 @@
-import { reducedMotion } from '@288-toolkit/device/media';
-import { animate, scroll, type KeyframeOptions, type MotionKeyframesDefinition } from 'motion';
-import { get } from 'svelte/store';
-
-export type Easing = KeyframeOptions['easing'];
+import { animate, scroll, type DOMKeyframesDefinition, type Easing } from 'motion';
+import { prefersReducedMotion } from 'svelte/motion';
 
 export type ParallaxOptions = {
 	/**
@@ -10,39 +7,34 @@ export type ParallaxOptions = {
 	 */
 	speed?: number;
 	/**
+	 * @deprecated Use `ease` instead.
 	 * Easing of the animation. DEFAULT: 'linear'
 	 */
 	easing?: Easing;
 	/**
+	 * Easing of the animation. DEFAULT: 'linear'
+	 */
+	ease?: Easing;
+	/**
 	 * Extra keyframes to add more animation effects.
 	 */
-	keyframes?: MotionKeyframesDefinition;
+	keyframes?: DOMKeyframesDefinition;
 };
 
 export const DEFAULT_SPEED = 0.2;
 export const DEFAULT_EASING: Easing = 'linear';
 export const DEFAULT_EXTRA_KEYFRAMES = {};
 
-const getOptions = (options?: ParallaxOptions) => {
+const optionsOrDefaults = (options?: ParallaxOptions) => {
 	return {
 		speed: options?.speed ?? DEFAULT_SPEED,
-		easing: options?.easing || DEFAULT_EASING,
+		ease: options?.ease ?? options?.easing ?? DEFAULT_EASING,
 		keyframes: options?.keyframes || DEFAULT_EXTRA_KEYFRAMES
 	};
 };
 
-const initParallax = ({
-	node,
-	speed,
-	easing,
-	keyframes
-}: {
-	node: HTMLElement;
-	speed: number;
-	easing: Easing;
-	keyframes: MotionKeyframesDefinition;
-}) => {
-	if (speed === 0 || get(reducedMotion)) {
+const initParallax = (node: HTMLElement, { speed, ease, keyframes }: ParallaxOptions) => {
+	if (!speed || prefersReducedMotion.current) {
 		return null;
 	}
 	const translateY = speed * 100;
@@ -58,7 +50,7 @@ const initParallax = ({
 				]
 			},
 			{
-				easing
+				ease
 			}
 		),
 		{
@@ -72,14 +64,14 @@ const initParallax = ({
  * Creates a parallax effect on an element. The parallax will be re-initialized when the options change.
  */
 export const parallax = (node: HTMLElement, options?: ParallaxOptions) => {
-	let stop = initParallax({ node, ...getOptions(options) });
+	let stop = initParallax(node, optionsOrDefaults(options));
 	return {
 		destroy: () => {
 			stop?.();
 		},
 		update: (options?: ParallaxOptions) => {
 			stop?.();
-			stop = initParallax({ node, ...getOptions(options) });
+			stop = initParallax(node, optionsOrDefaults(options));
 		}
 	};
 };

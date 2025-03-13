@@ -1,4 +1,4 @@
-import type { MotionKeyframesDefinition } from 'motion';
+import type { DOMKeyframesDefinition } from 'motion';
 import { parallax, type ParallaxOptions } from './parallax.js';
 
 export type FromToValue = string | number;
@@ -21,7 +21,7 @@ export type AugmentedParallaxOptions<T extends FromToValue = number> =
 
 export type GetKeyframes<T extends FromToValue = number> = (
 	options: Required<FromTo<T>>
-) => MotionKeyframesDefinition;
+) => DOMKeyframesDefinition;
 
 const toParallaxOptions = <T extends FromToValue = number>(
 	options: AugmentedParallaxOptions<T> & Required<FromTo<T>>,
@@ -29,7 +29,7 @@ const toParallaxOptions = <T extends FromToValue = number>(
 ) => {
 	return {
 		speed: options.speed,
-		easing: options.easing,
+		ease: options.ease ?? options.easing,
 		keyframes: getKeyframes({ from: options.from, to: options.to })
 	};
 };
@@ -45,7 +45,7 @@ export const augmentedParallax = <T extends FromToValue = number>({
 	defaults: Required<FromTo<T>>;
 	getKeyframes: GetKeyframes<T>;
 }) => {
-	return (node: HTMLElement, options: AugmentedParallaxOptions = {}) => {
+	return (node: HTMLElement, options: AugmentedParallaxOptions<T> = {}) => {
 		const from = typeof options.from !== 'undefined' ? options.from : defaults.from;
 		const to = typeof options.to !== 'undefined' ? options.to : defaults.to;
 		return parallax(

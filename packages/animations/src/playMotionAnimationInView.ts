@@ -1,14 +1,15 @@
-import { reducedMotion } from '@288-toolkit/device/media';
 import type { Maybe } from '@288-toolkit/types';
-import { inView, type AnimationControls, type InViewOptions } from 'motion';
-import { get } from 'svelte/store';
-import type { createMotionArchitect } from './createMotionArchitect.js';
+import { inView, type AnimationPlaybackControls } from 'motion';
+import { prefersReducedMotion } from 'svelte/motion';
+import type { createMotionArchitect } from './createMotionArchitect.svelte.js';
+
+type InViewOptions = Parameters<typeof inView>[2];
 
 export type PlayMotionAnimationInViewParams = {
 	/**
 	 * The animation to play, returned from either `animate` or `timeline` from Motion.
 	 */
-	animation: AnimationControls;
+	animation: AnimationPlaybackControls;
 	/**
 	 * The architect to register the animation with.
 	 * If provided, the animation will be unregistered when the element is out of view
@@ -39,14 +40,12 @@ export const playMotionAnimationInView = (
 	const destroy = inView(
 		node,
 		() => {
-			if (get(reducedMotion)) {
-				animation.finish();
+			if (prefersReducedMotion.current) {
+				animation.complete();
 				return;
 			}
+			animation.play();
 			let unregisterAnim: Maybe<() => void>;
-			if (animation.playState === 'paused') {
-				animation.play();
-			}
 			if (reverse !== false && architect) {
 				unregisterAnim = architect.registerMotionAnimation(animation);
 				return () => {
