@@ -29,7 +29,7 @@ const toParallaxOptions = <T extends FromToValue = number>(
 ) => {
 	return {
 		speed: options.speed,
-		easing: options.ease,
+		ease: options.ease ?? options.easing,
 		keyframes: getKeyframes({ from: options.from, to: options.to })
 	};
 };

@@ -7,6 +7,11 @@ export type ParallaxOptions = {
 	 */
 	speed?: number;
 	/**
+	 * @deprecated Use `ease` instead.
+	 * Easing of the animation. DEFAULT: 'linear'
+	 */
+	easing?: Easing;
+	/**
 	 * Easing of the animation. DEFAULT: 'linear'
 	 */
 	ease?: Easing;
@@ -20,26 +25,16 @@ export const DEFAULT_SPEED = 0.2;
 export const DEFAULT_EASING: Easing = 'linear';
 export const DEFAULT_EXTRA_KEYFRAMES = {};
 
-const getOptions = (options?: ParallaxOptions) => {
+const optionsOrDefaults = (options?: ParallaxOptions) => {
 	return {
 		speed: options?.speed ?? DEFAULT_SPEED,
-		ease: options?.ease || DEFAULT_EASING,
+		ease: options?.ease ?? options?.easing ?? DEFAULT_EASING,
 		keyframes: options?.keyframes || DEFAULT_EXTRA_KEYFRAMES
 	};
 };
 
-const initParallax = ({
-	node,
-	speed,
-	ease,
-	keyframes
-}: {
-	node: HTMLElement;
-	speed: number;
-	ease: Easing;
-	keyframes: DOMKeyframesDefinition;
-}) => {
-	if (speed === 0 || prefersReducedMotion.current) {
+const initParallax = (node: HTMLElement, { speed, ease, keyframes }: ParallaxOptions) => {
+	if (!speed || prefersReducedMotion.current) {
 		return null;
 	}
 	const translateY = speed * 100;
@@ -55,7 +50,7 @@ const initParallax = ({
 				]
 			},
 			{
-				ease: ease
+				ease
 			}
 		),
 		{
@@ -69,14 +64,14 @@ const initParallax = ({
  * Creates a parallax effect on an element. The parallax will be re-initialized when the options change.
  */
 export const parallax = (node: HTMLElement, options?: ParallaxOptions) => {
-	let stop = initParallax({ node, ...getOptions(options) });
+	let stop = initParallax(node, optionsOrDefaults(options));
 	return {
 		destroy: () => {
 			stop?.();
 		},
 		update: (options?: ParallaxOptions) => {
 			stop?.();
-			stop = initParallax({ node, ...getOptions(options) });
+			stop = initParallax(node, optionsOrDefaults(options));
 		}
 	};
 };
