@@ -1,6 +1,6 @@
 {
 	"name": "@288-toolkit/i18n",
-	"version": "9.1.0",
+	"version": "9.1.1",
 	"scripts": {
 		"build": "svelte-package -i src",
 		"test": "vitest run",
