@@ -38,6 +38,15 @@ return new Response('', {
 });
 ```
 
+## `fetchTimeout`
+
+Fetch with a timeout. Defaults to 20 seconds.
+
+```ts
+// 5 second timeout
+const response = await fetchTimeout(url, { ... }, 5000);
+```
+
 ## `isRedirectResponse`
 
 Returns `true` if the response is a redirect response.
