@@ -29,7 +29,7 @@ const DEFAULTS: Pick<ArchitectOptions, 'outDuration'> = {
  * - `outDuration`: The outro duration in ms that the animations must be played for. Default: `400`.
  * @returns The architect instance:
  * - `start`: A wrapper around {@link registerTransition | page transition} that initializes the architect. This function
- * MUST be called at component initialization. It returns the `$transitioning` store for registered transition.
+ * MUST be called at component initialization. It returns the `transitioning` object for registered transition.
  * - `registerAnimation`: The function to register your outro animations.
  */
 export const createAnimationArchitect = (options?: ArchitectParams) => {
@@ -61,9 +61,9 @@ export const createAnimationArchitect = (options?: ArchitectParams) => {
 
 	/**
 	 * A wrapper around {@link registerTransition | page transition} that initializes the architect. This function
-	 * MUST be called at component initialization. It returns the `$transitioning` store for registered transition.
+	 * MUST be called at component initialization. It returns the `transitioning` object that is used to register transition.
 	 * @param args The arguments passed to `registerTransition`
-	 * @returns the `$transitioning` store for registered transition.
+	 * @returns the `transitioning` object for registered transition.
 	 */
 	const start = ((...args) => {
 		const transitioning = registerTransition(...args);
