@@ -82,7 +82,9 @@ export const defaultSiteHandle = <L extends SiteRouterLocals>(event: RequestEven
  * @param options The options for the siteRouter handle.
  * @returns The siteRouter handle.
  */
-export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <L extends SiteRouterLocals>({
+export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <
+	L extends SiteRouterLocals
+>({
 	defaultSiteUri,
 	defaultEntryUri = '',
 	siteHandle = defaultSiteHandle,
