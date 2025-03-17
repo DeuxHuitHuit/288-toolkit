@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.2.1
+
+### Patch Changes
+
+-   3b73283: Add missing defaultEntryUri
+
 ## 1.2.0
 
 ### Minor Changes
