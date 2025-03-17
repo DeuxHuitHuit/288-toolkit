@@ -1,4 +1,4 @@
-import { parseAcceptLanguage } from "./parseAcceptLanguage.ts";
+import { parseAcceptLanguage } from './parseAcceptLanguage.ts';
 
 export type AcceptedLanguageParams<Language extends string> = {
 	supportedLanguages: Readonly<Language[]>;
@@ -12,10 +12,10 @@ export type AcceptedLanguageParams<Language extends string> = {
  * @param request The request object.
  * @param params The parameters.
  */
-export const acceptedLanguage = <Language extends string>(request: Request, {
-	supportedLanguages,
-	defaultLanguage
-}: AcceptedLanguageParams<Language>) => {
+export const acceptedLanguage = <Language extends string>(
+	request: Request,
+	{ supportedLanguages, defaultLanguage }: AcceptedLanguageParams<Language>
+) => {
 	// Extract and parse the accept-language header
 	const acceptLanguage = request.headers.get('accept-language');
 	if (acceptLanguage) {

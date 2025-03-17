@@ -1,4 +1,4 @@
-import { acceptedLanguage } from "./accepted-language.js";
+import { acceptedLanguage } from './accepted-language.js';
 
 /**
  * Get the language from the request
