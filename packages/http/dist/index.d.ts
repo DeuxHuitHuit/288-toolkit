@@ -1,3 +1,4 @@
+export * from './accepted-language.js';
 export * from './cacheHeaders.js';
 export * from './fetchTimeout.js';
 export * from './getLangFromRequest.js';

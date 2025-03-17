@@ -1,4 +1,4 @@
-import { getLangFromRequest } from '@288-toolkit/http';
+import { acceptedLanguage } from '@288-toolkit/http';
 import { localeToLanguage, localeToRegion } from '../localeTo.js';
 export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
     const isLocalized = supportedLocales.length > 1;
@@ -17,47 +17,47 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
             }
             return resolve(event);
         };
+    const findFirstSupportedLocale = (language) => supportedLocales.find((locale) => locale.startsWith(`${language}-`));
     /**
      * Sets the locale, language and region in the event locals based on the supported languages.
      */
     const langInfo = ({ event, resolve }) => {
         const { request } = event;
+        const locals = event.locals;
         const language = isLocalized
-            ? getLangFromRequest(request, {
-                supportedLanguages,
-                defaultLanguage
-            })
+            ? // Use the site uri if it exists and not the default site uri,
+                // otherwise use the accepted language from the request headers
+                !locals.siteRouter?.default &&
+                    supportedLanguages.includes(locals.siteRouter.site.uri)
+                    ? locals.siteRouter.site.uri
+                    : acceptedLanguage(request, {
+                        supportedLanguages,
+                        defaultLanguage
+                    })
             : defaultLanguage;
-        const locale = supportedLocales.find((locale) => locale.startsWith(`${language}-`)) || defaultLocale;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.locale = locale;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.language = language;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.region = localeToRegion(locale);
+        // Find the supported locale that starts with the language
+        const locale = findFirstSupportedLocale(language) || defaultLocale;
+        locals.locale = locale;
+        locals.language = language;
+        locals.region = localeToRegion(locale);
         return resolve(event);
     };
     /**
      * Sets the locale, language and region in the event locals based on the supported locales.
      */
     const localeInfo = ({ event, resolve }) => {
-        let locale = defaultLocale;
-        const pathLocale = event.url.pathname.split('/')[1];
-        if (pathLocale && supportedLocales.includes(pathLocale)) {
-            locale = pathLocale;
-        }
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.locale = locale;
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.language = localeToLanguage(locale);
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        event.locals.region = localeToRegion(locale);
+        const locals = event.locals;
+        // If the site is localized, use the site uri if it exists and not the default site uri,
+        // otherwise use the default locale
+        // TODO: We should provide a acceptedLocale function...
+        const locale = isLocalized
+            ? !locals.siteRouter?.default && supportedLocales.includes(locals.siteRouter.site.uri)
+                ? locals.siteRouter.site.uri
+                : defaultLocale
+            : defaultLocale;
+        locals.locale = locale;
+        locals.language = localeToLanguage(locale);
+        locals.region = localeToRegion(locale);
         return resolve(event);
     };
     /**
@@ -65,35 +65,30 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
      * Depends on the langInfo handle to be run first.
      */
     const langRedirect = i18nRedirect((event) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return `/${event.locals.language}`;
+        const locals = event.locals;
+        return `/${locals.language}`;
     });
     /**
      * This handle redirects the user to the correct locale if the site is localized (has more than one supported locales).
      * Depends on the localeInfo handle to be run first.
      */
     const localeRedirect = i18nRedirect((event) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        return `/${event.locals.locale}`;
+        const locals = event.locals;
+        return `/${locals.locale}`;
     });
     /**
      * This handle sets the html lang attribute for the request.
      * Depends on the langInfo handle to be run first.
      */
     const langAttribute = ({ event, resolve }) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        // Get user language
-        const language = event.locals.language;
+        const locals = event.locals;
         // Resolve event and output correct html lang attribute
         return resolve(event, {
             transformPageChunk: ({ html, done }) => {
                 if (!done) {
                     return html;
                 }
-                return html.replace('%lang%', language);
+                return html.replace('%lang%', locals.language);
             }
         });
     };
