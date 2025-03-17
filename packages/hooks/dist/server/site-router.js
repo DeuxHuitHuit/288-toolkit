@@ -11,13 +11,13 @@ export const defaultPathnameSplitter = (pathname) => pathname.split('/').filter(
  * @param parts The parts to convert.
  * @returns The uri object.
  */
-export const defaultPartsToSiteRouterObject = (parts) => ({
+export const defaultPartsToSiteRouterObject = (parts, defaultEntryUri) => ({
     site: {
         uri: parts[0],
         handle: ''
     },
     entry: {
-        uri: parts.slice(1).join('/')
+        uri: parts.slice(1).join('/') || defaultEntryUri
     }
 });
 /**
@@ -61,7 +61,7 @@ export const createSiteRouter = ({ defaultSiteUri, defaultEntryUri = '', siteHan
             };
         }
         else {
-            locals.siteRouter = partsToSiteRouterObject(parts);
+            locals.siteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
         }
         // Make sure the site handle is set and properly formatted
         if (!locals.siteRouter.site.handle) {
