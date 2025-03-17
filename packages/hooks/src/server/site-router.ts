@@ -82,14 +82,14 @@ export const defaultSiteHandle = <L extends SiteRouterLocals>(event: RequestEven
  * @param options The options for the siteRouter handle.
  * @returns The siteRouter handle.
  */
-export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = ({
+export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <L extends SiteRouterLocals>({
 	defaultSiteUri,
 	defaultEntryUri = '',
 	siteHandle = defaultSiteHandle,
 	pathnameSplitter = defaultPathnameSplitter,
 	partsToSiteRouterObject = defaultPartsToSiteRouterObject
 }: SiteRouterHandleOptions) => {
-	return <L extends SiteRouterLocals>({
+	return <LL extends SiteRouterLocals = L>({
 		event,
 		resolve
 	}: {
@@ -98,7 +98,7 @@ export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = ({
 	}) => {
 		const path = event.url.pathname;
 		const parts = pathnameSplitter(path);
-		const locals = event.locals as L;
+		const locals = event.locals as LL;
 
 		if (!parts.length) {
 			locals.siteRouter = {
