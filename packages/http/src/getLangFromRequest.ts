@@ -1,7 +1,12 @@
-import { parseAcceptLanguage } from './parseAcceptLanguage.js';
+import { acceptedLanguage } from "./accepted-language.js";
 
 /**
  * Get the language from the request
+ *
+ * @deprecated Use the values from your locals object instead.
+ * Use the `@88-toolkit/hooks/server/site-uri#createSiteUri()` handle to set
+ * the `uri` property in the locals object.
+ * You can also check the `acceptedLanguage` function to get the language from the request's headers.
  */
 export const getLangFromRequest = <Language extends string>(
 	request: Request,
@@ -17,18 +22,10 @@ export const getLangFromRequest = <Language extends string>(
 		return pathLang;
 	}
 
-	// Check user-agent accepted languages next
-	const acceptLanguage = request.headers.get('accept-language');
-	if (acceptLanguage) {
-		const languages = parseAcceptLanguage(acceptLanguage)
-			?.filter(({ lang }) => supportedLanguages.includes(lang as Language))
-			.map(({ lang }) => lang);
-		// If there is a match, return it
-		if (languages?.length) {
-			return languages[0] as Language;
-		}
-	}
-
-	// Fallback to default language
-	return defaultLanguage;
+	// Check user-agent accepted languages next, with fallback to default language
+	return acceptedLanguage(request, {
+		supportedLanguages,
+		defaultLanguage
+	});
 };
+/* @enddeprecated */
