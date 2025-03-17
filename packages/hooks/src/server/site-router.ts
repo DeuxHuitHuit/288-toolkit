@@ -115,8 +115,10 @@ export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = ({
 			locals.siteRouter = partsToSiteRouterObject(parts);
 		}
 
-		// Properly format the site handle
-		locals.siteRouter.site.handle = siteHandle(event);
+		// Make sure the site handle is set and properly formatted
+		if (!locals.siteRouter.site.handle) {
+			locals.siteRouter.site.handle = siteHandle(event);
+		}
 
 		return resolve(event);
 	};
