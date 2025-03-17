@@ -22,7 +22,7 @@ export type SiteRouterHandleOptions = {
 	defaultEntryUri?: string;
 	siteHandle?: (event: RequestEvent) => string;
 	pathnameSplitter?: (pathname: string) => string[];
-	partsToSiteRouterObject?: (parts: string[]) => SiteRouter;
+	partsToSiteRouterObject?: (parts: string[], defaultEntryUri: string) => SiteRouter;
 };
 
 /**
@@ -46,14 +46,14 @@ export const defaultPathnameSplitter = (pathname: string) => pathname.split('/')
  * @param parts The parts to convert.
  * @returns The uri object.
  */
-export const defaultPartsToSiteRouterObject = (parts: string[]) =>
+export const defaultPartsToSiteRouterObject = (parts: string[], defaultEntryUri: string) =>
 	({
 		site: {
 			uri: parts[0],
 			handle: ''
 		},
 		entry: {
-			uri: parts.slice(1).join('/')
+			uri: parts.slice(1).join('/') || defaultEntryUri
 		}
 	}) satisfies SiteRouter;
 
@@ -107,7 +107,7 @@ export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <
 				}
 			};
 		} else {
-			locals.siteRouter = partsToSiteRouterObject(parts);
+			locals.siteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
 		}
 
 		// Make sure the site handle is set and properly formatted
