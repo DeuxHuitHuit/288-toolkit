@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.2.0
+
+### Minor Changes
+
+-   1cfa5b3: Add new siteRouter hook
+
 ## 1.1.1
 
 ### Patch Changes

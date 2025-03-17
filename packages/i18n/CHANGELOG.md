@@ -1,5 +1,18 @@
 # @288-toolkit/i18n
 
+## 10.0.0
+
+### Major Changes
+
+-   1cfa5b3: Use siteRouter values to find our values
+
+### Patch Changes
+
+-   Updated dependencies [1cfa5b3]
+-   Updated dependencies [1cfa5b3]
+    -   @288-toolkit/hooks@1.2.0
+    -   @288-toolkit/http@4.3.0
+
 ## 9.1.1
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @288-toolkit/forms
 
+## 4.3.7
+
+### Patch Changes
+
+-   Updated dependencies [1cfa5b3]
+    -   @288-toolkit/i18n@10.0.0
+
 ## 4.3.6
 
 ### Patch Changes

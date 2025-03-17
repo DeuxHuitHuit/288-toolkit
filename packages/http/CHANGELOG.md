@@ -1,5 +1,11 @@
 # @288-toolkit/http
 
+## 4.3.0
+
+### Minor Changes
+
+-   1cfa5b3: Add acceptedLanguage, deprecate getLangFromRequest
+
 ## 4.2.0
 
 ### Minor Changes
