@@ -36,6 +36,7 @@
 		"svelte": "4.x || 5.x"
 	},
 	"dependencies": {
+		"@288-toolkit/hooks": "workspace:*",
 		"@288-toolkit/http": "workspace:*",
 		"@288-toolkit/types": "workspace:*",
 		"esm-env": "1.0.0",

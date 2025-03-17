@@ -17,7 +17,7 @@ You can create three i18n handles with the `createI18nHandles` function:
 ```ts
 import { createI18nHandles } from '@288-toolkit/i18n/server';
 
-const { langInfo, langRedirect, langAttribute } = createI18nHandles({
+const { langInfo, langRedirect, langAttribute } = createI18nHandles<App.Locals>({
 	supportedLocales: ['en-ca', 'fr-ca'],
 	defaultLocale: 'en-ca'
 });
