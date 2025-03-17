@@ -20,7 +20,7 @@ export type SiteRouterHandleOptions = {
     defaultEntryUri?: string;
     siteHandle?: (event: RequestEvent) => string;
     pathnameSplitter?: (pathname: string) => string[];
-    partsToSiteRouterObject?: (parts: string[]) => SiteRouter;
+    partsToSiteRouterObject?: (parts: string[], defaultEntryUri: string) => SiteRouter;
 };
 /**
  * Let's make sure the locals object has the uri object with site and entry properties.
@@ -41,7 +41,7 @@ export declare const defaultPathnameSplitter: (pathname: string) => string[];
  * @param parts The parts to convert.
  * @returns The uri object.
  */
-export declare const defaultPartsToSiteRouterObject: (parts: string[]) => {
+export declare const defaultPartsToSiteRouterObject: (parts: string[], defaultEntryUri: string) => {
     site: {
         uri: string;
         handle: string;
