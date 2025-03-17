@@ -1,4 +1,4 @@
-import { parseAcceptLanguage } from './parseAcceptLanguage.ts';
+import { parseAcceptLanguage } from './parseAcceptLanguage.js';
 
 export type AcceptedLanguageParams<Language extends string> = {
 	supportedLanguages: Readonly<Language[]>;
