@@ -1,14 +1,25 @@
-import { getLangFromRequest } from '@288-toolkit/http';
+import type { SiteRouter } from '@288-toolkit/hooks/server';
+import { acceptedLanguage } from '@288-toolkit/http';
 import type { Handle, RequestEvent } from '@sveltejs/kit';
 import { localeToLanguage, localeToRegion } from '../localeTo.js';
 import type { Locale } from '../types/index.js';
+
+type I18nLocals = App.Locals & {
+	siteRouter?: SiteRouter; // @see @288-toolkit/hooks
+	locale?: Locale;
+	language?: string;
+	region?: string;
+};
 
 export type I18nParams = {
 	supportedLocales: Readonly<Locale[]>;
 	defaultLocale: Locale;
 };
 
-export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParams) => {
+export const createI18nHandles = <L extends I18nLocals>({
+	supportedLocales,
+	defaultLocale
+}: I18nParams) => {
 	const isLocalized = supportedLocales.length > 1;
 	const defaultLanguage = localeToLanguage(defaultLocale);
 	const supportedLanguages = supportedLocales.map(localeToLanguage);
@@ -30,28 +41,33 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 					return resolve(event);
 				};
 
+	const findFirstSupportedLocale = (language: string) =>
+		supportedLocales.find((locale) => locale.startsWith(`${language}-`));
+
 	/**
 	 * Sets the locale, language and region in the event locals based on the supported languages.
 	 */
 	const langInfo: Handle = ({ event, resolve }) => {
 		const { request } = event;
+		const locals = event.locals as L;
 		const language = isLocalized
-			? getLangFromRequest(request, {
-					supportedLanguages,
-					defaultLanguage
-				})
+			? // Use the site uri if it exists and not the default site uri,
+				// otherwise use the accepted language from the request headers
+				!locals.siteRouter?.default &&
+				supportedLanguages.includes(locals.siteRouter.site.uri)
+				? locals.siteRouter.site.uri
+				: acceptedLanguage(request, {
+						supportedLanguages,
+						defaultLanguage
+					})
 			: defaultLanguage;
-		const locale =
-			supportedLocales.find((locale) => locale.startsWith(`${language}-`)) || defaultLocale;
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.locale = locale;
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.language = language;
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.region = localeToRegion(locale);
+
+		// Find the supported locale that starts with the language
+		const locale = findFirstSupportedLocale(language) || defaultLocale;
+
+		locals.locale = locale;
+		locals.language = language;
+		locals.region = localeToRegion(locale);
 		return resolve(event);
 	};
 
@@ -59,21 +75,19 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 	 * Sets the locale, language and region in the event locals based on the supported locales.
 	 */
 	const localeInfo: Handle = ({ event, resolve }) => {
-		let locale = defaultLocale;
+		const locals = event.locals as L;
+		// If the site is localized, use the site uri if it exists and not the default site uri,
+		// otherwise use the default locale
+		// TODO: We should provide a acceptedLocale function...
+		const locale = isLocalized
+			? !locals.siteRouter?.default && supportedLocales.includes(locals.siteRouter.site.uri)
+				? locals.siteRouter.site.uri
+				: defaultLocale
+			: defaultLocale;
 
-		const pathLocale = event.url.pathname.split('/')[1] as Locale;
-		if (pathLocale && supportedLocales.includes(pathLocale)) {
-			locale = pathLocale;
-		}
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.locale = locale;
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.language = localeToLanguage(locale);
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		event.locals.region = localeToRegion(locale);
+		locals.locale = locale;
+		locals.language = localeToLanguage(locale);
+		locals.region = localeToRegion(locale);
 		return resolve(event);
 	};
 
@@ -82,9 +96,8 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 	 * Depends on the langInfo handle to be run first.
 	 */
 	const langRedirect: Handle = i18nRedirect((event) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		return `/${event.locals.language}`;
+		const locals = event.locals as L;
+		return `/${locals.language}`;
 	});
 
 	/**
@@ -92,9 +105,8 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 	 * Depends on the localeInfo handle to be run first.
 	 */
 	const localeRedirect: Handle = i18nRedirect((event) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		return `/${event.locals.locale}`;
+		const locals = event.locals as L;
+		return `/${locals.locale}`;
 	});
 
 	/**
@@ -102,17 +114,14 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }: I18nParam
 	 * Depends on the langInfo handle to be run first.
 	 */
 	const langAttribute: Handle = ({ event, resolve }) => {
-		// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-		// @ts-ignore
-		// Get user language
-		const language = event.locals.language;
+		const locals = event.locals as L;
 		// Resolve event and output correct html lang attribute
 		return resolve(event, {
 			transformPageChunk: ({ html, done }) => {
 				if (!done) {
 					return html;
 				}
-				return html.replace('%lang%', language);
+				return html.replace('%lang%', locals.language);
 			}
 		});
 	};

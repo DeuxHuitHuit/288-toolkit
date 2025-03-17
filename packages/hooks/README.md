@@ -108,3 +108,26 @@ export const handle = sequence(
 This will add the following header:
 
 -   `content-security-policy`, "frame-ancestors 'self' https://my-url.com https://another-url.com"
+
+### `createSiteRouter()`
+
+Creates a site router handle.
+
+```ts
+import { createSiteRouter } from '@288-toolkit/hooks/server';
+
+export const handle = sequence(
+	createSiteRouter({
+		defaultSiteUri: 'en',
+		defaultEntryUri: '__home-page__'
+	})
+);
+```
+
+The following options are available:
+
+-   `defaultSiteUri`: The default site uri, when the pathname is empty.
+-   `defaultEntryUri`: The default entry uri, when the pathname is empty.
+-   `siteHandle`: A function to format the site handle.
+-   `pathnameSplitter`: A function to split the pathname into site and entry parts.
+-   `partsToSiteRouterObject`: A function to convert the parts into a site router object.

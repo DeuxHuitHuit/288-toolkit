@@ -55,7 +55,7 @@ Returns `true` if the response is a redirect response.
 const isRedirectResponse: (response: Response) => boolean;
 ```
 
-## `getLangFromRequest`
+## `getLangFromRequest` (deprecated)
 
 Get the language from the request.
 
@@ -78,6 +78,17 @@ type AcceptLanguageEntry = {
 };
 
 const parseAcceptLanguage = (acceptLanguage: string): Maybe<AcceptLanguageEntry[]>
+```
+
+## `acceptedLanguage`
+
+Get the accepted language from the request.
+
+```ts
+const language = acceptedLanguage(request, {
+	supportedLanguages: ['en', 'fr'],
+	defaultLanguage: 'en'
+});
 ```
 
 ## `getVercelIpHeaders`
