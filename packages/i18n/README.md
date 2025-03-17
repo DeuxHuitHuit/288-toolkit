@@ -14,15 +14,25 @@ You can create three i18n handles with the `createI18nHandles` function:
     than one supported locale) and the request is for the root
 -   `langAttribute`: Renders the correct html lang attribute
 
+In order to use these handles, you must use the `siteRouter` handle, provided by the
+`@288-toolkit/hooks` package. If you do not use it, make sure to provide a custom replacement hooks
+that will set the `siteRouter` object in the locals object.
+
 ```ts
+import { createSiteRouter } from '@288-toolkit/hooks/server';
 import { createI18nHandles } from '@288-toolkit/i18n/server';
+
+const siteRouter = createSiteRouter({
+	defaultSiteUri: 'en',
+	defaultEntryUri: '__home-page__'
+});
 
 const { langInfo, langRedirect, langAttribute } = createI18nHandles<App.Locals>({
 	supportedLocales: ['en-ca', 'fr-ca'],
 	defaultLocale: 'en-ca'
 });
 
-export const handle = sequence(langInfo, langRedirect, langAttribute);
+export const handle = sequence(siteRouter, langInfo, langRedirect, langAttribute);
 ```
 
 If you want your site's localization to be based on a language, use `langInfo` and `langRedirect`.
