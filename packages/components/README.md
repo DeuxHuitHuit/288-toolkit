@@ -1,4 +1,4 @@
-# @288-toolkit/components
+# Components
 
 This folder contains the following components packages:
 
