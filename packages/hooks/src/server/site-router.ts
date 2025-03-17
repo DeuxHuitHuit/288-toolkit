@@ -90,10 +90,7 @@ export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <
 	pathnameSplitter = defaultPathnameSplitter,
 	partsToSiteRouterObject = defaultPartsToSiteRouterObject
 }: SiteRouterHandleOptions) => {
-	return <LL extends SiteRouterLocals = L>({
-		event,
-		resolve
-	}: Parameters<Handle>[0]) => {
+	return <LL extends SiteRouterLocals = L>({ event, resolve }: Parameters<Handle>[0]) => {
 		const path = event.url.pathname;
 		const parts = pathnameSplitter(path);
 		const locals = event.locals as LL;
