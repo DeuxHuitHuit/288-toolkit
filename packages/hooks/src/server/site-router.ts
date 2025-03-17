@@ -1,5 +1,4 @@
-import type { Handle, RequestEvent, Resolve } from '@sveltejs/kit';
-import { REPLCommand } from 'repl';
+import type { Handle, RequestEvent } from '@sveltejs/kit';
 
 /**
  * The uri object with site and entry properties.
@@ -94,10 +93,7 @@ export const createSiteRouter: (options: SiteRouterHandleOptions) => Handle = <
 	return <LL extends SiteRouterLocals = L>({
 		event,
 		resolve
-	}: {
-		event: RequestEvent;
-		resolve: Resolve;
-	}) => {
+	}: Parameters<Handle>[0]) => {
 		const path = event.url.pathname;
 		const parts = pathnameSplitter(path);
 		const locals = event.locals as LL;
