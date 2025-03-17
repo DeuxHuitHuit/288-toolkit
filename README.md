@@ -88,10 +88,9 @@ This will scaffold a basic workspace inside the `packages` folder.
 -   Commit everything and push to your branch. Once the branch is merged into main, the package will
     automatically get published to npm.
 
-
-
 ## License
 
-This package is part of the 288-toolkit collection, developed by [Deux Huit Huit](https://deuxhuithuit.com/).
+This package is part of the 288-toolkit collection, developed by
+[Deux Huit Huit](https://deuxhuithuit.com/).
 
 See the [LICENSE](./LICENSE) file for more information.

@@ -17,6 +17,7 @@ This folder contains the following components packages:
 
 ## License
 
-This package is part of the 288-toolkit collection, developed by [Deux Huit Huit](https://deuxhuithuit.com/).
+This package is part of the 288-toolkit collection, developed by
+[Deux Huit Huit](https://deuxhuithuit.com/).
 
 See the [LICENSE](../../LICENSE) file for more information.
