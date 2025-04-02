@@ -1,5 +1,12 @@
 # @288-toolkit/pagination
 
+## 5.0.7
+
+### Patch Changes
+
+-   54fc8af: Fix `onMount` call breaking in svelte 5
+-   d4c93fd: Trigger release
+
 ## 5.0.6
 
 ### Patch Changes
