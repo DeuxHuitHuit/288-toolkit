@@ -187,10 +187,14 @@
 		state.update(params);
 	};
 
+	// Calling `onMount` outside of component initialization like we do in the `update` event of the `idle` state below
+	// breaks in Svelte 5 so we need to store the value of `$mounted` in a reactive variable and use that instead
+	$: isMounted = $mounted;
+
 	const state = machine('idle', {
 		idle: {
 			update: () => {
-				if (!$mounted) {
+				if (!isMounted) {
 					return;
 				}
 				return 'loading';
