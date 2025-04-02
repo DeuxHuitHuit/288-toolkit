@@ -81,10 +81,27 @@ This will scaffold a basic workspace inside the `packages` folder.
 
 The process relies 100% on the github actions workflow. PR are merged into main, which triggers a
 build action. This will open a new pull request with the changes. Once the pull request is merged,
-the main branch needs to be merged into the `release` branch. This will trigger a publication action
-and open yet another pull request. Once this PR is merged, the packages are published to npm. The
-release commit made in the `release` branch now needs to be fast-forwarded to main and pushed to
-github.
+the main branch needs to be merged into the `release` branch.
+
+```sh
+git checkout release
+git fetch --all
+git merge --ff-only origin/main
+git push origin release
+```
+
+This will trigger a publication action and open yet another pull request. Once this PR is merged, the packages are published to npm.
+
+The release commit made in the `release` branch now needs to be fast-forwarded to main and pushed to github.
+
+```sh
+git checkout main
+git fetch --all
+git merge --ff-only origin/release
+git push origin main
+```
+
+Here's a diagram to help you understand the process:
 
 ```ascii
 PR → main ──────┐
