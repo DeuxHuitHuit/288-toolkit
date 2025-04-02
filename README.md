@@ -90,9 +90,11 @@ git merge --ff-only origin/main
 git push origin release
 ```
 
-This will trigger a publication action and open yet another pull request. Once this PR is merged, the packages are published to npm.
+This will trigger a publication action and open yet another pull request. Once this PR is merged,
+the packages are published to npm.
 
-The release commit made in the `release` branch now needs to be fast-forwarded to main and pushed to github.
+The release commit made in the `release` branch now needs to be fast-forwarded to main and pushed to
+github.
 
 ```sh
 git checkout main
