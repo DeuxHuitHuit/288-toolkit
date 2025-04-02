@@ -1,4 +1,5 @@
-import { SvelteComponent } from "svelte";
+/// <reference types="svelte" />
+/// <reference types=".pnpm/svelte@5.17.2/node_modules/svelte" />
 import { type Readable } from 'svelte/store';
 export type PaginationState = 'idle' | 'loading' | 'error';
 export type Filters = Record<string, string[]>;
@@ -84,10 +85,22 @@ declare class __sveltets_Render<Item> {
             hasMore: boolean;
         };
     };
+    bindings(): string;
+    exports(): {};
 }
-export type PaginationProps<Item> = ReturnType<__sveltets_Render<Item>['props']>;
-export type PaginationEvents<Item> = ReturnType<__sveltets_Render<Item>['events']>;
-export type PaginationSlots<Item> = ReturnType<__sveltets_Render<Item>['slots']>;
-export default class Pagination<Item> extends SvelteComponent<PaginationProps<Item>, PaginationEvents<Item>, PaginationSlots<Item>> {
+interface $$IsomorphicComponent {
+    new <Item>(options: import('svelte').ComponentConstructorOptions<ReturnType<__sveltets_Render<Item>['props']> & {
+        children?: any;
+    }>): import('svelte').SvelteComponent<ReturnType<__sveltets_Render<Item>['props']>, ReturnType<__sveltets_Render<Item>['events']>, ReturnType<__sveltets_Render<Item>['slots']>> & {
+        $$bindings?: ReturnType<__sveltets_Render<Item>['bindings']>;
+    } & ReturnType<__sveltets_Render<Item>['exports']>;
+    <Item>(internal: unknown, props: ReturnType<__sveltets_Render<Item>['props']> & {
+        $$events?: ReturnType<__sveltets_Render<Item>['events']>;
+        $$slots?: ReturnType<__sveltets_Render<Item>['slots']>;
+        children?: any;
+    }): ReturnType<__sveltets_Render<Item>['exports']>;
+    z_$$bindings?: ReturnType<__sveltets_Render<any>['bindings']>;
 }
-export {};
+declare const Pagination: $$IsomorphicComponent;
+type Pagination<Item> = InstanceType<typeof Pagination<Item>>;
+export default Pagination;
