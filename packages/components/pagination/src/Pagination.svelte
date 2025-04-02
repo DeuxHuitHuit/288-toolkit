@@ -187,10 +187,12 @@
 		state.update(params);
 	};
 
+	$: isMounted = $mounted;
+
 	const state = machine('idle', {
 		idle: {
 			update: () => {
-				if (!$mounted) {
+				if (!isMounted) {
 					return;
 				}
 				return 'loading';
