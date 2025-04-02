@@ -45,6 +45,10 @@ used with Svelte, Sveltekit and Craft CMS.
 -   [@288-toolkit/vite-plugin-svelte-inline-component](./packages/vite-plugin-svelte-inline-component/README.md)
 -   [@288-toolkit/vite-plugin-svelte-replacers](./packages/vite-plugin-svelte-replacers/README.md)
 
+### Deprecated and removed
+
+-   Copy to clipboard on click: use https://github.com/ghostdevv/svelte-copy instead
+
 ## Development
 
 ### Create a package
