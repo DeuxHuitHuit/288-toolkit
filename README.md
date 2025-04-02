@@ -79,14 +79,34 @@ This will scaffold a basic workspace inside the `packages` folder.
 
 ### Publish a package
 
--   Run `pnpm build` to build the packages.
+The process relies 100% on the github actions workflow. PR are merged into main, which triggers
+a build action. This will open a new pull request with the changes. Once the pull request is
+merged, the main branch needs to be merged into the `release` branch. This will trigger a
+publication action and open yet another pull request. Once this PR is merged, the packages are
+published to npm. The release commit made in the `release` branch now needs to be fast-forwarded
+to main and pushed to github.
 
--   Run `pnpm changeset` then follow the instructions. This will generate a new changeset.
-
--   Run `pnpm changeset version`. This will update changed packages versions and changelogs.
-
--   Commit everything and push to your branch. Once the branch is merged into main, the package will
-    automatically get published to npm.
+```ascii
+PR → main ──────┐
+                ↓
+          [Build Action]
+                │
+                ↓
+            New PR ───────┐
+                         ↓
+             Manually fast-forward main → release
+                         │
+                         ↓
+                   [Publish Action]
+                         │
+                         ↓
+                     New PR ──────┐
+                                  ↓
+                            [Publish to npm]
+                                  │
+                ┌─────────────────┘
+    Manually fast-forward release → main
+```
 
 ## License
 
