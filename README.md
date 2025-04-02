@@ -111,7 +111,7 @@ PR → main ──────┐
           [Build Action]
                 │
                 ↓
-            New PR ───────┐
+            New PR ──────┐
                          ↓
              Manually fast-forward main → release
                          │
