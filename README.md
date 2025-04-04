@@ -79,9 +79,18 @@ This will scaffold a basic workspace inside the `packages` folder.
 
 ### Publish a package
 
-The process relies 100% on the github actions workflow. PR are merged into main, which triggers a
-build action. This will open a new pull request with the changes. Once the pull request is merged,
-the main branch needs to be merged into the `release` branch.
+The process relies 100% on the github actions workflow and the changeset process.
+Once your PR or first commit is created, add a changeset file by running:
+
+```sh
+pnpm cs
+```
+
+Make sure to follow the instructions on screen and add a changelog message. Commit this file.
+
+Merging the PR into the `main` branch will trigger a build action. This will open a new
+pull request with the build changes. Once the pull request is merged, the main branch needs to be
+merged into the `release` branch.
 
 ```sh
 git checkout release
