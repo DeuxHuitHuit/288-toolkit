@@ -17,7 +17,7 @@ export const defaultPartsToSiteRouterObject = (parts, defaultEntryUri) => ({
         handle: ''
     },
     entry: {
-        uri: parts.slice(1).join('/') || defaultEntryUri
+        uri: parts.slice(1).map(decodeURIComponent).join('/') || defaultEntryUri
     }
 });
 /**
