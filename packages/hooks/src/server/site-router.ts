@@ -28,13 +28,38 @@ type InternalSiteRouter<T extends SiteHandle = SiteHandle> = Omit<SiteRouter<T>,
  * Options for the siteRouter handle.
  */
 export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
+	/**
+	 * The default site uri. This is part of the public url
+	 */
 	defaultSiteUri: string;
+	/**
+	 * The default entry uri. This is part of the public url
+	 */
 	defaultEntryUri?: string;
+	/**
+	 * The default site handle. This might not be part of the public url and
+	 * is used to identify the craft site we want to fetch data from.
+	 */
 	defaultSiteHandle?: T;
+	/**
+	 * The valid site handles. This is used to validate the site handle.
+	 */
 	validSiteHandles?: T[];
+	/**
+	 * The site handle implementation. This is used to get the site handle from the request event.
+	 */
 	siteHandle?: (event: RequestEvent) => T;
+	/**
+	 * The pathname splitter. This is used to split the pathname into site and entry parts.
+	 */
 	pathnameSplitter?: (pathname: string) => string[];
+	/**
+	 * The parts to site router object. This is used to convert the parts array into a site router object.
+	 */
 	partsToSiteRouterObject?: (parts: string[], defaultEntryUri: string) => InternalSiteRouter<T>;
+	/**
+	 * The validate site handle. This is used to validate the site handle.
+	 */
 	validateSiteHandle?: (validSiteHandles: T[], possibleHandle: string) => boolean;
 };
 
