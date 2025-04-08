@@ -79,7 +79,10 @@ export const defaultPartsToSiteRouterObject = <T extends SiteHandle = SiteHandle
  * @param event The request event.
  * @returns The formatted site handle.
  */
-export const defaultSiteHandleImplementation = <L extends SiteRouterLocals, T extends SiteHandle = SiteHandle>(
+export const defaultSiteHandleImplementation = <
+	L extends SiteRouterLocals,
+	T extends SiteHandle = SiteHandle
+>(
 	event: RequestEvent
 ) => {
 	const locals = event.locals as L;
@@ -112,15 +115,14 @@ export const defaultValidateSiteHandle = <T extends SiteHandle = SiteHandle>(
  * @param options The options for the siteRouter handle.
  * @returns The siteRouter handle.
  */
-export const createSiteRouter: <T extends SiteHandle = SiteHandle>(options: SiteRouterHandleOptions<T>) => Handle = <
-	L extends SiteRouterLocals<T>,
-	T extends SiteHandle = SiteHandle
->({
+export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
+	options: SiteRouterHandleOptions<T>
+) => Handle = <L extends SiteRouterLocals<T>, T extends SiteHandle = SiteHandle>({
 	defaultSiteUri,
 	defaultSiteHandle = '' as T,
 	defaultEntryUri = '',
 	validSiteHandles = [],
-	siteHandle = defaultSiteHandleImplementation<L,T>,
+	siteHandle = defaultSiteHandleImplementation<L, T>,
 	pathnameSplitter = defaultPathnameSplitter,
 	partsToSiteRouterObject = defaultPartsToSiteRouterObject<T>,
 	validateSiteHandle = defaultValidateSiteHandle<T>
