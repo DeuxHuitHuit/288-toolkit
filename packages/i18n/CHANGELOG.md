@@ -1,5 +1,12 @@
 # @288-toolkit/i18n
 
+## 10.0.3
+
+### Patch Changes
+
+-   Updated dependencies [1223475]
+    -   @288-toolkit/hooks@1.4.0
+
 ## 10.0.2
 
 ### Patch Changes

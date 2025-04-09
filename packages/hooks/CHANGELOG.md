@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.4.0
+
+### Minor Changes
+
+-   1223475: Make validateSiteHandle ReadonlyArray<T>
+
 ## 1.3.0
 
 ### Minor Changes
