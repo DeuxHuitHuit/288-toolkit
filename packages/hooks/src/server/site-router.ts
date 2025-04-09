@@ -44,7 +44,7 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
 	/**
 	 * The valid site handles. This is used to validate the site handle.
 	 */
-	validSiteHandles?: T[];
+	validSiteHandles?: ReadonlyArray<T>;
 	/**
 	 * The site handle implementation. This is used to get the site handle from the request event.
 	 */
@@ -60,7 +60,7 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
 	/**
 	 * The validate site handle. This is used to validate the site handle.
 	 */
-	validateSiteHandle?: (validSiteHandles: T[], possibleHandle: string) => boolean;
+	validateSiteHandle?: (validSiteHandles: ReadonlyArray<T>, possibleHandle: string) => boolean;
 };
 
 /**
@@ -121,7 +121,7 @@ export const defaultSiteHandleImplementation = <
  * @returns True if the site handle is valid, false otherwise.
  */
 export const defaultValidateSiteHandle = <T extends SiteHandle = SiteHandle>(
-	validSiteHandles: T[],
+	validSiteHandles: ReadonlyArray<T>,
 	possibleHandle: string
 ) => Boolean(possibleHandle) && validSiteHandles.includes(possibleHandle as T);
 
