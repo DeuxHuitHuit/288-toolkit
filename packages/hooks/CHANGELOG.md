@@ -1,5 +1,12 @@
 # @288-toolkit/hooks
 
+## 1.3.0
+
+### Minor Changes
+
+-   f31cdce: Add validation to site handle in router
+-   afe7891: Decode entry uri
+
 ## 1.2.1
 
 ### Patch Changes
