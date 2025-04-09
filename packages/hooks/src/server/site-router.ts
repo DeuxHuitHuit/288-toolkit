@@ -48,7 +48,7 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
 	/**
 	 * The site handle implementation. This is used to get the site handle from the request event.
 	 */
-	siteHandle?: (event: RequestEvent) => T;
+	siteHandle?: (event: RequestEvent, siteRouter: InternalSiteRouter<T>) => T;
 	/**
 	 * The pathname splitter. This is used to split the pathname into site and entry parts.
 	 */
@@ -102,16 +102,16 @@ export const defaultPartsToSiteRouterObject = <T extends SiteHandle = SiteHandle
  * Default site handle formatter.
  * This default implementation replaces all '-' characters with '_' characters.
  * @param event The request event.
+ * @param siteRouter The site router object.
  * @returns The formatted site handle.
  */
 export const defaultSiteHandleImplementation = <
-	L extends SiteRouterLocals,
 	T extends SiteHandle = SiteHandle
 >(
-	event: RequestEvent
+	_event: RequestEvent,
+	siteRouter: InternalSiteRouter<T>
 ) => {
-	const locals = event.locals as L;
-	return locals.siteRouter.site.uri.replaceAll('-', '_') as T;
+	return siteRouter.site.uri.replaceAll('-', '_') as T;
 };
 
 /**
@@ -147,7 +147,7 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 	defaultSiteHandle = '' as T,
 	defaultEntryUri = '',
 	validSiteHandles = [],
-	siteHandle = defaultSiteHandleImplementation<L, T>,
+	siteHandle = defaultSiteHandleImplementation<T>,
 	pathnameSplitter = defaultPathnameSplitter,
 	partsToSiteRouterObject = defaultPartsToSiteRouterObject<T>,
 	validateSiteHandle = defaultValidateSiteHandle<T>
@@ -176,7 +176,7 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 
 			// Make sure the site handle is set and properly formatted
 			if (!internalSiteRouter.site.handle) {
-				internalSiteRouter.site.handle = siteHandle(event);
+				internalSiteRouter.site.handle = siteHandle(event, internalSiteRouter);
 			}
 
 			if (validateSiteHandle(validSiteHandles, internalSiteRouter.site.handle)) {
