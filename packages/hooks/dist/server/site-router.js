@@ -26,10 +26,17 @@ export const defaultPartsToSiteRouterObject = (parts, defaultEntryUri) => ({
  * @param event The request event.
  * @returns The formatted site handle.
  */
-export const defaultSiteHandle = (event) => {
+export const defaultSiteHandleImplementation = (event) => {
     const locals = event.locals;
     return locals.siteRouter.site.uri.replaceAll('-', '_');
 };
+/**
+ * Default site handle validator.
+ * This default implementation checks if the site handle is in the validSiteHandles array.
+ * @param handle The site handle to validate.
+ * @returns True if the site handle is valid, false otherwise.
+ */
+export const defaultValidateSiteHandle = (validSiteHandles, possibleHandle) => Boolean(possibleHandle) && validSiteHandles.includes(possibleHandle);
 /**
  * This handle is responsible for setting the siteRouter object in the locals object.
  * Its responsibility is to split the pathname into site and entry parts and convert
@@ -40,20 +47,25 @@ export const defaultSiteHandle = (event) => {
  * Those values will be used by other hooks and should also be used when requesting
  * an entry from the CMS.
  *
+ * If the url is empty or if the site handle is not valid, the default values will be used.
+ *
  * @param options The options for the siteRouter handle.
  * @returns The siteRouter handle.
  */
-export const createSiteRouter = ({ defaultSiteUri, defaultEntryUri = '', siteHandle = defaultSiteHandle, pathnameSplitter = defaultPathnameSplitter, partsToSiteRouterObject = defaultPartsToSiteRouterObject }) => {
+export const createSiteRouter = ({ defaultSiteUri, defaultSiteHandle = '', defaultEntryUri = '', validSiteHandles = [], siteHandle = (defaultSiteHandleImplementation), pathnameSplitter = defaultPathnameSplitter, partsToSiteRouterObject = (defaultPartsToSiteRouterObject), validateSiteHandle = (defaultValidateSiteHandle) }) => {
     return ({ event, resolve }) => {
         const path = event.url.pathname;
         const parts = pathnameSplitter(path);
         const locals = event.locals;
         if (!parts.length) {
+            // If there are no parts, use the default site uri and entry uri
             locals.siteRouter = {
                 default: true,
+                valid: true,
+                parts,
                 site: {
                     uri: defaultSiteUri,
-                    handle: ''
+                    handle: defaultSiteHandle
                 },
                 entry: {
                     uri: defaultEntryUri
@@ -61,11 +73,30 @@ export const createSiteRouter = ({ defaultSiteUri, defaultEntryUri = '', siteHan
             };
         }
         else {
-            locals.siteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
-        }
-        // Make sure the site handle is set and properly formatted
-        if (!locals.siteRouter.site.handle) {
-            locals.siteRouter.site.handle = siteHandle(event);
+            const internalSiteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
+            // Make sure the site handle is set and properly formatted
+            if (!internalSiteRouter.site.handle) {
+                internalSiteRouter.site.handle = siteHandle(event);
+            }
+            if (validateSiteHandle(validSiteHandles, internalSiteRouter.site.handle)) {
+                locals.siteRouter = {
+                    ...internalSiteRouter,
+                    parts,
+                    valid: true
+                };
+            }
+            else {
+                locals.siteRouter = {
+                    default: true,
+                    valid: false,
+                    parts,
+                    site: {
+                        uri: defaultSiteUri,
+                        handle: defaultSiteHandle
+                    },
+                    entry: internalSiteRouter.entry
+                };
+            }
         }
         return resolve(event);
     };
