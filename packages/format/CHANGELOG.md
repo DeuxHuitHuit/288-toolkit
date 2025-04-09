@@ -1,5 +1,11 @@
 # @288-toolkit/format
 
+## 4.1.8
+
+### Patch Changes
+
+-   @288-toolkit/i18n@10.0.2
+
 ## 4.1.7
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @288-toolkit/pagination
 
+## 5.0.8
+
+### Patch Changes
+
+-   @288-toolkit/i18n@10.0.2
+-   @288-toolkit/forms@4.3.9
+
 ## 5.0.7
 
 ### Patch Changes

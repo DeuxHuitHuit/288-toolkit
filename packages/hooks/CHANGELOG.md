@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.3.0
+
+### Minor Changes
+
+-   afe7891: Decode entry uri
+
 ## 1.2.1
 
 ### Patch Changes
