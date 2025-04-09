@@ -24,11 +24,11 @@ export const defaultPartsToSiteRouterObject = (parts, defaultEntryUri) => ({
  * Default site handle formatter.
  * This default implementation replaces all '-' characters with '_' characters.
  * @param event The request event.
+ * @param siteRouter The site router object.
  * @returns The formatted site handle.
  */
-export const defaultSiteHandleImplementation = (event) => {
-    const locals = event.locals;
-    return locals.siteRouter.site.uri.replaceAll('-', '_');
+export const defaultSiteHandleImplementation = (_event, siteRouter) => {
+    return siteRouter.site.uri.replaceAll('-', '_');
 };
 /**
  * Default site handle validator.
@@ -76,7 +76,7 @@ export const createSiteRouter = ({ defaultSiteUri, defaultSiteHandle = '', defau
             const internalSiteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
             // Make sure the site handle is set and properly formatted
             if (!internalSiteRouter.site.handle) {
-                internalSiteRouter.site.handle = siteHandle(event);
+                internalSiteRouter.site.handle = siteHandle(event, internalSiteRouter);
             }
             if (validateSiteHandle(validSiteHandles, internalSiteRouter.site.handle)) {
                 locals.siteRouter = {

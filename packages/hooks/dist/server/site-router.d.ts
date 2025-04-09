@@ -39,11 +39,11 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
     /**
      * The valid site handles. This is used to validate the site handle.
      */
-    validSiteHandles?: T[];
+    validSiteHandles?: ReadonlyArray<T>;
     /**
      * The site handle implementation. This is used to get the site handle from the request event.
      */
-    siteHandle?: (event: RequestEvent) => T;
+    siteHandle?: (event: RequestEvent, siteRouter: InternalSiteRouter<T>) => T;
     /**
      * The pathname splitter. This is used to split the pathname into site and entry parts.
      */
@@ -55,13 +55,7 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
     /**
      * The validate site handle. This is used to validate the site handle.
      */
-    validateSiteHandle?: (validSiteHandles: T[], possibleHandle: string) => boolean;
-};
-/**
- * Let's make sure the locals object has the uri object with site and entry properties.
- */
-type SiteRouterLocals<T extends SiteHandle = SiteHandle> = App.Locals & {
-    siteRouter: SiteRouter<T>;
+    validateSiteHandle?: (validSiteHandles: ReadonlyArray<T>, possibleHandle: string) => boolean;
 };
 /**
  * Split the pathname into site and entry parts.
@@ -89,16 +83,17 @@ export declare const defaultPartsToSiteRouterObject: <T extends string = string>
  * Default site handle formatter.
  * This default implementation replaces all '-' characters with '_' characters.
  * @param event The request event.
+ * @param siteRouter The site router object.
  * @returns The formatted site handle.
  */
-export declare const defaultSiteHandleImplementation: <L extends SiteRouterLocals<string>, T extends string = string>(event: RequestEvent) => T;
+export declare const defaultSiteHandleImplementation: <T extends string = string>(_event: RequestEvent, siteRouter: InternalSiteRouter<T>) => T;
 /**
  * Default site handle validator.
  * This default implementation checks if the site handle is in the validSiteHandles array.
  * @param handle The site handle to validate.
  * @returns True if the site handle is valid, false otherwise.
  */
-export declare const defaultValidateSiteHandle: <T extends string = string>(validSiteHandles: T[], possibleHandle: string) => boolean;
+export declare const defaultValidateSiteHandle: <T extends string = string>(validSiteHandles: ReadonlyArray<T>, possibleHandle: string) => boolean;
 /**
  * This handle is responsible for setting the siteRouter object in the locals object.
  * Its responsibility is to split the pathname into site and entry parts and convert
