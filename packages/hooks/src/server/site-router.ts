@@ -105,9 +105,7 @@ export const defaultPartsToSiteRouterObject = <T extends SiteHandle = SiteHandle
  * @param siteRouter The site router object.
  * @returns The formatted site handle.
  */
-export const defaultSiteHandleImplementation = <
-	T extends SiteHandle = SiteHandle
->(
+export const defaultSiteHandleImplementation = <T extends SiteHandle = SiteHandle>(
 	_event: RequestEvent,
 	siteRouter: InternalSiteRouter<T>
 ) => {
