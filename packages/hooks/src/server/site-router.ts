@@ -199,8 +199,6 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 			}
 		}
 
-		
-
 		return resolve(event);
 	};
 };
