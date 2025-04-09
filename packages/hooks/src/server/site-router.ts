@@ -173,6 +173,12 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 			};
 		} else {
 			const internalSiteRouter = partsToSiteRouterObject(parts, defaultEntryUri);
+
+			// Make sure the site handle is set and properly formatted
+			if (!internalSiteRouter.site.handle) {
+				internalSiteRouter.site.handle = siteHandle(event);
+			}
+
 			if (validateSiteHandle(validSiteHandles, internalSiteRouter.site.handle)) {
 				locals.siteRouter = {
 					...internalSiteRouter,
@@ -193,10 +199,7 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 			}
 		}
 
-		// Make sure the site handle is set and properly formatted
-		if (!locals.siteRouter.site.handle) {
-			locals.siteRouter.site.handle = siteHandle(event);
-		}
+		
 
 		return resolve(event);
 	};
