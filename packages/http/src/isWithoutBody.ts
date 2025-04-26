@@ -1,4 +1,3 @@
-
 /**
  * Check if a request should not have a body
  * @param request - The request to check
