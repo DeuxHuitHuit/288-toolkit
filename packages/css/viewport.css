@@ -16,7 +16,7 @@
 	--viewport-ratio: calc(1000 / var(--viewport) * var(--factor));
 }
 
-@screen bp {
+@media (width >= theme(--breakpoint-bp)) {
 	:root {
 		--viewport: var(--viewport-desktop);
 		--factor: var(--factor-desktop);
@@ -31,7 +31,7 @@ html {
 	font-size: 56.25%;
 }
 
-@screen min {
+@media (width >= theme(--breakpoint-min)) {
 	html {
 		/**
 		* This is the magic part.
@@ -44,7 +44,7 @@ html {
 	}
 }
 
-@screen max {
+@media (width >= theme(--breakpoint-max)) {
 	html {
 		/**
 		* Cap rem to 10px
