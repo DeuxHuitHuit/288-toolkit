@@ -46,3 +46,8 @@ svg {
 	width: 100%;
 	height: auto;
 }
+
+button:not(:disabled),
+[role='button']:not(:disabled) {
+	cursor: pointer;
+}
