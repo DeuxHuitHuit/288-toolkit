@@ -55,6 +55,14 @@ Returns `true` if the response is a redirect response.
 const isRedirectResponse: (response: Response) => boolean;
 ```
 
+## `isWithoutBody`
+
+Returns `true` if the request should not have a body.
+
+```ts
+const isWithoutBody: (request: Request) => boolean;
+```
+
 ## `getLangFromRequest` (deprecated)
 
 Get the language from the request.

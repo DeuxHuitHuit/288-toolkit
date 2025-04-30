@@ -16,6 +16,15 @@ range is negative, the min and max will be swapped.
 This function tries to not be biased, by rejecting values that would cause a non-uniform
 distribution. See https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle.
 
+## `hash()`
+
+Create a hash of a string as a string.
+
+```ts
+const hash = await hash('hello'); // sha-1 by default
+const hash = await hash('hello', 'SHA-256'); // sha-256
+```
+
 ## `lerp()`
 
 Linear interpolation function that returns a point between two bounds derived from a value between

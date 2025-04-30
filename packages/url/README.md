@@ -21,6 +21,15 @@ all functions return null.
 
 This should be used instead of the `URL` constructor, since it can throw errors.
 
+## `sortQueryString()`
+
+Sorts the query string of a URL and returns it.
+
+```ts
+const sortedUrl = sortQueryString(new URL('https://example.org/path?b=2&a=1&c=3'));
+console.log(sortedUrl.toString()); // https://example.org/path?a=1&b=2&c=3
+```
+
 ## `createEntryUrlBuilder`
 
 Creates a function that builds URLs for entries. Its api is similar to the `parsedUrl` function, but
