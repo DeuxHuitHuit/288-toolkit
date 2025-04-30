@@ -6,5 +6,8 @@
 	"type": "module",
 	"files": [
 		"*.css"
-	]
+	],
+	"peerDependencies": {
+		"tailwindcss": "4.x"
+	}
 }
