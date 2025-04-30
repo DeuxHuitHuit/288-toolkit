@@ -1,5 +1,12 @@
 # @288-toolkit/dev-error-page
 
+## 1.0.7
+
+### Patch Changes
+
+-   Updated dependencies [8a70e6d]
+    -   @288-toolkit/math@1.1.0
+
 ## 1.0.6
 
 ### Patch Changes

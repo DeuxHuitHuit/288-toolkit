@@ -1,5 +1,11 @@
 # @288-toolkit/http
 
+## 4.4.0
+
+### Minor Changes
+
+-   8a70e6d: Add new functions ported from CF workers
+
 ## 4.3.0
 
 ### Minor Changes

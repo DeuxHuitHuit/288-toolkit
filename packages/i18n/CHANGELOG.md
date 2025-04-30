@@ -1,5 +1,12 @@
 # @288-toolkit/i18n
 
+## 10.0.4
+
+### Patch Changes
+
+-   Updated dependencies [8a70e6d]
+    -   @288-toolkit/http@4.4.0
+
 ## 10.0.3
 
 ### Patch Changes

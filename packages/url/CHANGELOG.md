@@ -1,5 +1,11 @@
 # @288-toolkit/url
 
+## 5.3.0
+
+### Minor Changes
+
+-   8a70e6d: Add new functions ported from CF workers
+
 ## 5.2.1
 
 ### Patch Changes
