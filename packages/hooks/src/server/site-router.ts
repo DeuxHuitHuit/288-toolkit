@@ -143,8 +143,8 @@ export const createSiteRouter: <T extends SiteHandle = SiteHandle>(
 ) => Handle = <L extends SiteRouterLocals<T>, T extends SiteHandle = SiteHandle>({
 	defaultSiteUri,
 	defaultSiteHandle = '' as T,
-	defaultEntryUri = '',
-	validSiteHandles = [],
+	defaultEntryUri = '' as const,
+	validSiteHandles = [] as ReadonlyArray<T>,
 	siteHandle = defaultSiteHandleImplementation<T>,
 	pathnameSplitter = defaultPathnameSplitter,
 	partsToSiteRouterObject = defaultPartsToSiteRouterObject<T>,
