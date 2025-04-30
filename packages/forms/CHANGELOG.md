@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.3.11
+
+### Patch Changes
+
+-   @288-toolkit/i18n@10.0.4
+
 ## 4.3.10
 
 ### Patch Changes
