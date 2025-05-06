@@ -1,6 +1,6 @@
 import { svelte } from '@288-toolkit/vite-plugin-svelte-inline-component';
-import { fireEvent } from '@testing-library/dom';
-import { getByText, render } from '@testing-library/svelte';
+import { fireEvent, getByText } from '@testing-library/dom';
+import { render } from '@testing-library/svelte/svelte5';
 import { tick } from 'svelte';
 import { expect, test, vi } from 'vitest';
 import Dismissable from '../src/lib/Dismissable.svelte';
@@ -12,21 +12,17 @@ import Dismissable from '$lib/Dismissable.svelte';
 `;
 
 test('it does not render by default', async () => {
-	const { container, component } = render<Dismissable>(Dismissable, {
+	const { container } = render(Dismissable, {
 		props: {
 			key: 'test'
 		}
 	});
 
 	expect(container).toBeInTheDocument();
-	expect(container.innerHTML).toBe('<!--<Dismissable>-->');
-
-	expect(component.key).toBe('test');
-	expect(component.timeout).toBe(0);
-	expect(component.maxAge).toBe(0);
+	expect(container.innerHTML).toBe('<!---->');
 });
 
-test('it renders with content after timeout and mount', async () => {
+test('it renders with content after timeout and render', async () => {
 	vi.useFakeTimers();
 
 	const { container } = render(
@@ -43,7 +39,7 @@ test('it renders with content after timeout and mount', async () => {
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	expect(document.querySelector('div > div')).toBeInTheDocument();
@@ -56,16 +52,18 @@ test('it closes without persistance', async () => {
 	const { container } = render(
 		await svelte`
 			${compImport};
-			<Dismissable key="test" let:close>
-				<div>Dismissable content</div>
-				<button on:click="{close}">Close</button>
+			<Dismissable key="test">
+				{#snippet children({ close })}
+					<div>Dismissable content</div>
+					<button on:click="{close}">Close</button>
+				{/snippet}
 			</Dismissable>
 		`
 	);
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	expect(document.querySelector('div > div')).toBeInTheDocument();
@@ -89,16 +87,18 @@ test('it dismisses properly', async () => {
 	const { container } = render(
 		await svelte`
 			${compImport};
-			<Dismissable key="test" let:dismiss>
-				<div>Dismissable content</div>
-				<button on:click="{dismiss}">Dismiss</button>
+			<Dismissable key="test">
+				{#snippet children({ dismiss })}
+					<div>Dismissable content</div>
+					<button on:click="{dismiss}">Dismiss</button>
+				{/snippet}
 			</Dismissable>
 		`
 	);
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	expect(document.querySelector('div > div')).toBeInTheDocument();
@@ -136,7 +136,7 @@ test('it respects max age: dismiss', async () => {
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	// Still null since max age is 5 seconds
@@ -165,7 +165,7 @@ test('it respects max age: expired', async () => {
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	// Shown since max age is 5 seconds
@@ -194,7 +194,7 @@ test('it respects max age with lastUpdatedAt: dismiss', async () => {
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	// Still null since max age is 5 seconds
@@ -222,7 +222,7 @@ test('it respects max age with lastUpdatedAt: expired', async () => {
 
 	// Run all timers
 	vi.runAllTimers();
-	// Wait for mount
+	// Wait for render
 	await tick();
 
 	// Shown since lastUpdatedAt is now
