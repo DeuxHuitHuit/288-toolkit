@@ -103,8 +103,8 @@ After having dynamically loaded the components, we need to render them. To do so
 By default, `ComponentSelector` renders all components by passing them an `entry` prop corresponding
 to their associated data.
 
-You can also use the default slot to render the components in any way you like. The slot receives
-the `component` and `entry` props.
+You can also use the children snippet to render the components in any way you like. The snippet
+receives the `component` and `entry` props.
 
 ### Example
 
@@ -112,16 +112,18 @@ the `component` and `entry` props.
 <script lang="ts">
 	import ComponentSelector from '@288-toolkit/component-loader';
 
-	export let data;
+	let { data } = $props();
 
 	const { modules } = data.entry;
 </script>
 
 <ComponentSelector entries={modules} />
 
-<ComponentSelector entries={modules} let:component let:entry>
-	<section>
-		<svelte:component this={component} data={entry} darkMode />
-	</section>
+<ComponentSelector entries={modules}>
+	{#snippet children({ component, entry })}
+		<section>
+			<component data={entry} darkMode />
+		</section>
+	{/snippet}
 </ComponentSelector>
 ```
