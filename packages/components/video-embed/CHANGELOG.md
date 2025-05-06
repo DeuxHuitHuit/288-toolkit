@@ -1,5 +1,12 @@
 # @288-toolkit/video-embed
 
+## 4.0.15
+
+### Patch Changes
+
+-   @288-toolkit/i18n@10.0.5
+-   @288-toolkit/html-elements@3.1.13
+
 ## 4.0.14
 
 ### Patch Changes

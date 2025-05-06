@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.4.1
+
+### Patch Changes
+
+-   c68c8bc: (fix) Add const expression
+
 ## 1.4.0
 
 ### Minor Changes
