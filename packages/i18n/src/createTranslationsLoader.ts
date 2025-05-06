@@ -1,6 +1,5 @@
+import { i18nState } from './i18nState.svelte.js';
 import { localeToLanguage } from './localeTo.js';
-import { currentLocale } from './stores/currentLocale.js';
-import { currentTranslations } from './stores/currentTranslations.js';
 import type { Locale, Translation } from './types/index.js';
 
 export const loadTranslationFile = async (translation: Translation, language: string) => {
@@ -46,15 +45,12 @@ export const createTranslationsLoader = <
 				};
 			})
 		);
-		currentLocale.set(locale);
-		currentTranslations.update((current) => {
-			return {
-				...current,
-				...modules.reduce((obj, { key, messages }) => {
-					obj[key as string] = messages;
-					return obj;
-				}, {})
-			};
-		});
+		i18nState.currentLocale = locale;
+		i18nState.addTranslations(
+			modules.reduce((obj, { key, messages }) => {
+				obj[key as string] = messages;
+				return obj;
+			}, {})
+		);
 	};
 };

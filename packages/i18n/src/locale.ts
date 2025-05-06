@@ -2,14 +2,10 @@
  * This module provide functions to get the current locale and language.
  */
 
-import type { Maybe } from '@288-toolkit/types';
-import { BROWSER } from 'esm-env';
-import { get } from 'svelte/store';
+import { DEV } from 'esm-env';
+import { i18nState } from './i18nState.svelte.js';
 import { localeToLanguage } from './localeTo.js';
-import { currentLocale as currentLocaleStore } from './stores/currentLocale.js';
 import type { LangInfo, Locale } from './types/index.js';
-
-let cachedLocale: Maybe<Locale>;
 
 /**
  * This methods deals with isomorphic code and returns the current locale.
@@ -19,13 +15,14 @@ let cachedLocale: Maybe<Locale>;
  * @returns The current or cached locale.
  */
 export const currentLocale = (): Locale => {
-	if (!BROWSER) {
-		return get(currentLocaleStore);
+	const locale = i18nState.currentLocale;
+	if (!locale) {
+		if (DEV) {
+			console.warn('No locale found. You must first call `createTranslationsLoader()`');
+		}
+		throw new Error('No locale found');
 	}
-	if (!cachedLocale) {
-		cachedLocale = get(currentLocaleStore);
-	}
-	return cachedLocale;
+	return locale;
 };
 
 /**
