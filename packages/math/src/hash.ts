@@ -9,5 +9,5 @@ export const hash = async (str: string, algorithm: AlgorithmIdentifier = 'SHA-1'
 	// This weird ass line converts it back to a string by mapping bytes into a string array, then joins
 	return Array.prototype.map
 		.call(new Uint8Array(buf), (x: number) => ('00' + x.toString(16)).slice(-2))
-		.join('');
+		.join('') as string;
 };
