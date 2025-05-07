@@ -4,6 +4,8 @@ import type { Subscriber } from 'svelte/store';
 import { readable } from 'svelte/store';
 
 /**
+ * @deprecated Use [`on()`](https://svelte.dev/docs/svelte/svelte-events#on) instead.
+ *
  * Create a readable store that listens to a window event.
  * @param event The event to listen to
  * @param options The options to pass to `addEventListener`

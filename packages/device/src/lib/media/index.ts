@@ -1,4 +1,4 @@
 export * from './createMatchMediaStore.js';
-export * from './isTouch.js';
+export * from './isTouch.svelte.js';
 export * from './reducedMotion.js';
-export * from './runOnMatchMedia.js';
+export * from './runOnMatchMedia.svelte.js';

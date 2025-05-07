@@ -6,15 +6,17 @@ npm i @288-toolkit/ui
 
 A collection of functions, actions and stores to manipulate ui.
 
-## `$mounted`
+## DEPRECATED `$mounted`
 
-A store that tells you if a component has been mounted.
+Use [`IsMounted`](https://runed.dev/docs/utilities/is-mounted) from Runed instead.
 
-Credits: https://geoffrich.net/posts/svelte-lifecycle-examples/
+~~A store that tells you if a component has been mounted.~~
 
-## `$navigated`
+~~Credits: https://geoffrich.net/posts/svelte-lifecycle-examples/~~
 
-A store that returns true when the user has navigated at least once.
+## `navigated`
+
+A reactive object with a `current` property that is true when the user has navigated at least once.
 
 ## `motionSafeScrollBehavior()`
 
