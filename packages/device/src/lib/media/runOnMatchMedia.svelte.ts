@@ -1,7 +1,7 @@
 import type { AnonymousObject } from '@288-toolkit/types';
+import { untrack } from 'svelte';
 import type { Action, ActionReturn } from 'svelte/action';
-import { get } from 'svelte/store';
-import type { MatchMediaStore } from './createMatchMediaStore.js';
+import { MediaQuery } from 'svelte/reactivity';
 
 export type RunOnMatchMediaCleanUpFn = void | undefined | (() => void);
 export type RunOnMatchMediaCallback = () => RunOnMatchMediaCleanUpFn;
@@ -9,30 +9,35 @@ export type RunOnMatchMediaCallback = () => RunOnMatchMediaCleanUpFn;
 /**
  * Runs a callback only when the media matches the specified condition. The callback can return a cleanup function that
  * will be called when the media changes.
- * @param store The media store to subscribe to.
- * @param condition The condition to match. If 'matches', the callback will be called when the media matches the store.
- * If 'doesNotMatch', the callback will be called when the media does not match the store.
+ * @param mediaQuery The [`MediaQuery`](https://svelte.dev/docs/svelte/svelte-reactivity#MediaQuery) to watch.
+ * @param condition The condition to match. If `'matches'`, the callback will be called when the media matches the query.
+ * If `'doesNotMatch'`, the callback will be called when the media does not match the query.
  * @param callback The callback to run when the media matches the condition.
- * @returns A function that will unsubscribe from the store and call the cleanup function if it exists.
+ * @returns A function that will call the cleanup function if it exists and stop watching the media query.
  */
 export const runOnMatchMedia = (
-	store: MatchMediaStore,
+	mediaQuery: MediaQuery,
 	condition: 'matches' | 'doesNotMatch',
 	callback: RunOnMatchMediaCallback
 ) => {
-	let cleanUp: RunOnMatchMediaCleanUpFn;
-	const unsubscribe = store.subscribe((matches) => {
-		const canRun = condition === 'matches' ? matches : !matches;
-		if (!canRun) {
+	const destroy = $effect.root(() => {
+		let cleanUp: RunOnMatchMediaCleanUpFn;
+		$effect(() => {
+			const canRun = condition === 'matches' ? mediaQuery.current : !mediaQuery.current;
+			untrack(() => {
+				if (!canRun) {
+					cleanUp?.();
+					return;
+				}
+				cleanUp = callback();
+			});
+			return cleanUp;
+		});
+		return () => {
 			cleanUp?.();
-			return;
-		}
-		cleanUp = callback();
+		};
 	});
-	return () => {
-		unsubscribe();
-		cleanUp?.();
-	};
+	return destroy;
 };
 
 /**
@@ -41,28 +46,34 @@ export const runOnMatchMedia = (
  * @see runOnMatchMedia
  */
 export const runActionOnMatchMedia = <
-	Node extends HTMLElement,
+	Node extends HTMLElement | SVGElement,
 	Params = undefined,
 	Attributes extends AnonymousObject = Record<never, never>
 >(
-	store: MatchMediaStore,
+	mediaQuery: MediaQuery,
 	condition: 'matches' | 'doesNotMatch',
 	action: Action<Node, Params, Attributes>
-): typeof action => {
-	return (...args) => {
+) => {
+	return (
+		...args: [Params] extends [never]
+			? [node: Node]
+			: undefined extends Params
+				? [node: Node, parameter?: Params | undefined]
+				: [node: Node, parameter: Params]
+	) => {
 		let update: ActionReturn<Params, Attributes>['update'];
-		const destroy = runOnMatchMedia(store, condition, () => {
+		const destroy = runOnMatchMedia(mediaQuery, condition, () => {
 			const actionReturn = action(...args);
 			update = actionReturn?.update;
 			return actionReturn?.destroy;
 		});
 		return {
 			destroy,
-			update: (params) => {
+			update: (params: Params) => {
 				if (!update) {
 					return;
 				}
-				const matches = get(store);
+				const matches = mediaQuery.current;
 				const canRun = condition === 'matches' ? matches : !matches;
 				if (!canRun) {
 					return;

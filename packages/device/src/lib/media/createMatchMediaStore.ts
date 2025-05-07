@@ -2,6 +2,8 @@ import { BROWSER } from 'esm-env';
 import { readable } from 'svelte/store';
 
 /**
+ * @deprecated Use [`MediaQuery`](https://svelte.dev/docs/svelte/svelte-reactivity#MediaQuery) from Svelte instead.
+ *
  * @returns A readable store which is true when the media query matches and false when it doesn't.
  */
 export const createMatchMediaStore = (mediaQuery: string) => {

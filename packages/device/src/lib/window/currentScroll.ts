@@ -10,6 +10,9 @@ export type ScrollPosition = {
 const scrollPos: ScrollPosition = { x: 0, y: 0 };
 
 /**
+ * @deprecated Use [`scrollY` and `scrollX`](https://svelte.dev/docs/svelte/svelte-reactivity-window#scrollX)
+ * instead.
+ *
  * A readable store that returns the current scroll positions
  * of the user (x and y).
  */
