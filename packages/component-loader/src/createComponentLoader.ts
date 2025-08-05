@@ -1,5 +1,4 @@
 import type { AnonymousObject } from '@288-toolkit/types';
-import { BROWSER } from 'esm-env';
 import clone from 'just-clone';
 import type { ComponentType } from 'svelte';
 
@@ -87,9 +86,7 @@ export const createComponentLoader = (dynamicImports: DynamicImport[]) => {
 			);
 			return entryCopy;
 		} catch (error) {
-			if (!BROWSER) {
-				console.error(error);
-			}
+			console.error(error);
 			return entryCopy;
 		}
 	};
