@@ -1,4 +1,3 @@
-import { BROWSER } from 'esm-env';
 import clone from 'just-clone';
 const getAllImports = (obj, parts, getImport) => {
     let imports = [];
@@ -58,9 +57,7 @@ export const createComponentLoader = (dynamicImports) => {
             return entryCopy;
         }
         catch (error) {
-            if (!BROWSER) {
-                console.error(error);
-            }
+            console.error(error);
             return entryCopy;
         }
     };
