@@ -1,5 +1,11 @@
 # @288-toolkit/format
 
+## 4.2.0
+
+### Minor Changes
+
+-   78bd649: Add es translation
+
 ## 4.1.11
 
 ### Patch Changes

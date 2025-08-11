@@ -1,5 +1,12 @@
 # @288-toolkit/dates
 
+## 4.1.9
+
+### Patch Changes
+
+-   Updated dependencies [78bd649]
+    -   @288-toolkit/format@4.2.0
+
 ## 4.1.8
 
 ### Patch Changes

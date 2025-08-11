@@ -1,5 +1,11 @@
 # @288-toolkit/slideshow
 
+## 3.3.0
+
+### Minor Changes
+
+-   78bd649: Add es translation
+
 ## 3.2.11
 
 ### Patch Changes
