@@ -1,5 +1,15 @@
 # @288-toolkit/video-embed
 
+## 4.1.0
+
+### Minor Changes
+
+-   78bd649: Add es translation
+
+### Patch Changes
+
+-   @288-toolkit/html-elements@3.1.14
+
 ## 4.0.15
 
 ### Patch Changes

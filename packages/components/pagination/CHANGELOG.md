@@ -1,5 +1,16 @@
 # @288-toolkit/pagination
 
+## 5.1.0
+
+### Minor Changes
+
+-   78bd649: Add es translation
+
+### Patch Changes
+
+-   Updated dependencies [78bd649]
+    -   @288-toolkit/forms@4.4.0
+
 ## 5.0.11
 
 ### Patch Changes

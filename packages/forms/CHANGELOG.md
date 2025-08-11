@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.4.0
+
+### Minor Changes
+
+-   78bd649: Add es translation
+
 ## 4.3.12
 
 ### Patch Changes
