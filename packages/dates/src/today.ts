@@ -28,11 +28,13 @@ export type TodayOptions = {
 
 const padPart = (part: number) => part.toString().padStart(2, '0');
 
-const DEFAULTS: TodayOptions = {
-	now: new Date(),
-	hourOfStartOfDay: 0,
-	timeZone: 'UTC'
-} as const;
+const DEFAULTS = () => {
+	return {
+		now: new Date(),
+		hourOfStartOfDay: 0,
+		timeZone: 'UTC'
+	} as const satisfies TodayOptions;
+};
 
 /**
  * Returns the number of hours the timezone is offset from UTC.
@@ -150,7 +152,7 @@ export const formatTimezoneOffset = (offset: number) => {
  */
 export const today = (options: Partial<TodayOptions> = {}) => {
 	// merge options with defaults
-	const mergedOptions: TodayOptions = { ...DEFAULTS, ...options };
+	const mergedOptions: TodayOptions = { ...DEFAULTS(), ...options };
 	// Find source timezone offset
 	const timezoneOffset = computeTimezoneOffset(mergedOptions.now, mergedOptions.timeZone);
 	// Get the current date in the user's timezone
