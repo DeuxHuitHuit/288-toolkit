@@ -5,7 +5,7 @@
  * @param timeout - The timeout in milliseconds. Defaults to 20 seconds.
  * @returns The response from the fetch
  */
-export const fetchTimeout = async (url, options = {}, timeout = 20000) => {
+export const fetchTimeout = (url, options = {}, timeout = 20000) => {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), timeout);
     try {
