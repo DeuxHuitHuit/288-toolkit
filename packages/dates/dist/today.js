@@ -3,10 +3,12 @@
  */
 import { ISO_LOCALE } from '@288-toolkit/format';
 const padPart = (part) => part.toString().padStart(2, '0');
-const DEFAULTS = {
-    now: new Date(),
-    hourOfStartOfDay: 0,
-    timeZone: 'UTC'
+const DEFAULTS = () => {
+    return {
+        now: new Date(),
+        hourOfStartOfDay: 0,
+        timeZone: 'UTC'
+    };
 };
 /**
  * Returns the number of hours the timezone is offset from UTC.
@@ -123,7 +125,7 @@ export const formatTimezoneOffset = (offset) => {
  */
 export const today = (options = {}) => {
     // merge options with defaults
-    const mergedOptions = { ...DEFAULTS, ...options };
+    const mergedOptions = { ...DEFAULTS(), ...options };
     // Find source timezone offset
     const timezoneOffset = computeTimezoneOffset(mergedOptions.now, mergedOptions.timeZone);
     // Get the current date in the user's timezone
