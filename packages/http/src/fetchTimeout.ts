@@ -5,7 +5,7 @@
  * @param timeout - The timeout in milliseconds. Defaults to 20 seconds.
  * @returns The response from the fetch
  */
-export const fetchTimeout = async (
+export const fetchTimeout = (
 	url: RequestInfo | URL,
 	options: RequestInit = {},
 	timeout = 20000
