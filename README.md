@@ -106,7 +106,8 @@ git push origin releases
 This will trigger a publication action and open yet another pull request. Once this PR is merged,
 the packages are published to npm.
 
-The release commit made in the `releases` branch now needs to be fast-forwarded to main and pushed to github.
+The release commit made in the `releases` branch now needs to be fast-forwarded to main and pushed
+to github.
 
 ```sh
 git checkout main
