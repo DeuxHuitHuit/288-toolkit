@@ -94,25 +94,24 @@ Make sure to follow the instructions on screen and add a changelog message. Comm
 
 Merging the PR into the `main` branch will trigger a build action. This will open a new pull request
 with the build changes. Once the pull request is merged, the main branch needs to be merged into the
-`release` branch.
+`releases` branch.
 
 ```sh
-git checkout release
+git checkout releases
 git fetch --all
 git merge --ff-only origin/main
-git push origin release
+git push origin releases
 ```
 
 This will trigger a publication action and open yet another pull request. Once this PR is merged,
 the packages are published to npm.
 
-The release commit made in the `release` branch now needs to be fast-forwarded to main and pushed to
-github.
+The release commit made in the `releases` branch now needs to be fast-forwarded to main and pushed to github.
 
 ```sh
 git checkout main
 git fetch --all
-git merge --ff-only origin/release
+git merge --ff-only origin/releases
 git push origin main
 ```
 
@@ -126,7 +125,7 @@ PR → main ──────┐
                 ↓
             New PR ──────┐
                          ↓
-             Manually fast-forward main → release
+             Manually fast-forward main → releases
                          │
                          ↓
                    [Publish Action]
@@ -137,7 +136,7 @@ PR → main ──────┐
                             [Publish to npm]
                                   │
                 ┌─────────────────┘
-    Manually fast-forward release → main
+    Manually fast-forward releases → main
 ```
 
 ## License
