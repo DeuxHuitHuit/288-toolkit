@@ -9,7 +9,7 @@ env:
     CI: true
     PNPM_CACHE_FOLDER: .pnpm-store
 jobs:
-    version:
+    tests:
         timeout-minutes: 15
         runs-on: ubuntu-latest
         steps:
