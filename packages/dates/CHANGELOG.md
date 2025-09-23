@@ -1,5 +1,12 @@
 # @288-toolkit/dates
 
+## 4.1.10
+
+### Patch Changes
+
+-   0b07d3b: (fix) A new Date must be created for each call #123
+    -   @288-toolkit/format@4.2.1
+
 ## 4.1.9
 
 ### Patch Changes

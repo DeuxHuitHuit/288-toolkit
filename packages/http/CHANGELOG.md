@@ -1,5 +1,11 @@
 # @288-toolkit/http
 
+## 4.4.1
+
+### Patch Changes
+
+-   ca23cfb: (fix) Remove extraneous async #122
+
 ## 4.4.0
 
 ### Minor Changes
