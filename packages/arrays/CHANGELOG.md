@@ -1,5 +1,12 @@
 # @288-toolkit/arrays
 
+## 1.0.3
+
+### Patch Changes
+
+-   Updated dependencies [359a002]
+    -   @288-toolkit/math@1.1.1
+
 ## 1.0.2
 
 ### Patch Changes

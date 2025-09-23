@@ -1,5 +1,12 @@
 # @288-toolkit/i18n
 
+## 10.0.6
+
+### Patch Changes
+
+-   Updated dependencies [ca23cfb]
+    -   @288-toolkit/http@4.4.1
+
 ## 10.0.5
 
 ### Patch Changes
