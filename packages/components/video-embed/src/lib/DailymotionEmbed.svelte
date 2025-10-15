@@ -10,9 +10,7 @@
 	const { playing, preconnect } = api || {};
 
 	const videoId = url ? getDailyMotionId(url) : null;
-	const src = videoId
-		? `https://geo.dailymotion.com/player.html?video=${videoId}`
-		: null;
+	const src = videoId ? `https://geo.dailymotion.com/player.html?video=${videoId}` : null;
 
 	$: _playing = $playing ?? true;
 </script>

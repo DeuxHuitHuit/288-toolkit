@@ -23,13 +23,13 @@
 		if (isYoutubeUrl(url)) {
 			return 'youtube';
 		} else if (isVimeoUrl(url)) {
-			return 'vimeo'
+			return 'vimeo';
 		} else if (isDailyMotionUrl(url)) {
 			return 'dailymotion';
 		}
 
 		return null;
-	}
+	};
 	const provider: Maybe<keyof typeof providers> = getProvider();
 
 	const EmbedComponent = provider ? providers[provider] : null;
