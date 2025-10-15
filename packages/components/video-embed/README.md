@@ -55,7 +55,7 @@ component.
 
 #### Slot props
 
--   `provider` (`'vimeo' | 'youtube'`): The embed provider, determined from the url.
+-   `provider` (`'vimeo' | 'youtube' | 'dailymotion`): The embed provider, determined from the url.
 
 -   `EmbedComponent` (`SvelteComponent`): The Svelte component of the embed.
 
@@ -66,6 +66,10 @@ The Youtube embed component. Automatically rendered by `EmbedSelector`.
 ### `VimeoEmbed.svelte`
 
 The Vimeo embed component. Automatically rendered by `EmbedSelector`.
+
+### `DailymotionEmbed.svelte`
+
+The DailyMotion embed component. Automatically rendered by `EmbedSelector`.
 
 ## Example
 
