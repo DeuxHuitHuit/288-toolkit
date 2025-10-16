@@ -5,6 +5,8 @@
 	import YtEmbed from './YoutubeEmbed.svelte';
 	import VimeoEmbed from './VimeoEmbed.svelte';
 	import type { Maybe } from '@288-toolkit/types';
+	import DailymotionEmbed from './DailymotionEmbed.svelte';
+	import { isDailyMotionUrl } from './dailymotion.js';
 
 	/**
 	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
@@ -13,14 +15,22 @@
 
 	const providers = {
 		youtube: YtEmbed,
-		vimeo: VimeoEmbed
+		vimeo: VimeoEmbed,
+		dailyMotion: DailymotionEmbed
 	};
 
-	const provider: Maybe<keyof typeof providers> = isYoutubeUrl(url)
-		? 'youtube'
-		: isVimeoUrl(url)
-			? 'vimeo'
-			: null;
+	const getProvider = () => {
+		if (isYoutubeUrl(url)) {
+			return 'youtube';
+		} else if (isVimeoUrl(url)) {
+			return 'vimeo';
+		} else if (isDailyMotionUrl(url)) {
+			return 'dailymotion';
+		}
+
+		return null;
+	};
+	const provider: Maybe<keyof typeof providers> = getProvider();
 
 	const EmbedComponent = provider ? providers[provider] : null;
 </script>
