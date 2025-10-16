@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.2.0
+
+### Minor Changes
+
+-   1463ec9: Add DailyMotion Driver
+
 ## 4.1.1
 
 ### Patch Changes
