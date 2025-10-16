@@ -1,14 +1,12 @@
 import type { AnonymousObject, PropertyStringPath } from '@288-toolkit/types';
-import { BROWSER, DEV } from 'esm-env';
-import { get } from 'svelte/store';
+import { DEV } from 'esm-env';
+import { i18nState } from './i18nState.svelte.js';
 import { translate } from './lib/translate.js';
-import { currentTranslations } from './stores/currentTranslations.js';
 import type { DataType, TranslateParams, Translation } from './types/index.js';
 
 export const createTranslate = <TTranslationsObject extends AnonymousObject>(
 	translationKey: Translation['key']
 ) => {
-	let translations: TTranslationsObject | undefined;
 	return <
 		TReturnType extends DataType = string,
 		TInferredOrString = TReturnType extends DataType ? TReturnType : string
@@ -16,9 +14,7 @@ export const createTranslate = <TTranslationsObject extends AnonymousObject>(
 		path: PropertyStringPath<TTranslationsObject>,
 		data: TranslateParams = {}
 	): TInferredOrString => {
-		if (!BROWSER || !translations) {
-			translations = get(currentTranslations)[translationKey] as TTranslationsObject;
-		}
+		const translations = i18nState.currentTranslations[translationKey] as TTranslationsObject;
 		if (!translations) {
 			if (DEV) {
 				throw new Error(
