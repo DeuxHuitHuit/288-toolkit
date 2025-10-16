@@ -1,7 +1,6 @@
 import { SvelteComponent } from "svelte";
-import YtEmbed from './YoutubeEmbed.svelte';
-import VimeoEmbed from './VimeoEmbed.svelte';
 import type { Maybe } from '@288-toolkit/types';
+import DailymotionEmbed from './DailymotionEmbed.svelte';
 declare const __propDef: {
     props: {
         /**
@@ -13,8 +12,8 @@ declare const __propDef: {
     };
     slots: {
         default: {
-            provider: Maybe<"youtube" | "vimeo">;
-            EmbedComponent: typeof YtEmbed | typeof VimeoEmbed | null;
+            provider: Maybe<"youtube" | "vimeo" | "dailyMotion">;
+            EmbedComponent: typeof DailymotionEmbed | null;
         };
     };
     exports?: {} | undefined;
