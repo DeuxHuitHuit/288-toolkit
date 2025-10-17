@@ -28,9 +28,7 @@ export const getDailyMotionId = (url: string) => {
 /**
  * Get the URL of a DailyMotion video thumbnail
  */
-export const getDailyMotionThumbnailUrl = (
-	url: string
-) => {
+export const getDailyMotionThumbnailUrl = (url: string) => {
 	const id = getDailyMotionId(url);
 	return `https://www.dailymotion.com/thumbnail/video/${id}`;
 };
