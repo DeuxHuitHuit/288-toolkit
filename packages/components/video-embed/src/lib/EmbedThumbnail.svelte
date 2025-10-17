@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { getVimeoThumbnailUrl, isVimeoUrl } from './vimeo.js';
 	import { getYoutubeThumbnailUrl, isYoutubeUrl } from './youtube.js';
+	import { getDailyMotionThumbnailUrl, isDailyMotionUrl } from './dailymotion.js';
 	import { getVideoEmbedContext } from './EmbedGroup.svelte';
 	import type { Maybe } from '@288-toolkit/types';
 	import { HtmlImg } from '@288-toolkit/html-elements';
-	import { getDailyMotionThumbnailUrl, isDailyMotionUrl } from './dailymotion.js';
 
 	/**
 	 * The url of the video. Already provided if this component is used inside an EmbedGroup.
