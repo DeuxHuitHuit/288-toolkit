@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.2.1
+
+### Patch Changes
+
+-   dc704cb: Fix bugs
+
 ## 4.2.0
 
 ### Minor Changes
