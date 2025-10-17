@@ -12,7 +12,7 @@ export let url = getVideoEmbedContext()?.url;
 const providers = {
     youtube: YtEmbed,
     vimeo: VimeoEmbed,
-    dailyMotion: DailymotionEmbed
+    dailymotion: DailymotionEmbed
 };
 const getProvider = () => {
     if (isYoutubeUrl(url)) {

@@ -12,7 +12,7 @@ declare const __propDef: {
     };
     slots: {
         default: {
-            provider: Maybe<"youtube" | "vimeo" | "dailyMotion">;
+            provider: Maybe<"youtube" | "vimeo" | "dailymotion">;
             EmbedComponent: typeof DailymotionEmbed | null;
         };
     };

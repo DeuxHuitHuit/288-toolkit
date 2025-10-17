@@ -20,3 +20,10 @@ export const getDailyMotionId = (url) => {
     }
     return new URL(url).pathname.replace('/video/', '');
 };
+/**
+ * Get the URL of a DailyMotion video thumbnail
+ */
+export const getDailyMotionThumbnailUrl = (url) => {
+    const id = getDailyMotionId(url);
+    return `https://www.dailymotion.com/thumbnail/video/${id}`;
+};
