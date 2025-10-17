@@ -1,6 +1,11 @@
 import type { Maybe } from '@288-toolkit/types';
 import { urlCanParse } from '@288-toolkit/url';
 
+export type DailyMotionThumbnailFormat = {
+	width: string;
+	height?: string;
+};
+
 const DAILYMOTION_URL_REGEX = /^https:\/\/(www.)?dailymotion.com\/video/;
 
 /**
@@ -23,4 +28,14 @@ export const getDailyMotionId = (url: string) => {
 		return '';
 	}
 	return new URL(url).pathname.replace('/video/', '');
+};
+
+/**
+ * Get the URL of a DailyMotion video thumbnail
+ */
+export const getDailyMotionThumbnailUrl = (
+	url: string
+) => {
+	const id = getDailyMotionId(url);
+	return `https://www.dailymotion.com/thumbnail/video/${id}`;
 };

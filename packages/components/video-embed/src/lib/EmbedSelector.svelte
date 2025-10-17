@@ -16,7 +16,7 @@
 	const providers = {
 		youtube: YtEmbed,
 		vimeo: VimeoEmbed,
-		dailyMotion: DailymotionEmbed
+		dailymotion: DailymotionEmbed
 	};
 
 	const getProvider = () => {
