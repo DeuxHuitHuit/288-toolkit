@@ -9,3 +9,7 @@ export declare const isDailyMotionUrl: (url: Maybe<string>) => boolean;
  * - https://dailymotion.com/video/[VIDEO_ID]
  */
 export declare const getDailyMotionId: (url: string) => string;
+/**
+ * Get the URL of a DailyMotion video thumbnail
+ */
+export declare const getDailyMotionThumbnailUrl: (url: string) => string;
