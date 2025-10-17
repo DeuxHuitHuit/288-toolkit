@@ -1,11 +1,6 @@
 import type { Maybe } from '@288-toolkit/types';
 import { urlCanParse } from '@288-toolkit/url';
 
-export type DailyMotionThumbnailFormat = {
-	width: string;
-	height?: string;
-};
-
 const DAILYMOTION_URL_REGEX = /^https:\/\/(www.)?dailymotion.com\/video/;
 
 /**
