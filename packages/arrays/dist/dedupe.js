@@ -13,5 +13,5 @@ export const dedupeArray = (arr) => {
  * @returns the filtered array
  */
 export const dedupeArrayOfObjects = (arr, filterKey) => {
-    return [...new Map(arr.map((a) => [a[filterKey], a])).values()];
+    return [...new Map(arr.filter(Boolean).map((a) => [a[filterKey], a])).values()];
 };
