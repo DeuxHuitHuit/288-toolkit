@@ -17,5 +17,5 @@ export const dedupeArrayOfObjects = <T extends Record<string | number | symbol, 
 	arr: readonly T[],
 	filterKey: string
 ) => {
-	return [...new Map(arr.map((a) => [a[filterKey], a])).values()];
+	return [...new Map(arr.filter(Boolean).map((a) => [a[filterKey], a])).values()];
 };
