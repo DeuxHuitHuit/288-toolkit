@@ -1,5 +1,11 @@
 # @288-toolkit/arrays
 
+## 1.0.4
+
+### Patch Changes
+
+-   f2c7dcb: (fix) Remove nullish values from array
+
 ## 1.0.3
 
 ### Patch Changes
