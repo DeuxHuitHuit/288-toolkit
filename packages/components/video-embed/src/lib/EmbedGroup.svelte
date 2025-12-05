@@ -72,6 +72,7 @@
 		preconnect: readonly(preconnect),
 		requestPreconnect,
 		play,
+		stop,
 		url
 	});
 </script>
