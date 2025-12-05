@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.3.0
+
+### Minor Changes
+
+-   dcf9f53: (feat) Add exportable stop function to embed group
+
 ## 4.2.1
 
 ### Patch Changes
