@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.3.1
+
+### Patch Changes
+
+-   049b08e: Add missing stop function to EmbedGroup context
+
 ## 4.3.0
 
 ### Minor Changes
