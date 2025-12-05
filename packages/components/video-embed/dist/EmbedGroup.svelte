@@ -6,16 +6,20 @@ export const getVideoEmbedContext = getContext;
 </script>
 
 <script>export let url = null;
-const playing = writable(false);
+const _playing = writable(false);
+export const playing = readonly(_playing);
 const preconnect = writable(false);
 const requestPreconnect = () => {
     preconnect.set(true);
 };
-const play = () => {
-    playing.set(true);
+export const play = () => {
+    _playing.set(true);
+};
+export const stop = () => {
+    _playing.set(false);
 };
 setContext({
-    playing: readonly(playing),
+    playing,
     preconnect: readonly(preconnect),
     requestPreconnect,
     play,
@@ -23,4 +27,4 @@ setContext({
 });
 </script>
 
-<slot playing={$playing} preconnect={$preconnect} {play} {requestPreconnect} />
+<slot playing={$_playing} preconnect={$preconnect} {play} {stop} {requestPreconnect} />
