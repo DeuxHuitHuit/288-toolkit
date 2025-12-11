@@ -19,69 +19,14 @@ less than one, it won't start the animation.
 
 ## Props
 
-### url
-
-The URL of the sprite.
-
-```ts
-export let url: string;
-```
-
-### width
-
-The width in pixels of a single frame in the sprite.
-
-```ts
-export let width: number;
-```
-
-### height
-
-The height in pixels of a single frame in the sprite.
-
-```ts
-export let height: number;
-```
-
-### speed
-
-The speed in milliseconds of the animation. Default: 100ms.
-
-```ts
-export let speed = 100;
-```
-
-### cols
-
-The number of columns in the sprite.
-
-```ts
-export let cols = 1;
-```
-
-### rows
-
-The number of rows in the sprite.
-
-```ts
-export let rows = 1;
-```
-
-### loop
-
-Whether the animation should loop.
-
-```ts
-export let loop = true;
-```
-
-### still
-
-The still image to show when the animation is not running.
-
-```ts
-export let still: Maybe<string> = null;
-```
+-   `url` - `string`: The URL of the sprite.
+-   `width` - `number`: The width in pixels of a single frame in the sprite.
+-   `height` - `number`: The height in pixels of a single frame in the sprite.
+-   `speed` - `number`: The speed in milliseconds of the animation. Default: 100ms.
+-   `cols` - `number`: The number of columns in the sprite.
+-   `rows` - `number`: The number of rows in the sprite.
+-   `loop` - `boolean`: Whether the animation should loop.
+-   `still` - `string`: The still image to show when the animation is not running.
 
 ## Example
 

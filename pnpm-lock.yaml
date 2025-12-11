@@ -179,10 +179,10 @@ importers:
         version: link:../../math
       '@sveltejs/kit':
         specifier: 2.x
-        version: 2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.0.0)(vite@5.2.11(@types/node@20.12.7)))(svelte@4.0.0)(vite@5.2.11(@types/node@20.12.7))
+        version: 2.5.8(@sveltejs/vite-plugin-svelte@3.1.0(svelte@4.2.17)(vite@5.2.11(@types/node@20.12.7)))(svelte@4.2.17)(vite@5.2.11(@types/node@20.12.7))
       svelte:
         specifier: 4.x || 5.x
-        version: 4.0.0
+        version: 4.2.17
 
   packages/components/dismissable:
     dependencies:
@@ -299,24 +299,24 @@ importers:
         specifier: workspace:^
         version: link:../../types
       esm-env:
-        specifier: 1.0.0
-        version: 1.0.0
+        specifier: 1.2.2
+        version: 1.2.2
       motion:
-        specifier: 10.x
-        version: 10.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 11.x
+        version: 11.16.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       svelte:
-        specifier: 4.x || 5.x
-        version: 4.0.0
+        specifier: 5.x
+        version: 5.17.2
     devDependencies:
       '@288-toolkit/vite-plugin-svelte-inline-component':
         specifier: workspace:^
         version: link:../../vite-plugin-svelte-inline-component
+      '@testing-library/jest-dom':
+        specifier: ^6.6.3
+        version: 6.6.3
       '@testing-library/svelte':
-        specifier: ^5.1.0
-        version: 5.1.0(svelte@4.0.0)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))
-      svelte-preprocess:
-        specifier: 5.1.4
-        version: 5.1.4(postcss-load-config@3.1.4(postcss@8.4.49))(postcss@8.4.49)(svelte@4.0.0)(typescript@5.4.5)
+        specifier: ^5.2.6
+        version: 5.2.6(svelte@5.17.2)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))
 
   packages/components/video-embed:
     dependencies:
@@ -1981,6 +1981,20 @@ packages:
   fraction.js@4.3.7:
     resolution: {integrity: sha512-ZsDfxO51wGAXREY55a7la9LScWpwv9RxIrYABrlvOFBlH/ShPnrtsXeuUIfXKKOVicNxQ+o8JTbJvjS4M89yew==}
 
+  framer-motion@11.16.4:
+    resolution: {integrity: sha512-7ncPlBjrYX6iQXcTSw1kvZcHSVjEuOAW3uWuu+/+chUS4UWBMe8kCjniE4VMc2/BMo0su0Uw9sw0aWS9anpPWA==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   framer-motion@4.1.17:
     resolution: {integrity: sha512-thx1wvKzblzbs0XaK2X0G1JuwIdARcoNOW7VVwjO8BUltzXPyONGAElLu6CiCScsOQRI7FIk/45YTFtJw5Yozw==}
     peerDependencies:
@@ -2514,12 +2528,32 @@ packages:
     resolution: {integrity: sha512-FP+p8RB8OWpF3YZBCrP5gtADmtXApB5AMLn+vdyA+PyxCjrCs00mjyUozssO33cwDeT3wNGdLxJ5M//YqtHAJw==}
     hasBin: true
 
+  motion-dom@11.16.4:
+    resolution: {integrity: sha512-2wuCie206pCiP2K23uvwJeci4pMFfyQKpWI0Vy6HrCTDzDCer4TsYtT7IVnuGbDeoIV37UuZiUr6SZMHEc1Vww==}
+
+  motion-utils@11.16.0:
+    resolution: {integrity: sha512-ngdWPjg31rD4WGXFi0eZ00DQQqKKu04QExyv/ymlC+3k+WIgYVFbt6gS5JsFPbJODTF/r8XiE/X+SsoT9c0ocw==}
+
   motion@10.0.0:
     resolution: {integrity: sha512-AZ9E5pgsagcywcS0mRlTFG8y+i9Ud5tO13RvIW0gyrJ7d39KhkbobxdidBeBAVeDmjKNM+lCNpotyGWJIyG6/A==}
     peerDependencies:
       react: ^17.0.2
       react-dom: ^17.0.2
     peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
+  motion@11.16.4:
+    resolution: {integrity: sha512-Ut4Lv41Bh8QRmBM56zwVXZsRS/jUTVjS081xnHF7zCl2I24v5Kb5/FU5oogSfCCQY/T/BZnIhkIe5PH8BDZIAA==}
+    peerDependencies:
+      '@emotion/is-prop-valid': '*'
+      react: ^18.0.0 || ^19.0.0
+      react-dom: ^18.0.0 || ^19.0.0
+    peerDependenciesMeta:
+      '@emotion/is-prop-valid':
+        optional: true
       react:
         optional: true
       react-dom:
@@ -4200,7 +4234,7 @@ snapshots:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
-      esm-env: 1.0.0
+      esm-env: 1.2.2
       import-meta-resolve: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.14
@@ -4218,7 +4252,7 @@ snapshots:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
-      esm-env: 1.0.0
+      esm-env: 1.2.2
       import-meta-resolve: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.14
@@ -4254,7 +4288,7 @@ snapshots:
       '@types/cookie': 0.6.0
       cookie: 0.6.0
       devalue: 5.1.1
-      esm-env: 1.0.0
+      esm-env: 1.2.2
       import-meta-resolve: 4.1.0
       kleur: 4.1.5
       magic-string: 0.30.14
@@ -4401,14 +4435,6 @@ snapshots:
       lodash: 4.17.21
       redent: 3.0.0
 
-  '@testing-library/svelte@5.1.0(svelte@4.0.0)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))':
-    dependencies:
-      '@testing-library/dom': 9.3.4
-      svelte: 4.0.0
-    optionalDependencies:
-      vite: 5.2.11(@types/node@20.12.7)
-      vitest: 2.1.6(@types/node@20.12.7)(jsdom@24.0.0)
-
   '@testing-library/svelte@5.1.0(svelte@5.17.2)(vite@5.2.11(@types/node@20.12.7))(vitest@packages+components+video-embed+@testing-library+jest-dom+vitest)':
     dependencies:
       '@testing-library/dom': 9.3.4
@@ -4421,6 +4447,14 @@ snapshots:
     dependencies:
       '@testing-library/dom': 10.4.0
       svelte: 4.2.17
+    optionalDependencies:
+      vite: 5.2.11(@types/node@20.12.7)
+      vitest: 2.1.6(@types/node@20.12.7)(jsdom@24.0.0)
+
+  '@testing-library/svelte@5.2.6(svelte@5.17.2)(vite@5.2.11(@types/node@20.12.7))(vitest@2.1.6(@types/node@20.12.7)(jsdom@24.0.0))':
+    dependencies:
+      '@testing-library/dom': 10.4.0
+      svelte: 5.17.2
     optionalDependencies:
       vite: 5.2.11(@types/node@20.12.7)
       vitest: 2.1.6(@types/node@20.12.7)(jsdom@24.0.0)
@@ -5507,6 +5541,16 @@ snapshots:
 
   fraction.js@4.3.7: {}
 
+  framer-motion@11.16.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      motion-dom: 11.16.4
+      motion-utils: 11.16.0
+      tslib: 2.6.2
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
   framer-motion@4.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       framesync: 5.3.0
@@ -6032,6 +6076,12 @@ snapshots:
     dependencies:
       minimist: 1.2.8
 
+  motion-dom@11.16.4:
+    dependencies:
+      motion-utils: 11.16.0
+
+  motion-utils@11.16.0: {}
+
   motion@10.0.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
     dependencies:
       framer-motion: 4.1.17(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -6039,6 +6089,15 @@ snapshots:
       tslib: 2.6.2
       web-animations-js: 2.3.2
     optionalDependencies:
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+
+  motion@11.16.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1):
+    dependencies:
+      framer-motion: 11.16.4(@emotion/is-prop-valid@0.8.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      tslib: 2.6.2
+    optionalDependencies:
+      '@emotion/is-prop-valid': 0.8.8
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
 
@@ -6413,7 +6472,7 @@ snapshots:
 
   runed@0.23.0(svelte@5.17.2):
     dependencies:
-      esm-env: 1.0.0
+      esm-env: 1.2.2
       svelte: 5.17.2
 
   sade@1.8.1:
@@ -6713,19 +6772,6 @@ snapshots:
   svelte-hmr@0.16.0(svelte@5.17.2):
     dependencies:
       svelte: 5.17.2
-
-  svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.49))(postcss@8.4.49)(svelte@4.0.0)(typescript@5.4.5):
-    dependencies:
-      '@types/pug': 2.0.10
-      detect-indent: 6.1.0
-      magic-string: 0.30.14
-      sorcery: 0.11.1
-      strip-indent: 3.0.0
-      svelte: 4.0.0
-    optionalDependencies:
-      postcss: 8.4.49
-      postcss-load-config: 3.1.4(postcss@8.4.49)
-      typescript: 5.4.5
 
   svelte-preprocess@5.1.4(postcss-load-config@3.1.4(postcss@8.4.49))(postcss@8.4.49)(svelte@4.2.17)(typescript@5.4.5):
     dependencies:

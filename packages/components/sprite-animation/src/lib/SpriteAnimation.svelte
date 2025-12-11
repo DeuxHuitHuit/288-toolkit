@@ -1,4 +1,4 @@
-<script context="module" lang="ts">
+<script module lang="ts">
 	import { estimatedAvailableMegaBytesPerSeconds } from './estimatedAvailableMegaBytesPerSeconds.js';
 	import { BROWSER, DEV } from 'esm-env';
 
@@ -23,42 +23,55 @@
 	import { inView } from 'motion';
 	import type { Maybe } from '@288-toolkit/types';
 
-	/**
-	 * The url of the sprite.
-	 */
-	export let url: string;
-	/**
-	 * The width in px of a single frame in the sprite.
-	 */
-	export let width: number;
-	/**
-	 * The height in px of a single frame in the sprite.
-	 */
-	export let height: number;
-	/**
-	 * The speed in ms of the animation.
-	 */
-	export let speed = 100;
-	/**
-	 * The number of columns in the sprite.
-	 */
-	export let cols = 1;
-	/**
-	 * The number of rows in the sprite.
-	 */
-	export let rows = 1;
-	/**
-	 * Wether the animation should loop.
-	 */
-	export let loop = true;
-	/**
-	 * The still image to show when the animation is not running.
-	 */
-	export let still: Maybe<string> = null;
+	interface Props {
+		/**
+		 * The url of the sprite.
+		 */
+		url: string;
+		/**
+		 * The width in px of a single frame in the sprite.
+		 */
+		width: number;
+		/**
+		 * The height in px of a single frame in the sprite.
+		 */
+		height: number;
+		/**
+		 * The speed in ms of the animation.
+		 */
+		speed?: number;
+		/**
+		 * The number of columns in the sprite.
+		 */
+		cols?: number;
+		/**
+		 * The number of rows in the sprite.
+		 */
+		rows?: number;
+		/**
+		 * Wether the animation should loop.
+		 */
+		loop?: boolean;
+		/**
+		 * The still image to show when the animation is not running.
+		 */
+		still?: Maybe<string>;
+	}
+
+	let {
+		url,
+		width,
+		height,
+		speed = 100,
+		cols = 1,
+		rows = 1,
+		loop = true,
+		still = null
+	}: Props = $props();
 
 	const count = cols * rows;
 	const paddingRatio = (height / width) * 100;
-	let running = !still;
+	let running = $state(!still);
 	let animation: Animation;
 
 	const createBackgroundPosition = (x: number, y: number) => {
@@ -163,18 +176,20 @@
 		};
 	};
 
-	$: renderedUrl = running || !still ? url : still;
+	let renderedUrl = $derived(running || !still ? url : still);
 
-	$: if (DEV) {
-		if (!url) {
-			throw new Error('Cannot have a sprite with no url');
-		}
-		if (cols < 1 || rows < 1) {
-			throw new Error('Cannot have a sprite with no cols or no rows');
-		}
-		if (width < 1 || height < 1) {
-			throw new Error('Cannot have a sprite with no width or no height');
-		}
+	if (DEV) {
+		$effect(() => {
+			if (!url) {
+				throw new Error('Cannot have a sprite with no url');
+			}
+			if (cols < 1 || rows < 1) {
+				throw new Error('Cannot have a sprite with no cols or no rows');
+			}
+			if (width < 1 || height < 1) {
+				throw new Error('Cannot have a sprite with no width or no height');
+			}
+		});
 	}
 </script>
 
@@ -189,11 +204,11 @@
 			--background-size: {cols * 100}% {rows * 100}%;
 			--padding-bottom: {paddingRatio}%;
 		"
-	/>
+	></div>
 {/if}
 
 <style>
-	:global(._sprite-animation) {
+	._sprite-animation {
 		width: 100%;
 		height: 0;
 		padding-bottom: var(--padding-bottom, 100%);
