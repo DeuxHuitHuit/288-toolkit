@@ -6,47 +6,26 @@ pnpm i @288-toolkit/marquee
 
 A css animated generic marquee component.
 
-## Props
+## Css variables
 
 ### --gap
-
-Should be set as a css variable.
 
 To make a seamless marquee effect, the component generates whatever is in the slot twice or more.
 The `gap` property represents the space between the copies. Default: `0`.
 
 ### --speed
 
-Should be set as a css variable.
-
 The marquee animation duration, which determines the speed of the marquee. The higher the number,
 the slower the marquee. Default: `12000ms`.
 
-### direction
+## Props
 
-The direction of the marquee.
+-   `direction` - `'natural' | 'inverted'`: The direction of the marquee. Default: `natural`.
+-   `orientation` - `'vertical' | 'horizontal'`: The orientation of the marquee. Default:
+    `horizontal`.
+-   `stopOnHover` - `boolean`: Whether the marquee should pause when hovered. Default: `false`.
 
-```ts
-export let direction: 'natural' | 'inverted' = 'natural';
-```
-
-### orientation
-
-The orientation of the marquee. Default: `horizontal`.
-
-```ts
-export let orientation: 'vertical' | 'horizontal' = 'horizontal';
-```
-
-### stopOnHover
-
-Whether the marquee should pause when hovered. Default: `false`.
-
-```ts
-export let stopOnHover = false;
-```
-
-## Slot props
+## Children props
 
 -   `copy` (`boolean`): Wether the rendered slot is a copy of the original.
 
