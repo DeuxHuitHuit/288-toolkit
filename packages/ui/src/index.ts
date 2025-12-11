@@ -10,7 +10,7 @@ export * from './isFocusable.js';
 export * from './keys.js';
 export * from './motionSafeScrollBehavior.js';
 export * from './mounted.js';
-export * from './navigated.js';
+export * from './navigated.svelte.js';
 export * from './portal.js';
 export * from './scrollIntoView.js';
 export * from './scrollToAnchor.js';
