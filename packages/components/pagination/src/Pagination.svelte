@@ -59,7 +59,7 @@
 <script lang="ts">
 	import { mounted } from '@288-toolkit/ui';
 
-	import { replaceState } from '$app/navigation';
+	import { replaceState, pushState } from '$app/navigation';
 	import { writable, derived } from 'svelte/store';
 	import machine from 'svelte-fsm';
 	import { page } from '$app/stores';
@@ -103,11 +103,15 @@
 	 */
 	export let pageKey = 'page';
 	/**
-	 * Wether to update the url query string (using `replaceState`) with
+	 * Wether to update the url query string (using `replaceState` or `pushState`) with
 	 * pagination and filter values. If PaginationLoadMore or PaginationInfiniteScroll is used,
 	 * the url won't be updated and this prop will have no effect. DEFAULT: true
 	 */
 	export let updateUrl = true;
+	/**
+	 * Wether to use `pushState` or `replaceState` to update the url query string. DEFAULT: 'replace'
+	 */
+	export let updateUrlMethod: 'push' | 'replace' = 'replace';
 
 	let keepItems = false;
 
@@ -180,7 +184,13 @@
 		});
 		const qs = query.toString();
 		const url = qs ? `?${qs}` : $page.url.pathname;
-		replaceState(url, {});
+		if (updateUrlMethod === 'push') {
+			pushState(url, {});
+		} else if (updateUrlMethod === 'replace') {
+			replaceState(url, {});
+		} else {
+			console.error(`Invalid updateUrlMethod: ${updateUrlMethod}`);
+		}
 	};
 
 	const update = (params: UpdateArgs) => {
