@@ -58,8 +58,8 @@
 
 <script lang="ts">
 	import { mounted } from '@288-toolkit/ui';
-
-	import { replaceState } from '$app/navigation';
+	import { replaceState, pushState } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { writable, derived } from 'svelte/store';
 	import machine from 'svelte-fsm';
 	import { page } from '$app/stores';
@@ -103,13 +103,18 @@
 	 */
 	export let pageKey = 'page';
 	/**
-	 * Wether to update the url query string (using `replaceState`) with
+	 * Whether to update the url query string (using `replaceState` or `pushState`) with
 	 * pagination and filter values. If PaginationLoadMore or PaginationInfiniteScroll is used,
 	 * the url won't be updated and this prop will have no effect. DEFAULT: true
 	 */
 	export let updateUrl = true;
+	/**
+	 * Whether to use `pushState` or `replaceState` to update the url query string. DEFAULT: 'replace'
+	 */
+	export let updateUrlMethod: 'push' | 'replace' = 'replace';
 
 	let keepItems = false;
+	let syncingFromHistory = false;
 
 	const items = writable<Items>(initialItems);
 
@@ -180,12 +185,43 @@
 		});
 		const qs = query.toString();
 		const url = qs ? `?${qs}` : $page.url.pathname;
-		replaceState(url, {});
+		if (updateUrlMethod === 'push') {
+			pushState(url, {});
+		} else if (updateUrlMethod === 'replace') {
+			replaceState(url, {});
+		} else {
+			console.error(`Invalid updateUrlMethod: ${updateUrlMethod}`);
+		}
 	};
 
 	const update = (params: UpdateArgs) => {
 		state.update(params);
 	};
+
+	if (updateUrl && updateUrlMethod === 'push') {
+		// We need to listen to popstate events to update the pagination when the
+		// user navigates back to the page using the browser's back button.
+		const onPopState = () => {
+			const urlPage = Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
+			const query = new URLSearchParams(window.location.search);
+			const filterKeys = Object.keys($pages.filters);
+			const urlFilters: Filters = Object.fromEntries(
+				filterKeys.map((key) => [key, query.getAll(key).filter(Boolean)])
+			);
+
+			syncingFromHistory = true;
+			update({ page: urlPage, filters: urlFilters });
+			queueMicrotask(() => {
+				syncingFromHistory = false;
+			});
+		};
+		onMount(() => {
+			window.addEventListener('popstate', onPopState);
+			return () => {
+				window.removeEventListener('popstate', onPopState);
+			};
+		});
+	}
 
 	// Calling `onMount` outside of component initialization like we do in the `update` event of the `idle` state below
 	// breaks in Svelte 5 so we need to store the value of `$mounted` in a reactive variable and use that instead
@@ -206,7 +242,7 @@
 				try {
 					const currentPage = page || 1;
 					const updatedFilters = { ...$pages.filters, ...filters };
-					if (updateUrl) {
+					if (updateUrl && !syncingFromHistory) {
 						updateQueryString({
 							[pageKey]: `${currentPage}`,
 							...updatedFilters

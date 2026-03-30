@@ -67,10 +67,13 @@ declare class __sveltets_Render<Item> {
              * "page"
              */ pageKey?: string | undefined;
         /**
-             * Wether to update the url query string (using `replaceState`) with
+             * Whether to update the url query string (using `replaceState` or `pushState`) with
              * pagination and filter values. If PaginationLoadMore or PaginationInfiniteScroll is used,
              * the url won't be updated and this prop will have no effect. DEFAULT: true
              */ updateUrl?: boolean | undefined;
+        /**
+             * Whether to use `pushState` or `replaceState` to update the url query string. DEFAULT: 'replace'
+             */ updateUrlMethod?: "replace" | "push" | undefined;
     };
     events(): {} & {
         [evt: string]: CustomEvent<any>;
