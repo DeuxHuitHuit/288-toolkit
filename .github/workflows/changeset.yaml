@@ -5,7 +5,8 @@ on:
             - releases
 permissions:
     id-token: write
-    contents: read
+    contents: write
+    pull-requests: write
 env:
     CI: true
 jobs:
@@ -34,4 +35,6 @@ jobs:
                   title: '(chore) update versions'
                   publish: pnpm ci:publish
               env:
+                  NPM_CONFIG_PROVENANCE: true
+                  NPM_CONFIG_ACCESS: public
                   GITHUB_TOKEN: ${{ secrets.PA_GITHUB_TOKEN }}
