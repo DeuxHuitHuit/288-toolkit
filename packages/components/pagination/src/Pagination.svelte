@@ -103,13 +103,13 @@
 	 */
 	export let pageKey = 'page';
 	/**
-	 * Wether to update the url query string (using `replaceState` or `pushState`) with
+	 * Whether to update the url query string (using `replaceState` or `pushState`) with
 	 * pagination and filter values. If PaginationLoadMore or PaginationInfiniteScroll is used,
 	 * the url won't be updated and this prop will have no effect. DEFAULT: true
 	 */
 	export let updateUrl = true;
 	/**
-	 * Wether to use `pushState` or `replaceState` to update the url query string. DEFAULT: 'replace'
+	 * Whether to use `pushState` or `replaceState` to update the url query string. DEFAULT: 'replace'
 	 */
 	export let updateUrlMethod: 'push' | 'replace' = 'replace';
 
