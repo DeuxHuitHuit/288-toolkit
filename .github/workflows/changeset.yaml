@@ -37,4 +37,4 @@ jobs:
               env:
                   NPM_CONFIG_PROVENANCE: true
                   NPM_CONFIG_ACCESS: public
-                  GITHUB_TOKEN: ${{ secrets.PA_GITHUB_TOKEN }}
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
