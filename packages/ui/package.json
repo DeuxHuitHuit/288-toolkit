@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/ui",
 	"version": "5.2.3",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/ui/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

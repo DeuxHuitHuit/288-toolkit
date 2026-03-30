@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/base64-filters",
 	"version": "1.0.2",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/base64-filters/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

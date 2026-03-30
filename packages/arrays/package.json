@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/arrays",
 	"version": "1.0.4",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/arrays/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

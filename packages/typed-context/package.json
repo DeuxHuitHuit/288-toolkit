@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/typed-context",
 	"version": "4.0.0",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/typed-context/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

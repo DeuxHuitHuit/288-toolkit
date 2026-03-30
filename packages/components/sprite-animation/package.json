@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/sprite-animation",
 	"version": "3.0.3",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/components/sprite-animation/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

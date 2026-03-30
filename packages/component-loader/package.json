@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/component-loader",
 	"version": "1.0.3",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/component-loader/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

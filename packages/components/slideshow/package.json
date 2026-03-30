@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/slideshow",
 	"version": "3.3.1",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/components/slideshow/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

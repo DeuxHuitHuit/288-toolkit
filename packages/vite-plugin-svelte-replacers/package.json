@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/vite-plugin-svelte-replacers",
 	"version": "3.0.0",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/vite-plugin-svelte-replacers/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",

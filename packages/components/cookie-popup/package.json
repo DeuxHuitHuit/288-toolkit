@@ -1,6 +1,11 @@
 {
 	"name": "@288-toolkit/cookie-popup",
 	"version": "3.0.7",
+	"homepage": "https://github.com/DeuxHuitHuit/288-toolkit/blob/main/packages/components/cookie-popup/README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DeuxHuitHuit/288-toolkit"
+	},
 	"author": "DeuxHuitHuit",
 	"license": "MIT",
 	"type": "module",
