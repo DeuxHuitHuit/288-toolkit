@@ -58,8 +58,8 @@
 
 <script lang="ts">
 	import { mounted } from '@288-toolkit/ui';
-
 	import { replaceState, pushState } from '$app/navigation';
+	import { onMount } from 'svelte';
 	import { writable, derived } from 'svelte/store';
 	import machine from 'svelte-fsm';
 	import { page } from '$app/stores';
@@ -114,6 +114,7 @@
 	export let updateUrlMethod: 'push' | 'replace' = 'replace';
 
 	let keepItems = false;
+	let syncingFromHistory = false;
 
 	const items = writable<Items>(initialItems);
 
@@ -197,6 +198,32 @@
 		state.update(params);
 	};
 
+	if (updateUrl && updateUrlMethod === 'push') {
+		// We need to listen to popstate events to update the pagination when the
+		// user navigates back to the page using the browser's back button.
+		const onPopState = () => {
+			const urlPage =
+				Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
+			const query = new URLSearchParams(window.location.search);
+			const filterKeys = Object.keys($pages.filters);
+			const urlFilters: Filters = Object.fromEntries(
+				filterKeys.map((key) => [key, query.getAll(key).filter(Boolean)])
+			);
+
+			syncingFromHistory = true;
+			update({ page: urlPage, filters: urlFilters });
+			queueMicrotask(() => {
+				syncingFromHistory = false;
+			});
+		};
+		onMount(() => {
+			window.addEventListener('popstate', onPopState);
+			return () => {
+				window.removeEventListener('popstate', onPopState);
+			};
+		});
+	}
+
 	// Calling `onMount` outside of component initialization like we do in the `update` event of the `idle` state below
 	// breaks in Svelte 5 so we need to store the value of `$mounted` in a reactive variable and use that instead
 	$: isMounted = $mounted;
@@ -216,7 +243,7 @@
 				try {
 					const currentPage = page || 1;
 					const updatedFilters = { ...$pages.filters, ...filters };
-					if (updateUrl) {
+					if (updateUrl && !syncingFromHistory) {
 						updateQueryString({
 							[pageKey]: `${currentPage}`,
 							...updatedFilters
