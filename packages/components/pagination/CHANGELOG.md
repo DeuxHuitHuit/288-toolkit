@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 5.2.0
+
+### Minor Changes
+
+-   88cd03e: (feat) Allow the use of pushState in nav
+
 ## 5.1.1
 
 ### Patch Changes
