@@ -202,8 +202,7 @@
 		// We need to listen to popstate events to update the pagination when the
 		// user navigates back to the page using the browser's back button.
 		const onPopState = () => {
-			const urlPage =
-				Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
+			const urlPage = Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
 			const query = new URLSearchParams(window.location.search);
 			const filterKeys = Object.keys($pages.filters);
 			const urlFilters: Filters = Object.fromEntries(
