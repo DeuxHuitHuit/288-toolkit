@@ -1,5 +1,11 @@
 # @288-toolkit/vite-plugin-svelte-replacers
 
+## 3.0.1
+
+### Patch Changes
+
+-   753a448: Update to vite's latest config
+
 ## 3.0.0
 
 ### Major Changes

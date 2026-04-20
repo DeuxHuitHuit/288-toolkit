@@ -1,5 +1,13 @@
 # @288-toolkit/pagination
 
+## 5.2.1
+
+### Patch Changes
+
+-   b06f940: Fetch data with the browser's location upon back button
+-   Updated dependencies [53a78dc]
+    -   @288-toolkit/ui@5.2.4
+
 ## 5.2.0
 
 ### Minor Changes
