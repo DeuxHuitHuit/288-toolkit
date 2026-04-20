@@ -119,7 +119,7 @@
 
 	const items = writable<Items>(initialItems);
 
-	const getInitialPage = () => updateUrl ? Number($page.url.searchParams.get(pageKey)) || 1 : 1;
+	const getInitialPage = () => (updateUrl ? Number($page.url.searchParams.get(pageKey)) || 1 : 1);
 
 	let initialPage = getInitialPage();
 
