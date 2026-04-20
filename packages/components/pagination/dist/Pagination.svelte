@@ -57,6 +57,7 @@
 </script>
 
 <script lang="ts">
+	import { afterNavigate } from '$app/navigation';
 	import { mounted } from '@288-toolkit/ui';
 	import { replaceState, pushState } from '$app/navigation';
 	import { onMount } from 'svelte';
@@ -118,7 +119,9 @@
 
 	const items = writable<Items>(initialItems);
 
-	let initialPage = updateUrl ? Number($page.url.searchParams.get(pageKey)) || 1 : 1;
+	const getInitialPage = () => (updateUrl ? Number($page.url.searchParams.get(pageKey)) || 1 : 1);
+
+	let initialPage = getInitialPage();
 
 	const pages = writable<PagesStore>({
 		current: initialPage,
@@ -128,6 +131,45 @@
 		itemsTotal,
 		filters: {}
 	});
+
+	// Handles client side filter and pagination updates when the user navigates back to the page using
+	// the browser's back button.
+	const onPopState = () => {
+		const urlPage = Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
+		const query = new URLSearchParams(window.location.search);
+		const filterKeys = Object.keys($pages.filters);
+		const urlFilters: Filters = Object.fromEntries(
+			filterKeys.map((key) => [key, query.getAll(key).filter(Boolean)])
+		);
+
+		syncingFromHistory = true;
+		update({ page: urlPage, filters: urlFilters });
+		queueMicrotask(() => {
+			syncingFromHistory = false;
+		});
+	};
+
+	// We need to update the initial page when the user navigates back to the page using
+	// the browser's back button. Since the page store is not updated when the user navigates
+	// back to the page, we need to update the pages store manually.
+	if (updateUrl) {
+		afterNavigate(({ type }) => {
+			if (type !== 'popstate') {
+				return;
+			}
+			initialPage = getInitialPage();
+			const windowUrl = new URL(window.location.href);
+			const urlPage = Number(windowUrl.searchParams.get(pageKey)) || 1;
+			// Check if the store has outdated data
+			if (urlPage === initialPage) {
+				return;
+			}
+			// Clear current items
+			$items = [];
+			// Update the pagination state
+			onPopState();
+		});
+	}
 
 	const firstNewResultIndex = writable<number>(-1);
 	const hasMore = derived(
@@ -201,20 +243,6 @@
 	if (updateUrl && updateUrlMethod === 'push') {
 		// We need to listen to popstate events to update the pagination when the
 		// user navigates back to the page using the browser's back button.
-		const onPopState = () => {
-			const urlPage = Number(new URLSearchParams(window.location.search).get(pageKey)) || 1;
-			const query = new URLSearchParams(window.location.search);
-			const filterKeys = Object.keys($pages.filters);
-			const urlFilters: Filters = Object.fromEntries(
-				filterKeys.map((key) => [key, query.getAll(key).filter(Boolean)])
-			);
-
-			syncingFromHistory = true;
-			update({ page: urlPage, filters: urlFilters });
-			queueMicrotask(() => {
-				syncingFromHistory = false;
-			});
-		};
 		onMount(() => {
 			window.addEventListener('popstate', onPopState);
 			return () => {
