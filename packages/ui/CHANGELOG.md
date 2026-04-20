@@ -1,5 +1,11 @@
 # @288-toolkit/ui
 
+## 5.2.4
+
+### Patch Changes
+
+-   53a78dc: Depreciate scroll-to-anchor
+
 ## 5.2.3
 
 ### Patch Changes
