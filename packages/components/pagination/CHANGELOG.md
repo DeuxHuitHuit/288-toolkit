@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 5.2.2
+
+### Patch Changes
+
+-   6c5021b: Handle links nav with pop state
+
 ## 5.2.1
 
 ### Patch Changes
