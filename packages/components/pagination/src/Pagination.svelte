@@ -152,9 +152,10 @@
 	// We need to update the initial page when the user navigates back to the page using
 	// the browser's back button. Since the page store is not updated when the user navigates
 	// back to the page, we need to update the pages store manually.
+	// This also happens if the user navigates to the same page using a link.
 	if (updateUrl) {
 		afterNavigate(({ type }) => {
-			if (type !== 'popstate') {
+			if (type !== 'popstate' && type !== 'link') {
 				return;
 			}
 			initialPage = getInitialPage();
