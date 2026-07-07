@@ -10,7 +10,7 @@ declare const __propDef: {
     };
     slots: {
         default: {
-            label: any;
+            label: string;
         };
     };
     exports?: {} | undefined;

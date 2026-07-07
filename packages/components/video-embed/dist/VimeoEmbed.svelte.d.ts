@@ -6,6 +6,7 @@ export type VimeoEmbedOptions = {
     portrait?: boolean | string;
     autopause?: boolean | string;
     background?: boolean;
+    dnt?: Maybe<'1'>;
 };
 export declare const VIMEO_DEFAULTS: VimeoEmbedOptions;
 import type { Maybe } from '@288-toolkit/types';

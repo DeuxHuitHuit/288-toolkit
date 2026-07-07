@@ -12,7 +12,7 @@ declare const __propDef: {
     };
     slots: {
         default: {
-            external: any;
+            external: boolean | "";
         };
     };
     exports?: undefined;

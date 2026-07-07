@@ -27,7 +27,7 @@ export interface VideoEmbedApi {
      */
     url: Maybe<string>;
 }
-export declare const getVideoEmbedContext: any;
+export declare const getVideoEmbedContext: () => VideoEmbedApi;
 declare const __propDef: {
     props: {
         url?: Maybe<string> | undefined;
