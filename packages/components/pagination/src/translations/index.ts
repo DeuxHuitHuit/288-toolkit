@@ -3,4 +3,5 @@ import type { PaginationTranslations } from './en.js';
 
 export const key = 'pagination';
 
-export const t: TranslateFunction<PaginationTranslations> = createTranslate<PaginationTranslations>(key);
+export const t: TranslateFunction<PaginationTranslations> =
+	createTranslate<PaginationTranslations>(key);

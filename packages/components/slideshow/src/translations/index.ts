@@ -3,4 +3,5 @@ import type { SlideshowTranslations } from './en.js';
 
 export const key = 'slideshow';
 
-export const t: TranslateFunction<SlideshowTranslations> = createTranslate<SlideshowTranslations>(key);
+export const t: TranslateFunction<SlideshowTranslations> =
+	createTranslate<SlideshowTranslations>(key);
