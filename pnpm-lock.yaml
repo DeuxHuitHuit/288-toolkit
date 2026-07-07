@@ -205,6 +205,9 @@ importers:
       '@testing-library/dom':
         specifier: ^10.0.0
         version: 10.4.1
+      '@testing-library/jest-dom':
+        specifier: ^6.9.1
+        version: 6.9.1
       '@testing-library/svelte':
         specifier: ^5.1.0
         version: 5.4.2(svelte@4.2.17)(vite@5.2.11)(vitest@2.1.6)
@@ -311,6 +314,9 @@ importers:
       '@288-toolkit/vite-plugin-svelte-inline-component':
         specifier: workspace:^
         version: link:../../vite-plugin-svelte-inline-component
+      '@testing-library/jest-dom':
+        specifier: ^6.9.1
+        version: 6.9.1
       '@testing-library/svelte':
         specifier: ^5.1.0
         version: 5.4.2(svelte@4.2.17)(vite@5.2.10)(vitest@2.1.6)
@@ -353,7 +359,7 @@ importers:
         version: 6.9.1
       '@testing-library/svelte':
         specifier: ^5.1.0
-        version: 5.4.2(svelte@4.2.17)(vite@5.2.11)(vitest@2.1.6)
+        version: 5.4.2(svelte@4.2.17)(vite@5.2.10)(vitest@2.1.6)
       svelte-preprocess:
         specifier: 5.1.4
         version: 5.1.4(postcss@8.5.16)(svelte@4.2.17)(typescript@5.4.5)
