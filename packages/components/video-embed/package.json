@@ -47,10 +47,11 @@
 		"@288-toolkit/typed-context": "workspace:*",
 		"@288-toolkit/types": "workspace:*",
 		"@288-toolkit/url": "workspace:*",
-		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:*",
-		"@testing-library/svelte": "^5.1.0"
+		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:*"
 	},
 	"devDependencies": {
+		"@testing-library/svelte": "^5.1.0",
+		"@testing-library/jest-dom": "^6.9.1",
 		"svelte-preprocess": "5.1.4"
 	}
 }
