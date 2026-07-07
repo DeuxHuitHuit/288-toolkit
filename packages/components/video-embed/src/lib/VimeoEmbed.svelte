@@ -6,6 +6,7 @@
 		portrait?: boolean | string; // show portrait
 		autopause?: boolean | string; // mandatory if you have multiple vimeo embeds on the same page on autoplay
 		background?: boolean; // background mode (no controls, no nothing)
+		dnt?: Maybe<'1'>; // Do not track
 	};
 
 	export const VIMEO_DEFAULTS: VimeoEmbedOptions = {
@@ -13,7 +14,8 @@
 		title: false,
 		portrait: false,
 		autopause: true,
-		background: false
+		background: false,
+		dnt: '1'
 	} as const;
 </script>
 
