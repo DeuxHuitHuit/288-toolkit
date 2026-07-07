@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.3.2
+
+### Patch Changes
+
+-   a2196e6: Enable dnt by default
+
 ## 4.3.1
 
 ### Patch Changes
