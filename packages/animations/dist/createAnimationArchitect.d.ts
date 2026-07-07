@@ -1,3 +1,5 @@
+/// <reference types="svelte" />
+/// <reference types="@sveltejs/kit" />
 import { registerTransition } from '@288-toolkit/page-transition';
 export type AnimationFunction = (params: {
     durationMs: number;
@@ -26,5 +28,9 @@ export type ArchitectParams = Partial<ArchitectOptions>;
  */
 export declare const createAnimationArchitect: (options?: ArchitectParams) => {
     registerAnimation: (outAnimation: AnimationFunction) => () => void;
-    start: any;
+    start: <TKey extends import("@288-toolkit/page-transition").TransitionKey>(key: TKey, ...args: TKey extends "default" ? [] | [options: import("@288-toolkit/page-transition").TransitionOptions<TKey>] : [options: import("@288-toolkit/page-transition").TransitionOptions<TKey>]) => import("svelte/store").Readable<{
+        from: import("@288-toolkit/types").Maybe<import("@sveltejs/kit").NavigationTarget>;
+        to: import("@288-toolkit/types").Maybe<import("@sveltejs/kit").NavigationTarget>;
+        key: import("@288-toolkit/page-transition").TransitionKey;
+    } | null>;
 };

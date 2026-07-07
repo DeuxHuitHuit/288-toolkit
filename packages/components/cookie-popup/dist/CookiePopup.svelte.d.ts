@@ -23,7 +23,7 @@ declare const __propDef: {
     slots: {
         default: {
             accept: () => void;
-            deny: any;
+            deny: () => void;
         };
     };
     exports?: {} | undefined;

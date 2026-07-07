@@ -1,6 +1,6 @@
-import { ResolvedConfig } from 'vite';
-import { Options } from 'svelte-preprocess/dist/types';
 import { EventEmitter } from 'events';
+import { Options } from 'svelte-preprocess/dist/types';
+import { ResolvedConfig } from 'vite';
 
 type DevReplacerOptions = {
     production: boolean;

@@ -38,8 +38,8 @@ export interface PaginationApi<TItem> {
     firstNewResultIndex: Readable<number>;
     hasMore: Readable<boolean>;
 }
-export declare const getInternalPaginationContext: any;
-export declare const getPaginationContext: any;
+export declare const getInternalPaginationContext: () => PaginationInternalApi;
+export declare const getPaginationContext: () => PaginationApi<unknown>;
 declare class __sveltets_Render<Item> {
     props(): {
         /**
