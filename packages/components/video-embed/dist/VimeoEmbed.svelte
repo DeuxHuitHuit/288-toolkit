@@ -3,7 +3,8 @@
     title: false,
     portrait: false,
     autopause: true,
-    background: false
+    background: false,
+    dnt: '1'
 };
 </script>
 

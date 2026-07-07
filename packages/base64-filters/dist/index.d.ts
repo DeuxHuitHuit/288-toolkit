@@ -46,7 +46,7 @@ export declare const multipleFiltersToBytes: (filters: Filters) => Uint8Array;
  * @param filters The filters to encode
  * @throws If a filter has more than 255 values or if a value is larger than 65535
  */
-export declare const encodeFilters: (filters: Filters) => any;
+export declare const encodeFilters: (filters: Filters) => string;
 /**
  * Encodes the given single filters into a base64 string.
  *
@@ -54,7 +54,7 @@ export declare const encodeFilters: (filters: Filters) => any;
  * @param filters The filters to encode
  * @throws If a filter has more than one value or if a value is larger than 65535
  */
-export declare const encodeSingleFilters: (filters: Filters) => any;
+export declare const encodeSingleFilters: (filters: Filters) => string;
 /**
  * Encodes the given multiple filters into a base64 string.
  *
@@ -62,7 +62,7 @@ export declare const encodeSingleFilters: (filters: Filters) => any;
  * @param filters The filters to encode
  * @throws If a filter has more than 255 values or if a value is larger than 65535
  */
-export declare const encodeMultiFilters: (filters: Filters) => any;
+export declare const encodeMultiFilters: (filters: Filters) => string;
 /**
  * Converts the given bytes array into an object representation of filters.
  * This byte array must use the single value format.

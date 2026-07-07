@@ -1,4 +1,5 @@
 import { SvelteComponent } from "svelte";
+import { type FormatDateOptions } from '@288-toolkit/format';
 declare const __propDef: {
     props: {
         /**
@@ -6,14 +7,14 @@ declare const __propDef: {
              */ date: Date;
         /**
              * The date formatting options
-             */ formatOptions?: any;
+             */ formatOptions?: FormatDateOptions | undefined;
     };
     events: {
         [evt: string]: CustomEvent<any>;
     };
     slots: {
         default: {
-            formattedDate: any;
+            formattedDate: string;
         };
     };
     exports?: {} | undefined;
