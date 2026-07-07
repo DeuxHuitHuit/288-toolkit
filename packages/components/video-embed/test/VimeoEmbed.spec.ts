@@ -26,7 +26,7 @@ test('Properly renders and preconnect', async () => {
 
 	const iframe = container.querySelector('iframe');
 	expect(iframe?.getAttribute('src')).toBe(
-		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=false&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false'
+		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=false&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false&dnt=1'
 	);
 	expect(iframe?.getAttribute('title')).toBe('Test');
 
@@ -47,7 +47,7 @@ test('Properly renders with autoplay', async () => {
 
 	const iframe = container.querySelector('iframe');
 	expect(iframe?.getAttribute('src')).toBe(
-		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=false&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false'
+		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=false&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false&dnt=1'
 	);
 });
 
@@ -61,7 +61,7 @@ test('Properly renders with autoplay and mute', async () => {
 
 	const iframe = container.querySelector('iframe');
 	expect(iframe?.getAttribute('src')).toBe(
-		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=true&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false'
+		'https://player.vimeo.com/video/TTTTT?autoplay=true&muted=true&loop=false&byline=false&title=false&portrait=false&autopause=true&background=false&dnt=1'
 	);
 });
 
