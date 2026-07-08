@@ -1,5 +1,11 @@
 # @288-toolkit/pagination
 
+## 5.2.3
+
+### Patch Changes
+
+-   7b0ea44: Broken type export
+
 ## 5.2.2
 
 ### Patch Changes

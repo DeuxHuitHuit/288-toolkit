@@ -1,5 +1,11 @@
 # @288-toolkit/slideshow
 
+## 3.3.2
+
+### Patch Changes
+
+-   7b0ea44: Broken type export
+
 ## 3.3.1
 
 ### Patch Changes
