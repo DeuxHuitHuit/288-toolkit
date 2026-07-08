@@ -41,6 +41,7 @@
 	},
 	"dependencies": {
 		"@288-toolkit/i18n": "workspace:^",
+		"@288-toolkit/types": "workspace:^",
 		"@288-toolkit/timeout": "workspace:^"
 	}
 }

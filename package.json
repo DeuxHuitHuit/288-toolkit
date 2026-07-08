@@ -61,6 +61,6 @@
 	"dependencies": {
 		"@288-toolkit/strings": "workspace:*",
 		"@288-toolkit/vite-plugin-svelte-inline-component": "workspace:^",
-		"turbo": "^1.13.3"
+		"turbo": "^2.10.4"
 	}
 }
