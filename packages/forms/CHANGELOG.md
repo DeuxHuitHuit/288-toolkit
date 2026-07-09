@@ -1,5 +1,11 @@
 # @288-toolkit/forms
 
+## 4.4.2
+
+### Patch Changes
+
+-   de28d2c: Make post install soft error
+
 ## 4.4.1
 
 ### Patch Changes

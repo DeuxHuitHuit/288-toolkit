@@ -1,5 +1,12 @@
 # @288-toolkit/pagination
 
+## 5.2.4
+
+### Patch Changes
+
+-   Updated dependencies [de28d2c]
+    -   @288-toolkit/forms@4.4.2
+
 ## 5.2.3
 
 ### Patch Changes
