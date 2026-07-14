@@ -1,5 +1,11 @@
 # @288-toolkit/video-embed
 
+## 4.4.0
+
+### Minor Changes
+
+-   72c4158: Add consent gating to video EmbedGroup
+
 ## 4.3.2
 
 ### Patch Changes
