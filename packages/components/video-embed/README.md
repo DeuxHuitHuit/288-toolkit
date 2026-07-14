@@ -11,7 +11,8 @@ An embed group that provides a context for video embeds.
 #### Props
 
 -   `url` (`string`): The url of the video.
--   `initialConsentState` (`InitialConsentState`): The initial consent state, defaults to 'not-required'.
+-   `initialConsentState` (`InitialConsentState`): The initial consent state, defaults to
+    'not-required'.
 
 #### Slot props
 
@@ -22,7 +23,8 @@ Slot props are also available via `getVideoEmbedContext()`.
 -   `requestPreconnect` (`() => void`): Request preconnection to the embed domains.
 -   `preconnect` (`boolean`): `true` if preconnect has been requested
 -   `url` (`string`): The URL of the video
--   `consentState` (`ConsentState`): The consent state of the group. This is not required by default.
+-   `consentState` (`ConsentState`): The consent state of the group. This is not required by
+    default.
 -   `acceptConsent` (`() => void;`): Accepts the consent and starts the video.
 -   `rejectConsent` (`() => void;`): Reject the consent.
 
