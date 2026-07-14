@@ -3,6 +3,9 @@
 	import type { Maybe } from '@288-toolkit/types';
 	import { createTypedContext } from '@288-toolkit/typed-context';
 
+	export type InitialConsentState = 'not-required' | 'required';
+	export type ConsentState = InitialConsentState | 'accepted' | 'rejected' | 'pending';
+
 	export interface VideoEmbedApi {
 		/**
 		 * A readable store that indicates if the video is currently playing
@@ -28,6 +31,18 @@
 		 * The URL of the video
 		 */
 		url: Maybe<string>;
+		/**
+		 * The consent state of the user
+		 */
+		consentState: Readable<ConsentState>;
+		/**
+		 * Accept the consent and plays the video
+		 */
+		acceptConsent: () => void;
+		/**
+		 * Reject the consent and stops the video
+		 */
+		rejectConsent: () => void;
 	}
 
 	const CONTEXT_KEY = '__videoEmbed__';
@@ -39,6 +54,7 @@
 
 <script lang="ts">
 	export let url: Maybe<string> = null;
+	export let initialConsentState: InitialConsentState = 'not-required';
 
 	interface $$Slots {
 		default: {
@@ -47,6 +63,9 @@
 			play: () => void;
 			stop: () => void;
 			requestPreconnect: () => void;
+			consentState: ConsentState;
+			acceptConsent: () => void;
+			rejectConsent: () => void;
 		};
 	}
 
@@ -55,16 +74,35 @@
 
 	const preconnect = writable(false);
 
+	const _consentState = writable<ConsentState>(initialConsentState);
+	export const consentState = readonly(_consentState);
+	const canPlay = () => $consentState === 'accepted' || $consentState === 'not-required';
+
 	const requestPreconnect = () => {
-		preconnect.set(true);
+		preconnect.set(canPlay());
 	};
 
 	export const play = () => {
-		_playing.set(true);
+		if (canPlay()) {
+			_playing.set(true);
+		} else if ($consentState === 'required') {
+			_consentState.set('pending');
+		}
 	};
 
 	export const stop = () => {
 		_playing.set(false);
+	};
+
+	export const acceptConsent = () => {
+		_consentState.set('accepted');
+		play();
+	};
+
+	export const rejectConsent = () => {
+		_consentState.set('rejected');
+		stop();
+		preconnect.set(false);
 	};
 
 	setContext({
@@ -73,8 +111,20 @@
 		requestPreconnect,
 		play,
 		stop,
-		url
+		url,
+		consentState,
+		acceptConsent,
+		rejectConsent
 	});
 </script>
 
-<slot playing={$_playing} preconnect={$preconnect} {play} {stop} {requestPreconnect} />
+<slot
+	playing={$_playing}
+	preconnect={$preconnect}
+	{play}
+	{stop}
+	{requestPreconnect}
+	consentState={$consentState}
+	{acceptConsent}
+	{rejectConsent}
+/>
