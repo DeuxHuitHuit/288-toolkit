@@ -6,17 +6,35 @@ export const getVideoEmbedContext = getContext;
 </script>
 
 <script>export let url = null;
+export let initialConsentState = 'not-required';
 const _playing = writable(false);
 export const playing = readonly(_playing);
 const preconnect = writable(false);
+const _consentState = writable(initialConsentState);
+export const consentState = readonly(_consentState);
+const canPlay = () => $consentState === 'accepted' || $consentState === 'not-required';
 const requestPreconnect = () => {
-    preconnect.set(true);
+    preconnect.set(canPlay());
 };
 export const play = () => {
-    _playing.set(true);
+    if (canPlay()) {
+        _playing.set(true);
+    }
+    else if ($consentState === 'required') {
+        _consentState.set('pending');
+    }
 };
 export const stop = () => {
     _playing.set(false);
+};
+export const acceptConsent = () => {
+    _consentState.set('accepted');
+    play();
+};
+export const rejectConsent = () => {
+    _consentState.set('rejected');
+    stop();
+    preconnect.set(false);
 };
 setContext({
     playing,
@@ -24,8 +42,20 @@ setContext({
     requestPreconnect,
     play,
     stop,
-    url
+    url,
+    consentState,
+    acceptConsent,
+    rejectConsent
 });
 </script>
 
-<slot playing={$_playing} preconnect={$preconnect} {play} {stop} {requestPreconnect} />
+<slot
+	playing={$_playing}
+	preconnect={$preconnect}
+	{play}
+	{stop}
+	{requestPreconnect}
+	consentState={$consentState}
+	{acceptConsent}
+	{rejectConsent}
+/>
