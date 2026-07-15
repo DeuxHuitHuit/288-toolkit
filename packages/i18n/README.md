@@ -21,13 +21,14 @@ that will set the `siteRouter` object in the locals object.
 ```ts
 import { createSiteRouter } from '@288-toolkit/hooks/server';
 import { createI18nHandles } from '@288-toolkit/i18n/server';
+import { sequence } from '@sveltejs/kit/hooks';
 
 const siteRouter = createSiteRouter({
 	defaultSiteUri: 'en',
 	defaultEntryUri: '__home-page__'
 });
 
-const { langInfo, langRedirect, langAttribute } = createI18nHandles<App.Locals>({
+const { langInfo, langRedirect, langAttribute } = createI18nHandles({
 	supportedLocales: ['en-ca', 'fr-ca'],
 	defaultLocale: 'en-ca'
 });
@@ -44,17 +45,19 @@ Make sure the `langInfo`/`localeInfo` is always placed before the other two.
 Next, you need to change the html `lang` attribute inside `app.html` to `%lang%` so that it be
 replaced by the current language.
 
-Finally, to get type safety for the locals, you need to extend the `App.Locals` interface.
+Finally, to get type safety for the locals, you need to extend the `App.Locals` interface with both
+i18n fields and `siteRouter`. `createI18nHandles` requires Locals to satisfy `SiteRouterLocals`.
 
 In `app.d.ts`:
 
 ```ts
+import type { SiteRouter } from '@288-toolkit/hooks/server';
 import type { I18nInfo } from '@288-toolkit/i18n';
 
 declare global {
 	namespace App {
 		interface Locals extends I18nInfo<typeof ['en-ca', 'fr-ca']> {
-			// ...
+			siteRouter: SiteRouter;
 		}
 	}
 }

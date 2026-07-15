@@ -31,6 +31,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@288-toolkit/hooks": "workspace:^",
 		"@288-toolkit/i18n": "workspace:^"
 	}
 }
