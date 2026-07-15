@@ -65,6 +65,9 @@ export const createI18nHandles = <L extends I18nLocals & SiteRouterLocals>({
 	const findFirstSupportedLocaleByLanguage = (language: string) =>
 		supportedLocales.find((locale) => locale.startsWith(`${language}-`));
 
+	const isSupportedLanguage = (language: string): language is typeof supportedLanguages[number] => supportedLanguages.includes(language);
+	const isSupportedLocale = (locale: string): locale is Locale => supportedLocales.includes(locale as Locale);
+
 	/**
 	 * Sets the locale, language and region in the event locals based on the supported languages.
 	 * Language set in the url (i.e. resolved by site router) will always take precedence over override functions.
@@ -84,8 +87,7 @@ export const createI18nHandles = <L extends I18nLocals & SiteRouterLocals>({
 		const language = isLocalized
 			? // Use the site uri if it exists and is not the default site uri,
 				// otherwise use the default language implementation
-				!locals.siteRouter?.default &&
-				supportedLanguages.includes(locals.siteRouter.site.uri)
+				!locals.siteRouter?.default && isSupportedLanguage(locals.siteRouter.site.uri)
 				? locals.siteRouter.site.uri
 				: defaultSupportedLanguage()
 			: defaultLanguage;
@@ -129,9 +131,8 @@ export const createI18nHandles = <L extends I18nLocals & SiteRouterLocals>({
 		const locale = isLocalized
 			? // Use the site uri if it exists and is not the default site uri,
 				// otherwise use the supported locale from the override function or the default locale
-				!locals.siteRouter?.default &&
-				supportedLocales.includes(locals.siteRouter.site.uri as Locale)
-				? (locals.siteRouter.site.uri as Locale)
+				!locals.siteRouter?.default && isSupportedLocale(locals.siteRouter.site.uri)
+				? locals.siteRouter.site.uri
 				: defaultSupportedLocale()
 			: defaultLocale;
 
