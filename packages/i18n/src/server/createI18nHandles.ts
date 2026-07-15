@@ -65,8 +65,11 @@ export const createI18nHandles = <L extends I18nLocals & SiteRouterLocals>({
 	const findFirstSupportedLocaleByLanguage = (language: string) =>
 		supportedLocales.find((locale) => locale.startsWith(`${language}-`));
 
-	const isSupportedLanguage = (language: string): language is typeof supportedLanguages[number] => supportedLanguages.includes(language);
-	const isSupportedLocale = (locale: string): locale is Locale => supportedLocales.includes(locale as Locale);
+	const isSupportedLanguage = (
+		language: string
+	): language is (typeof supportedLanguages)[number] => supportedLanguages.includes(language);
+	const isSupportedLocale = (locale: string): locale is Locale =>
+		supportedLocales.includes(locale as Locale);
 
 	/**
 	 * Sets the locale, language and region in the event locals based on the supported languages.
