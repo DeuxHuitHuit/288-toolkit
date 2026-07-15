@@ -105,6 +105,7 @@ Get Vercel headers from a request.
 
 ```ts
 const getVercelIpHeaders: (request: Request) => {
+	continent: Maybe<string>;
 	country: Maybe<string>;
 	region: Maybe<string>;
 	city: Maybe<string>;
