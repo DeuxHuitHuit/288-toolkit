@@ -2,14 +2,14 @@
  * This module provide functions to convert a locale to its parts.
  */
 
-import type { LangInfo, Locale } from './types/index.js';
+import type { I18nInfo, Locale } from './types/index.js';
 
 /**
  * @returns The language part of the given locale.
  */
 export const localeToLanguage = <
 	T extends Locale = Locale,
-	U extends string = LangInfo<T[]>['language']
+	U extends string = NonNullable<I18nInfo<T[]>['language']>
 >(
 	locale: T
 ) => {
@@ -21,7 +21,7 @@ export const localeToLanguage = <
  */
 export const localeToRegion = <
 	T extends Locale = Locale,
-	U extends string = LangInfo<T[]>['region']
+	U extends string = NonNullable<I18nInfo<T[]>['region']>
 >(
 	locale: T
 ) => {
