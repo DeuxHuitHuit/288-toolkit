@@ -1,5 +1,11 @@
 # @288-toolkit/dates
 
+## 4.1.11
+
+### Patch Changes
+
+-   @288-toolkit/format@4.2.2
+
 ## 4.1.10
 
 ### Patch Changes

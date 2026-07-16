@@ -1,5 +1,18 @@
 # @288-toolkit/i18n
 
+## 10.1.0
+
+### Minor Changes
+
+-   4ee173e: (feat) Add i18n locale/language overrides and Accept-Language fallback
+
+### Patch Changes
+
+-   Updated dependencies [3e218e9]
+-   Updated dependencies [4ee173e]
+    -   @288-toolkit/http@4.5.0
+    -   @288-toolkit/hooks@1.5.0
+
 ## 10.0.6
 
 ### Patch Changes
