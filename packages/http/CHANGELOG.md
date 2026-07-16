@@ -1,5 +1,11 @@
 # @288-toolkit/http
 
+## 4.5.0
+
+### Minor Changes
+
+-   3e218e9: (feat) Add continent to getVercelIpHeaders
+
 ## 4.4.1
 
 ### Patch Changes

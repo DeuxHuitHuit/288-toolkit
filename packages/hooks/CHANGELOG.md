@@ -1,5 +1,11 @@
 # @288-toolkit/hooks
 
+## 1.5.0
+
+### Minor Changes
+
+-   4ee173e: (feat) Export SiteRouterLocals
+
 ## 1.4.1
 
 ### Patch Changes

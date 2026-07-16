@@ -1,5 +1,13 @@
 # @288-toolkit/video-embed
 
+## 4.4.1
+
+### Patch Changes
+
+-   Updated dependencies [4ee173e]
+    -   @288-toolkit/i18n@10.1.0
+    -   @288-toolkit/html-elements@3.1.16
+
 ## 4.4.0
 
 ### Minor Changes
