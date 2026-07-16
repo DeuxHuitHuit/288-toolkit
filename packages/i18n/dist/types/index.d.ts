@@ -28,8 +28,8 @@ export type LangInfo<Locales extends readonly Locale[] = Locale[]> = {
  */
 export type I18nInfo<Locales extends readonly Locale[] = Locale[]> = {
 	locale: Locales[number];
-	language: Locales[number] extends `${infer Lang}-${infer _}` ? Lang : string;
-	region: Locales[number] extends `${infer _}-${infer Region}` ? Region : string;
+	language: Locales[number] extends `${infer Lang}-${infer _}` ? Lang : never;
+	region: Locales[number] extends `${infer _}-${infer Region}` ? Region : never;
 };
 
 /**

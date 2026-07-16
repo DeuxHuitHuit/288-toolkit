@@ -1,10 +1,15 @@
 /**
  * Get Vercel headers from a request.
+ *
+ * @param request - The request to get the Vercel headers from.
+ * @returns The Vercel headers.
+ * @see https://vercel.com/docs/headers/request-headers
  */
 export const getVercelIpHeaders = (request) => {
     return {
+        continent: request.headers.get('x-vercel-ip-continent'),
         country: request.headers.get('x-vercel-ip-country'),
-        region: request.headers.get('x-vercel-ip-region'),
+        region: request.headers.get('x-vercel-ip-country-region'),
         city: request.headers.get('x-vercel-ip-city'),
         latitude: request.headers.get('x-vercel-ip-latitude'),
         longitude: request.headers.get('x-vercel-ip-longitude'),
