@@ -1,6 +1,6 @@
 import { acceptedLanguage } from '@288-toolkit/http';
 import { localeToLanguage, localeToRegion } from '../localeTo.js';
-export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
+export const createI18nHandles = ({ supportedLocales, defaultLocale, supportedLocale, supportedLanguage }) => {
     const isLocalized = supportedLocales.length > 1;
     const defaultLanguage = localeToLanguage(defaultLocale);
     const supportedLanguages = supportedLocales.map(localeToLanguage);
@@ -17,26 +17,34 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
             }
             return resolve(event);
         };
-    const findFirstSupportedLocale = (language) => supportedLocales.find((locale) => locale.startsWith(`${language}-`));
+    const findFirstSupportedLocaleByLanguage = (language) => supportedLocales.find((locale) => locale.startsWith(`${language}-`));
+    const isSupportedLanguage = (language) => supportedLanguages.includes(language);
+    const isSupportedLocale = (locale) => supportedLocales.includes(locale);
     /**
      * Sets the locale, language and region in the event locals based on the supported languages.
+     * Language set in the url (i.e. resolved by site router) will always take precedence over override functions.
      */
     const langInfo = ({ event, resolve }) => {
-        const { request } = event;
         const locals = event.locals;
+        const defaultSupportedLanguage = () => 
+        // 1. Use the override function if provided
+        supportedLanguage?.(event) ||
+            // 2. Check the accepted language from the request headers
+            acceptedLanguage(event.request, {
+                supportedLanguages,
+                defaultLanguage
+            }) ||
+            // 3. Use the default language
+            defaultLanguage;
         const language = isLocalized
-            ? // Use the site uri if it exists and not the default site uri,
-                // otherwise use the accepted language from the request headers
-                !locals.siteRouter?.default &&
-                    supportedLanguages.includes(locals.siteRouter.site.uri)
+            ? // Use the site uri if it exists and is not the default site uri,
+                // otherwise use the default language implementation
+                !locals.siteRouter?.default && isSupportedLanguage(locals.siteRouter.site.uri)
                     ? locals.siteRouter.site.uri
-                    : acceptedLanguage(request, {
-                        supportedLanguages,
-                        defaultLanguage
-                    })
+                    : defaultSupportedLanguage()
             : defaultLanguage;
-        // Find the supported locale that starts with the language
-        const locale = findFirstSupportedLocale(language) || defaultLocale;
+        // Find the supported locale based on the supported language found.
+        const locale = findFirstSupportedLocaleByLanguage(language) || defaultLocale;
         locals.locale = locale;
         locals.language = language;
         locals.region = localeToRegion(locale);
@@ -44,16 +52,37 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
     };
     /**
      * Sets the locale, language and region in the event locals based on the supported locales.
+     * Locale set in the url (i.e. resolved by site router) will always take precedence over override functions.
      */
     const localeInfo = ({ event, resolve }) => {
         const locals = event.locals;
-        // If the site is localized, use the site uri if it exists and not the default site uri,
-        // otherwise use the default locale
-        // TODO: We should provide a acceptedLocale function...
+        const defaultSupportedLocale = () => {
+            // 1. Use the override function if provided
+            let probableLocale = supportedLocale?.(event);
+            if (probableLocale) {
+                return probableLocale;
+            }
+            // 2a. Try to find a supported language from the request headers
+            const language = acceptedLanguage(event.request, {
+                supportedLanguages,
+                defaultLanguage
+            });
+            // 2b. If a supported language is found, try to find a supported locale for it
+            if (language) {
+                probableLocale = findFirstSupportedLocaleByLanguage(language);
+                if (probableLocale) {
+                    return probableLocale;
+                }
+            }
+            // 3. Use the default locale
+            return defaultLocale;
+        };
         const locale = isLocalized
-            ? !locals.siteRouter?.default && supportedLocales.includes(locals.siteRouter.site.uri)
-                ? locals.siteRouter.site.uri
-                : defaultLocale
+            ? // Use the site uri if it exists and is not the default site uri,
+                // otherwise use the supported locale from the override function or the default locale
+                !locals.siteRouter?.default && isSupportedLocale(locals.siteRouter.site.uri)
+                    ? locals.siteRouter.site.uri
+                    : defaultSupportedLocale()
             : defaultLocale;
         locals.locale = locale;
         locals.language = localeToLanguage(locale);
@@ -88,7 +117,7 @@ export const createI18nHandles = ({ supportedLocales, defaultLocale }) => {
                 if (!done) {
                     return html;
                 }
-                return html.replace('%lang%', locals.language);
+                return html.replace('%lang%', locals.language || '');
             }
         });
     };

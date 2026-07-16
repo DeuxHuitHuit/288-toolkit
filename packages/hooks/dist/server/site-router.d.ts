@@ -2,7 +2,7 @@ import type { Handle, RequestEvent } from '@sveltejs/kit';
 /**
  * The handle of the site.
  */
-type SiteHandle = string;
+export type SiteHandle = string;
 /**
  * The uri object with site and entry properties.
  */
@@ -56,6 +56,12 @@ export type SiteRouterHandleOptions<T extends SiteHandle = SiteHandle> = {
      * The validate site handle. This is used to validate the site handle.
      */
     validateSiteHandle?: (validSiteHandles: ReadonlyArray<T>, possibleHandle: string) => boolean;
+};
+/**
+ * Let's make sure the locals object has the uri object with site and entry properties.
+ */
+export type SiteRouterLocals<T extends SiteHandle = SiteHandle> = App.Locals & {
+    siteRouter: SiteRouter<T>;
 };
 /**
  * Split the pathname into site and entry parts.
