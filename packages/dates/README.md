@@ -89,3 +89,24 @@ Deals with DST and other timezone changes.
 
 Does not work _precisely_ for timezones that are offset by 30 minutes. Will ALWAYS use the user's
 timezone, regardless of its input.
+
+## `startOfDay`
+
+Returns the instant at which the day of a date, as seen in a given timezone, starts.
+
+Unlike `today`, which uses the _user's_ current day of month, `startOfDay` only relies on the
+absolute time of the date (`getTime()`), so the result does not depend on the timezone of the
+runtime. This is useful to group or filter events by their day, in the events' timezone.
+
+An event on August 9th 2025 at 20:25 in Toronto is stored as `2025-08-10T00:25:00.000Z`.
+`startOfDay(event, { timeZone: 'America/Toronto' })` returns `2025-08-09T04:00:00.000Z`, regardless
+of where the code runs.
+
+Use `options.timeZone` to specify the timezone in which the day is computed. It defaults to `UTC`.
+
+Use `options.hourOfStartOfDay` to specify the hour of the start of day in that timezone.
+
+### Pros
+
+Deals with DST and other timezone changes, using the offset in effect at the start of the day. Works
+with timezones offset by 30 or 45 minutes.
