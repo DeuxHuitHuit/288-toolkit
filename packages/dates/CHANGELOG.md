@@ -1,5 +1,12 @@
 # @288-toolkit/dates
 
+## 4.2.0
+
+### Minor Changes
+
+-   8823d32: (feat) Add startOfDay(), a timezone aware start of day that does not depend on the
+    runtime timezone
+
 ## 4.1.11
 
 ### Patch Changes
